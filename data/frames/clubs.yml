@@ -1,5 +1,5 @@
-# 2021
-# J1 20 clubs
+# 2022
+# J1 18 clubs
 - id: "1"
   slug: consadole
   name: 北海道コンサドーレ札幌
@@ -12,19 +12,6 @@
   settlement: https://www.consadole-sapporo.jp/club/settlement/
   relatedCompanies:
     - 一般社団法人コンサドーレ北海道スポーツクラブ
-
-- id: "2"
-  slug: vegalta
-  name: ベガルタ仙台
-  fullname: ベガルタ仙台
-  short_name: 仙台
-  company: 株式会社ベガルタ仙台
-  category: J1
-  hometown: 仙台市
-  area: 宮城県
-  settlement: https://www.vegalta.co.jp/club/company.html
-  relatedCompanies:
-    - 株式会社ベガルタスポーツクラブ
 
 - id: "3"
   slug: antlers
@@ -91,18 +78,6 @@
   hometown: 横浜市、横須賀市、大和市
   area: 神奈川県
 
-- id: "25"
-  slug: yokohamafc
-  name: 横浜FC
-  fullname: 横浜FC
-  short_name: 横浜FC
-  company: 株式会社横浜フリエスポーツクラブ
-  category: J1
-  hometown: 横浜市
-  area: 神奈川県
-  relatedCompanies:
-    - 一般社団法人横浜FCスポーツクラブ
-
 - id: "26"
   slug: bellmare
   name: 湘南ベルマーレ
@@ -127,6 +102,16 @@
   area: 静岡県
   settlement: https://www.s-pulse.co.jp/news/detail/44746
 
+- id: "13"
+  slug: jubilo
+  name: ジュビロ磐田
+  fullname: ジュビロ磐田
+  short_name: 磐田
+  company: 株式会社ジュビロ
+  category: J1
+  hometown: 磐田市
+  area: 静岡県
+
 - id: "29"
   slug: nagoya
   name: 名古屋グランパス
@@ -136,6 +121,17 @@
   category: J1
   hometown: 名古屋市、豊田市、みよし市を中心とする全県
   area: 愛知県
+
+- id: "31"
+  slug: sanga
+  name: 京都サンガF.C.
+  fullname: 京都サンガF.C.
+  short_name: 京都
+  company: 株式会社京都パープルサンガ
+  category: J1
+  hometown: 京都市、宇治市、城陽市、向日市、長岡京市、京田辺市、木津川市、亀岡市、南丹市、京丹波町、福知山市、舞鶴市、綾部市、八幡市
+  area: 京都府
+  settlement: http://www.sanga-fc.jp/club/
 
 - id: "14"
   slug: gamba
@@ -179,17 +175,6 @@
   hometown: 広島市
   area: 広島県
 
-- id: "35"
-  slug: vortis
-  name: 徳島ヴォルティス
-  fullname: 徳島ヴォルティス
-  short_name: 徳島
-  company: 徳島ヴォルティス株式会社
-  category: J1
-  hometown: 鳴門市、徳島市、吉野川市、美馬市、板野町、松茂町、藍住町、北島町を中心とする全県
-  area: 徳島県
-  settlement: https://www.vortis.jp/clubinfo/
-
 - id: "37"
   slug: avispa
   name: アビスパ福岡
@@ -212,18 +197,30 @@
   area: 佐賀県
   settlement: https://www.sagan-tosu.net/news/p/5401/
 
-- id: "40"
-  slug: trinita
-  name: 大分トリニータ
-  fullname: 大分トリニータ
-  short_name: 大分
-  company: 株式会社大分フットボールクラブ
-  category: J1
-  hometown: 大分市、別府市、佐伯市を中心とする全県
-  area: 大分県
-  settlement: https://www.oita-trinita.co.jp/news/20210467777/
-
 # J2 22 clubs
+- id: "41"
+  slug: gurulla
+  name: いわてグルージャ盛岡
+  fullname: いわてグルージャ盛岡
+  short_name: 岩手
+  company: 株式会社いわてアスリートクラブ
+  category: J2
+  hometown: 盛岡市､宮古市､大船渡市､花巻市､北上市､久慈市､遠野市､一関市､陸前高田市､釜石市､二戸市､八幡平市､奥州市､滝沢市､雫石町､葛巻町､岩手町､紫波町､矢巾町､西和賀町､金ケ崎町､平泉町､住田町､大槌町､山田町､岩泉町､田野畑村､普代村､軽米町､野田村､九戸村､洋野町､一戸町【岩手県全県】
+  area: 岩手県
+
+- id: "2"
+  slug: vegalta
+  name: ベガルタ仙台
+  fullname: ベガルタ仙台
+  short_name: 仙台
+  company: 株式会社ベガルタ仙台
+  category: J2
+  hometown: 仙台市
+  area: 宮城県
+  settlement: https://www.vegalta.co.jp/club/company.html
+  relatedCompanies:
+    - 株式会社ベガルタスポーツクラブ
+
 - id: "42"
   slug: braublitz
   name: ブラウブリッツ秋田
@@ -231,7 +228,7 @@
   short_name: 秋田
   company: 株式会社ブラウブリッツ秋田
   category: J2
-  hometown: 秋田市、由利本荘市、にかほ市、男鹿市を中心とする全県
+  hometown: 秋田市、由利本荘市、にかほ市、男鹿市、潟上市を中心とする全県
   area: 秋田県
 
 - id: "19"
@@ -325,17 +322,17 @@
   relatedCompanies:
     - NPO法人アスレチッククラブ町田
 
-- id: "46"
-  slug: scsagamihara
-  name: SC相模原
-  fullname: SC相模原
-  short_name: 相模原
-  company: 株式会社スポーツクラブ相模原
+- id: "25"
+  slug: yokohamafc
+  name: 横浜FC
+  fullname: 横浜FC
+  short_name: 横浜FC
+  company: 株式会社横浜フリエスポーツクラブ
   category: J2
-  hometown: 相模原市、座間市、綾瀬市、愛川町
+  hometown: 横浜市
   area: 神奈川県
   relatedCompanies:
-    - NPO法人スポーツクラブ相模原
+    - 一般社団法人横浜FCスポーツクラブ
 
 - id: "10"
   slug: ventforet
@@ -349,19 +346,6 @@
   settlement: https://www.ventforet.jp/news/press_release/520817
   relatedCompanies:
     - 一般社団法人ヴァンフォーレスポーツクラブ
-
-- id: "27"
-  slug: yamaga
-  name: 松本山雅FC
-  fullname: 松本山雅フットボールクラブ
-  short_name: 松本
-  company: 株式会社松本山雅
-  category: J2
-  hometown: 松本市、塩尻市、山形村、安曇野市、大町市、池田町、生坂村、箕輪町、朝日村
-  area: 長野県
-  settlement: https://www.yamaga-fc.com/club-info/company/accounting
-  relatedCompanies:
-    - NPO法人松本山雅スポーツクラブ
 
 - id: "11"
   slug: albirex
@@ -385,27 +369,6 @@
   settlement: http://www.zweigen-kanazawa.jp/news/p4404.html
   relatedCompanies:
     - 一般社団法人石川ツエーゲンスポーツクラブ
-
-- id: "13"
-  slug: jubilo
-  name: ジュビロ磐田
-  fullname: ジュビロ磐田
-  short_name: 磐田
-  company: 株式会社ジュビロ
-  category: J2
-  hometown: 磐田市
-  area: 静岡県
-
-- id: "31"
-  slug: sanga
-  name: 京都サンガF.C.
-  fullname: 京都サンガF.C.
-  short_name: 京都
-  company: 株式会社京都パープルサンガ
-  category: J2
-  hometown: 京都市、宇治市、城陽市、向日市、長岡京市、京田辺市、木津川市、亀岡市、南丹市、京丹波町、福知山市、舞鶴市、綾部市、八幡市
-  area: 京都府
-  settlement: http://www.sanga-fc.jp/club/
 
 - id: "32"
   slug: fagiano
@@ -431,27 +394,16 @@
   relatedCompanies:
     - NPO法人レノファ山口スポーツクラブ
 
-- id: "36"
-  slug: ehimefc
-  name: 愛媛FC
-  fullname: 愛媛FC
-  short_name: 愛媛
-  company: 株式会社愛媛FC
+- id: "35"
+  slug: vortis
+  name: 徳島ヴォルティス
+  fullname: 徳島ヴォルティス
+  short_name: 徳島
+  company: 徳島ヴォルティス株式会社
   category: J2
-  hometown: 松山市を中心とする全県
-  area: 愛媛県
-  settlement: https://ehimefc.com/topics/topic10466.html
-
-- id: "52"
-  slug: giravanz
-  name: ギラヴァンツ北九州
-  fullname: ギラヴァンツ北九州
-  short_name: 北九州
-  company: 株式会社ギラヴァンツ北九州
-  category: J2
-  hometown: 北九州市
-  area: 福岡県
-  settlement: https://www.giravanz.jp/news/p35336.html
+  hometown: 鳴門市、徳島市、吉野川市、美馬市、小松島市、板野町、松茂町、藍住町、北島町を中心とする全県
+  area: 徳島県
+  settlement: https://www.vortis.jp/clubinfo/
 
 - id: "38"
   slug: vvaren
@@ -464,6 +416,30 @@
   area: 長崎県
   settlement: https://www.v-varen.com/clubinfo/139502.html
 
+- id: "39"
+  slug: roasso
+  name: ロアッソ熊本
+  fullname: ロアッソ熊本
+  short_name: 熊本
+  company: 株式会社アスリートクラブ熊本
+  category: J2
+  hometown: 熊本市
+  area: 熊本県
+  settlement: https://roasso-k.com/top_team/club_outline
+  relatedCompanies:
+    - 一般社団法人ロアッソ熊本スポーツクラブ
+
+- id: "40"
+  slug: trinita
+  name: 大分トリニータ
+  fullname: 大分トリニータ
+  short_name: 大分
+  company: 株式会社大分フットボールクラブ
+  category: J2
+  hometown: 大分市、別府市、佐伯市を中心とする全県
+  area: 大分県
+  settlement: https://www.oita-trinita.co.jp/news/20210467777/
+
 - id: "54"
   slug: fcryukyu
   name: FC琉球
@@ -475,7 +451,7 @@
   area: 沖縄県
   settlement: http://fcryukyu.com/news/27459/
 
-# J3 16 clubs
+# J3 18 clubs
 - id: "55"
   slug: vanraure
   name: ヴァンラーレ八戸
@@ -487,16 +463,6 @@
   area: 青森県
   relatedCompanies:
     - NPO法人クローバーズ・ネット
-
-- id: "41"
-  slug: gurulla
-  name: いわてグルージャ盛岡
-  fullname: いわてグルージャ盛岡
-  short_name: 岩手
-  company: 株式会社いわてアスリートクラブ
-  category: J3
-  hometown: 盛岡市､宮古市､大船渡市､花巻市､北上市､久慈市､遠野市､一関市､陸前高田市､釜石市､二戸市､八幡平市､奥州市､滝沢市､雫石町､葛巻町､岩手町､紫波町､矢巾町､西和賀町､金ケ崎町､平泉町､住田町､大槌町､山田町､岩泉町､田野畑村､普代村､軽米町､野田村､九戸村､洋野町､一戸町【岩手県全県】
-  area: 岩手県
 
 - id: "43"
   slug: fufc
@@ -510,6 +476,16 @@
   relatedCompanies:
     - NPO法人福島ユナイテッドスポーツクラブ
 
+#- id: "58"
+#  slug: iwakifc
+#  name: いわきFC
+#  fullname: いわきFC
+#  short_name: いわき
+#  company: 株式会社いわきスポーツクラブ
+#  category: J3
+#  hometown: いわき市、広野町、楢葉町、富岡町、川内村、大熊町、双葉町、葛尾村
+#  area: 福島県
+
 - id: "45"
   slug: yscc
   name: Y.S.C.C.横浜
@@ -519,6 +495,31 @@
   category: J3
   hometown: 横浜市
   area: 神奈川県
+
+- id: "46"
+  slug: scsagamihara
+  name: SC相模原
+  fullname: SC相模原
+  short_name: 相模原
+  company: 株式会社スポーツクラブ相模原
+  category: J3
+  hometown: 相模原市、海老名市、座間市、綾瀬市、愛川町
+  area: 神奈川県
+  relatedCompanies:
+    - NPO法人スポーツクラブ相模原
+
+- id: "27"
+  slug: yamaga
+  name: 松本山雅FC
+  fullname: 松本山雅フットボールクラブ
+  short_name: 松本
+  company: 株式会社松本山雅
+  category: J3
+  hometown: 松本市、塩尻市、山形村、安曇野市、大町市、池田町、生坂村、箕輪町、朝日村
+  area: 長野県
+  settlement: https://www.yamaga-fc.com/club-info/company/accounting
+  relatedCompanies:
+    - NPO法人松本山雅スポーツクラブ
 
 - id: "47"
   slug: parceiro
@@ -597,6 +598,17 @@
   area: 香川県
   settlement: https://www.kamatamare.jp/news/?id=1720&item=INFO
 
+- id: "36"
+  slug: ehimefc
+  name: 愛媛FC
+  fullname: 愛媛FC
+  short_name: 愛媛
+  company: 株式会社愛媛FC
+  category: J3
+  hometown: 松山市を中心とする全県
+  area: 愛媛県
+  settlement: https://ehimefc.com/topics/topic10466.html
+
 - id: "56"
   slug: fcimabari
   name: FC今治
@@ -608,18 +620,16 @@
   area: 愛媛県
   settlement: https://www.fcimabari.com/news/2021/004017.html
 
-- id: "39"
-  slug: roasso
-  name: ロアッソ熊本
-  fullname: ロアッソ熊本
-  short_name: 熊本
-  company: 株式会社アスリートクラブ熊本
+- id: "52"
+  slug: giravanz
+  name: ギラヴァンツ北九州
+  fullname: ギラヴァンツ北九州
+  short_name: 北九州
+  company: 株式会社ギラヴァンツ北九州
   category: J3
-  hometown: 熊本市
-  area: 熊本県
-  settlement: https://roasso-k.com/top_team/club_outline
-  relatedCompanies:
-    - 一般社団法人ロアッソ熊本スポーツクラブ
+  hometown: 北九州市
+  area: 福岡県
+  settlement: https://www.giravanz.jp/news/p35336.html
 
 - id: "57"
   slug: tegevajaro
@@ -628,7 +638,7 @@
   short_name: 宮崎
   company: 株式会社テゲバジャーロ宮崎
   category: J3
-  hometown: 宮崎市、新富町
+  hometown: 宮崎市、新富町、西都市
   area: 宮崎県
 
 - id: "53"
