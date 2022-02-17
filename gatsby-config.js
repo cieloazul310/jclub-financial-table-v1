@@ -1,5 +1,3 @@
-const path = require('path');
-
 const baseUrl = 'https://cieloazul310.github.io';
 const pathPrefix = '/jclub-financial-table';
 // const siteUrl = path.join(baseUrl, pathPrefix);

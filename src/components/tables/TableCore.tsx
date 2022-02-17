@@ -1,34 +1,17 @@
 import * as React from 'react';
-import Paper from '@material-ui/core/Paper';
-import TableContainer from '@material-ui/core/TableContainer';
-import Table from '@material-ui/core/Table';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
-// import { Mode } from '../../types';
+import Paper from '@mui/material/Paper';
+import TableContainer from '@mui/material/TableContainer';
+import Table from '@mui/material/Table';
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    container: {
-      flexGrow: 1,
-    },
-    table: {
-      minWidth: 1000,
-      scrollSnapType: 'both mandatory',
-    },
-  })
-);
-
-interface Props {
+type TableCoreProps = {
   id: string;
-  // mode: Mode;
   children: React.ReactNode;
-}
+};
 
-function TableCore({ id, children }: Props): JSX.Element {
-  const classes = useStyles();
-
+function TableCore({ id, children }: TableCoreProps) {
   return (
-    <TableContainer className={classes.container} component={Paper}>
-      <Table id={id} className={classes.table} size="small" stickyHeader>
+    <TableContainer sx={{ flexGrow: 1 }} component={Paper}>
+      <Table id={id} sx={{ minWidth: 1000, scrollSnapType: 'both mandatory' }} size="small" stickyHeader>
         {children}
       </Table>
     </TableContainer>

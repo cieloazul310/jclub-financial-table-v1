@@ -1,319 +1,210 @@
 import * as React from 'react';
-import clsx from 'clsx';
-import TableRow from '@material-ui/core/TableRow';
-import TableCell from '@material-ui/core/TableCell';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import TableRow from '@mui/material/TableRow';
+import TableCell, { TableCellProps } from '@mui/material/TableCell';
 import { TableBodyLabel } from './TableLabel';
 import { CategoryLabel } from '../CategoryAvatar';
-import { useAppState } from '../../utils/AppStateContext';
-import { Tab, Mode, Edge } from '../../types';
+import { useAppState } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
+import { Tab, Mode, DatumBrowser, General, PL, BS, Revenue, Expense, AttdBrowser } from '../../../types';
 
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    root: {
-      borderRight: `1px solid ${theme.palette.divider}`,
-    },
-    emphasized: {
-      fontWeight: theme.typography.fontWeightBold,
-      background: theme.palette.background.default,
-    },
-    rowInfo: {
-      fontSize: theme.typography.body2.fontSize,
-      color: theme.palette.text.secondary,
-    },
-    promoted: {
-      fontWeight: theme.typography.fontWeightBold,
-      color: theme.palette.type === 'light' ? theme.palette.success.main : theme.palette.success.light,
-    },
-    relegated: {
-      fontWeight: theme.typography.fontWeightBold,
-      color: theme.palette.type === 'light' ? theme.palette.error.main : theme.palette.error.light,
-    },
-  })
-);
+function val(value: number | null, separator: boolean) {
+  if (typeof value !== 'number') return '-';
+  if (!separator) return value.toString();
+  return value.toLocaleString('en-US');
+}
 
-type TableRowProps = Pick<Props, 'edge'>;
+type DataTableCellProps = {
+  value: number | null;
+  emphasized?: boolean;
+  separator?: boolean;
+  strong?: boolean;
+} & Omit<TableCellProps, 'children'>;
 
-export function PLTableRow({ edge }: TableRowProps): JSX.Element {
-  const classes = useStyles();
+function DataTableCell({ value, emphasized = false, strong = false, separator = false, ...props }: DataTableCellProps) {
+  return (
+    <TableCell
+      align={props.align ?? 'right'}
+      sx={{
+        borderRight: (theme) => `1px solid ${theme.palette.divider}`,
+        bgcolor: ({ palette }) => {
+          if (!emphasized) return undefined;
+          return palette.mode === 'light' ? 'grey.100' : 'grey.800';
+        },
+        fontWeight: strong || emphasized ? 'bold' : undefined,
+      }}
+      {...props}
+    >
+      {val(value, separator)}
+    </TableCell>
+  );
+}
+DataTableCell.defaultProps = {
+  emphasized: false,
+  strong: false,
+  separator: false,
+};
+
+type TableRowProps<T> = {
+  edge: {
+    node: Pick<General, 'year'> & T;
+  };
+};
+
+export function PLTableRow({ edge }: TableRowProps<PL>) {
   const { node } = edge;
   return (
     <>
-      <TableCell classes={{ root: classes.root }} align="right">
-        <strong>{node.revenue}</strong>
-      </TableCell>
-      <TableCell classes={{ root: classes.root }} align="right">
-        {node.expense}
-      </TableCell>
-      <TableCell classes={{ root: classes.root }} className={classes.emphasized} align="right">
-        {node.op_profit}
-      </TableCell>
-      <TableCell classes={{ root: classes.root }} align="right">
-        {node.no_rev ?? '-'}
-      </TableCell>
-      <TableCell classes={{ root: classes.root }} align="right">
-        {node.no_exp ?? '-'}
-      </TableCell>
-      <TableCell classes={{ root: classes.root }} className={classes.emphasized} align="right">
-        {node.ordinary_profit ?? '-'}
-      </TableCell>
-      <TableCell classes={{ root: classes.root }} align="right">
-        {node.sp_rev ?? '-'}
-      </TableCell>
-      <TableCell classes={{ root: classes.root }} align="right">
-        {node.sp_exp ?? '-'}
-      </TableCell>
-      <TableCell classes={{ root: classes.root }} className={classes.emphasized} align="right">
-        {node.profit_before_tax ?? '-'}
-      </TableCell>
-      <TableCell classes={{ root: classes.root }} align="right">
-        {node.tax ?? '-'}
-      </TableCell>
-      <TableCell classes={{ root: classes.root }} className={classes.emphasized} align="right">
-        {node.profit}
-      </TableCell>
-      <TableCell align="right">{node.related_revenue || '-'}</TableCell>
+      <DataTableCell value={node.revenue} strong />
+      <DataTableCell value={node.expense} strong />
+      <DataTableCell value={node.op_profit} emphasized />
+      <DataTableCell value={node.no_rev} />
+      <DataTableCell value={node.no_exp} />
+      <DataTableCell value={node.ordinary_profit} emphasized />
+      <DataTableCell value={node.sp_rev} />
+      <DataTableCell value={node.sp_exp} />
+      <DataTableCell value={node.profit_before_tax} emphasized />
+      <DataTableCell value={node.tax} />
+      <DataTableCell value={node.profit} emphasized />
+      <DataTableCell value={node.related_revenue} />
     </>
   );
 }
 
-export function BSTableRow({ edge }: TableRowProps): JSX.Element {
-  const classes = useStyles();
+export function BSTableRow({ edge }: TableRowProps<BS>) {
   const { node } = edge;
   return (
     <>
-      <TableCell classes={{ root: classes.root }} className={classes.emphasized} align="right">
-        {node.assets}
-      </TableCell>
-      <TableCell classes={{ root: classes.root }} align="right">
-        {node.curr_assets ?? '-'}
-      </TableCell>
-      <TableCell classes={{ root: classes.root }} align="right">
-        {node.fixed_assets ?? '-'}
-      </TableCell>
-      <TableCell classes={{ root: classes.root }} className={classes.emphasized} align="right">
-        {node.liabilities}
-      </TableCell>
-      <TableCell classes={{ root: classes.root }} align="right">
-        {node.curr_liabilities ?? '-'}
-      </TableCell>
-      <TableCell classes={{ root: classes.root }} align="right">
-        {node.fixed_liabilities ?? '-'}
-      </TableCell>
-      <TableCell classes={{ root: classes.root }} className={classes.emphasized} align="right">
-        {node.net_worth}
-      </TableCell>
-      <TableCell classes={{ root: classes.root }} align="right">
-        {node.capital_stock}
-      </TableCell>
-      <TableCell classes={{ root: classes.root }} align="right">
-        {node.capital_surplus ?? '-'}
-      </TableCell>
-      <TableCell classes={{ root: classes.root }} align="right">
-        {node.retained_earnings ?? '-'}
-      </TableCell>
-      <TableCell align="right">{node.profit}</TableCell>
+      <DataTableCell value={node.assets} emphasized />
+      <DataTableCell value={node.curr_assets} />
+      <DataTableCell value={node.fixed_assets} />
+      <DataTableCell value={node.liabilities} emphasized />
+      <DataTableCell value={node.curr_liabilities} />
+      <DataTableCell value={node.fixed_liabilities} />
+      <DataTableCell value={node.net_worth} emphasized />
+      <DataTableCell value={node.capital_stock} />
+      <DataTableCell value={node.capital_surplus} emphasized />
+      <DataTableCell value={node.retained_earnings} />
+      <DataTableCell value={node.profit} strong />
     </>
   );
 }
 
-export function RevenueTableRow({ edge }: TableRowProps): JSX.Element {
-  const classes = useStyles();
+export function RevenueTableRow({ edge }: TableRowProps<Revenue>) {
   const { node } = edge;
   const otherRevs = (year: number) => {
-    if (year <= 2010)
-      return (
-        <TableCell classes={{ root: classes.root }} align="center" colSpan={3}>
-          {node.other_revs}
-        </TableCell>
-      );
+    if (year <= 2010) return <DataTableCell value={node.other_revs} align="center" colSpan={3} />;
     if (year <= 2015)
       return (
         <>
-          <TableCell classes={{ root: classes.root }} align="center">
-            {node.academy_rev}
-          </TableCell>
-          <TableCell classes={{ root: classes.root }} align="center" colSpan={2}>
-            {node.other_revs}
-          </TableCell>
+          <DataTableCell value={node.academy_rev} align="center" />
+          <DataTableCell value={node.other_revs} align="center" colSpan={2} />
         </>
       );
     return (
       <>
-        <TableCell classes={{ root: classes.root }} align="center">
-          {node.academy_rev}
-        </TableCell>
-        <TableCell classes={{ root: classes.root }} align="center">
-          {node.goods_rev}
-        </TableCell>
-        <TableCell classes={{ root: classes.root }} align="center">
-          {node.other_revs}
-        </TableCell>
+        <DataTableCell value={node.academy_rev} align="center" />
+        <DataTableCell value={node.goods_rev} align="center" />
+        <DataTableCell value={node.other_revs} align="center" />
       </>
     );
   };
 
   return (
     <>
-      <TableCell classes={{ root: classes.root }} className={classes.emphasized} align="right">
-        {node.revenue}
-      </TableCell>
-      <TableCell classes={{ root: classes.root }} align="right">
-        {node.sponsor ?? '-'}
-      </TableCell>
-      <TableCell classes={{ root: classes.root }} align="right">
-        {node.ticket ?? '-'}
-      </TableCell>
-      <TableCell classes={{ root: classes.root }} align="right">
-        {node.broadcast}
-      </TableCell>
-      {otherRevs(node.year ?? 0)}
+      <DataTableCell value={node.revenue} emphasized />
+      <DataTableCell value={node.sponsor} />
+      <DataTableCell value={node.ticket} />
+      <DataTableCell value={node.broadcast} />
+      {otherRevs(node.year)}
+      <DataTableCell value={node.related_revenue} />
     </>
   );
 }
 
-export function ExpenseTableRow({ edge }: TableRowProps): JSX.Element {
-  const classes = useStyles();
+export function ExpenseTableRow({ edge }: TableRowProps<Expense>) {
   const { node } = edge;
   const expenseData = (year: number) => {
     if (year <= 2005 && !node.salary)
       return (
         <>
-          <TableCell classes={{ root: classes.root }} align="center" colSpan={7}>
-            {node.general_exp ?? '-'}
-          </TableCell>
-          <TableCell align="center">{node.sga ?? '-'}</TableCell>
+          <DataTableCell value={node.general_exp} align="center" colSpan={7} />
+          <DataTableCell value={node.sga} align="center" />
         </>
       );
     if (year <= 2010)
       return (
         <>
-          <TableCell classes={{ root: classes.root }} align="right">
-            {node.salary ?? '-'}
-          </TableCell>
-          <TableCell classes={{ root: classes.root }} align="center" colSpan={6}>
-            {node.manage_exp ?? '-'}
-          </TableCell>
-          <TableCell align="center">{node.sga ?? '-'}</TableCell>
+          <DataTableCell value={node.salary} />
+          <DataTableCell value={node.manage_exp} align="center" colSpan={6} />
+          <DataTableCell value={node.sga} align="center" />
         </>
       );
     if (year <= 2015)
       return (
         <>
-          <TableCell classes={{ root: classes.root }} align="right">
-            {node.salary}
-          </TableCell>
-          <TableCell classes={{ root: classes.root }} align="right">
-            {node.game_exp}
-          </TableCell>
-          <TableCell classes={{ root: classes.root }} align="right">
-            {node.team_exp}
-          </TableCell>
-          <TableCell classes={{ root: classes.root }} align="right">
-            {node.academy_exp}
-          </TableCell>
-          <TableCell classes={{ root: classes.root }} align="right">
-            {node.women_exp}
-          </TableCell>
-          <TableCell align="center" colSpan={3}>
-            {node.sga}
-          </TableCell>
+          <DataTableCell value={node.salary} />
+          <DataTableCell value={node.game_exp} />
+          <DataTableCell value={node.team_exp} />
+          <DataTableCell value={node.academy_exp} />
+          <DataTableCell value={node.women_exp} />
+          <DataTableCell value={node.sga} align="center" colSpan={3} />
         </>
       );
     return (
       <>
-        <TableCell classes={{ root: classes.root }} align="right">
-          {node.salary}
-        </TableCell>
-        <TableCell classes={{ root: classes.root }} align="right">
-          {node.game_exp}
-        </TableCell>
-        <TableCell classes={{ root: classes.root }} align="right">
-          {node.team_exp}
-        </TableCell>
-        <TableCell classes={{ root: classes.root }} align="right">
-          {node.academy_exp}
-        </TableCell>
-        <TableCell classes={{ root: classes.root }} align="right">
-          {node.women_exp}
-        </TableCell>
-        <TableCell classes={{ root: classes.root }} align="center">
-          {node.goods_exp}
-        </TableCell>
-        <TableCell align="center" colSpan={2}>
-          {node.sga}
-        </TableCell>
+        <DataTableCell value={node.salary} />
+        <DataTableCell value={node.game_exp} />
+        <DataTableCell value={node.team_exp} />
+        <DataTableCell value={node.academy_exp} />
+        <DataTableCell value={node.women_exp} />
+        <DataTableCell value={node.goods_exp} />
+        <DataTableCell value={node.sga} align="center" colSpan={2} />
       </>
     );
   };
 
   return (
     <>
-      <TableCell classes={{ root: classes.root }} className={classes.emphasized} align="right">
-        {node.expense}
-      </TableCell>
-      {expenseData(node.year ?? 0)}
+      <DataTableCell value={node.expense} emphasized />
+      {expenseData(node.year)}
     </>
   );
 }
 
-export function AttdTableRow({ edge }: TableRowProps): JSX.Element {
-  const classes = useStyles();
+export function AttdTableRow({ edge }: TableRowProps<AttdBrowser>) {
   const { node } = edge;
   const { displayFullAttd } = useAppState();
   return (
     <>
-      <TableCell classes={{ root: classes.root }} className={classes.emphasized} align="right">
-        {node.ticket ?? '-'}
-      </TableCell>
-      <TableCell classes={{ root: classes.root }} align="right">
-        {node.league_games}
-      </TableCell>
-      <TableCell classes={{ root: classes.root }} align="right">
-        {Math.round((node.league_attd ?? 1) / (node.league_games ?? 0))}
-      </TableCell>
-      <TableCell classes={{ root: classes.root }} align="right">
-        {node.league_attd}
-      </TableCell>
+      <DataTableCell value={node.ticket} emphasized />
+      <DataTableCell value={node.league_games} />
+      <DataTableCell value={node.average_attd} emphasized separator />
+      <DataTableCell value={node.league_attd} separator />
       {displayFullAttd ? (
         <>
-          <TableCell classes={{ root: classes.root }} align="right">
-            {node.leaguecup_attd || '-'}
-          </TableCell>
-          <TableCell classes={{ root: classes.root }} align="right">
-            {node.acl_attd || '-'}
-          </TableCell>
-          <TableCell classes={{ root: classes.root }} align="right">
-            {node.po_attd || '-'}
-          </TableCell>
-          <TableCell classes={{ root: classes.root }} align="right">
-            {node.second_attd || '-'}
-          </TableCell>
+          <DataTableCell value={node.leaguecup_attd} separator />
+          <DataTableCell value={node.acl_attd} separator />
+          <DataTableCell value={node.po_attd} separator />
+          <DataTableCell value={node.second_attd} separator />
         </>
       ) : null}
-      <TableCell classes={{ root: classes.root }} align="right">
-        {node.all_games}
-      </TableCell>
-      <TableCell classes={{ root: classes.root }} className={classes.emphasized} align="right">
-        {node.all_attd}
-      </TableCell>
-      <TableCell align="right">
-        {node.ticket && node.all_attd ? (((node.ticket ?? 1) * 1000000) / (node.all_attd ?? 1)).toFixed(2) : '-'}
-      </TableCell>
+      <DataTableCell value={node.all_games} />
+      <DataTableCell value={node.all_attd} emphasized separator />
+      <DataTableCell value={node.unit_price} separator />
     </>
   );
 }
 
-interface Props {
+type TableBodyRowProps = {
   tab: Tab;
-  edge: Edge;
+  edge: {
+    node: DatumBrowser;
+  };
   mode: Mode;
   index: number;
   selected?: boolean;
-}
+};
 
-function TableBodyRow({ tab, index, mode, edge, selected = false }: Props): JSX.Element {
-  const classes = useStyles();
+function TableBodyRow({ tab, index, mode, edge, selected = false }: TableBodyRowProps) {
   const rowData = (currentTab: Tab) => {
     if (currentTab === 'pl') return <PLTableRow edge={edge} />;
     if (currentTab === 'bs') return <BSTableRow edge={edge} />;
@@ -325,15 +216,20 @@ function TableBodyRow({ tab, index, mode, edge, selected = false }: Props): JSX.
   return (
     <TableRow selected={selected}>
       <TableBodyLabel mode={mode} edge={edge} index={index} />
-      <TableCell className={classes.rowInfo} align="center" padding="none">
+      <TableCell sx={{ fontSize: 'body2.fontSize', color: 'text.secondary', width: 80 }} align="center" padding="none">
         <CategoryLabel category={edge.node.category ?? ''} />
       </TableCell>
       <TableCell
-        className={clsx(
-          classes.rowInfo,
-          { [classes.promoted]: edge.node.elevation === '昇格' },
-          { [classes.relegated]: edge.node.elevation === '降格' }
-        )}
+        sx={{
+          fontWeight: 'bold',
+          width: 80,
+          borderRight: (theme) => `1px solid ${theme.palette.divider}`,
+          color: ({ palette }) => {
+            if (edge.node.elevation === '昇格') return palette.mode === 'light' ? 'success.main' : 'success.light';
+            if (edge.node.elevation === '降格') return palette.mode === 'light' ? 'error.main' : 'error.light';
+            return undefined;
+          },
+        }}
         align="center"
         padding="none"
       >

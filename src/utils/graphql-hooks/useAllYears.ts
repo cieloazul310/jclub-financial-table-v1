@@ -1,17 +1,27 @@
 import { useStaticQuery, graphql } from 'gatsby';
-import { AllYearsQuery } from '../../../graphql-types';
+import { Year } from '../../../types';
 
-export default function useAllYears(): AllYearsQuery['allYearsYaml']['nodes'] {
-  const data = useStaticQuery<AllYearsQuery>(graphql`
-    query AllYears {
-      allYearsYaml {
-        nodes {
-          year
-          id
-          categories
+type AllYearsQueryData = {
+  allYear: {
+    edges: {
+      node: Pick<Year, 'id' | 'year' | 'href'>;
+    }[];
+  };
+};
+
+export default function useAllYears() {
+  const data = useStaticQuery<AllYearsQueryData>(graphql`
+    {
+      allYear {
+        edges {
+          node {
+            id
+            year
+            href
+          }
         }
       }
     }
   `);
-  return data.allYearsYaml.nodes;
+  return data.allYear.edges;
 }

@@ -2,11 +2,12 @@ import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { AppLink } from '@cieloazul310/gatsby-theme-aoi';
-import { useJ1Clubs, useJ2Clubs, useJ3Clubs, useAllYears, Clubs } from '../../utils/graphql-hooks';
+import { useClubsByCategory, useAllYears } from '../../utils/graphql-hooks';
+import { Club } from '../../../types';
 
 type CategoryLinksProps = {
   title: string;
-  clubs: Clubs;
+  clubs: { node: Pick<Club, 'short_name' | 'href'> }[];
 };
 
 function CategoryLinks({ title, clubs }: CategoryLinksProps) {
@@ -16,14 +17,9 @@ function CategoryLinks({ title, clubs }: CategoryLinksProps) {
         {title}
       </Typography>
       <Typography sx={{ p: 0, m: 0 }} component="ul">
-        {clubs.map(({ node }, index) => (
-          <Typography
-            sx={{ p: 0, mr: 1, my: 0, ml: 0, display: 'inline-block' }}
-            key={node.short_name ?? index}
-            variant="body2"
-            component="li"
-          >
-            <AppLink to={`/club/${node.slug}`} color="inherit">
+        {clubs.map(({ node }) => (
+          <Typography sx={{ p: 0, mr: 1, my: 0, ml: 0, display: 'inline-block' }} key={node.short_name} variant="body2" component="li">
+            <AppLink to={node.href} color="inherit">
               {node.short_name}
             </AppLink>
           </Typography>
@@ -42,10 +38,10 @@ function YearsLinks() {
         年度別
       </Typography>
       <Typography sx={{ p: 0, m: 0 }} component="ul">
-        {years.map(({ year, id }, index) => (
-          <Typography sx={{ p: 0, mr: 1, my: 0, ml: 0, display: 'inline-block' }} key={id ?? index} variant="body2" component="li">
-            <AppLink to={`/year/${year}`} color="inherit">
-              {year}
+        {years.map(({ node }) => (
+          <Typography sx={{ p: 0, mr: 1, my: 0, ml: 0, display: 'inline-block' }} key={node.id} variant="body2" component="li">
+            <AppLink to={node.href} color="inherit">
+              {node.year}
             </AppLink>
           </Typography>
         ))}
@@ -55,19 +51,17 @@ function YearsLinks() {
 }
 
 function FooterLinks() {
-  const j1clubs = useJ1Clubs();
-  const j2clubs = useJ2Clubs();
-  const j3clubs = useJ3Clubs();
+  const { j1, j2, j3 } = useClubsByCategory();
   return (
     <Grid container spacing={2} component="nav">
       <Grid item xs={12} sm={3}>
-        <CategoryLinks title="J1" clubs={j1clubs} />
+        <CategoryLinks title="J1" clubs={j1.edges} />
       </Grid>
       <Grid item xs={12} sm={3}>
-        <CategoryLinks title="J2" clubs={j2clubs} />
+        <CategoryLinks title="J2" clubs={j2.edges} />
       </Grid>
       <Grid item xs={12} sm={3}>
-        <CategoryLinks title="J3" clubs={j3clubs} />
+        <CategoryLinks title="J3" clubs={j3.edges} />
       </Grid>
       <Grid item xs={12} sm={3}>
         <YearsLinks />

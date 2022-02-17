@@ -1,12 +1,10 @@
 import { useStaticQuery, graphql } from 'gatsby';
-import { DictYaml, Node } from '../../../graphql-types';
+import { Dict } from '../../../types';
 
-type Dict = Omit<DictYaml, Exclude<keyof Node, 'id'>>;
-
-export default function useDictionary(): Dict {
-  const { dictYaml } = useStaticQuery<{ dictYaml: Dict }>(graphql`
-    query Dictionary {
-      dictYaml {
+export default function useDictionary() {
+  const { dictionary } = useStaticQuery<{ dictionary: Dict }>(graphql`
+    {
+      dictionary {
         academy_exp
         academy_rev
         acl_attd
@@ -69,5 +67,5 @@ export default function useDictionary(): Dict {
       }
     }
   `);
-  return dictYaml;
+  return dictionary;
 }

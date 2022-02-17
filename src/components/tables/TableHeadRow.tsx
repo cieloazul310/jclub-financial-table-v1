@@ -1,9 +1,9 @@
 import * as React from 'react';
-import TableRow from '@material-ui/core/TableRow';
+import TableRow from '@mui/material/TableRow';
 import { TableHeadLabel } from './TableLabel';
 import TableHeadCell from './TableHeadCell';
-import { Tab, Mode } from '../../types';
-import { useAppState } from '../../utils/AppStateContext';
+import { useAppState } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
+import { Tab, Mode } from '../../../types';
 
 interface Props {
   tab: Tab;

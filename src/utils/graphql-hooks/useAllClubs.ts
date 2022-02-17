@@ -1,14 +1,37 @@
 import { useStaticQuery, graphql } from 'gatsby';
-import { AllClubsQuery } from '../../../graphql-types';
+import { ClubNode } from '../../../types';
 
-export default function useAllClubs(): AllClubsQuery['allClubsYaml']['edges'] {
-  const data = useStaticQuery<AllClubsQuery>(graphql`
-    query AllClubs {
-      allClubsYaml {
+type AllClubsQueryData = {
+  allClub: {
+    edges: {
+      node: Pick<
+        ClubNode,
+        | 'id'
+        | 'slug'
+        | 'href'
+        | 'name'
+        | 'short_name'
+        | 'fullname'
+        | 'category'
+        | 'company'
+        | 'hometown'
+        | 'area'
+        | 'realatedCompanies'
+        | 'settlement'
+      >;
+    }[];
+  };
+};
+
+export default function useAllClubs() {
+  const data = useStaticQuery<AllClubsQueryData>(graphql`
+    {
+      allClub {
         edges {
           node {
             id
             slug
+            href
             name
             short_name
             fullname
@@ -23,5 +46,5 @@ export default function useAllClubs(): AllClubsQuery['allClubsYaml']['edges'] {
       }
     }
   `);
-  return data.allClubsYaml.edges;
+  return data.allClub.edges;
 }

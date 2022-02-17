@@ -1,16 +1,15 @@
 import * as React from 'react';
-import { Link as GatsbyLink } from 'gatsby';
-import Button from '@material-ui/core/Button';
+import { AppLinkButton } from '@cieloazul310/gatsby-theme-aoi';
 import { useAllYears } from '../../utils/graphql-hooks';
 
-export function YearsLink(): JSX.Element {
+export function YearsLink() {
   const years = useAllYears();
   return (
     <>
-      {years.map(({ year }, index) => (
-        <Button key={year ?? index} component={GatsbyLink} to={`/year/${year}/`}>
-          {year}
-        </Button>
+      {years.map(({ node }, index) => (
+        <AppLinkButton key={node.year ?? index} to={node.href}>
+          {node.year}
+        </AppLinkButton>
       ))}
     </>
   );

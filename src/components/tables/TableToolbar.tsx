@@ -1,51 +1,30 @@
 import * as React from 'react';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import useUnitString from '../../utils/useUnitString';
 import useStateString from '../../utils/useStateString';
-import { Mode, Tab } from '../../types';
+import { Mode, Tab } from '../../../types';
 
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    root: {
-      height: 48,
-      padding: theme.spacing(0, 0.5),
-      display: 'flex',
-      flexDirection: 'row-reverse',
-    },
-    right: {
-      display: 'flex',
-      flexDirection: 'column-reverse',
-    },
-    left: {
-      display: 'flex',
-      flexDirection: 'column-reverse',
-      flexGrow: 1,
-    },
-  })
-);
-
-interface Props {
+type TableToolbarProps = {
   mode: Mode;
   tab: Tab;
-}
+};
 
-function TableToolbar({ mode, tab }: Props): JSX.Element {
-  const classes = useStyles();
+function TableToolbar({ mode, tab }: TableToolbarProps) {
   const unitString = useUnitString(tab);
   const { sortString, filterString } = useStateString();
   return (
-    <div className={classes.root}>
-      <div className={classes.right}>
+    <Box sx={{ height: 48, py: 0, px: 0.5, display: 'flex', flexDirection: 'row-reverse' }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column-reverse' }}>
         <Typography variant="caption">{unitString}</Typography>
-      </div>
+      </Box>
       {mode === 'year' ? (
-        <div className={classes.left}>
+        <Box sx={{ display: 'flex', flexDirection: 'column-reverse', flexGrow: 1 }}>
           <Typography variant="caption">{sortString}</Typography>
           <Typography variant="caption">{filterString}</Typography>
-        </div>
+        </Box>
       ) : null}
-    </div>
+    </Box>
   );
 }
 

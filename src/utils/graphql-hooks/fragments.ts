@@ -67,6 +67,7 @@ export default function useFragments() {
       sga
     }
     fragment attdFields on Data {
+      ticket
       league_attd
       league_games
       leaguecup_attd

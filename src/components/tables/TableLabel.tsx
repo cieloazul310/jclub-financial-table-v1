@@ -1,58 +1,87 @@
 import * as React from 'react';
-import clsx from 'clsx';
-import TableCell from '@material-ui/core/TableCell';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import { AppLink } from '../AppLink';
-import { Mode, Edge } from '../../types';
+import TableCell, { TableCellProps } from '@mui/material/TableCell';
+import { AppLink } from '@cieloazul310/gatsby-theme-aoi';
+import { Mode, General } from '../../../types';
 
-interface StylesProps {
+const sxProps = {
+  theadLabel: {
+    fontWeight: 'bold',
+    fontSize: 'caption.fontSize',
+    py: 1,
+    px: 0.5,
+    zIndex: 3,
+  },
+  tbodyLabel: {
+    fontWeight: 'bold',
+    zIndex: 2,
+    bgcolor: 'background.default',
+  },
+};
+
+type TableCellLabelProps = {
   mode: Mode;
-}
+} & TableCellProps;
 
-const useStyles = makeStyles<Theme, StylesProps>((theme) =>
-  createStyles({
-    theadLabel: {
-      fontWeight: 'bold',
-      fontSize: theme.typography.caption.fontSize,
-      padding: theme.spacing(1, 0.5),
-      zIndex: 3,
-    },
-    tbodyLabel: {
-      fontWeight: 'bold',
-      zIndex: 2,
-      background: theme.palette.background.default,
-    },
-    index: {
-      position: 'sticky',
-      left: 0,
-      width: 24,
-      padding: theme.spacing(0.5),
-    },
-    label: {
-      position: 'sticky',
-      left: ({ mode }) => (mode === 'club' ? 0 : 24),
-      minWidth: '8em',
-      borderRight: `1px solid ${theme.palette.divider}`,
-    },
-  })
-);
-
-interface Props {
-  mode: Mode;
-}
-
-function TableHeadLabel({ mode }: Props): JSX.Element {
-  const classes = useStyles({ mode });
-  return mode === 'club' ? (
-    <TableCell className={clsx(classes.label, classes.theadLabel)} align="center">
-      年
+function TableCellLabel({ mode, sx, children, ...props }: TableCellLabelProps) {
+  return (
+    <TableCell
+      sx={{
+        position: 'sticky',
+        left: mode === 'club' ? 0 : 36,
+        minWidth: '8em',
+        width: 100,
+        borderRight: (theme) => `1px solid ${theme.palette.divider}`,
+        ...sx,
+      }}
+      {...props}
+    >
+      {children}
     </TableCell>
+  );
+}
+
+function TableCellIndex({ children, sx, ...props }: TableCellProps) {
+  return (
+    <TableCell
+      sx={{
+        position: 'sticky',
+        left: 0,
+        width: 36,
+        padding: 0.5,
+        ...sx,
+      }}
+      {...props}
+    >
+      {children}
+    </TableCell>
+  );
+}
+
+type TableHeadLabelProps = {
+  mode: Mode;
+};
+
+export function TableHeadLabel({ mode }: TableHeadLabelProps) {
+  return mode === 'club' ? (
+    <TableCellLabel mode={mode} sx={sxProps.theadLabel} align="center">
+      年
+    </TableCellLabel>
   ) : (
     <>
-      <TableCell className={clsx(classes.index, classes.theadLabel)} />
-      <TableCell className={clsx(classes.label, classes.theadLabel)} align="center">
+      <TableCellIndex sx={sxProps.theadLabel} />
+      <TableCellLabel
+        mode={mode}
+        sx={{
+          fontWeight: 'bold',
+          fontSize: 'caption.fontSize',
+          py: 1,
+          px: 0.5,
+          zIndex: 3,
+        }}
+        align="center"
+      >
         クラブ
-      </TableCell>
+      </TableCellLabel>
     </>
   );
 }
@@ -60,30 +89,29 @@ function TableHeadLabel({ mode }: Props): JSX.Element {
 interface TableBodyLabelProps {
   mode: Mode;
   index: number;
-  edge: Edge;
+  edge: {
+    node: Pick<General, 'name' | 'slug' | 'year'>;
+  };
 }
 
-function TableBodyLabel({ mode, index, edge }: TableBodyLabelProps): JSX.Element {
-  const classes = useStyles({ mode });
+export function TableBodyLabel({ mode, index, edge }: TableBodyLabelProps) {
   const { node } = edge;
   return mode === 'club' ? (
-    <TableCell className={clsx(classes.label, classes.tbodyLabel)} component="th" scope="row" align="center">
+    <TableCellLabel mode={mode} sx={sxProps.tbodyLabel} component="th" scope="row" align="center">
       <AppLink to={`/year/${node.year}/`} color="inherit">
         {node.year}
       </AppLink>
-    </TableCell>
+    </TableCellLabel>
   ) : (
     <>
-      <TableCell className={clsx(classes.index, classes.tbodyLabel)} component="th" scope="row" align="right">
+      <TableCellIndex sx={sxProps.tbodyLabel} component="th" scope="row" align="right">
         {index + 1}
-      </TableCell>
-      <TableCell className={clsx(classes.label, classes.tbodyLabel)} component="th" scope="row" align="right">
+      </TableCellIndex>
+      <TableCellLabel mode={mode} sx={sxProps.tbodyLabel} component="th" scope="row" align="right">
         <AppLink to={`/club/${node.slug}/`} color="inherit">
           {node.name}
         </AppLink>
-      </TableCell>
+      </TableCellLabel>
     </>
   );
 }
-
-export { TableHeadLabel, TableBodyLabel };

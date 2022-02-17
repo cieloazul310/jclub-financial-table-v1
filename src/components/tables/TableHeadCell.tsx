@@ -1,47 +1,21 @@
-/* eslint react/jsx-props-no-spreading: warn */
 import * as React from 'react';
-import clsx from 'clsx';
-import TableCell, { TableCellProps } from '@material-ui/core/TableCell';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
-import { useAppState, useDispatch } from '../../utils/AppStateContext';
-import { Mode } from '../../types';
-import { SortKey } from '../../utils/AppState';
+import TableCell, { TableCellProps } from '@mui/material/TableCell';
+import { useAppState, useDispatch } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
+import { Mode, SortableKeys } from '../../../types';
 
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    head: {
-      fontWeight: 'bold',
-      fontSize: theme.typography.caption.fontSize,
-      padding: theme.spacing(1, 0.5),
-      lineHeight: 1.2,
-      minWidth: '6em',
-      color: theme.palette.text.secondary,
-    },
-    sortable: {
-      color: theme.palette.text.primary,
-      cursor: 'pointer',
-      '&:hover': {
-        textDecoration: 'underline',
-      },
-    },
-    selected: {
-      color: theme.palette.secondary.main,
-    },
-  })
-);
-
-interface Props extends Omit<TableCellProps, 'align'> {
+type TableHeadCellProps = Omit<TableCellProps, 'align'> & {
   mode: Mode;
-  sortableKey?: SortKey;
-}
+  sortableKey?: SortableKeys;
+};
 
-function TableHeadCell({ sortableKey, mode, children, ...props }: Props): JSX.Element {
+function TableHeadCell({ sortableKey, mode, children, ...props }: TableHeadCellProps) {
   const { sortKey } = useAppState();
-  const selected = sortKey === sortableKey;
-  const classes = useStyles();
+  const sortable = mode === 'year' && !!sortableKey;
+  const selected = mode === 'year' && sortKey === sortableKey;
   const dispatch = useDispatch();
+
   const onClick = () => {
-    if (mode === 'club' || !sortableKey) return;
+    if (!sortable) return;
     if (selected) {
       dispatch({ type: 'TOGGLE_SORTASC' });
     } else {
@@ -51,11 +25,22 @@ function TableHeadCell({ sortableKey, mode, children, ...props }: Props): JSX.El
 
   return (
     <TableCell
-      className={clsx(
-        classes.head,
-        { [classes.sortable]: mode === 'year' && !!sortableKey },
-        { [classes.selected]: mode === 'year' && selected }
-      )}
+      sx={{
+        fontWeight: 'bold',
+        fontSize: 'caption.fontSize',
+        py: 1,
+        px: 0.5,
+        lineHeight: 1.2,
+        minWidth: '6em',
+        color: () => {
+          if (!sortable) return 'text.secondary';
+          return selected ? 'secondary.main' : 'text.primary';
+        },
+        cursor: sortable ? 'pointer' : undefined,
+        '&:hover': {
+          textDecoration: sortable ? 'underline' : undefined,
+        },
+      }}
       align="center"
       onClick={onClick}
       {...props}

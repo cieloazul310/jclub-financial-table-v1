@@ -7,7 +7,7 @@ exports.sourceNodes = require('./gatsby-node/index').sourceNodes;
 
 // exports.onCreateNode = require('./gatsby-node/index').onCreateNode;
 
-// exports.createResolvers = require('./gatsby-node/index').createResolvers;
+exports.createResolvers = require('./gatsby-node/index').createResolvers;
 
 exports.createPages = require('./gatsby-node/index').createPages;
 

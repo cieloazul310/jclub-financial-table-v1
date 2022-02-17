@@ -32,7 +32,7 @@ export default function useClubsByCategory() {
           }
         }
       }
-      j2: allClub(filter: { category: { eq: "J1" } }) {
+      j2: allClub(filter: { category: { eq: "J2" } }) {
         edges {
           node {
             id
@@ -42,7 +42,7 @@ export default function useClubsByCategory() {
           }
         }
       }
-      j3: allClub(filter: { category: { eq: "J1" } }) {
+      j3: allClub(filter: { category: { eq: "J3" } }) {
         edges {
           node {
             id

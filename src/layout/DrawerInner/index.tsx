@@ -6,10 +6,10 @@ import IconButton from '@mui/material/IconButton';
 import Divider from '@mui/material/Divider';
 import Tooltip from '@mui/material/Tooltip';
 import ClearIcon from '@mui/icons-material/Clear';
-import { useSiteMetadata, Jumbotron } from '@cieloazul310/gatsby-theme-aoi';
+import { useSiteMetadata } from '@cieloazul310/gatsby-theme-aoi';
 import DrawerNavigation from './DrawerNavigation';
 import DrawerMenu from './DrawerMenu';
-// import DrawerLinks from './DrawerLinks';
+import DrawerLinks from './DrawerLinks';
 import StateHandler from './StateHandler';
 import ThemeHandler from './ThemeHandler';
 import DrawerShare from './DrawerShare';
@@ -48,11 +48,9 @@ function DrawerInner({ title, next, previous, drawerContents, onCloseIconClick }
         {drawerContents}
         {drawerContents ? <Divider /> : null}
         <Divider />
-        {/*
         <DrawerLinks />
-        */}
         <DrawerMenu />
-        <Box sx={{ display: { xs: 'none', sm: 'block' }}}>
+        <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
           <Divider />
           <StateHandler />
           <ThemeHandler />

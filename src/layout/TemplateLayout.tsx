@@ -13,29 +13,54 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SEO from './SEO';
 import AppBarInner from './AppBarInner';
 import DrawerInner from './DrawerInner';
-import SummaryTabPane from './MobileTabPane/Summary';
-import FigureTabPane from './MobileTabPane/Figure';
-import ArticleTabPane from './MobileTabPane/Article';
-import SettingsTabPane from './MobileTabPane/Settings';
+import FinancialTable from '../components/tables';
+// import SummaryTabPane from './MobileTabPane/Summary';
+// import FigureTabPane from './MobileTabPane/Figure';
+// import ArticleTabPane from './MobileTabPane/Article';
+// import SettingsTabPane from './MobileTabPane/Settings';
 import Footer from './Footer';
 import BottomNavigation from './BottomNavigation';
 
 import useIsMobile from '../utils/useIsMobile';
-import useUpdateOnClient from '../utils/useUpdateOnClient';
-import { Mode, MobileTab, Tab, tabs } from '../types';
-import { ClubTemplateQuery, YearTemplateQuery, SitePageContext } from '../../graphql-types';
+import { Mode, Tab, MobileTab, YearBrowser, ClubBrowser, DatumBrowser } from '../../types';
 
-type Props = {
-  mode: Mode;
+export type YearPageData = {
+  year: Omit<YearBrowser, 'data'>;
+  allData: {
+    edges: {
+      node: DatumBrowser;
+    }[];
+  };
+};
+export type YearPageContext = {
+  previous: Pick<YearBrowser, 'year' | 'href'> | null;
+  next: Pick<YearBrowser, 'year' | 'href'> | null;
+};
+export type ClubPageData = {
+  club: ClubBrowser;
+  allData: {
+    edges: {
+      node: DatumBrowser;
+    }[];
+  };
+};
+export type ClubPageContext = {
+  previous: Pick<ClubBrowser, 'short_name' | 'name' | 'href'> | null;
+  next: Pick<ClubBrowser, 'short_name' | 'name' | 'href'> | null;
+};
+
+type TemplateLayoutProps<T extends Mode> = {
+  mode: T;
   title: string;
   headerTitle?: string;
   description?: string;
-  data: ClubTemplateQuery | YearTemplateQuery;
-  pageContext: SitePageContext;
+  data: T extends 'club' ? ClubPageData : YearPageData;
+  pageContext: T extends 'club' ? ClubPageContext : YearPageContext;
 };
 
-function TemplateLayout({ mode, title, headerTitle, description, data, pageContext }: Props): JSX.Element {
-  const isClient = useUpdateOnClient();
+const tabs: Tab[] = ['pl', 'bs', 'revenue', 'expense', 'attd'];
+
+function TemplateLayout<T extends Mode>({ mode, title, headerTitle, description, data, pageContext }: TemplateLayoutProps<T>) {
   const storaged = typeof window === 'object' ? sessionStorage.getItem('jclubTab-experimental') : null;
   const initialTabs = storaged ? JSON.parse(storaged) : {};
 
@@ -44,7 +69,6 @@ function TemplateLayout({ mode, title, headerTitle, description, data, pageConte
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const [mobileTab, setMobileTab] = React.useState<MobileTab>(initialTabs.mobileTab ?? 'figure');
   const [tab, setTab] = React.useState<Tab>(initialTabs.tab ?? 'pl');
-  // const classes = useStyles();
   const { previous, next } = pageContext;
 
   React.useEffect(() => {
@@ -77,7 +101,6 @@ function TemplateLayout({ mode, title, headerTitle, description, data, pageConte
 
   return (
     <Box
-      key={isClient}
       sx={{
         flexGrow: 1,
         paddingTop: { xs: '56px', sm: '64px' },
@@ -113,10 +136,13 @@ function TemplateLayout({ mode, title, headerTitle, description, data, pageConte
       </Slide>
       <main>
         <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+          <FinancialTable edges={data.allData.edges} mode={mode} tab={tab} />
+          {/*
           <FigureTabPane mobileTab={mobileTab} data={data} mode={mode} tab={tab} onChangeTabIndex={onChangeTabIndex} />
           <SummaryTabPane mobileTab={mobileTab} mode={mode} data={data} previous={previous} next={next} />
           <ArticleTabPane data={data} mobileTab={mobileTab} tab={tab} mode={mode} onChangeTabIndex={onChangeTabIndex} />
           <SettingsTabPane mobileTab={mobileTab} />
+          */}
         </Box>
       </main>
       <Box sx={{ display: { xs: 'none', sm: 'block' } }}>

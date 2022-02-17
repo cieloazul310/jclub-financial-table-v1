@@ -57,3 +57,5 @@ second_attd: セカンドチーム入場者数
 second_games: セカンドチームホーム試合数
 all_attd: 総入場者数
 all_games: ホーム総試合数
+average_attd: リーグ戦平均入場者数
+unit_price: 客単価
