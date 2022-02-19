@@ -47,7 +47,7 @@ function CardItem({ edge, previous, tab, handleChangeIndex, index }: CardItemPro
   }
   return (
     <MuiCard sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', flexShrink: 1, minHeight: 0 }}>
-      <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', flexShrink: 1, minHeihgt: 0 }}>
+      <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', flexShrink: 1, minHeight: 0 }}>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           {edge.node.year}年 {edge.node.category} {edge.node.rank}位
         </Typography>

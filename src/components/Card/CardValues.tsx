@@ -58,7 +58,7 @@ function CardValueCore<T>(
         <Typography sx={{ fontWeight: emphasized || strong ? 'bold' : undefined }} component="span">
           {val(value, separator)}
         </Typography>
-        <Typography sx={{ width: '6em' }} color="text.secondary" textAlign="right" component="span">
+        <Typography sx={{ width: '6em', display: 'flex', justifyContent: 'end' }} color="text.secondary" component="span">
           {diffIcon(diffval)}
           {diffval ? val(Math.abs(diffval), separator ?? false) : null}
         </Typography>

@@ -3,8 +3,8 @@ import Box from '@mui/material/Box';
 import SwipeableViews from 'react-swipeable-views';
 import CardItem from './CardItem';
 import useIsMobile from '../../utils/useIsMobile';
-import { DatumBrowser, Tab } from '../../../types';
 import { useAppState, useDispatch } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
+import { DatumBrowser, Tab, Mode } from '../../../types';
 
 function useRange(edges: { node: DatumBrowser }[]) {
   return {
@@ -18,9 +18,10 @@ type CardProps = {
     node: DatumBrowser;
   }[];
   tab: Tab;
+  mode: Mode;
 };
 
-function Card({ edges, tab }: CardProps) {
+function Card({ edges, tab, mode }: CardProps) {
   const isMobile = useIsMobile();
   const { card } = useAppState();
   const dispatch = useDispatch();
@@ -37,13 +38,14 @@ function Card({ edges, tab }: CardProps) {
   return (
     <Box display="flex" flexGrow={1}>
       <SwipeableViews
+        enableMouseEvents
         index={range.indexOf(card)}
         onChangeIndex={handleChangeIndex}
         style={{
           flexGrow: 1,
           backgroundColor: '#eef',
           padding: `0 ${isMobile ? 5 : 150}px`,
-          height: 'calc(100vh - 120px)',
+          height: 'calc(100vh - 106px)',
           display: 'flex',
           flexDirection: 'column',
           overflowY: 'hidden',
