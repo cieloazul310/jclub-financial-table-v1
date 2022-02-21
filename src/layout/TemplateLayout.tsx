@@ -108,7 +108,7 @@ function TemplateLayout<T extends Mode>({ mode, title, headerTitle, description,
             transition: (theme) => theme.transitions.create('top', { delay: 100 }),
           }}
         >
-          <Tabs value={tab} variant="scrollable" indicatorColor="secondary" textColor="secondary" onChange={handleTab}>
+          <Tabs value={tab} variant="scrollable" indicatorColor="secondary" textColor="secondary" scrollButtons="auto" onChange={handleTab}>
             <MuiTab label="損益計算書" value="pl" wrapped />
             <MuiTab label="貸借対照表" value="bs" wrapped />
             <MuiTab label="営業収入" value="revenue" wrapped />

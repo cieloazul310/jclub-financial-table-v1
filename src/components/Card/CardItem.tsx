@@ -30,11 +30,9 @@ type CardItemProps<T> = {
 
 function CardItem({ edge, previous, tab, handleChangeIndex, index }: CardItemProps<DatumBrowser>) {
   const back = () => {
-    if (!previous) return;
     handleChangeIndex(index - 1);
   };
   const forward = () => {
-    if (edge.node.year === 2020) return;
     handleChangeIndex(index + 1);
   };
 
@@ -46,10 +44,15 @@ function CardItem({ edge, previous, tab, handleChangeIndex, index }: CardItemPro
     return <AttdCardValues edge={edge} previous={previous} />;
   }
   return (
-    <MuiCard sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', flexShrink: 1, minHeight: 0 }}>
-      <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', flexShrink: 1, minHeight: 0 }}>
+    <MuiCard sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+      <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           {edge.node.year}年 {edge.node.category} {edge.node.rank}位
+          {edge.node.elevation ? (
+            <Typography component="span" ml={1} color={edge.node.elevation === '昇格' ? 'success.main' : 'error.main'}>
+              {edge.node.elevation}
+            </Typography>
+          ) : null}
         </Typography>
         <Typography variant="h5" component="div">
           {edge.node.fullname}
@@ -61,8 +64,8 @@ function CardItem({ edge, previous, tab, handleChangeIndex, index }: CardItemPro
           {cardValues()}
         </Typography>
       </CardContent>
-      <CardActions sx={{ flexShrink: 0 }}>
-        <Button size="small" onClick={back}>
+      <CardActions>
+        <Button size="small" onClick={back} disabled={index === 0}>
           前年度へ
         </Button>
         <Button size="small" onClick={forward}>

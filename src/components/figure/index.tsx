@@ -22,7 +22,7 @@ function Figure({ edges, mode, tab, onChangeTabIndex }: FigureProps) {
   const { listMode } = useAppState();
   const tableOrList = (tabItem: Tab) => {
     if (tabItem !== tab) return null;
-    return listMode ? <FinancialCard edges={edges} tab={tab} /> : <FinancialTable edges={edges} mode={mode} tab={tab} />;
+    return listMode ? <FinancialCard edges={edges} tab={tab} mode={mode} /> : <FinancialTable edges={edges} mode={mode} tab={tab} />;
   };
 
   return (
@@ -36,13 +36,11 @@ function Figure({ edges, mode, tab, onChangeTabIndex }: FigureProps) {
     >
       <FigureToolbar tab={tab} mode={mode} />
       <div>
-        <SwipeableViews resistance disabled={!listMode} index={tabs.indexOf(tab)} onChangeIndex={onChangeTabIndex}>
-          {tabs.map((t) => (
-            <div key={t} role="tabpanel" hidden={t !== tab}>
-              {tableOrList(t)}
-            </div>
-          ))}
-        </SwipeableViews>
+        {tabs.map((t) => (
+          <div key={t} role="tabpanel" hidden={t !== tab}>
+            {tableOrList(t)}
+          </div>
+        ))}
       </div>
     </Container>
   );

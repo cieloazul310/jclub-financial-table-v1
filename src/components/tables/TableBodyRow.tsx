@@ -22,7 +22,7 @@ function DataTableCell({ value, emphasized = false, strong = false, separator = 
         borderRight: (theme) => `1px solid ${theme.palette.divider}`,
         bgcolor: ({ palette }) => {
           if (!emphasized) return undefined;
-          return palette.mode === 'light' ? 'grey.100' : 'grey.800';
+          return palette.mode === 'light' ? 'grey.100' : 'background.paper';
         },
         fontWeight: strong || emphasized ? 'bold' : undefined,
       }}
@@ -76,7 +76,7 @@ export function BSTableRow({ edge }: TableRowProps<BS>) {
       <DataTableCell value={node.fixed_liabilities} />
       <DataTableCell value={node.net_worth} emphasized />
       <DataTableCell value={node.capital_stock} />
-      <DataTableCell value={node.capital_surplus} emphasized />
+      <DataTableCell value={node.capital_surplus} />
       <DataTableCell value={node.retained_earnings} />
       <DataTableCell value={node.profit} strong />
     </>

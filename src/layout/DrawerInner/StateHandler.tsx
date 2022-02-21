@@ -25,13 +25,13 @@ function StateHandler() {
       <ListItem>
         <ListItemText primary="リストモード" />
         <ListItemSecondaryAction>
-          <Switch edge="end" checked={listMode} onChange={toggleListMode} />
+          <Switch edge="end" checked={listMode} onChange={toggleListMode} color="secondary" />
         </ListItemSecondaryAction>
       </ListItem>
       <ListItem>
         <ListItemText primary="詳細な観客数を表示" />
         <ListItemSecondaryAction>
-          <Switch edge="end" checked={displayFullAttd} onChange={toggleFullAttd} />
+          <Switch edge="end" checked={displayFullAttd} onChange={toggleFullAttd} color="secondary" />
         </ListItemSecondaryAction>
       </ListItem>
       <ListItem button onClick={reset}>

@@ -42,12 +42,11 @@ function DrawerInner({ title, next, previous, drawerContents, onCloseIconClick }
             <strong>{title ?? siteTitle}</strong>
           </Typography>
         </Box>
-        {previous || next ? <DrawerPageNavigation previous={neighbors.previous} next={neighbors.next} /> : null}
-        <Divider />
-      </div>
-      <Box sx={{ flexGrow: 1, overflowY: 'auto' }}>
         {drawerContents}
         {drawerContents ? <Divider /> : null}
+      </div>
+      <Box sx={{ flexGrow: 1, overflowY: 'auto' }}>
+        {previous || next ? <DrawerPageNavigation previous={neighbors.previous} next={neighbors.next} /> : null}
         <Divider />
         <DrawerLinks />
         <DrawerMenu />

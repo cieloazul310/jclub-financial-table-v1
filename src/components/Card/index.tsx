@@ -1,8 +1,13 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
+import ButtonBase from '@mui/material/ButtonBase';
+import { alpha, Theme } from '@mui/material/styles';
 import SwipeableViews from 'react-swipeable-views';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import CardItem from './CardItem';
 import useIsMobile from '../../utils/useIsMobile';
+import useElementSize from '../../utils/useElementSize';
 import { useAppState, useDispatch } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
 import { DatumBrowser, Tab, Mode } from '../../../types';
 
@@ -12,6 +17,42 @@ function useRange(edges: { node: DatumBrowser }[]) {
     totalCount: edges.length,
   };
 }
+
+function CarouselButton({
+  next = false,
+  disabled = false,
+  onClick,
+}: {
+  next?: boolean;
+  disabled?: boolean;
+  onClick: (event: React.SyntheticEvent) => void;
+}) {
+  return (
+    <ButtonBase
+      sx={{
+        position: 'absolute',
+        top: 0,
+        left: next ? undefined : 0,
+        right: next ? 0 : undefined,
+        zIndex: 100,
+        width: 48,
+        opacity: 0.4,
+        height: '100%',
+        bgcolor: ({ palette }: Theme) => (palette.mode === 'light' ? 'grey.200' : 'grey.800'),
+        transition: (theme: Theme) => theme.transitions.create('opacity'),
+        '&:hover': !disabled ? { opacity: 0.8 } : undefined,
+      }}
+      onClick={onClick}
+    >
+      {next ? <ArrowForwardIosIcon /> : <ArrowBackIosNewIcon />}
+    </ButtonBase>
+  );
+}
+
+CarouselButton.defaultProps = {
+  next: false,
+  disabled: false,
+};
 
 type CardProps = {
   edges: {
@@ -26,41 +67,58 @@ function Card({ edges, tab, mode }: CardProps) {
   const { card } = useAppState();
   const dispatch = useDispatch();
   const { range } = useRange(edges);
+  const [squareRef, { width }] = useElementSize();
+  const px = React.useMemo(() => {
+    if (isMobile) return 5;
+    return Math.max((width - 400) / 2 - 40, 0);
+  }, [width, isMobile]);
+
+  React.useEffect(() => {
+    if (card < range[0]) {
+      dispatch({ type: 'SET_CARD_YEAR', year: range[0] });
+    }
+  }, [range]);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    if (newValue < range[0] || newValue > range[range.length - 1]) return;
     dispatch({ type: 'SET_CARD_YEAR', year: newValue });
   };
 
   const handleChangeIndex = (index: number) => {
+    if (index < 0 || index >= edges.length) return;
     dispatch({ type: 'SET_CARD_YEAR', year: range[index] });
+  };
+  const useHandleChange = (newValue: number) => (event: React.SyntheticEvent) => {
+    handleChange(event, newValue);
   };
 
   return (
-    <Box display="flex" flexGrow={1}>
+    <Box
+      display="flex"
+      flexGrow={1}
+      ref={squareRef}
+      position="relative"
+      bgcolor={({ palette }) => (palette.mode === 'light' ? 'grey.100' : 'Background.default')}
+    >
       <SwipeableViews
+        resistance
         enableMouseEvents
         index={range.indexOf(card)}
         onChangeIndex={handleChangeIndex}
         style={{
           flexGrow: 1,
-          backgroundColor: '#eef',
-          padding: `0 ${isMobile ? 5 : 150}px`,
-          height: 'calc(100vh - 106px)',
+          padding: `0 ${px}px`,
           display: 'flex',
           flexDirection: 'column',
-          overflowY: 'hidden',
         }}
         containerStyle={{
           flexGrow: 1,
           flexShrink: 1,
-          minHeight: 0,
         }}
         slideStyle={{
           flexGrow: 1,
           display: 'flex',
           justifyContent: 'center',
-          backgroundColor: '#eff',
-          border: '1px solid #ddd',
           padding: isMobile ? '5px' : '20px',
         }}
       >
@@ -76,6 +134,12 @@ function Card({ edges, tab, mode }: CardProps) {
           </Box>
         ))}
       </SwipeableViews>
+      {!isMobile ? (
+        <>
+          <CarouselButton onClick={useHandleChange(card - 1)} disabled={card === range[0]} />
+          <CarouselButton onClick={useHandleChange(card + 1)} next disabled={card === range[range.length - 1]} />
+        </>
+      ) : null}
     </Box>
   );
 }
