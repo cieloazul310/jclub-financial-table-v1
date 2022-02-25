@@ -9,8 +9,8 @@ import useNeighbors from '../../utils/useNeighbors';
 import { YearPageNeighbor, ClubPageNeighbor } from '../../../types';
 
 type AppBarNavigationProps = {
-  previous: YearPageNeighbor | ClubPageNeighbor;
-  next: YearPageNeighbor | ClubPageNeighbor;
+  previous?: YearPageNeighbor | ClubPageNeighbor;
+  next?: YearPageNeighbor | ClubPageNeighbor;
 };
 
 function AppBarNavigation(props: AppBarNavigationProps) {
@@ -34,5 +34,10 @@ function AppBarNavigation(props: AppBarNavigationProps) {
     </div>
   );
 }
+
+AppBarNavigation.defaultProps = {
+  previous: undefined,
+  next: undefined,
+};
 
 export default AppBarNavigation;

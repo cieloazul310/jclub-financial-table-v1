@@ -50,11 +50,9 @@ function DrawerInner({ title, next, previous, drawerContents, onCloseIconClick }
         <Divider />
         <DrawerLinks />
         <DrawerMenu />
-        <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-          <Divider />
-          <StateHandler />
-          <ThemeHandler />
-        </Box>
+        <Divider />
+        <StateHandler />
+        <ThemeHandler />
         <DrawerShare title={title} />
         <Box sx={{ py: 8, px: 2 }}>
           <footer>

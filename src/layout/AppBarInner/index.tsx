@@ -10,8 +10,8 @@ import { YearPageNeighbor, ClubPageNeighbor } from '../../../types';
 
 type AppBarInnerProps = {
   title?: string;
-  previous: YearPageNeighbor | ClubPageNeighbor;
-  next: YearPageNeighbor | ClubPageNeighbor;
+  previous?: YearPageNeighbor | ClubPageNeighbor;
+  next?: YearPageNeighbor | ClubPageNeighbor;
   onLeftButtonClick?: () => void;
 };
 
@@ -62,6 +62,8 @@ function AppBarInner({
 AppBarInner.defaultProps = {
   title: undefined,
   onLeftButtonClick: undefined,
+  previous: undefined,
+  next: undefined,
 };
 
 export default AppBarInner;

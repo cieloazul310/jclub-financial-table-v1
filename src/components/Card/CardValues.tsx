@@ -33,12 +33,22 @@ function CardValueCore<T>(
   mode: Mode
 ) {
   return function CardValue({ label, property, emphasized = false, strong = false, separator = false, inset = false }: CardValueProps<T>) {
-    const { sortKey, sortAsc } = useAppState();
+    const { sortKey } = useAppState();
+    const dispatch = useDispatch();
     const value = edge.node[property];
     const prevValue = prev?.[property] ?? null;
     if (typeof value !== 'number') return null;
     const diffval = value && prevValue && typeof prevValue === 'number' ? value - prevValue : null;
     const selected = mode === 'year' && sortKey === property;
+    const sortable = mode === 'year';
+    const onClick = () => {
+      if (!sortable) return;
+      if (selected) {
+        dispatch({ type: 'TOGGLE_SORTASC' });
+      } else {
+        dispatch({ type: 'CHANGE_SORTKEY', sortKey: property });
+      }
+    };
 
     return (
       <Box
@@ -54,7 +64,20 @@ function CardValueCore<T>(
           fontSize: 'body2.fontSize',
         }}
       >
-        <Box flexGrow={1} pl={inset ? 2 : undefined} color={selected ? 'secondary.main' : 'inherit'}>
+        <Box
+          sx={{
+            pl: inset ? 2 : undefined,
+            flexGrow: 1,
+            color: selected ? 'secondary.main' : 'inherit',
+            '&:hover': {
+              textDecoration: 'underline',
+              cursor: 'pointer',
+            },
+          }}
+          role="button"
+          tabIndex={0}
+          onClick={onClick}
+        >
           {label}
         </Box>
         <Typography sx={{ fontWeight: emphasized || strong || selected ? 'bold' : undefined }} component="span">

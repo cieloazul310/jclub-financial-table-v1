@@ -36,11 +36,14 @@ function Figure({ edges, mode, tab, onChangeTabIndex }: FigureProps) {
     >
       <FigureToolbar tab={tab} mode={mode} />
       <div>
-        {tabs.map((t) => (
+        {tableOrList(tab)}
+        {/*
+        tabs.map((t) => (
           <div key={t} role="tabpanel" hidden={t !== tab}>
             {tableOrList(t)}
           </div>
-        ))}
+        ))
+        */}
       </div>
     </Container>
   );

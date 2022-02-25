@@ -175,7 +175,7 @@ export type Datum = General & SeasonResult & PL & BS & Revenue & Expense & Attd;
 export type DatumNode = Node & Datum;
 export type DatumBrowser = Datum & AttdBrowser & { previousData: (PL & BS & Revenue & Expense & AttdBrowser) | null };
 
-export type SortableKeys = Exclude<keyof DatumBrowser, keyof General | 'elevation'>;
+export type SortableKeys = Exclude<keyof DatumBrowser, keyof General | 'elevation', 'previousData'>;
 
 export type Dict = {
   [K in Exclude<keyof DatumBrowser, 'slug'>]: string;

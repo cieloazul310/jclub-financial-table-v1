@@ -8,6 +8,7 @@ import CardItem from './CardItem';
 import useElementSize from '../../utils/useElementSize';
 import useIsMobile from '../../utils/useIsMobile';
 import useStateEdges from '../../utils/useStateEdges';
+import { useAppState } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
 import { DatumBrowser, Tab, Mode } from '../../../types';
 
 function rangeIsNumbers(range: (number | string)[], mode: Mode): range is number[] {
@@ -75,19 +76,19 @@ function Card({ edges, tab, mode }: CardProps) {
   const { range, totalCount } = useRange(stateEdges, mode);
   const [squareRef, { width }] = useElementSize();
   const ref = React.useRef<HTMLDivElement>(null);
+  const { sortAsc, sortKey } = useAppState();
   let timer: NodeJS.Timeout;
 
-  const contentWidth = React.useMemo(() => {
-    if (!totalCount || !ref?.current) return 0;
-    return (ref.current.scrollWidth - 10) / totalCount;
-  }, [width, ref]);
+  const { contentWidth, px } = React.useMemo(() => {
+    const itemWidth = isMobile ? Math.min(Math.max(320, width - 10), 400) : 400;
+    const padding = Math.max((width - itemWidth) / 2, 5);
+    console.log(itemWidth, padding);
 
-  const px = React.useMemo(() => {
-    if (isMobile) return 5;
-    return Math.max((width - 400) / 2, 5);
+    return { contentWidth: itemWidth, px: padding };
   }, [width, isMobile]);
 
   React.useEffect(() => {
+    console.log('use session storage');
     if (rangeIsNumbers(range, mode)) {
       const storaged = window.sessionStorage.getItem('currentYear');
       if (!storaged || !ref.current) return;
@@ -103,7 +104,13 @@ function Card({ edges, tab, mode }: CardProps) {
       if (index < 0) return;
       ref.current.scrollTo({ left: contentWidth * index });
     }
-  }, [ref, contentWidth]);
+  }, [contentWidth, tab]);
+
+  React.useEffect(() => {
+    console.log('set left to 0');
+    if (!ref.current) return;
+    ref.current.scrollTo({ left: 0 });
+  }, [sortAsc, sortKey]);
 
   const handleChange = (newIndex: number) => () => {
     const { current } = ref;
@@ -149,6 +156,7 @@ function Card({ edges, tab, mode }: CardProps) {
           overflow: 'auto',
           scrollSnapType: 'x mandatory',
           scrollPaddingLeft: `${px}px`,
+          scrollPaddingRight: `${px}px`,
         }}
         ref={ref}
         onScroll={onScroll}
@@ -159,6 +167,7 @@ function Card({ edges, tab, mode }: CardProps) {
             sx={{
               minWidth: 320,
               maxWidth: 400,
+              width: contentWidth,
               flexShrink: 0,
               flexBasis: '100%;',
               flexGrow: 1,
