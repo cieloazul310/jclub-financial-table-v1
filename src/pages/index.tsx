@@ -1,17 +1,27 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import { Section, SectionDivider, Article, Paragraph, AppLink, AppLinkButton, useSiteMetadata } from '@cieloazul310/gatsby-theme-aoi';
+import { useTheme } from '@mui/material/styles';
+import {
+  Jumbotron,
+  Section,
+  SectionDivider,
+  Article,
+  Paragraph,
+  AppLink,
+  AppLinkButton,
+  useSiteMetadata,
+} from '@cieloazul310/gatsby-theme-aoi';
 import Layout from '../layout';
-import Jumbotron from '../components/Jumbotron';
 import { J1Link, J2Link, J3Link, YearsLink } from '../components/links';
 import { AttributionDoc } from '../components/docs';
 
 function IndexPage() {
+  const { palette } = useTheme();
   const { title, description } = useSiteMetadata();
   return (
     <Layout title={title}>
-      <Jumbotron maxWidth="md">
+      <Jumbotron maxWidth="md" bgcolor={palette.mode === 'light' ? 'primary.dark' : 'grey.800'}>
         <Typography variant="h5" component="h2" gutterBottom>
           {title}
         </Typography>

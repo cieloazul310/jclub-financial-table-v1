@@ -1,39 +1,148 @@
 import * as React from 'react';
-import { Jumbotron } from '@cieloazul310/gatsby-theme-aoi';
+import { graphql, PageProps } from 'gatsby';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Paper from '@mui/material/Paper';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import IconButton from '@mui/material/IconButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import TableContainer from '@mui/material/TableContainer';
+import Table from '@mui/material/Table';
+import TableHead from '@mui/material/TableHead';
+import TableSortLabel from '@mui/material/TableSortLabel';
+import TableBody from '@mui/material/TableBody';
+import TableRow from '@mui/material/TableRow';
+import TableCell from '@mui/material/TableCell';
+import Button from '@mui/material/Button';
+import NativeSelect from '@mui/material/NativeSelect';
+import Snackbar from '@mui/material/Snackbar';
+import Tooltip from '@mui/material/Tooltip';
+import { alpha } from '@mui/material/styles';
 import Layout from '../layout';
+import { j1color, j2color, j3color, othersColor } from '../utils/categoryColors';
+import { DatumBrowser, ClubBrowser, YearBrowser } from '../../types';
 
-function SeriesPage() {
+type CategoryTableCellProps = {
+  datum: DatumBrowser | null;
+  currentKey: keyof DatumBrowser;
+};
+
+function CategoryTableCell({ datum, currentKey }: CategoryTableCellProps) {
   return (
-    <Layout title="Jクラブ経営情報ポータル">
-      <Jumbotron />
+    <TableCell
+      align="right"
+      sx={{
+        bgcolor: ({ palette }) => {
+          if (!datum) return undefined;
+          const { category } = datum;
+          if (category === 'J1') return alpha(j1color[600], palette.action.selectedOpacity);
+          if (category === 'J2') return alpha(j2color[600], palette.action.selectedOpacity);
+          if (category === 'J3') return alpha(j3color[600], palette.action.selectedOpacity);
+          return alpha(othersColor[600], palette.action.selectedOpacity);
+        },
+      }}
+    >
+      {datum ? datum[currentKey] : '-'}
+    </TableCell>
+  );
+}
+
+type SeriesPageData = {
+  allClub: {
+    edges: {
+      node: Pick<ClubBrowser, 'short_name' | 'slug' | 'data'>;
+    }[];
+  };
+  allYear: {
+    edges: {
+      node: Pick<YearBrowser, 'year'>;
+    }[];
+  };
+};
+
+function SeriesPage({ data }: PageProps<SeriesPageData>) {
+  const { allClub, allYear } = data;
+  const yearsRange = [allYear.edges[0].node.year, allYear.edges[allYear.edges.length - 1].node.year];
+  const [currentKey, setCurrentKey] = React.useState<keyof DatumBrowser>('revenue');
+
+  const allClubValues = React.useMemo(() => {
+    return allClub.edges.map(({ node }) => {
+      if (node.data.length === allYear.edges.length) return node;
+
+      const firstYear = node.data[0].year;
+      const lastYear = node.data[node.data.length - 1].year;
+      return {
+        ...node,
+        data: [
+          ...Array.from({ length: firstYear - yearsRange[0] }, () => null),
+          ...node.data,
+          ...Array.from({ length: yearsRange[1] - lastYear }, () => null),
+        ],
+      };
+    });
+  }, [allClub]);
+
+  return (
+    <Layout title="項目別表示">
+      <Box>hoge</Box>
+      <Box>
+        <TableContainer>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>クラブ</TableCell>
+                {allYear.edges.map(({ node }) => (
+                  <TableCell key={node.year.toString()} component="th" scope="column">
+                    {node.year}
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {allClubValues.map(({ slug, short_name, ...club }) => (
+                <TableRow key={slug}>
+                  <TableCell component="th" scope="row">
+                    {short_name}
+                  </TableCell>
+                  {club.data.map((datum, index) => (
+                    // eslint-disable-next-line react/no-array-index-key
+                    <CategoryTableCell key={`${slug}-${index}`} datum={datum} currentKey={currentKey} />
+                  ))}
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Box>
     </Layout>
   );
 }
 export default SeriesPage;
 /*
 import { graphql, PageProps } from 'gatsby';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import IconButton from '@material-ui/core/IconButton';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import TableContainer from '@material-ui/core/TableContainer';
-import Table from '@material-ui/core/Table';
-import TableHead from '@material-ui/core/TableHead';
-import TableSortLabel from '@material-ui/core/TableSortLabel';
-import TableBody from '@material-ui/core/TableBody';
-import TableRow from '@material-ui/core/TableRow';
-import TableCell from '@material-ui/core/TableCell';
-import Button from '@material-ui/core/Button';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import Snackbar from '@material-ui/core/Snackbar';
-import Tooltip from '@material-ui/core/Tooltip';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
-import FilterListIcon from '@material-ui/icons/FilterList';
-import FileCopyIcon from '@material-ui/icons/FileCopy';
-import CheckIcon from '@material-ui/icons/Check';
-import RemoveIcon from '@material-ui/icons/Remove';
+import Typography from '@mui/material/Typography';
+import Paper from '@mui/material/Paper';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import IconButton from '@mui/material/IconButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import TableContainer from '@mui/material/TableContainer';
+import Table from '@mui/material/Table';
+import TableHead from '@mui/material/TableHead';
+import TableSortLabel from '@mui/material/TableSortLabel';
+import TableBody from '@mui/material/TableBody';
+import TableRow from '@mui/material/TableRow';
+import TableCell from '@mui/material/TableCell';
+import Button from '@mui/material/Button';
+import NativeSelect from '@mui/material/NativeSelect';
+import Snackbar from '@mui/material/Snackbar';
+import Tooltip from '@mui/material/Tooltip';
+import { makeStyles, createStyles } from '@mui/material/styles';
+import FilterListIcon from '@mui/icons-material/FilterList';
+import FileCopyIcon from '@mui/icons-material/FileCopy';
+import CheckIcon from '@mui/icons-material/Check';
+import RemoveIcon from '@mui/icons-material/Remove';
 import Layout from '../layout';
 import { AppLink } from '../components/AppLink';
 import { ContentBasisLarge, ContentBasis } from '../components/Basis';
@@ -328,78 +437,33 @@ function Series({ data }: PageProps<SeriesQuery>): JSX.Element {
 }
 
 export default Series;
+*/
 
 export const query = graphql`
-  query Series {
-    allDataset(sort: { fields: year }) {
-      group(field: slug) {
-        edges {
-          node {
-            academy_exp
-            academy_rev
-            acl_attd
-            acl_games
-            all_attd
-            all_games
-            assets
-            broadcast
-            capital_stock
-            capital_surplus
-            category
-            curr_assets
-            curr_liabilities
-            elevation
-            expense
-            fixed_assets
-            fixed_liabilities
-            fullname
-            game_exp
-            general_exp
-            goods_exp
-            goods_rev
-            id
-            league_attd
-            league_games
-            leaguecup_attd
-            leaguecup_games
-            liabilities
-            license
-            manage_exp
-            name
-            net_worth
-            no_exp
-            no_rev
-            op_profit
-            ordinary_profit
-            other_revs
-            po_attd
-            po_games
-            ppg
-            points
-            profit
-            profit_before_tax
-            rank
-            related_revenue
-            retained_earnings
-            revenue
-            salary
-            second_attd
-            second_games
-            sga
-            slug
-            sp_exp
-            sponsor
-            sp_rev
-            tax
-            team_exp
-            ticket
-            year
-            women_exp
+  query {
+    allClub {
+      edges {
+        node {
+          data {
+            ...generalFields
+            ...seasonResultFields
+            ...plFields
+            ...bsFields
+            ...revenueFields
+            ...expenseFields
+            ...attdFields
           }
+          short_name
+          slug
         }
-        fieldValue
+      }
+    }
+    allYear(sort: { fields: year, order: ASC }) {
+      edges {
+        node {
+          year
+        }
       }
     }
   }
 `;
-*/

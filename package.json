@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "author": "cieloazul310",
   "dependencies": {
-    "@cieloazul310/gatsby-theme-aoi": "^2.1.1",
+    "@cieloazul310/gatsby-theme-aoi": "^2.1.2",
     "@cieloazul310/gatsby-theme-aoi-blog-components": "^2.1.1",
     "@devexpress/dx-react-chart": "^3.0.1",
     "@devexpress/dx-react-chart-material-ui": "^3.0.1",

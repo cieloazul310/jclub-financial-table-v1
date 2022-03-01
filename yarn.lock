@@ -1162,10 +1162,10 @@
   resolved "https://registry.yarnpkg.com/@cieloazul310/gatsby-theme-aoi-blog-components/-/gatsby-theme-aoi-blog-components-2.1.1.tgz#ad1398a94493885e3cdd1d8e9e03d6457426886d"
   integrity sha512-V/Y6YIYYKjW+28j9wGHpB9qKXyjJ8wFJLZHmQGShD6Jdb93daWyJg01ZPpjOayELnU2SZaPyDy0oXbZ8opJ+lQ==
 
-"@cieloazul310/gatsby-theme-aoi-components@^2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@cieloazul310/gatsby-theme-aoi-components/-/gatsby-theme-aoi-components-2.1.1.tgz#029ddc483e695f26a678c481c7c5c26fdb41845e"
-  integrity sha512-d70vv4/TR1XOjbiEEQguTCLLMt3KnYU0SIAtKkVy+6JZ6YVSOnApv74VBjENKXY4+CCJ2yAfBQdbIR7TWuXA7A==
+"@cieloazul310/gatsby-theme-aoi-components@^2.1.2":
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@cieloazul310/gatsby-theme-aoi-components/-/gatsby-theme-aoi-components-2.1.2.tgz#5c65c5eaaa02968aaaaab889562e5393818821b8"
+  integrity sha512-5tHySiSJ2Zk5kcIXHigJzUjkBi5LVD0fwkjseviK2k+DvbjuaYevMCs7jOONFfjb9EOncV8TkwzxdYfjPs/qqg==
 
 "@cieloazul310/gatsby-theme-aoi-layout@^2.1.1":
   version "2.1.1"
@@ -1188,12 +1188,12 @@
     "@types/url-join" "^4.0.1"
     url-join "^4.0.1"
 
-"@cieloazul310/gatsby-theme-aoi@^2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@cieloazul310/gatsby-theme-aoi/-/gatsby-theme-aoi-2.1.1.tgz#1a736f8c2b1ed54ce44fdc74d972a75529a83fad"
-  integrity sha512-5HBlQyOLIiXOyB61bR/TEpCNrrrmz+FTnfack0bwuHx0X+q2T9OgPzdBdYuILoCjOgoXWsks7llzsLAhJjOjgA==
+"@cieloazul310/gatsby-theme-aoi@^2.1.2":
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@cieloazul310/gatsby-theme-aoi/-/gatsby-theme-aoi-2.1.2.tgz#f8981e61d84bef00bc2d8c4bc05681d9415e8820"
+  integrity sha512-xrs8ZDA6/47TVPIup9oeSEDb/QNtL7a1AL3zmaQ/VxcRxu1040au0SSImblF+wseMdV0Hn7elSm0sJmzCx1OhA==
   dependencies:
-    "@cieloazul310/gatsby-theme-aoi-components" "^2.1.1"
+    "@cieloazul310/gatsby-theme-aoi-components" "^2.1.2"
     "@cieloazul310/gatsby-theme-aoi-layout" "^2.1.1"
     "@cieloazul310/gatsby-theme-aoi-top-layout" "^2.1.1"
     "@cieloazul310/gatsby-theme-aoi-utils" "^2.1.1"
