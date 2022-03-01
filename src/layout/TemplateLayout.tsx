@@ -20,8 +20,8 @@ import ArticleSection from './MobileTabPane/Article';
 import Footer from './Footer';
 
 import useIsMobile from '../utils/useIsMobile';
-import tabs from '../utils/tabs';
-import { Mode, Tab, MobileTab, YearPageData, YearPageContext, ClubPageData, ClubPageContext } from '../../types';
+import { useAppState, useDispatch } from '../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
+import { Mode, YearPageData, YearPageContext, ClubPageData, ClubPageContext } from '../../types';
 
 type TemplateLayoutProps<T extends Mode> = {
   mode: T;
@@ -40,45 +40,29 @@ function getItem<T extends Mode>(data: T extends 'club' ? ClubPageData : YearPag
   if (isClub(data, mode)) return data.club;
   return data.year;
 }
+function getPrevYear<T extends Mode>(data: T extends 'club' ? ClubPageData : YearPageData, mode: T) {
+  if (isClub(data, mode)) return null;
+  return data.prevYear;
+}
 
 function TemplateLayout<T extends Mode>({ mode, title, headerTitle, description, data, pageContext }: TemplateLayoutProps<T>) {
-  const storaged = typeof window === 'object' ? sessionStorage.getItem('jclubTab-experimental') : null;
-  const initialTabs = storaged ? JSON.parse(storaged) : {};
-
+  const { tab } = useAppState();
+  const dispatch = useDispatch();
   const isMobile = useIsMobile();
   const trigger = useScrollTriger();
   const [drawerOpen, setDrawerOpen] = React.useState(false);
-  const [mobileTab, setMobileTab] = React.useState<MobileTab>(initialTabs.mobileTab ?? 'figure');
-  const [tab, setTab] = React.useState<Tab>(initialTabs.tab ?? 'pl');
   const { previous, next } = pageContext;
   const item = getItem<T>(data, mode);
-
-  React.useEffect(() => {
-    if (typeof window === 'object') {
-      sessionStorage.setItem(
-        'jclubTab-experimental',
-        JSON.stringify({
-          tab,
-          mobileTab,
-        })
-      );
-    }
-  }, [mobileTab, tab]);
+  const prevYear = getPrevYear<T>(data, mode);
 
   const handleDrawer = (newValue: boolean | undefined = undefined) => {
     return () => setDrawerOpen(newValue ?? !drawerOpen);
   };
   const handleTab = (_: React.ChangeEvent<unknown>, newValue: string) => {
+    if (tab === newValue) return;
     if (newValue !== 'pl' && newValue !== 'bs' && newValue !== 'revenue' && newValue !== 'expense' && newValue !== 'attd') return;
-    setTab(newValue);
-  };
-  const handleMobileTab = (_: React.ChangeEvent<unknown>, newValue: string) => {
-    if (newValue === 'summary' || newValue === 'figure' || newValue === 'article' || newValue === 'settings') {
-      setMobileTab(newValue);
-    }
-  };
-  const onChangeTabIndex = (index: number) => {
-    setTab(tabs[index]);
+
+    dispatch({ type: 'SET_TAB', tab: newValue });
   };
 
   const tabPanel = React.useMemo(() => {
@@ -107,7 +91,7 @@ function TemplateLayout<T extends Mode>({ mode, title, headerTitle, description,
           <AppBarInner title={headerTitle ?? title} onLeftButtonClick={handleDrawer()} previous={previous} next={next} />
         </AppBar>
       </Slide>
-      <Slide appear={false} direction="down" in={!isMobile || mobileTab === 'figure' || mobileTab === 'article'}>
+      <Slide appear={false} direction="down" in={!isMobile}>
         <Box
           component="nav"
           sx={{
@@ -125,11 +109,11 @@ function TemplateLayout<T extends Mode>({ mode, title, headerTitle, description,
       </Slide>
       <main>
         <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-          <Figure edges={data.allData.edges} mode={mode} tab={tab} onChangeTabIndex={onChangeTabIndex} />
+          <Figure edges={data.allData.edges} mode={mode} />
           <SectionDivider />
-          <Summary mode={mode} edges={data.allData.edges} item={item} previous={previous} next={next} />
+          <Summary mode={mode} edges={data.allData.edges} item={item} previous={previous} next={next} prevYear={prevYear} />
           <SectionDivider />
-          <ArticleSection tab={tab} />
+          <ArticleSection />
         </Box>
       </main>
       <Box sx={{ display: { xs: 'none', sm: 'block' } }}>

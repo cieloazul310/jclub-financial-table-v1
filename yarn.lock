@@ -1157,46 +1157,46 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cieloazul310/gatsby-theme-aoi-blog-components@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@cieloazul310/gatsby-theme-aoi-blog-components/-/gatsby-theme-aoi-blog-components-2.1.0.tgz#0a3840276f1fc4da896f657f2b3dcc7dd31b46e8"
-  integrity sha512-nZKnyCrFEna8yt6aROTkZ/GOI69g6j9PzTdumlrSmWNXwCu0ixougBOoj6G8ZlQ49miOpi4iJutfJnhbuong+w==
+"@cieloazul310/gatsby-theme-aoi-blog-components@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@cieloazul310/gatsby-theme-aoi-blog-components/-/gatsby-theme-aoi-blog-components-2.1.1.tgz#ad1398a94493885e3cdd1d8e9e03d6457426886d"
+  integrity sha512-V/Y6YIYYKjW+28j9wGHpB9qKXyjJ8wFJLZHmQGShD6Jdb93daWyJg01ZPpjOayELnU2SZaPyDy0oXbZ8opJ+lQ==
 
-"@cieloazul310/gatsby-theme-aoi-components@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@cieloazul310/gatsby-theme-aoi-components/-/gatsby-theme-aoi-components-2.1.0.tgz#b8e0e4147b867f80169c180a72eb52cbf53c59c4"
-  integrity sha512-Z1NBlZl832A8pjK3gTeYf0j48PBRvVOYAKnqffnAOFohjOapH3JhNi82FIvG1411WPjcDCWHIYSjITkAxrMsAw==
+"@cieloazul310/gatsby-theme-aoi-components@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@cieloazul310/gatsby-theme-aoi-components/-/gatsby-theme-aoi-components-2.1.1.tgz#029ddc483e695f26a678c481c7c5c26fdb41845e"
+  integrity sha512-d70vv4/TR1XOjbiEEQguTCLLMt3KnYU0SIAtKkVy+6JZ6YVSOnApv74VBjENKXY4+CCJ2yAfBQdbIR7TWuXA7A==
 
-"@cieloazul310/gatsby-theme-aoi-layout@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@cieloazul310/gatsby-theme-aoi-layout/-/gatsby-theme-aoi-layout-2.0.0.tgz#387ce7d6f7c3292d33ce10ef291d908d61c72dd5"
-  integrity sha512-KugithLsCkjK7uHEVBzDSrF4329P+BKWlHDpnV/D2C/ESHVuxT0u5pQTP8fheQOsRC0AJo9G/GzCq4jRXT+svw==
+"@cieloazul310/gatsby-theme-aoi-layout@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@cieloazul310/gatsby-theme-aoi-layout/-/gatsby-theme-aoi-layout-2.1.1.tgz#850bf2411f80ecbd5a8c5393bd5a1d5972f925c7"
+  integrity sha512-dY4bCjp19IKd1VM4Vrkxw9JPLKKkmdvdRJcIK4tam9/uNQL/wyDszCpc3dv6UIJB37kCIT1GLWuakPF5zc2xhA==
 
-"@cieloazul310/gatsby-theme-aoi-top-layout@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@cieloazul310/gatsby-theme-aoi-top-layout/-/gatsby-theme-aoi-top-layout-2.1.0.tgz#56adfd9b031a1d299ff08f64f4bb9af9c2366d36"
-  integrity sha512-9lUQNRUUAogtb0/1tqQy94mgBdgfhRZfowQahRePF/H82WBYkGZat8EJ3akVXaZ4zLpS9PLs1kIxsnIxEGTPQg==
+"@cieloazul310/gatsby-theme-aoi-top-layout@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@cieloazul310/gatsby-theme-aoi-top-layout/-/gatsby-theme-aoi-top-layout-2.1.1.tgz#cab8805cab6410fb692eca7dcff355b6c838ce96"
+  integrity sha512-PScwYDHknoicOHRWcZHgxRtyp5MmJ1qhyFEPnBU+2H8xyYN7ez6JBGarO2J3jrkXKV8NKCe32BDNs5YabLJbUA==
   dependencies:
     gatsby-plugin-react-helmet "^5.5.0"
     gatsby-plugin-webfonts "^2.2.1"
 
-"@cieloazul310/gatsby-theme-aoi-utils@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@cieloazul310/gatsby-theme-aoi-utils/-/gatsby-theme-aoi-utils-2.0.0.tgz#b4a76c4d8c31d8a515a21b4c388e8470c06207f5"
-  integrity sha512-10S4gSlIhEMLZbdltYa8oFuJ25B26QwTTwbhAi9E2SW2Usun8VhUablFbDgPYsc9Nr4qgLzlHEUewukQQ0DW7Q==
+"@cieloazul310/gatsby-theme-aoi-utils@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@cieloazul310/gatsby-theme-aoi-utils/-/gatsby-theme-aoi-utils-2.1.1.tgz#218245301a60fa899213aa148352dd39b1660295"
+  integrity sha512-boQLAKVAd7rItFvtTLfQFIt/oww+GX9tIgN2/GYVwWlWLYuP0kdDWuRRl53cZpEzMY7hGoMjAYTdINWZkNy8aQ==
   dependencies:
     "@types/url-join" "^4.0.1"
     url-join "^4.0.1"
 
-"@cieloazul310/gatsby-theme-aoi@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@cieloazul310/gatsby-theme-aoi/-/gatsby-theme-aoi-2.1.0.tgz#1f9cffd5c29cb628f7b18c58c18e57a793d8f602"
-  integrity sha512-vrHzJExL+7iUzgFEV0VethGnHDsMZ3t3viEY5Mm0/KUlHiQoJ7YRe92Zrp3PuPRxBVH52dlk98EVgDCyQMOkrQ==
+"@cieloazul310/gatsby-theme-aoi@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@cieloazul310/gatsby-theme-aoi/-/gatsby-theme-aoi-2.1.1.tgz#1a736f8c2b1ed54ce44fdc74d972a75529a83fad"
+  integrity sha512-5HBlQyOLIiXOyB61bR/TEpCNrrrmz+FTnfack0bwuHx0X+q2T9OgPzdBdYuILoCjOgoXWsks7llzsLAhJjOjgA==
   dependencies:
-    "@cieloazul310/gatsby-theme-aoi-components" "^2.1.0"
-    "@cieloazul310/gatsby-theme-aoi-layout" "^2.0.0"
-    "@cieloazul310/gatsby-theme-aoi-top-layout" "^2.1.0"
-    "@cieloazul310/gatsby-theme-aoi-utils" "^2.0.0"
+    "@cieloazul310/gatsby-theme-aoi-components" "^2.1.1"
+    "@cieloazul310/gatsby-theme-aoi-layout" "^2.1.1"
+    "@cieloazul310/gatsby-theme-aoi-top-layout" "^2.1.1"
+    "@cieloazul310/gatsby-theme-aoi-utils" "^2.1.1"
     gatsby-plugin-material-ui "^4.1.0"
     gatsby-plugin-react-helmet "^5.5.0"
 

@@ -9,15 +9,14 @@ import { useAppState, useDispatch } from '../../@cieloazul310/gatsby-theme-aoi-t
 import useUnitString from '../../utils/useUnitString';
 import { useSortStateString } from '../../utils/useStateString';
 import { TableIcon, ListIcon } from '../../icons';
-import { Tab, Mode } from '../../../types';
+import { Mode } from '../../../types';
 
 type FigureToolbarProps = {
-  tab: Tab;
   mode: Mode;
 };
 
-function FigureToolbar({ tab, mode }: FigureToolbarProps) {
-  const { listMode } = useAppState();
+function FigureToolbar({ mode }: FigureToolbarProps) {
+  const { listMode, tab } = useAppState();
   const dispatch = useDispatch();
   const unitString = useUnitString(tab);
   const { field, sortType } = useSortStateString();
@@ -51,7 +50,7 @@ function FigureToolbar({ tab, mode }: FigureToolbarProps) {
           </span>
         </Tooltip>
         <FilterButton disabled={mode === 'club'} />
-        <CopyButton tab={tab} disabled={listMode} />
+        <CopyButton disabled={listMode} />
       </Box>
       <Box sx={{ pb: '2px', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', justifyContent: 'flex-end' }}>
         {mode === 'year' ? (

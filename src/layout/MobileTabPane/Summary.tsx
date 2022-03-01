@@ -17,20 +17,21 @@ type SummaryTabProps<T extends Mode> = {
   item: Omit<ClubBrowser, 'data'> | Omit<YearBrowser, 'data'>;
   previous: ClubPageNeighbor | YearPageNeighbor;
   next: ClubPageNeighbor | YearPageNeighbor;
+  prevYear: Pick<YearBrowser, 'stats'> | null;
 };
 
 function isClub<T extends Mode>(item: Omit<ClubBrowser, 'data'> | Omit<YearBrowser, 'data'>, mode: T): item is Omit<ClubBrowser, 'data'> {
   return mode === 'club';
 }
 
-function Summary<T extends Mode>({ mode, edges, item, previous, next }: SummaryTabProps<T>) {
+function Summary<T extends Mode>({ mode, edges, item, previous, next, prevYear }: SummaryTabProps<T>) {
   const neighbors = useNeighbors({ previous, next });
   return (
     <section>
       <Section>
         <Article maxWidth="md">
           <ArticleTitle>概要</ArticleTitle>
-          {isClub(item, mode) ? <ClubInfo club={item} edges={edges} /> : <YearInfo year={item} edges={edges} />}
+          {isClub(item, mode) ? <ClubInfo club={item} edges={edges} /> : <YearInfo year={item} prevYear={prevYear} />}
         </Article>
       </Section>
       <SectionDivider />

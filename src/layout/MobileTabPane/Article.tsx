@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { Section, SectionDivider, Article } from '@cieloazul310/gatsby-theme-aoi';
+import { useAppState } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
 import { PLDoc, BSDoc, RevenueDoc, ExpenseDoc, AttdDoc, AttributionDoc } from '../../components/docs';
-import { Tab } from '../../../types';
 
-function docTab(tab: Tab) {
+function DocTab() {
+  const { tab } = useAppState();
   if (tab === 'pl') return <PLDoc />;
   if (tab === 'bs') return <BSDoc />;
   if (tab === 'revenue') return <RevenueDoc />;
@@ -11,16 +12,14 @@ function docTab(tab: Tab) {
   return <AttdDoc />;
 }
 
-type MainTabProps = {
-  tab: Tab;
-};
-
-function MainTab({ tab }: MainTabProps) {
+function MainTab() {
   return (
     <section>
       <Section>
         <Article maxWidth="md">
-          <article>{docTab(tab)}</article>
+          <article>
+            <DocTab />
+          </article>
         </Article>
       </Section>
       <SectionDivider />

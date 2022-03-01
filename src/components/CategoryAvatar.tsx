@@ -4,7 +4,7 @@ import Avatar from '@mui/material/Avatar';
 import { SxProps } from '@mui/material/styles';
 import { useCategoryColor } from '../utils/categoryColors';
 
-function CategoryAvatar({ category, sx }: { category: string, sx?: SxProps }) {
+function CategoryAvatar({ category, sx }: { category: string; sx?: SxProps }) {
   const sxProps = useCategoryColor(category);
   const textSmall = !['J1', 'J2', 'J3', 'JFL'].includes(category);
   return (

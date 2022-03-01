@@ -9,26 +9,25 @@ import TableHeadRow from './TableHeadRow';
 import TableBodyRow from './TableBodyRow';
 import useStateEdges from '../../utils/useStateEdges';
 import useTableId from '../../utils/useTableId';
-import { Tab, Mode, DatumBrowser } from '../../../types';
+import { Mode, DatumBrowser } from '../../../types';
 
 type FinancialTableProps = {
   edges: { node: DatumBrowser }[];
   mode: Mode;
-  tab: Tab;
 };
 
-function FinancialTable({ edges, mode, tab }: FinancialTableProps) {
+function FinancialTable({ edges, mode }: FinancialTableProps) {
   const stateEdges = useStateEdges(edges, mode);
-  const id = useTableId(tab);
+  const id = useTableId();
   return (
     <TableContainer sx={{ flexGrow: 1, maxHeight: mode === 'year' ? 'calc(100vh - 106px)' : undefined }} component={Paper}>
       <Table id={id} size="small" sx={{ minWidth: 1000, scrollSnapType: 'both mandatory' }} stickyHeader>
         <TableHead>
-          <TableHeadRow mode={mode} tab={tab} />
+          <TableHeadRow mode={mode} />
         </TableHead>
         <TableBody>
           {stateEdges.map((edge, index) => (
-            <TableBodyRow key={edge.node.id ?? index} edge={edge} mode={mode} tab={tab} index={index} />
+            <TableBodyRow key={edge.node.id ?? index} edge={edge} mode={mode} index={index} />
           ))}
         </TableBody>
       </Table>

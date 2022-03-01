@@ -38,7 +38,7 @@ export const query = graphql`
         }
       }
     }
-    prev: year(year: { eq: $prevYear }) {
+    prevYear: year(year: { eq: $prevYear }) {
       stats {
         J1 {
           ...allStats

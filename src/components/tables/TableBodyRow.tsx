@@ -193,7 +193,6 @@ export function AttdTableRow({ edge }: TableRowProps<AttdBrowser>) {
 }
 
 type TableBodyRowProps = {
-  tab: Tab;
   edge: {
     node: Omit<DatumBrowser, 'previousData'>;
   };
@@ -202,7 +201,8 @@ type TableBodyRowProps = {
   selected?: boolean;
 };
 
-function TableBodyRow({ tab, index, mode, edge, selected = false }: TableBodyRowProps) {
+function TableBodyRow({ index, mode, edge, selected = false }: TableBodyRowProps) {
+  const { tab } = useAppState();
   const rowData = (currentTab: Tab) => {
     if (currentTab === 'pl') return <PLTableRow edge={edge} />;
     if (currentTab === 'bs') return <BSTableRow edge={edge} />;

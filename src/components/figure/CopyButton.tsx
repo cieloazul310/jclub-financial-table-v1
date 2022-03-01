@@ -5,15 +5,13 @@ import Tooltip from '@mui/material/Tooltip';
 import Snackbar from '@mui/material/Snackbar';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import useTableId from '../../utils/useTableId';
-import { Tab } from '../../../types';
 
 type CopyButtonProps = {
-  tab: Tab;
   disabled: boolean;
 };
 
-function CopyButton({ tab, disabled }: CopyButtonProps) {
-  const tableId = useTableId(tab);
+function CopyButton({ disabled }: CopyButtonProps) {
+  const tableId = useTableId();
   const [open, setOpen] = React.useState(false);
   const handleClose = () => {
     setOpen(false);

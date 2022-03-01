@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography';
 import MuiCard from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import { AppLink } from '@cieloazul310/gatsby-theme-aoi';
+import { useAppState } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
 import { CategoryLabel } from '../CategoryAvatar';
 import { PLCardValues, BSCardValues, RevenueCardValues, ExpenseCardValues, AttdCardValues } from './CardValues';
 
@@ -21,13 +22,13 @@ type CardItemProps<T extends Mode> = {
     node: Omit<DatumBrowser, 'previousData'>;
   };
   previous: Omit<DatumBrowser, 'previousData' | keyof General | keyof SeasonResult> | null;
-  tab: Tab;
   mode: T;
   index: number;
   length: number;
 };
 
-function CardItem<T extends Mode>({ edge, previous, tab, mode, index, length }: CardItemProps<T>) {
+function CardItem<T extends Mode>({ edge, previous, mode, index, length }: CardItemProps<T>) {
+  const { tab } = useAppState();
   function cardValues() {
     if (tab === 'pl') return <PLCardValues edge={edge} previous={previous} mode={mode} />;
     if (tab === 'bs') return <BSCardValues edge={edge} previous={previous} mode={mode} />;

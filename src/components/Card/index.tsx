@@ -9,7 +9,7 @@ import useElementSize from '../../utils/useElementSize';
 import useIsMobile from '../../utils/useIsMobile';
 import useStateEdges from '../../utils/useStateEdges';
 import { useAppState } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
-import { DatumBrowser, Tab, Mode } from '../../../types';
+import { DatumBrowser, Mode } from '../../../types';
 
 function rangeIsNumbers(range: (number | string)[], mode: Mode): range is number[] {
   return mode === 'club';
@@ -66,11 +66,10 @@ type CardProps = {
   edges: {
     node: DatumBrowser;
   }[];
-  tab: Tab;
   mode: Mode;
 };
 
-function Card({ edges, tab, mode }: CardProps) {
+function Card({ edges, mode }: CardProps) {
   const isMobile = useIsMobile();
   const stateEdges = useStateEdges(edges, mode);
   const { range, totalCount } = useRange(stateEdges, mode);
@@ -102,7 +101,7 @@ function Card({ edges, tab, mode }: CardProps) {
       if (index < 0) return;
       ref.current.scrollTo({ left: contentWidth * index });
     }
-  }, [contentWidth, tab]);
+  }, [contentWidth]);
 
   React.useEffect(() => {
     if (!ref.current) return;
@@ -174,7 +173,7 @@ function Card({ edges, tab, mode }: CardProps) {
               scrollSnapAlign: 'start',
             }}
           >
-            <CardItem edge={edge} previous={edge.node.previousData} tab={tab} mode={mode} index={index} length={totalCount} />
+            <CardItem edge={edge} previous={edge.node.previousData} mode={mode} index={index} length={totalCount} />
           </Box>
         ))}
       </Box>

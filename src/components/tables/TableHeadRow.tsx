@@ -6,7 +6,6 @@ import { useAppState } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/uti
 import { Tab, Mode } from '../../../types';
 
 type TableHeadRowProps = {
-  tab: Tab;
   mode: Mode;
 };
 
@@ -171,7 +170,8 @@ export function AttdTableHeadRow({ mode }: Pick<TableHeadRowProps, 'mode'>) {
   );
 }
 
-function TableHeadRow({ mode, tab }: TableHeadRowProps) {
+function TableHeadRow({ mode }: TableHeadRowProps) {
+  const { tab } = useAppState();
   const tableHeadLabels = (currentTab: Tab) => {
     if (currentTab === 'pl') return <PLTableHeadRow mode={mode} />;
     if (currentTab === 'bs') return <BSTableHeadRow mode={mode} />;
