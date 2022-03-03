@@ -1,50 +1,24 @@
 import * as React from 'react';
-import clsx from 'clsx';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Radio from '@material-ui/core/Radio';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
-import GetAppIcon from '@material-ui/icons/GetApp';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Radio from '@mui/material/Radio';
+import TextareaAutosize from '@mui/material/TextareaAutosize';
+import GetAppIcon from '@mui/icons-material/GetApp';
 import { csvFormat } from 'd3-dsv';
+import { H4 } from '@cieloazul310/gatsby-theme-aoi';
 import { useAllClubs, useAllYears } from '../../utils/graphql-hooks';
-import { DownloadDataset } from '../../types';
+import { DownloadDatum } from '../../../types';
 
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    root: {
-      height: 'calc(100vh - 112px)',
-      display: 'flex',
-      flexDirection: 'column',
-    },
-    section: {
-      padding: theme.spacing(1, 0),
-    },
-    flexGrow: {
-      flexGrow: 1,
-      display: 'flex',
-    },
-    textArea: {
-      flexGrow: 1,
-      padding: theme.spacing(1),
-      width: '100%',
-      overflowY: 'auto',
-      background: theme.palette.background.paper,
-      color: theme.palette.text.primary,
-    },
-  })
-);
+type PreviewProps = {
+  dataset: DownloadDatum[];
+};
 
-interface Props {
-  dataset: DownloadDataset[];
-}
-
-function Preview({ dataset }: Props): JSX.Element {
-  const classes = useStyles();
+function Preview({ dataset }: PreviewProps) {
   const allClubs = useAllClubs();
   const allYears = useAllYears();
-  const slugs = allClubs.map(({ node }) => node.slug ?? '');
+  const slugs = allClubs.map(({ node }) => node.slug);
   const [dataFormat, setDataFormat] = React.useState('json');
   const [grouping, setGrouping] = React.useState('none');
   const handleChangeDataFormat = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,17 +36,21 @@ function Preview({ dataset }: Props): JSX.Element {
     const json = (() => {
       if (grouping === 'year')
         return allYears
-          .map(({ year }) => ({
-            year,
-            items: dataset.filter((datum) => datum['年'] === year),
+          .map(({ node }) => ({
+            year: node.year,
+            items: dataset.filter((datum) => datum['年'] === node.year),
           }))
           .filter(({ items }) => items.length > 0);
       if (grouping === 'club')
         return allClubs
-          .map(({ node }) => ({
-            ...node,
-            items: dataset.filter((datum) => datum.id === node.slug),
-          }))
+          .map(({ node }) => {
+            const { id, href, slug, ...club } = node;
+            return {
+              id: slug,
+              ...club,
+              items: dataset.filter((datum) => datum.id === slug),
+            };
+          })
           .filter(({ items }) => items.length > 0);
       return dataset;
     })();
@@ -87,39 +65,57 @@ function Preview({ dataset }: Props): JSX.Element {
   }, [dataFormat, output]);
 
   return (
-    <div className={classes.root}>
-      <div className={classes.section}>
-        <Typography variant="h6" component="h3" gutterBottom>
-          プレビュー
-        </Typography>
+    <Box
+      sx={{
+        maxHeight: 'calc(100vh - 112px)',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
+      <Box py={2}>
+        <H4>プレビュー</H4>
         <FormGroup row>
           <FormControlLabel
-            control={<Radio checked={dataFormat === 'json'} name="json" onChange={handleChangeDataFormat} />}
+            control={<Radio checked={dataFormat === 'json'} name="json" onChange={handleChangeDataFormat} color="secondary" />}
             label="JSON"
           />
-          <FormControlLabel control={<Radio checked={dataFormat === 'csv'} name="csv" onChange={handleChangeDataFormat} />} label="CSV" />
+          <FormControlLabel
+            control={<Radio checked={dataFormat === 'csv'} name="csv" onChange={handleChangeDataFormat} color="secondary" />}
+            label="CSV"
+          />
         </FormGroup>
         <FormGroup row>
           <FormControlLabel
-            control={<Radio checked={grouping === 'none'} name="none" onChange={handleChangeGrouping} />}
+            control={<Radio checked={grouping === 'none'} name="none" onChange={handleChangeGrouping} color="secondary" />}
             label="グループ化しない"
           />
           <FormControlLabel
-            control={<Radio checked={grouping === 'club'} name="club" onChange={handleChangeGrouping} />}
+            control={<Radio checked={grouping === 'club'} name="club" onChange={handleChangeGrouping} color="secondary" />}
             label="クラブ別"
           />
-          <FormControlLabel control={<Radio checked={grouping === 'year'} name="year" onChange={handleChangeGrouping} />} label="年別" />
+          <FormControlLabel
+            control={<Radio checked={grouping === 'year'} name="year" onChange={handleChangeGrouping} color="secondary" />}
+            label="年別"
+          />
         </FormGroup>
-      </div>
-      <div className={clsx(classes.section, classes.flexGrow)}>
-        <textarea className={classes.textArea} spellCheck={false} readOnly value={output} />
-      </div>
-      <div className={classes.section}>
+      </Box>
+      <Box sx={{ flexGrow: 1, display: 'flex', py: 2 }}>
+        <TextareaAutosize
+          style={{
+            width: '100%',
+          }}
+          maxRows={20}
+          spellCheck={false}
+          readOnly
+          value={output}
+        />
+      </Box>
+      <Box py={1}>
         <Button variant="contained" color="primary" startIcon={<GetAppIcon />} href={href} download component="a">
           ダウンロード
         </Button>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }
 

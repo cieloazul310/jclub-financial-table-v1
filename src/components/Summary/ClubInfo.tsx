@@ -1,10 +1,7 @@
 import * as React from 'react';
-import { BarSeries, ArgumentAxis, ValueAxis } from '@devexpress/dx-react-chart-material-ui';
 import { ExternalLink, ArticleTitle, Ul, Li } from '@cieloazul310/gatsby-theme-aoi';
-import Chart from './chart/CustomChart';
-import Title from './chart/CustomTitle';
-import YearAxisLabel from './chart/YearAxisLabel';
-import { ClubBrowser, DatumBrowser } from '../../types';
+import Chart from '../Chart';
+import { ClubBrowser, DatumBrowser } from '../../../types';
 
 type ClubInfoProps = {
   club: Omit<ClubBrowser, 'data'>;
@@ -17,14 +14,7 @@ function ClubInfo({ club, edges }: ClubInfoProps) {
   return (
     <>
       <ArticleTitle>{club.name}</ArticleTitle>
-      {edges.length > 2 ? (
-        <Chart height={360} data={edges.map(({ node }) => ({ ...node, year: node.year?.toString() }))}>
-          <ArgumentAxis labelComponent={YearAxisLabel} />
-          <ValueAxis />
-          <BarSeries valueField="revenue" argumentField="year" />
-          <Title text="営業収入推移" />
-        </Chart>
-      ) : null}
+      <div>{edges.length > 2 ? <Chart edges={edges} /> : null}</div>
       <Ul>
         <Li>正式名称: {club.fullname}</Li>
         <Li>法人名: {club.company}</Li>

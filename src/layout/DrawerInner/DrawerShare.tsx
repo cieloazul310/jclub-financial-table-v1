@@ -8,11 +8,11 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import { useSocialShare } from '@cieloazul310/gatsby-theme-aoi';
 
-interface Props {
+type DrawerShareProps = {
   title?: string;
-}
+};
 
-function DrawerShare({ title }: Props) {
+function DrawerShare({ title }: DrawerShareProps) {
   const twitterUrl = useSocialShare('twitter', title);
   const fbUrl = useSocialShare('facebook');
   return (

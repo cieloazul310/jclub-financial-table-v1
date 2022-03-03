@@ -1,20 +1,20 @@
 import { useStaticQuery, graphql } from 'gatsby';
-import { ClubNode } from '../../../types';
+import { ClubBrowser } from '../../../types';
 
 type UseClubsByCategoryQueryData = {
   j1: {
     edges: {
-      node: Pick<ClubNode, 'id' | 'href' | 'name' | 'short_name'>;
+      node: Pick<ClubBrowser, 'id' | 'href' | 'name' | 'short_name' | 'slug'>;
     }[];
   };
   j2: {
     edges: {
-      node: Pick<ClubNode, 'id' | 'href' | 'name' | 'short_name'>;
+      node: Pick<ClubBrowser, 'id' | 'href' | 'name' | 'short_name' | 'slug'>;
     }[];
   };
   j3: {
     edges: {
-      node: Pick<ClubNode, 'id' | 'href' | 'name' | 'short_name'>;
+      node: Pick<ClubBrowser, 'id' | 'href' | 'name' | 'short_name' | 'slug'>;
     }[];
   };
 };
@@ -26,6 +26,7 @@ export default function useClubsByCategory() {
         edges {
           node {
             id
+            slug
             href
             name
             short_name
@@ -36,6 +37,7 @@ export default function useClubsByCategory() {
         edges {
           node {
             id
+            slug
             href
             name
             short_name
@@ -46,6 +48,7 @@ export default function useClubsByCategory() {
         edges {
           node {
             id
+            slug
             href
             name
             short_name

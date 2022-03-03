@@ -2,9 +2,9 @@ import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import { Section, SectionDivider, Article } from '@cieloazul310/gatsby-theme-aoi';
 import { PageNavigationContainer, PageNavigationItem } from '@cieloazul310/gatsby-theme-aoi-blog-components';
-import ClubInfo from '../../components/ClubInfo';
-import YearInfo from '../../components/YearInfo';
-import { CategoryLink, YearsLink } from '../../components/links';
+import ClubInfo from './ClubInfo';
+import YearInfo from './YearInfo';
+import { CategoryLink, YearsLink } from '../Links';
 import useNeighbors from '../../utils/useNeighbors';
 
 import { Mode, DatumBrowser, ClubBrowser, YearBrowser, ClubPageNeighbor, YearPageNeighbor } from '../../../types';

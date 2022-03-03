@@ -13,9 +13,9 @@ import {
   useSiteMetadata,
 } from '@cieloazul310/gatsby-theme-aoi';
 import Layout from '../layout';
-import { J1Link, J2Link, J3Link, YearsLink } from '../components/links';
-import { AttributionDoc } from '../components/docs';
-import { AdInSectionDivider } from '../components/Ads';
+import { J1Link, J2Link, J3Link, YearsLink } from '../components/Links';
+import AttributionDoc from '../components/Article/Attribution';
+import { AdInSectionDividerOne } from '../components/Ads';
 
 function IndexPage() {
   const { palette } = useTheme();
@@ -80,7 +80,7 @@ function IndexPage() {
           </Grid>
         </Article>
       </Section>
-      <AdInSectionDivider />
+      <AdInSectionDividerOne />
       <Section>
         <Article maxWidth="md">
           <AttributionDoc />

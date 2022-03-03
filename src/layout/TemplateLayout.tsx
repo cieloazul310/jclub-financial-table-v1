@@ -19,6 +19,8 @@ import Footer from './Footer';
 import { useAppState, useDispatch } from '../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
 import { Mode, YearPageContext, ClubPageContext } from '../../types';
 
+const iOS = typeof window !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
+
 type TemplateLayoutProps<T extends Mode> = {
   title: string;
   headerTitle?: string;
@@ -107,7 +109,13 @@ function TemplateLayout<T extends Mode>({ children, title, headerTitle, descript
           </Fab>
         </Tooltip>
       </Box>
-      <SwipeableDrawer open={drawerOpen} onClose={handleDrawer(false)} onOpen={handleDrawer(true)}>
+      <SwipeableDrawer
+        open={drawerOpen}
+        onClose={handleDrawer(false)}
+        onOpen={handleDrawer(true)}
+        disableBackdropTransition={!iOS}
+        disableDiscovery={iOS}
+      >
         <DrawerInner title={headerTitle ?? title} previous={previous} next={next} onCloseIconClick={handleDrawer(false)} />
       </SwipeableDrawer>
     </Box>

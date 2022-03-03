@@ -9,7 +9,7 @@ import Collapse from '@mui/material/Collapse';
 import Divider from '@mui/material/Divider';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { useAllYears } from '../../utils/graphql-hooks';
+import { useAllYears, useClubsByCategory } from '../../utils/graphql-hooks';
 import { ClubBrowser } from '../../../types';
 
 type ClubListByCategoryProps = Pick<ItemFilterProps, 'clubsFilter' | 'setClubsFilter'> & {
@@ -22,7 +22,7 @@ type ClubListByCategoryProps = Pick<ItemFilterProps, 'clubsFilter' | 'setClubsFi
 };
 
 function ClubListByCategory({ clubs, title, clubsFilter, setClubsFilter }: ClubListByCategoryProps) {
-  const slugs = clubs.edges.map(({ node }) => node.slug ?? '');
+  const slugs = clubs.edges.map(({ node }) => node.slug);
   const allSelected = slugs.every((slug) => clubsFilter.includes(slug));
   const allEmpty = !slugs.some((slug) => clubsFilter.includes(slug));
   const [open, setOpen] = React.useState(false);
@@ -68,10 +68,10 @@ function ClubListByCategory({ clubs, title, clubsFilter, setClubsFilter }: ClubL
   );
 }
 
-type ClubListProps = Pick<ItemFilterProps, 'clubsFilter' | 'setClubsFilter' | 'clubs'>;
+type ClubListProps = Pick<ItemFilterProps, 'clubsFilter' | 'setClubsFilter'>;
 
-function ClubList({ clubsFilter, setClubsFilter, clubs }: ClubListProps) {
-  const { j1, j2, j3 } = clubs;
+function ClubList({ clubsFilter, setClubsFilter }: ClubListProps) {
+  const { j1, j2, j3 } = useClubsByCategory();
   const slugs = [...j1.edges, ...j2.edges, ...j3.edges].map(({ node }) => node.slug ?? '');
   const setAllClub = () => {
     setClubsFilter(slugs);
@@ -179,23 +179,6 @@ function CategoriesList({ categoriesFilter, setCategoriesFilter }: CategoriesLis
 }
 
 type ItemFilterProps = {
-  clubs: {
-    j1: {
-      edges: {
-        node: Pick<ClubBrowser, 'name' | 'slug'>;
-      }[];
-    };
-    j2: {
-      edges: {
-        node: Pick<ClubBrowser, 'name' | 'slug'>;
-      }[];
-    };
-    j3: {
-      edges: {
-        node: Pick<ClubBrowser, 'name' | 'slug'>;
-      }[];
-    };
-  };
   clubsFilter: string[];
   setClubsFilter: React.Dispatch<React.SetStateAction<string[]>>;
   yearsFilter: number[];
@@ -204,10 +187,10 @@ type ItemFilterProps = {
   setCategoriesFilter: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
-function ItemFilter({ clubs, clubsFilter, yearsFilter, categoriesFilter, setClubsFilter, setYearsFilter, setCategoriesFilter }: ItemFilterProps) {
+function ItemFilter({ clubsFilter, yearsFilter, categoriesFilter, setClubsFilter, setYearsFilter, setCategoriesFilter }: ItemFilterProps) {
   return (
     <>
-      <ClubList clubsFilter={clubsFilter} setClubsFilter={setClubsFilter} clubs={clubs} />
+      <ClubList clubsFilter={clubsFilter} setClubsFilter={setClubsFilter} />
       <Divider />
       <YearsList yearsFilter={yearsFilter} setYearsFilter={setYearsFilter} />
       <Divider />

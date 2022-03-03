@@ -198,7 +198,7 @@ export type DatumBrowserNode = DatumBrowser & Node;
 export type SortableKeys = keyof (Omit<SeasonResult, 'elevation'> & PL & BS & Revenue & Expense & AttdBrowser);
 
 export type Dict = {
-  [K in Exclude<keyof DatumBrowser, 'slug'>]: string;
+  [K in Exclude<keyof DatumBrowser, 'slug' | 'previousData'>]: string;
 };
 
 export type YearPageNeighbor = {
@@ -241,4 +241,11 @@ export type DocsQueryData = {
     };
     body: string;
   };
+};
+export type DownloadDatum = {
+  クラブ: string;
+  id: string;
+  年: number;
+  所属: string;
+  [key: string]: number | string | null;
 };

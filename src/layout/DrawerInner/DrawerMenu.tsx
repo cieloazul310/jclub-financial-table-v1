@@ -16,13 +16,13 @@ function DrawerMenu() {
         </ListItemIcon>
         <ListItemText primary="トップページ" />
       </ListItem>
-      <ListItem button component={GatsbyLink} to="/series">
+      <ListItem button component={GatsbyLink} to="/series/">
         <ListItemIcon>
           <SeriesIcon />
         </ListItemIcon>
         <ListItemText primary="項目別表示" />
       </ListItem>
-      <ListItem button component={GatsbyLink} to="/download">
+      <ListItem button component={GatsbyLink} to="/download/">
         <ListItemIcon>
           <DownloadIcon />
         </ListItemIcon>

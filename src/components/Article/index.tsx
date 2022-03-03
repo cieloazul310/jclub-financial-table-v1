@@ -1,10 +1,15 @@
 import * as React from 'react';
 import { Section, Article } from '@cieloazul310/gatsby-theme-aoi';
-import { AdInSectionDivider } from '../../components/Ads';
 import { useAppState } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
-import { PLDoc, BSDoc, RevenueDoc, ExpenseDoc, AttdDoc, AttributionDoc } from '../../components/docs';
+import { AdInSectionDividerTwo } from '../Ads';
+import PLDoc from './PL';
+import BSDoc from './BS';
+import RevenueDoc from './Revenue';
+import ExpenseDoc from './Expense';
+import AttdDoc from './Attd';
+import AttributionDoc from './Attribution';
 
-function DocTab() {
+function ArticleTab() {
   const { tab } = useAppState();
   if (tab === 'pl') return <PLDoc />;
   if (tab === 'bs') return <BSDoc />;
@@ -13,24 +18,26 @@ function DocTab() {
   return <AttdDoc />;
 }
 
-function MainTab() {
+function ArticleSection() {
   return (
     <section>
       <Section>
         <Article maxWidth="md">
           <article>
-            <DocTab />
+            <ArticleTab />
           </article>
         </Article>
       </Section>
-      <AdInSectionDivider />
+      <AdInSectionDividerTwo />
       <Section>
         <Article maxWidth="md">
-          <AttributionDoc />
+          <article>
+            <AttributionDoc />
+          </article>
         </Article>
       </Section>
     </section>
   );
 }
 
-export default MainTab;
+export default ArticleSection;

@@ -2,10 +2,10 @@ import * as React from 'react';
 import { graphql, PageProps } from 'gatsby';
 import { SectionDivider } from '@cieloazul310/gatsby-theme-aoi';
 import TemplateLayout from '../layout/TemplateLayout';
-import Summary from '../layout/MobileTabPane/Summary';
-import Figure from '../layout/MobileTabPane/Figure';
-import ArticleSection from '../layout/MobileTabPane/Article';
-import { AdInSectionDivider } from '../components/Ads';
+import Summary from '../components/Summary';
+import Figure from '../components/Figure';
+import ArticleSection from '../components/Article';
+import { AdInSectionDividerOne } from '../components/Ads';
 import { YearPageData, YearPageContext } from '../../types';
 
 function YearTemplate({ data, pageContext }: PageProps<YearPageData, YearPageContext>) {
@@ -21,7 +21,7 @@ function YearTemplate({ data, pageContext }: PageProps<YearPageData, YearPageCon
       <Figure edges={data.allData.edges} mode="year" />
       <SectionDivider />
       <Summary mode="year" edges={data.allData.edges} item={data.year} previous={previous} next={next} prevYear={prevYear} />
-      <AdInSectionDivider />
+      <AdInSectionDividerOne />
       <ArticleSection />
     </TemplateLayout>
   );

@@ -2,10 +2,10 @@ import * as React from 'react';
 import { graphql, PageProps } from 'gatsby';
 import { SectionDivider } from '@cieloazul310/gatsby-theme-aoi';
 import TemplateLayout from '../layout/TemplateLayout';
-import Summary from '../layout/MobileTabPane/Summary';
-import Figure from '../layout/MobileTabPane/Figure';
-import ArticleSection from '../layout/MobileTabPane/Article';
-import { AdInSectionDivider } from '../components/Ads';
+import Summary from '../components/Summary';
+import Figure from '../components/Figure';
+import ArticleSection from '../components/Article';
+import { AdInSectionDividerOne } from '../components/Ads';
 import { ClubPageData, ClubPageContext } from '../../types';
 
 function ClubTemplate({ data, pageContext }: PageProps<ClubPageData, ClubPageContext>) {
@@ -22,7 +22,7 @@ function ClubTemplate({ data, pageContext }: PageProps<ClubPageData, ClubPageCon
       <Figure edges={data.allData.edges} mode="club" />
       <SectionDivider />
       <Summary mode="club" edges={data.allData.edges} item={data.club} previous={previous} next={next} prevYear={null} />
-      <AdInSectionDivider />
+      <AdInSectionDividerOne />
       <ArticleSection />
     </TemplateLayout>
   );

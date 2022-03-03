@@ -15,15 +15,14 @@ import Footer from './Footer';
 
 const iOS = typeof window !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-type Props = {
+type LayoutProps = {
   children: React.ReactNode;
-  drawerContents?: React.ReactNode;
   title?: string;
   description?: string;
   headerTitle?: string;
 };
 
-function Layout({ children, drawerContents, title, description, headerTitle }: Props) {
+function Layout({ children, title, description, headerTitle }: LayoutProps) {
   const trigger = useScrollTrigger();
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const setDrawer = (open: boolean) => () => {
@@ -34,34 +33,25 @@ function Layout({ children, drawerContents, title, description, headerTitle }: P
   };
 
   return (
-    <div>
+    <Box
+      sx={{
+        flexGrow: 1,
+        paddingTop: { xs: '56px', sm: '64px' },
+      }}
+    >
       <SEO title={title} description={description} />
       <Slide appear={false} direction="down" in={!trigger}>
         <AppBar>
           <AppBarInner title={headerTitle || title} onLeftButtonClick={toggleDrawer} />
         </AppBar>
       </Slide>
-      <Box
-        sx={{
-          pt: { xs: '56px', sm: '64px' },
-          pb: { xs: '48px' },
-        }}
-      >
-        <main>{children}</main>
-      </Box>
+      <main>
+        <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>{children}</Box>
+      </main>
       <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
         <SectionDivider />
         <Footer />
       </Box>
-      <SwipeableDrawer
-        open={drawerOpen}
-        onClose={setDrawer(false)}
-        onOpen={setDrawer(true)}
-        disableBackdropTransition={!iOS}
-        disableDiscovery={iOS}
-      >
-        <DrawerInner onCloseIconClick={setDrawer(false)} drawerContents={drawerContents} />
-      </SwipeableDrawer>
       <Box
         sx={{
           position: 'fixed',
@@ -81,12 +71,20 @@ function Layout({ children, drawerContents, title, description, headerTitle }: P
           </Fab>
         </Tooltip>
       </Box>
-    </div>
+      <SwipeableDrawer
+        open={drawerOpen}
+        onClose={setDrawer(false)}
+        onOpen={setDrawer(true)}
+        disableBackdropTransition={!iOS}
+        disableDiscovery={iOS}
+      >
+        <DrawerInner onCloseIconClick={setDrawer(false)} />
+      </SwipeableDrawer>
+    </Box>
   );
 }
 
 Layout.defaultProps = {
-  drawerContents: undefined,
   title: undefined,
   description: undefined,
   headerTitle: undefined,
