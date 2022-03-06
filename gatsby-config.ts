@@ -2,7 +2,6 @@ import { GatsbyConfig } from 'gatsby';
 
 const baseUrl = 'https://cieloazul310.github.io';
 const pathPrefix = '/jclub-financial-table';
-// const siteUrl = path.join(baseUrl, pathPrefix);
 
 const config: GatsbyConfig = {
   siteMetadata: {
@@ -11,7 +10,7 @@ const config: GatsbyConfig = {
     baseUrl,
     siteUrl: 'https://cieloazul310.github.io/jclub-financial-table',
     author: `@cieloazul310`,
-    keywords: ['Gatsby', 'TypeScript', 'MUI'],
+    keywords: ['Jリーグ', 'Jクラブ経営情報'],
     lang: 'ja',
   },
   pathPrefix,

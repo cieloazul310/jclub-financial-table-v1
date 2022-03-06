@@ -18,3 +18,8 @@ export const Basic = Template.bind({});
 Basic.args = {
   edges: data,
 };
+
+export const Fewer = Template.bind({});
+Fewer.args = {
+  edges: [...data].slice(0, 4),
+};
