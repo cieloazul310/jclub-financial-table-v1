@@ -51,7 +51,7 @@ function PLBar({ node, scale, itemWidth, barWidth, barPadding }: BarProps<PL>) {
 
 function BSBar({ node, scale, itemWidth, barWidth, barPadding }: BarProps<BS>) {
   const { palette } = useTheme();
-  if (!node.assets || !node.liabilities || !node.net_worth) return null;
+  if (typeof node.assets !== 'number' || typeof node.liabilities !== 'number' || typeof node.net_worth !== 'number') return null;
   return (
     <>
       <rect

@@ -1,6 +1,8 @@
 import * as React from 'react';
+import Box from '@mui/material/Box';
 import { ExternalLink, ArticleTitle, Ul, Li } from '@cieloazul310/gatsby-theme-aoi';
-import Chart from '../Chart';
+// import Chart from '../Chart';
+import Chart from '../ChartNext/Container';
 import { ClubBrowser, DatumBrowser } from '../../../types';
 
 type ClubInfoProps = {

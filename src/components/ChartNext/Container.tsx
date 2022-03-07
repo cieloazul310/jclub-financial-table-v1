@@ -5,6 +5,7 @@ import { scaleLinear, ScaleLinear } from 'd3';
 import Bars from './Bars';
 import AverageLines from './AverageLines';
 import useExtent from './useExtent';
+import { useAppState } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
 import { DatumBrowser, Tab } from '../../../types';
 
 type ChartPadding = {
@@ -83,10 +84,10 @@ type ChartContainerProps = {
   edges: {
     node: Omit<DatumBrowser, 'previousData'>;
   }[];
-  tab: Tab;
 };
 
-function ChartContainer({ edges, tab }: ChartContainerProps) {
+function ChartContainer({ edges }: ChartContainerProps) {
+  const { tab } = useAppState();
   const height = 320;
   const itemWidth = 40;
   const padding = { top: 32, right: 42, bottom: 40, left: 46 };
@@ -94,18 +95,20 @@ function ChartContainer({ edges, tab }: ChartContainerProps) {
   const scale = scaleLinear().domain([min, max]).range([height, 0]).nice();
 
   return (
-    <Box display="flex" width="min-content" maxWidth={1}>
-      <Box display="flex" flexDirection="column" flexShrink={0} width={padding.left} height={height + padding.top + padding.bottom}>
-        <AxisY scale={scale} padding={padding} chartHeight={height} />
-      </Box>
-      <Box
-        display="flex"
-        flexDirection="column"
-        overflow="auto"
-        width={itemWidth * edges.length + padding.right}
-        height={height + padding.top + padding.bottom}
-      >
-        <ChartMain edges={edges} itemWidth={itemWidth} height={height} padding={padding} scale={scale} tab={tab} />
+    <Box display="flex" justifyContent="center">
+      <Box display="flex" width="min-content" maxWidth={1}>
+        <Box display="flex" flexDirection="column" flexShrink={0} width={padding.left} height={height + padding.top + padding.bottom}>
+          <AxisY scale={scale} padding={padding} chartHeight={height} />
+        </Box>
+        <Box
+          display="flex"
+          flexDirection="column"
+          overflow="auto"
+          width={itemWidth * edges.length + padding.right}
+          height={height + padding.top + padding.bottom}
+        >
+          <ChartMain edges={edges} itemWidth={itemWidth} height={height} padding={padding} scale={scale} tab={tab} />
+        </Box>
       </Box>
     </Box>
   );

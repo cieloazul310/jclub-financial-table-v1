@@ -16,18 +16,22 @@ function useStatistics(): {
 } {
   const { allYear } = useStaticQuery<StatisticQueryData>(graphql`
     query {
-      allYear(sort: { field: "year", order: "ASC" }) {
-        year
-        categories
-        stats {
-          J1 {
-            ...allStats
-          }
-          J2 {
-            ...allStats
-          }
-          J3 {
-            ...allStats
+      allYear(sort: { fields: year, order: ASC }) {
+        edges {
+          node {
+            year
+            categories
+            stats {
+              J1 {
+                ...allStats
+              }
+              J2 {
+                ...allStats
+              }
+              J3 {
+                ...allStats
+              }
+            }
           }
         }
       }
