@@ -154,6 +154,24 @@ async function createSchemaCustomization({ actions, schema }) {
       totalCount: Int!
       average: Int!
     }
+    type Statistics {
+      j1: [StatisticsItem]!
+      j2: [StatisticsItem]!
+      j3: [StatisticsItem]!
+    }
+    type StatisticsItem {
+      year: Int!
+      category: String!
+      revenue: StatsValues!
+      expense: StatsValues!
+      net_worth: StatsValues!
+      sponsor: StatsValues!
+      ticket: StatsValues!
+      broadcast: StatsValues!
+      salary: StatsValues!
+      average_attd: StatsValues!
+      unit_price: StatsValues!
+    }
   `);
     createTypes(schema.buildObjectType({
         name: `Data`,

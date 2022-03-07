@@ -248,3 +248,7 @@ export type DownloadDatum = {
   所属: string;
   [key: string]: number | string | null;
 };
+export type Statistics = {
+  year: number;
+  category: string;
+} & YearStats;

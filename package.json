@@ -16,6 +16,8 @@
     "@mdx-js/react": "v1",
     "@mui/icons-material": "^5.4.4",
     "@mui/material": "^5.4.4",
+    "@types/d3": "^7.1.0",
+    "d3": "^7.3.0",
     "d3-dsv": "^3.0.1",
     "gatsby": "^4.9.0",
     "gatsby-plugin-eslint": "^4.0.2",
