@@ -4,11 +4,13 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import { TabPane, SectionDivider, Section, Article, ArticleTitle, Paragraph } from '@cieloazul310/gatsby-theme-aoi';
+import { TabPane, Section, Article } from '@cieloazul310/gatsby-theme-aoi';
 import Layout from '../layout';
 import ItemFilter from '../components/Download/ItemFilter';
 import FieldFilter from '../components/Download/FieldFilter';
 import Preview from '../components/Download/Preview';
+import AttributionDoc from '../components/Article/Attribution';
+import { AdInSectionDividerOne } from '../components/Ads';
 import allFields from '../utils/allFields';
 import useIsMobile from '../utils/useIsMobile';
 import { useDictionary } from '../utils/graphql-hooks';
@@ -111,7 +113,6 @@ function DownloadPage({ data }: PageProps<DownloadPageData>) {
           <Box flexGrow={1} height={{ xs: 'calc(100vh - 104px)', sm: 'calc(100vh - 112px)' }} overflow="auto">
             <TabPane index={0} currentTab={tab}>
               <ItemFilter
-                clubs={{ j1, j2, j3 }}
                 clubsFilter={clubsFilter}
                 yearsFilter={yearsFilter}
                 categoriesFilter={categoriesFilter}
@@ -140,11 +141,10 @@ function DownloadPage({ data }: PageProps<DownloadPageData>) {
           </Box>
         ) : null}
       </Box>
-      <SectionDivider />
+      <AdInSectionDividerOne />
       <Section>
         <Article maxWidth="md">
-          <ArticleTitle>データダウンロード</ArticleTitle>
-          <Paragraph>データダウンロード</Paragraph>
+          <AttributionDoc />
         </Article>
       </Section>
     </Layout>

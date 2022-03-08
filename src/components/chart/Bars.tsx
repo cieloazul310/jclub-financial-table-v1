@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { useTheme } from '@mui/material/styles';
 import { ScaleLinear } from 'd3';
-import { DatumBrowser, PL, BS, Tab, AttdBrowser, Revenue } from '../../../types';
+import { useFill } from './BarGradient';
+import { useAppState } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
+import { DatumBrowser, General, PL, BS, AttdBrowser, Expense } from '../../../types';
 
 type XLegendProps = {
   year: number;
@@ -11,12 +13,13 @@ type XLegendProps = {
 };
 
 function XLegend({ year, category, height, itemWidth }: XLegendProps) {
+  const { palette } = useTheme();
   return (
     <g transform={`translate(0, ${height})`}>
-      <text x={itemWidth / 2} dy="4px" alignmentBaseline="hanging">
+      <text x={itemWidth / 2} dy="4px" alignmentBaseline="hanging" fill={palette.text.primary}>
         {year}
       </text>
-      <text x={itemWidth / 2} y={14} dy="4px" alignmentBaseline="hanging">
+      <text x={itemWidth / 2} y={14} dy="4px" alignmentBaseline="hanging" fill={palette.text.primary}>
         {category}
       </text>
     </g>
@@ -24,7 +27,7 @@ function XLegend({ year, category, height, itemWidth }: XLegendProps) {
 }
 
 type BarProps<T> = {
-  node: T;
+  node: T & General;
   scale: ScaleLinear<number, number>;
   itemWidth: number;
   barWidth: number;
@@ -32,20 +35,10 @@ type BarProps<T> = {
 };
 
 function PLBar({ node, scale, itemWidth, barWidth, barPadding }: BarProps<PL>) {
-  const { palette } = useTheme();
+  const fill = useFill(node);
+
   return (
-    <>
-      <rect
-        x={(itemWidth * barPadding) / 2}
-        y={scale(node.revenue)}
-        width={barWidth}
-        height={scale(0) - scale(node.revenue)}
-        fill={palette.grey[400]}
-      />
-      <text x={itemWidth / 2} y={scale(node.revenue)} dy="4px" alignmentBaseline="hanging">
-        {node.revenue}
-      </text>
-    </>
+    <rect x={(itemWidth * barPadding) / 2} y={scale(node.revenue)} width={barWidth} height={scale(0) - scale(node.revenue)} fill={fill} />
   );
 }
 
@@ -59,80 +52,57 @@ function BSBar({ node, scale, itemWidth, barWidth, barPadding }: BarProps<BS>) {
         y={scale(node.assets)}
         width={barWidth / 2}
         height={scale(0) - scale(node.assets)}
-        fill={palette.grey[600]}
+        fill={palette.grey[palette.mode === 'light' ? 400 : 800]}
       />
       <rect
         x={itemWidth / 2}
         y={scale(node.assets)}
         width={barWidth / 2}
-        height={scale(0) - scale(node.liabilities)}
-        fill={palette.grey[400]}
+        height={scale(0) - scale(node.liabilities) - 1}
+        fill={palette.grey[palette.mode === 'light' ? 300 : 700]}
       />
       <rect
         x={itemWidth / 2}
         y={node.net_worth < 0 ? scale(0) : scale(node.net_worth)}
         width={barWidth / (node.net_worth < 0 ? 4 : 2)}
         height={(node.net_worth < 0 ? -1 : 1) * (scale(0) - scale(node.net_worth))}
-        fill={node.net_worth < 0 ? palette.error.light : palette.success.light}
+        fill={node.net_worth < 0 ? palette.error[palette.mode] : palette.success[palette.mode]}
       />
     </>
   );
 }
 
-function RevenueBar({ node, scale, itemWidth, barWidth, barPadding }: BarProps<Revenue>) {
+function ExpenseBar({ node, scale, itemWidth, barWidth, barPadding }: BarProps<Expense>) {
   const { palette } = useTheme();
-  const { revenue, sponsor, ticket, broadcast } = node;
-  const othersRev = revenue - ((sponsor ?? 0) + (ticket ?? 0) + (broadcast ?? 0));
+  const fill = useFill(node);
+  const { expense, salary } = node;
+  const othersExp = expense - (salary ?? 0);
 
   return (
     <>
       <rect
         x={(itemWidth * barPadding) / 2}
-        y={scale(revenue)}
+        y={scale(expense)}
         width={barWidth}
-        height={scale(0) - scale(othersRev) - 1}
-        fill={palette.grey[400]}
+        height={scale(0) - scale(othersExp) - 1}
+        fill={palette.grey[palette.mode === 'light' ? 200 : 900]}
       />
-      {broadcast ? (
-        <rect
-          x={(itemWidth * barPadding) / 2}
-          y={scale(revenue - othersRev)}
-          width={barWidth}
-          height={scale(0) - scale(broadcast) - 1}
-          fill={palette.primary.light}
-        />
-      ) : null}
-      {ticket ? (
-        <rect
-          x={(itemWidth * barPadding) / 2}
-          y={scale(revenue - othersRev - (broadcast ?? 0))}
-          width={barWidth}
-          height={scale(0) - scale(ticket) - 1}
-          fill={palette.primary.main}
-        />
-      ) : null}
-      {sponsor ? (
-        <rect
-          x={(itemWidth * barPadding) / 2}
-          y={scale(revenue - othersRev - (broadcast ?? 0) - (ticket ?? 0))}
-          width={barWidth}
-          height={scale(0) - scale(sponsor) - 1}
-          fill={palette.primary.dark}
-        />
+      {salary ? (
+        <rect x={(itemWidth * barPadding) / 2} y={scale(salary)} width={barWidth} height={scale(0) - scale(salary) - 1} fill={fill} />
       ) : null}
     </>
   );
 }
 
 function AttdBar({ node, scale, itemWidth, barWidth, barPadding }: BarProps<AttdBrowser>) {
-  const { palette } = useTheme();
+  const fill = useFill(node);
   return (
     <rect
       x={(itemWidth * barPadding) / 2}
       y={scale(node.average_attd)}
       width={barWidth}
       height={scale(0) - scale(node.average_attd)}
-      fill={palette.grey[400]}
+      fill={fill}
     />
   );
 }
@@ -144,10 +114,10 @@ type BarsProps = {
   scale: ScaleLinear<number, number>;
   height: number;
   itemWidth: number;
-  tab: Tab;
 };
 
-function Bars({ edges, scale, height, itemWidth, tab }: BarsProps) {
+function Bars({ edges, scale, height, itemWidth }: BarsProps) {
+  const { tab } = useAppState();
   const barPadding = 0.2;
   const barWidth = itemWidth * (1 - barPadding);
 
@@ -156,9 +126,9 @@ function Bars({ edges, scale, height, itemWidth, tab }: BarsProps) {
       return (
         <BSBar key={node.year.toString()} node={node} scale={scale} itemWidth={itemWidth} barWidth={barWidth} barPadding={barPadding} />
       );
-    if (tab === 'revenue')
+    if (tab === 'expense')
       return (
-        <RevenueBar
+        <ExpenseBar
           key={node.year.toString()}
           node={node}
           scale={scale}

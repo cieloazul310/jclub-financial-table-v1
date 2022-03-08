@@ -6,7 +6,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import GetAppIcon from '@mui/icons-material/GetApp';
-import { csvFormat } from 'd3-dsv';
+import { csvFormat } from 'd3';
 import { H4 } from '@cieloazul310/gatsby-theme-aoi';
 import { useAllClubs, useAllYears } from '../../utils/graphql-hooks';
 import { DownloadDatum } from '../../../types';

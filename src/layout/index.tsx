@@ -78,7 +78,7 @@ function Layout({ children, title, description, headerTitle }: LayoutProps) {
         disableBackdropTransition={!iOS}
         disableDiscovery={iOS}
       >
-        <DrawerInner onCloseIconClick={setDrawer(false)} />
+        <DrawerInner onCloseIconClick={setDrawer(false)} title={title} />
       </SwipeableDrawer>
     </Box>
   );

@@ -1,8 +1,6 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import { ExternalLink, ArticleTitle, Ul, Li } from '@cieloazul310/gatsby-theme-aoi';
-// import Chart from '../Chart';
-import Chart from '../ChartNext/Container';
+import Chart from '../Chart';
 import { ClubBrowser, DatumBrowser } from '../../../types';
 
 type ClubInfoProps = {
@@ -16,7 +14,7 @@ function ClubInfo({ club, edges }: ClubInfoProps) {
   return (
     <>
       <ArticleTitle>{club.name}</ArticleTitle>
-      <div>{edges.length > 2 ? <Chart edges={edges} /> : null}</div>
+      {edges.length > 2 ? <Chart edges={edges} /> : null}
       <Ul>
         <Li>正式名称: {club.fullname}</Li>
         <Li>法人名: {club.company}</Li>

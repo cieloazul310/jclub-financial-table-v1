@@ -1,12 +1,12 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Divider from '@mui/material/Divider';
 import Tooltip from '@mui/material/Tooltip';
 import ClearIcon from '@mui/icons-material/Clear';
-import { ExternalLink, SubParagraph, useSiteMetadata } from '@cieloazul310/gatsby-theme-aoi';
+import { ExternalLink, SubParagraph } from '@cieloazul310/gatsby-theme-aoi';
 import { DrawerPageNavigation } from '@cieloazul310/gatsby-theme-aoi-blog-components';
+import DrawerTop from './DrawerTop';
 import DrawerMenu from './DrawerMenu';
 import DrawerLinks from './DrawerLinks';
 import StateHandler from './StateHandler';
@@ -23,7 +23,6 @@ type DrawerInnerProps = {
 };
 
 function DrawerInner({ title, next, previous, onCloseIconClick }: DrawerInnerProps) {
-  const siteTitle = useSiteMetadata().title;
   const neighbors = useNeighbors({ previous, next });
   return (
     <Box sx={{ width: 280, display: 'flex', flexDirection: 'column', overflow: 'auto' }}>
@@ -38,11 +37,8 @@ function DrawerInner({ title, next, previous, onCloseIconClick }: DrawerInnerPro
         <Divider />
       </div>
       <Box sx={{ flexGrow: 1, overflowY: 'auto' }}>
-        <Box height={140} p={2}>
-          <Typography variant="body1">
-            <strong>{title ?? siteTitle}</strong>
-          </Typography>
-        </Box>
+        <DrawerTop title={title} />
+        <Divider />
         {previous || next ? <DrawerPageNavigation previous={neighbors.previous} next={neighbors.next} /> : null}
         <Divider />
         <DrawerLinks />
