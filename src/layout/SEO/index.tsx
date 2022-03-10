@@ -13,6 +13,8 @@ type SeoProps = {
 function Seo({ title, description }: SeoProps) {
   const siteMetadata = useSiteMetadata();
   const { href } = useLocation();
+  const ogTitle = title ? `${title} | ${siteMetadata.title}` : siteMetadata.title;
+
   return (
     <Helmet
       htmlAttributes={{ lang: 'ja' }}
@@ -33,7 +35,7 @@ function Seo({ title, description }: SeoProps) {
         },
         {
           property: 'og:title',
-          content: title || siteMetadata.title,
+          content: ogTitle,
         },
         {
           property: 'og:description',
@@ -50,7 +52,7 @@ function Seo({ title, description }: SeoProps) {
         },
         {
           name: 'twitter:title',
-          content: title ? `${title} | ${siteMetadata.title}` : siteMetadata.title,
+          content: ogTitle,
         },
         {
           name: 'twitter:description',
