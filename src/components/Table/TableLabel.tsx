@@ -69,7 +69,9 @@ export function TableHeadLabel({ mode }: TableHeadLabelProps) {
     </TableCellLabel>
   ) : (
     <>
-      <TableCellIndex sx={sxProps.theadLabel} />
+      <TableCellIndex sx={sxProps.theadLabel} align="right">
+        i
+      </TableCellIndex>
       <TableCellLabel
         mode={mode}
         sx={{

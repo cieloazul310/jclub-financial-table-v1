@@ -23,7 +23,9 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import CheckIcon from '@mui/icons-material/Check';
 import RemoveIcon from '@mui/icons-material/Remove';
+import { Section, Article } from '@cieloazul310/gatsby-theme-aoi';
 import Layout from '../layout';
+import AttributionDoc from '../components/Article/Attribution';
 import { AdInSectionDividerOne } from '../components/Ads';
 import { allSortableFields } from '../utils/allFields';
 import { j1color, j2color, j3color, othersColor } from '../utils/categoryColors';
@@ -290,6 +292,11 @@ function SeriesPage({ data }: PageProps<SeriesPageData>) {
         </Container>
       </Box>
       <AdInSectionDividerOne />
+      <Section>
+        <Article maxWidth="md">
+          <AttributionDoc />
+        </Article>
+      </Section>
       <Snackbar
         open={open}
         onClose={handleClose}

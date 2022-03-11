@@ -32,20 +32,19 @@ export type Year = {
 export type YearNode = Node & Year;
 export type StatsValues = {
   values: number[];
-  sum: number;
+  totalCount: number;
   average: number;
-  median: number;
-  max: number;
-  min: number;
 };
 export type YearStats = {
   revenue: StatsValues;
   expense: StatsValues;
   net_worth: StatsValues;
+  sponsor: StatsValues;
   ticket: StatsValues;
+  broadcast: StatsValues;
+  salary: StatsValues;
   average_attd: StatsValues;
   unit_price: StatsValues;
-  totalCount: !number;
 };
 
 export type YearBrowser = Year & { data: DatumBrowser[]; stats: { J1: YearStats; J2: YearStats; J3: YearStats | null } };
@@ -249,3 +248,7 @@ export type DownloadDatum = {
   所属: string;
   [key: string]: number | string | null;
 };
+export type Statistics = {
+  year: number;
+  category: string;
+} & YearStats;

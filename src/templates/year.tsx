@@ -2,8 +2,9 @@ import * as React from 'react';
 import { graphql, PageProps } from 'gatsby';
 import { SectionDivider } from '@cieloazul310/gatsby-theme-aoi';
 import TemplateLayout from '../layout/TemplateLayout';
-import Summary from '../components/Summary';
-import Figure from '../components/Figure';
+import SummarySection from '../components/Summary';
+import NavigationSection from '../components/Navigation';
+import FigureSection from '../components/Figure';
 import ArticleSection from '../components/Article';
 import { AdInSectionDividerOne } from '../components/Ads';
 import { YearPageData, YearPageContext } from '../../types';
@@ -18,11 +19,15 @@ function YearTemplate({ data, pageContext }: PageProps<YearPageData, YearPageCon
       description={`${year.year}年のJクラブ経営情報一覧。各Jクラブの損益計算書・貸借対照表・営業収入・営業費用・入場者数を項目ごとに表示。`}
       pageContext={pageContext}
     >
-      <Figure edges={data.allData.edges} mode="year" />
+      <FigureSection edges={data.allData.edges} mode="year" />
       <SectionDivider />
-      <Summary mode="year" edges={data.allData.edges} item={data.year} previous={previous} next={next} prevYear={prevYear} />
+      <SummarySection mode="year" edges={data.allData.edges} item={data.year} prevYear={prevYear} />
+      <SectionDivider />
+      <NavigationSection mode="year" item={data.year} previous={previous} next={next} />
       <AdInSectionDividerOne />
       <ArticleSection />
+      <SectionDivider />
+      <NavigationSection mode="year" item={data.year} previous={previous} next={next} />
     </TemplateLayout>
   );
 }

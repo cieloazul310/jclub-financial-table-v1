@@ -10,8 +10,8 @@ type FigureWrapperProps = {
 
 function FigureWrapper({ children, caption }: FigureWrapperProps) {
   return (
-    <Box display="flex" justifyContent="center" alignItems="center" px={1} py={2} m={0} component="figure">
-      <Paper sx={{ width: 1, maxWidth: 'sm', px: 2, pt: 2 }}>
+    <Box display="flex" justifyContent="center" alignItems="center" px={1} py={2} mx={0} my={2} component="figure">
+      <Paper sx={{ width: 1, maxWidth: 'sm', px: 2, pt: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         {children}
         {caption ? (
           <Typography variant="caption" display="flex" justifyContent="center" p={1} component="figcaption">

@@ -14,7 +14,7 @@ function ClubInfo({ club, edges }: ClubInfoProps) {
   return (
     <>
       <ArticleTitle>{club.name}</ArticleTitle>
-      <div>{edges.length > 2 ? <Chart edges={edges} /> : null}</div>
+      {edges.length > 2 ? <Chart edges={edges} /> : null}
       <Ul>
         <Li>正式名称: {club.fullname}</Li>
         <Li>法人名: {club.company}</Li>

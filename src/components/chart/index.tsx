@@ -1,25 +1,123 @@
 import * as React from 'react';
-import { BarSeries, ArgumentAxis, ValueAxis } from '@devexpress/dx-react-chart-material-ui';
-import Chart from '../chart/CustomChart';
-import Title from '../chart/CustomTitle';
-import YearAxisLabel from '../chart/YearAxisLabel';
+import Box from '@mui/material/Box';
+import { useTheme } from '@mui/material/styles';
+import { scaleLinear, ScaleLinear } from 'd3';
+import ChartTitle from './ChartTitle';
+import Bars from './Bars';
+import AverageLines from './AverageLines';
+import BarGradient from './BarGradient';
+import useExtent from './useExtent';
 import { DatumBrowser } from '../../../types';
 
-type ClubChartProps = {
-  edges: {
-    node: Pick<DatumBrowser, 'year' | 'revenue'>;
-  }[];
+type ChartPadding = {
+  top: number;
+  right: number;
+  bottom: number;
+  left: number;
 };
 
-function ClubChart({ edges }: ClubChartProps) {
+type AxisYProps = {
+  scale: ScaleLinear<number, number>;
+  chartHeight: number;
+  padding: ChartPadding;
+};
+
+function AxisY({ scale, chartHeight, padding }: AxisYProps) {
+  const height = chartHeight + padding.top + padding.bottom;
+  const ticks = scale.ticks();
+  const { palette, typography } = useTheme();
+  const { fontSize, fontFamily } = typography.caption;
   return (
-    <Chart height={360} data={edges.map(({ node }) => ({ ...node, year: node.year?.toString() }))}>
-      <ArgumentAxis labelComponent={YearAxisLabel} />
-      <ValueAxis />
-      <BarSeries valueField="revenue" argumentField="year" />
-      <Title text="営業収入推移" />
-    </Chart>
+    <Box width={padding.left} height={height} flexShrink={0}>
+      <svg width={padding.left} height={height} fontSize={fontSize} fontFamily={fontFamily}>
+        <g transform={`translate(${padding.left}, ${padding.top})`} textAnchor="end">
+          <line x1={0} x2={0} y1={0} y2={chartHeight} strokeWidth={1} stroke={palette.text.secondary} />
+          {ticks.map((value) => (
+            <text key={value.toString()} y={scale(value)} dx="-.5em" alignmentBaseline="middle" fill={palette.text.primary}>
+              {value}
+            </text>
+          ))}
+        </g>
+      </svg>
+    </Box>
   );
 }
 
-export default ClubChart;
+type ChartMainProps = {
+  edges: {
+    node: Omit<DatumBrowser, 'previousData'>;
+  }[];
+  height: number;
+  itemWidth: number;
+  padding: ChartPadding;
+  scale: ScaleLinear<number, number>;
+};
+
+function ChartMain({ edges, height, itemWidth, padding, scale }: ChartMainProps) {
+  const { palette, typography } = useTheme();
+  const chartWidth = edges.length * itemWidth + padding.right;
+  const chartHeight = height + padding.top + padding.bottom;
+  const ticks = scale.ticks();
+  const { fontSize, fontFamily } = typography.caption;
+
+  return (
+    <Box width={chartWidth} height={chartHeight}>
+      <svg width={chartWidth} height={chartHeight} fontSize={fontSize} fontFamily={fontFamily} textAnchor="middle">
+        <BarGradient />
+        <g transform={`translate(0, ${padding.top})`}>
+          <Bars edges={edges} height={height} scale={scale} itemWidth={itemWidth} />
+          <g strokeWidth={1}>
+            {ticks.map((value) =>
+              value !== 0 ? (
+                <line key={value.toString()} x1={0} x2={chartWidth} y1={scale(value)} y2={scale(value)} stroke={palette.divider} />
+              ) : null
+            )}
+          </g>
+          <AverageLines edges={edges} itemWidth={itemWidth} scale={scale} />
+          <line x1={0} x2={chartWidth} y1={scale(0)} y2={scale(0)} stroke={palette.text.secondary} />
+        </g>
+      </svg>
+    </Box>
+  );
+}
+
+type ChartContainerProps = {
+  edges: {
+    node: Omit<DatumBrowser, 'previousData'>;
+  }[];
+};
+
+function ChartContainer({ edges }: ChartContainerProps) {
+  const height = 320;
+  const itemWidth = 40;
+  const padding = { top: 20, right: 42, bottom: 40, left: 46 };
+  const [min, max] = useExtent(edges);
+  const scale = scaleLinear().domain([min, max]).range([height, 0]).nice();
+
+  return (
+    <div>
+      <ChartTitle />
+      <Box display="flex" justifyContent="center">
+        <Box display="flex" width="min-content" maxWidth={1}>
+          <Box display="flex" flexDirection="column" flexShrink={0} width={padding.left} height={height + padding.top + padding.bottom}>
+            <AxisY scale={scale} padding={padding} chartHeight={height} />
+          </Box>
+          <Box
+            display="flex"
+            flexDirection="column"
+            width={itemWidth * edges.length + padding.right}
+            height={height + padding.top + padding.bottom}
+            sx={{
+              overflowX: 'auto',
+              overflowY: 'hidden',
+            }}
+          >
+            <ChartMain edges={edges} itemWidth={itemWidth} height={height} padding={padding} scale={scale} />
+          </Box>
+        </Box>
+      </Box>
+    </div>
+  );
+}
+
+export default ChartContainer;

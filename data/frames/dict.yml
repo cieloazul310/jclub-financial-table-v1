@@ -5,7 +5,7 @@ year: 年
 category: 所属
 license: ライセンス
 revenue: 営業収入
-sponsor: 広告料収入
+sponsor: スポンサー収入
 ticket: 入場料収入
 broadcast: Jリーグ配分金
 academy_rev: アカデミー関連収入
@@ -33,14 +33,14 @@ tax: 法人税および住民税等
 profit: 当期純利益
 curr_assets: 流動資産
 fixed_assets: 固定資産等
-assets: 総資産
+assets: 総資産(資産の部)
 curr_liabilities: 流動負債
 fixed_liabilities: 固定負債
-liabilities: 総負債
+liabilities: 総負債(負債の部)
 capital_stock: 資本金
 capital_surplus: 資本剰余金等
 retained_earnings: 利益剰余金
-net_worth: 純資産
+net_worth: 純資産(純資産の部)
 rank: 順位
 points: 勝ち点
 ppg: PPG

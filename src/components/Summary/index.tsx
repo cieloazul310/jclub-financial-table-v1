@@ -1,55 +1,31 @@
 import * as React from 'react';
-import Typography from '@mui/material/Typography';
-import { Section, SectionDivider, Article } from '@cieloazul310/gatsby-theme-aoi';
-import { PageNavigationContainer, PageNavigationItem } from '@cieloazul310/gatsby-theme-aoi-blog-components';
+import { Section, Article } from '@cieloazul310/gatsby-theme-aoi';
 import ClubInfo from './ClubInfo';
 import YearInfo from './YearInfo';
-import { CategoryLink, YearsLink } from '../Links';
-import useNeighbors from '../../utils/useNeighbors';
+import useIsClub from '../../utils/useIsClub';
 
-import { Mode, DatumBrowser, ClubBrowser, YearBrowser, ClubPageNeighbor, YearPageNeighbor } from '../../../types';
+import { Mode, DatumBrowser, ClubBrowser, YearBrowser } from '../../../types';
 
-type SummaryTabProps<T extends Mode> = {
+type SummarySectionProps<T extends Mode> = {
   mode: T;
   edges: {
     node: DatumBrowser;
   }[];
-  item: Omit<ClubBrowser, 'data'> | Omit<YearBrowser, 'data'>;
-  previous: ClubPageNeighbor | YearPageNeighbor;
-  next: ClubPageNeighbor | YearPageNeighbor;
-  prevYear: Pick<YearBrowser, 'stats'> | null;
+  item: T extends 'club' ? Omit<ClubBrowser, 'data'> : Omit<YearBrowser, 'data'>;
+  prevYear: T extends 'year' ? Pick<YearBrowser, 'stats'> | null : null;
 };
 
-function isClub<T extends Mode>(item: Omit<ClubBrowser, 'data'> | Omit<YearBrowser, 'data'>, mode: T): item is Omit<ClubBrowser, 'data'> {
-  return mode === 'club';
-}
-
-function Summary<T extends Mode>({ mode, edges, item, previous, next, prevYear }: SummaryTabProps<T>) {
-  const neighbors = useNeighbors({ previous, next });
+function SummarySection<T extends Mode>({ mode, edges, item, prevYear }: SummarySectionProps<T>) {
+  const isClub = useIsClub<Omit<ClubBrowser, 'data'>>(mode);
   return (
     <section>
       <Section>
         <Article maxWidth="md">
-          {isClub(item, mode) ? <ClubInfo club={item} edges={edges} /> : <YearInfo year={item} prevYear={prevYear} />}
+          {isClub(item) ? <ClubInfo club={item} edges={edges} /> : <YearInfo year={item} prevYear={prevYear} />}
         </Article>
-      </Section>
-      <SectionDivider />
-      <Section>
-        <Article maxWidth="md">{isClub(item, mode) ? <CategoryLink category={item.category} /> : <YearsLink />}</Article>
-      </Section>
-      <SectionDivider />
-      <Section>
-        <PageNavigationContainer>
-          <PageNavigationItem to={neighbors.previous?.to ?? '#'} disabled={!neighbors.previous}>
-            <Typography variant="body2">{neighbors.previous?.title}</Typography>
-          </PageNavigationItem>
-          <PageNavigationItem to={neighbors.next?.to ?? '#'} next disabled={!neighbors.next}>
-            <Typography variant="body2">{neighbors.next?.title}</Typography>
-          </PageNavigationItem>
-        </PageNavigationContainer>
       </Section>
     </section>
   );
 }
 
-export default Summary;
+export default SummarySection;

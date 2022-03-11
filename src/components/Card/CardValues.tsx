@@ -152,7 +152,7 @@ export function RevenueCardValues<T extends Revenue>({ edge, previous, mode }: C
   return (
     <>
       <CardValue label="営業収入" property="revenue" emphasized />
-      <CardValue label="広告料収入" property="sponsor" inset />
+      <CardValue label="スポンサー収入" property="sponsor" inset />
       <CardValue label="入場料収入" property="ticket" inset />
       <CardValue label="Jリーグ配分金" property="broadcast" inset />
       <CardValue label="アカデミー関連収入" property="academy_rev" inset />

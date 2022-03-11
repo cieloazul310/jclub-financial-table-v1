@@ -7,14 +7,14 @@ import FinancialCard from '../Card';
 import { useAppState } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
 import { Mode, DatumBrowser } from '../../../types';
 
-type FigureProps = {
+type FigureSectionProps = {
   edges: {
     node: DatumBrowser;
   }[];
   mode: Mode;
 };
 
-function Figure({ edges, mode }: FigureProps) {
+function FigureSection({ edges, mode }: FigureSectionProps) {
   const { listMode } = useAppState();
   const isYearTable = !listMode && mode === 'year';
 
@@ -39,4 +39,4 @@ function Figure({ edges, mode }: FigureProps) {
   );
 }
 
-export default Figure;
+export default FigureSection;

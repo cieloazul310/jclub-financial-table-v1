@@ -63,7 +63,7 @@ function TemplateLayout<T extends Mode>({ children, title, headerTitle, descript
       <main>
         <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>{children}</Box>
       </main>
-      <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+      <Box>
         <SectionDivider />
         <Footer />
       </Box>
@@ -75,7 +75,6 @@ function TemplateLayout<T extends Mode>({ children, title, headerTitle, descript
           top: { xs: 'unset', sm: trigger ? 0 : '64px' },
           bottom: { xs: 0, sm: 'unset' },
           bgcolor: 'background.paper',
-          borderTop: { xs: 1, sm: 0 },
           borderColor: 'divider',
           zIndex: (theme) => theme.zIndex.appBar - 1,
           boxShadow: 1,

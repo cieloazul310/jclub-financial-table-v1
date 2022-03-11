@@ -17,7 +17,7 @@ export function AdInSectionDividerWrapper({ children }: React.PropsWithChildren<
   );
 }
 
-export function AdOne() {
+export function AdInArticle() {
   const { pathname } = useLocation();
   React.useEffect(() => {
     if (window) {
@@ -26,7 +26,7 @@ export function AdOne() {
     }
   }, [pathname]);
   return (
-    <Box overflow="hidden" key={pathname}>
+    <Box overflow="hidden" key={pathname} py={2}>
       {typeof window === 'object' ? (
         <ins
           className="adsbygoogle"
@@ -35,6 +35,31 @@ export function AdOne() {
           data-ad-format="fluid"
           data-ad-client="ca-pub-7323207940463794"
           data-ad-slot="9174058264"
+        />
+      ) : null}
+    </Box>
+  );
+}
+
+export function AdOne() {
+  const { pathname } = useLocation();
+  React.useEffect(() => {
+    if (window) {
+      window.adsbygoogle = window.adsbygoogle || [];
+      window.adsbygoogle.push({});
+    }
+  }, [pathname]);
+
+  return (
+    <Box overflow="hidden" key={pathname}>
+      {typeof window === 'object' ? (
+        <ins
+          className="adsbygoogle"
+          style={{ display: 'block' }}
+          data-ad-client="ca-pub-7323207940463794"
+          data-ad-slot="6963353890"
+          data-ad-format="auto"
+          data-full-width-responsive="true"
         />
       ) : null}
     </Box>
@@ -57,7 +82,7 @@ export function AdTwo() {
           className="adsbygoogle"
           style={{ display: 'block' }}
           data-ad-client="ca-pub-7323207940463794"
-          data-ad-slot="6963353890"
+          data-ad-slot="5693068398"
           data-ad-format="auto"
           data-full-width-responsive="true"
         />

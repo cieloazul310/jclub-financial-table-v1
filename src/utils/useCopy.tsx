@@ -19,7 +19,7 @@ function useCopy(tableId: string, callback?: () => void) {
 
       const string = selection?.toString();
       if (string && navigator.clipboard) {
-        navigator.clipboard.writeText(string).then(callback);
+        navigator.clipboard.writeText(string.replace(/,/g, '')).then(callback);
       }
       selection?.removeAllRanges();
     }

@@ -24,9 +24,6 @@ function FinancialTable({ edges, mode }: FinancialTableProps) {
       sx={{
         flexGrow: 1,
         scrollSnapType: 'both mandatory',
-        /* 
-        maxHeight: mode === 'year' ? 'calc(100vh - 106px)' : undefined,
-        */
       }}
       component={Paper}
     >
