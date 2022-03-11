@@ -15,7 +15,7 @@
     "@mui/material": "^5.4.4",
     "@types/d3": "^7.1.0",
     "d3": "^7.3.0",
-    "gatsby": "^4.9.2",
+    "gatsby": "^4.9.3",
     "gatsby-plugin-eslint": "^4.0.2",
     "gatsby-plugin-google-analytics": "^4.9.0",
     "gatsby-plugin-manifest": "^4.9.0",
