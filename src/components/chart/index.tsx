@@ -81,13 +81,13 @@ function ChartMain({ edges, height, itemWidth, padding, scale }: ChartMainProps)
   );
 }
 
-type ChartContainerProps = {
+type ChartProps = {
   edges: {
     node: Omit<DatumBrowser, 'previousData'>;
   }[];
 };
 
-function ChartContainer({ edges }: ChartContainerProps) {
+function Chart({ edges }: ChartProps) {
   const height = 320;
   const itemWidth = 40;
   const padding = { top: 20, right: 42, bottom: 40, left: 46 };
@@ -120,4 +120,4 @@ function ChartContainer({ edges }: ChartContainerProps) {
   );
 }
 
-export default ChartContainer;
+export default Chart;

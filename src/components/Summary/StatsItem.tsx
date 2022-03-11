@@ -14,7 +14,7 @@ function StatsItem({ category, stats, prevStats }: StatsItemProps) {
   return (
     <Box>
       <H4>
-        {category} {stats.totalCount}クラブ
+        {category} {stats.revenue.totalCount}クラブ
       </H4>
       <StatsTable stats={stats} prevStats={prevStats} />
     </Box>
