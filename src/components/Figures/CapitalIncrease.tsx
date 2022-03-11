@@ -40,7 +40,7 @@ function CapitalIncrease() {
   const beforeRatio = 3 / 4;
   return (
     <FigureWrapper caption="増資による株主構成変化の例">
-      <Stack direction="column" spacing={2} py={2}>
+      <Stack direction="column" spacing={2} py={2} width={1}>
         <Stack direction="column" spacing={1} width={1}>
           <Typography variant="body2" gutterBottom>
             増資前 (資本金300万円)
