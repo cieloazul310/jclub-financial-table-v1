@@ -25,7 +25,7 @@ function CapitalItem({ label, ratio, selected = false, last = false }: CapitalIt
     >
       <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 0, sm: 1 }}>
         <Typography variant="caption">{label}</Typography>
-        <Typography variant="caption">{Math.round(100 * ratio).toString()}%</Typography>
+        <Typography variant="caption">{(100 * ratio).toFixed(1)}%</Typography>
       </Stack>
     </Box>
   );
@@ -43,7 +43,7 @@ function CapitalIncrease() {
       <Stack direction="column" spacing={2} py={2} width={1}>
         <Stack direction="column" spacing={1} width={1}>
           <Typography variant="body2" gutterBottom>
-            増資前 (資本金300万円)
+            増資前 (資本金3000万円)
           </Typography>
           <Box display="flex" width={beforeRatio} sx={{ borderColor: 'text.secondary', border: 1 }}>
             <CapitalItem label="A社" ratio={2 / 5} />
@@ -53,7 +53,7 @@ function CapitalIncrease() {
         </Stack>
         <Stack direction="column" spacing={1} width={1}>
           <Typography variant="body2" gutterBottom>
-            増資後 (資本金400万円)
+            増資後 (資本金4000万円)
           </Typography>
           <Box display="flex" width={1} sx={{ borderColor: 'divider', border: 1 }}>
             <CapitalItem label="A社" ratio={(beforeRatio * 2) / 5} />
