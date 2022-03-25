@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from '@reach/router';
-import { useSiteMetadata, useAbsoluteUrl } from '@cieloazul310/gatsby-theme-aoi';
+import { useSiteMetadata } from '@cieloazul310/gatsby-theme-aoi';
 import ogImage from '../../images/ogp.png';
 
 type SeoProps = {
@@ -13,8 +13,6 @@ function Seo({ title, description }: SeoProps) {
   const siteMetadata = useSiteMetadata();
   const { href } = useLocation();
   const ogTitle = title ? `${title} | ${siteMetadata.title}` : siteMetadata.title;
-  const ogImageUrl = useAbsoluteUrl(ogImage);
-  const ogTwitterUrl = useAbsoluteUrl(ogImage);
 
   return (
     <Helmet
@@ -32,7 +30,7 @@ function Seo({ title, description }: SeoProps) {
         },
         {
           property: 'og:image',
-          content: ogImageUrl,
+          content: `https://cieloazul310.github.io${ogImage}`,
         },
         {
           property: 'og:title',
@@ -61,7 +59,7 @@ function Seo({ title, description }: SeoProps) {
         },
         {
           name: 'twitter:image',
-          content: ogTwitterUrl,
+          content: `https://cieloazul310.github.io${ogImage}`,
         },
       ]}
     />
