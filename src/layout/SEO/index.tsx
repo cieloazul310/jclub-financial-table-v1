@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { useLocation } from '@reach/router';
 import { useSiteMetadata } from '@cieloazul310/gatsby-theme-aoi';
-import ogImage from '../../images/og_image.png';
-import ogTwitter from '../../images/og_twitter.png';
+import ogImage from '../../images/ogp.png';
 
 type SeoProps = {
   title?: string;
@@ -60,7 +59,7 @@ function Seo({ title, description }: SeoProps) {
         },
         {
           name: 'twitter:image',
-          content: `https://cieloazul310.github.io${ogTwitter}`,
+          content: `https://cieloazul310.github.io${ogImage}`,
         },
       ]}
     />

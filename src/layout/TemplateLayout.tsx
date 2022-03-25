@@ -47,77 +47,79 @@ function TemplateLayout<T extends Mode>({ children, title, headerTitle, descript
   };
 
   return (
-    <Box
-      sx={{
-        flexGrow: 1,
-        paddingTop: { xs: '56px', sm: '112px' },
-        paddingBottom: { xs: '48px', sm: 0 },
-      }}
-    >
+    <>
       <SEO title={title} description={description} />
-      <Slide appear={false} direction="down" in={!trigger}>
-        <AppBar>
-          <AppBarInner title={headerTitle ?? title} onLeftButtonClick={handleDrawer()} previous={previous} next={next} />
-        </AppBar>
-      </Slide>
-      <main>
-        <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>{children}</Box>
-      </main>
-      <Box>
-        <SectionDivider />
-        <Footer />
-      </Box>
-      <Box
-        component="nav"
-        sx={{
-          position: 'fixed',
-          width: 1,
-          top: { xs: 'unset', sm: trigger ? 0 : '64px' },
-          bottom: { xs: 0, sm: 'unset' },
-          bgcolor: 'background.paper',
-          borderColor: 'divider',
-          zIndex: (theme) => theme.zIndex.appBar - 1,
-          boxShadow: 1,
-          transition: (theme) => theme.transitions.create(['top', 'bottom'], { delay: 100 }),
-        }}
-      >
-        <Tabs value={tab} variant="scrollable" indicatorColor="secondary" textColor="secondary" scrollButtons="auto" onChange={handleTab}>
-          <MuiTab label="損益計算書" value="pl" wrapped />
-          <MuiTab label="貸借対照表" value="bs" wrapped />
-          <MuiTab label="営業収入" value="revenue" wrapped />
-          <MuiTab label="営業費用" value="expense" wrapped />
-          <MuiTab label="入場者数" value="attd" wrapped />
-        </Tabs>
-      </Box>
       <Box
         sx={{
-          position: 'fixed',
-          right: (theme) => theme.spacing(2),
-          bottom: (theme) => ({ xs: `calc(${theme.spacing(2)} + 56px)`, sm: theme.spacing(2) }),
-          zIndex: (theme) => theme.zIndex.appBar - 1,
-          opacity: 0.4,
-          transition: (theme) => theme.transitions.create('opacity'),
-          '&:hover': {
-            opacity: 1,
-          },
+          flexGrow: 1,
+          paddingTop: { xs: '56px', sm: '112px' },
+          paddingBottom: { xs: '48px', sm: 0 },
         }}
       >
-        <Tooltip title="メニュー">
-          <Fab color="secondary" onClick={handleDrawer()}>
-            <MenuIcon />
-          </Fab>
-        </Tooltip>
+        <Slide appear={false} direction="down" in={!trigger}>
+          <AppBar>
+            <AppBarInner title={headerTitle ?? title} onLeftButtonClick={handleDrawer()} previous={previous} next={next} />
+          </AppBar>
+        </Slide>
+        <main>
+          <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>{children}</Box>
+        </main>
+        <Box>
+          <SectionDivider />
+          <Footer />
+        </Box>
+        <Box
+          component="nav"
+          sx={{
+            position: 'fixed',
+            width: 1,
+            top: { xs: 'unset', sm: trigger ? 0 : '64px' },
+            bottom: { xs: 0, sm: 'unset' },
+            bgcolor: 'background.paper',
+            borderColor: 'divider',
+            zIndex: (theme) => theme.zIndex.appBar - 1,
+            boxShadow: 1,
+            transition: (theme) => theme.transitions.create(['top', 'bottom'], { delay: 100 }),
+          }}
+        >
+          <Tabs value={tab} variant="scrollable" indicatorColor="secondary" textColor="secondary" scrollButtons="auto" onChange={handleTab}>
+            <MuiTab label="損益計算書" value="pl" wrapped />
+            <MuiTab label="貸借対照表" value="bs" wrapped />
+            <MuiTab label="営業収入" value="revenue" wrapped />
+            <MuiTab label="営業費用" value="expense" wrapped />
+            <MuiTab label="入場者数" value="attd" wrapped />
+          </Tabs>
+        </Box>
+        <Box
+          sx={{
+            position: 'fixed',
+            right: (theme) => theme.spacing(2),
+            bottom: (theme) => ({ xs: `calc(${theme.spacing(2)} + 56px)`, sm: theme.spacing(2) }),
+            zIndex: (theme) => theme.zIndex.appBar - 1,
+            opacity: 0.4,
+            transition: (theme) => theme.transitions.create('opacity'),
+            '&:hover': {
+              opacity: 1,
+            },
+          }}
+        >
+          <Tooltip title="メニュー">
+            <Fab color="secondary" onClick={handleDrawer()}>
+              <MenuIcon />
+            </Fab>
+          </Tooltip>
+        </Box>
+        <SwipeableDrawer
+          open={drawerOpen}
+          onClose={handleDrawer(false)}
+          onOpen={handleDrawer(true)}
+          disableBackdropTransition={!iOS}
+          disableDiscovery={iOS}
+        >
+          <DrawerInner title={headerTitle ?? title} previous={previous} next={next} onCloseIconClick={handleDrawer(false)} />
+        </SwipeableDrawer>
       </Box>
-      <SwipeableDrawer
-        open={drawerOpen}
-        onClose={handleDrawer(false)}
-        onOpen={handleDrawer(true)}
-        disableBackdropTransition={!iOS}
-        disableDiscovery={iOS}
-      >
-        <DrawerInner title={headerTitle ?? title} previous={previous} next={next} onCloseIconClick={handleDrawer(false)} />
-      </SwipeableDrawer>
-    </Box>
+    </>
   );
 }
 

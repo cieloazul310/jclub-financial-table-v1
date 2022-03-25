@@ -21,7 +21,6 @@ const config: GatsbyConfig = {
         siteUrl: pathPrefix,
       },
     },
-    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
