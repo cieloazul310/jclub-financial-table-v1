@@ -9,26 +9,36 @@ import ArticleSection from '../components/Article';
 import { AdInSectionDividerOne } from '../components/Ads';
 import { ClubPageData, ClubPageContext } from '../../types';
 
-function ClubTemplate({ data, pageContext }: PageProps<ClubPageData, ClubPageContext>) {
-  const { club } = data;
-  const { previous, next } = pageContext;
+function ClubTemplate({ data }: PageProps<ClubPageData, ClubPageContext>) {
+  const { club, previous, next, allMdxPost } = data;
 
   return (
     <TemplateLayout
       title={`${club.name}の経営情報`}
       headerTitle={`${club.name}`}
       description={`${club.fullname}の年度別経営情報一覧。損益計算書・貸借対照表・営業収入・営業費用・入場者数を項目ごとに時系列表示。`}
-      pageContext={pageContext}
+      previous={previous ? { to: previous.href, title: previous.name } : null}
+      next={next ? { to: next.href, title: next.name } : null}
     >
       <FigureSection edges={data.allData.edges} mode="club" />
       <SectionDivider />
-      <SummarySection mode="club" edges={data.allData.edges} item={data.club} prevYear={null} />
+      <SummarySection mode="club" edges={data.allData.edges} item={data.club} prevYear={null} posts={allMdxPost.edges} />
       <SectionDivider />
-      <NavigationSection mode="club" item={data.club} previous={previous} next={next} />
+      <NavigationSection
+        mode="club"
+        item={data.club}
+        previous={previous ? { to: previous.href, title: previous.name } : null}
+        next={next ? { to: next.href, title: next.name } : null}
+      />
       <AdInSectionDividerOne />
       <ArticleSection />
       <SectionDivider />
-      <NavigationSection mode="club" item={data.club} previous={previous} next={next} />
+      <NavigationSection
+        mode="club"
+        item={data.club}
+        previous={previous ? { to: previous.href, title: previous.name } : null}
+        next={next ? { to: next.href, title: next.name } : null}
+      />
     </TemplateLayout>
   );
 }
@@ -36,7 +46,7 @@ function ClubTemplate({ data, pageContext }: PageProps<ClubPageData, ClubPageCon
 export default ClubTemplate;
 
 export const query = graphql`
-  query ClubTemplate($slug: String!) {
+  query ClubTemplate($slug: String!, $previous: String, $next: String, $draft: Boolean) {
     club(slug: { eq: $slug }) {
       id
       short_name
@@ -50,6 +60,14 @@ export const query = graphql`
       area
       settlement
       relatedCompanies
+    }
+    previous: club(slug: { eq: $previous }) {
+      href
+      name
+    }
+    next: club(slug: { eq: $next }) {
+      href
+      name
     }
     allData(filter: { slug: { eq: $slug } }, sort: { fields: year, order: ASC }) {
       edges {
@@ -70,6 +88,19 @@ export const query = graphql`
             ...expenseFields
             ...attdFields
           }
+        }
+      }
+    }
+    allMdxPost(
+      filter: { club: { slug: { eq: $slug } }, draft: { ne: $draft } }
+      sort: { fields: [date, lastmod], order: [DESC, DESC] }
+      limit: 5
+    ) {
+      edges {
+        node {
+          slug
+          title
+          date(formatString: "YYYY年MM月DD日")
         }
       }
     }

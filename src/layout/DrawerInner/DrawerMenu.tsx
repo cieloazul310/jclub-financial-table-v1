@@ -5,7 +5,7 @@ import ListSubheader from '@mui/material/ListSubheader';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import { HomeIcon, SeriesIcon, DownloadIcon } from '../../icons';
+import { HomeIcon, ArticleIcon, ArchiveIcon, SeriesIcon, DownloadIcon } from '../../icons';
 
 function DrawerMenu() {
   return (
@@ -15,6 +15,18 @@ function DrawerMenu() {
           <HomeIcon />
         </ListItemIcon>
         <ListItemText primary="トップページ" />
+      </ListItem>
+      <ListItem button component={GatsbyLink} to="/posts/">
+        <ListItemIcon>
+          <ArticleIcon />
+        </ListItemIcon>
+        <ListItemText primary="記事一覧" />
+      </ListItem>
+      <ListItem button component={GatsbyLink} to="/posts/archive/">
+        <ListItemIcon>
+          <ArchiveIcon />
+        </ListItemIcon>
+        <ListItemText primary="記事アーカイブ" />
       </ListItem>
       <ListItem button component={GatsbyLink} to="/series/">
         <ListItemIcon>

@@ -3,20 +3,18 @@ import Typography from '@mui/material/Typography';
 import { Section, SectionDivider, Article } from '@cieloazul310/gatsby-theme-aoi';
 import { PageNavigationContainer, PageNavigationItem } from '@cieloazul310/gatsby-theme-aoi-blog-components';
 import { CategoryLink, YearsLink } from '../Links';
-import useNeighbors from '../../utils/useNeighbors';
 import useIsClub from '../../utils/useIsClub';
 
-import { Mode, ClubBrowser, YearBrowser, ClubPageNeighbor, YearPageNeighbor } from '../../../types';
+import { Mode, ClubBrowser, YearBrowser } from '../../../types';
 
 type NavigationSectionProps<T extends Mode> = {
   mode: T;
-  item: T extends 'club' ? Omit<ClubBrowser, 'data'> : Omit<YearBrowser, 'data'>;
-  previous: T extends 'club' ? ClubPageNeighbor : YearPageNeighbor;
-  next: T extends 'club' ? ClubPageNeighbor : YearPageNeighbor;
+  item: T extends 'club' ? Omit<ClubBrowser, 'data' | 'posts'> : Omit<YearBrowser, 'data'>;
+  previous: { to: string; title: string } | null;
+  next: { to: string; title: string } | null;
 };
 
 function NavigationSection<T extends Mode>({ mode, item, previous, next }: NavigationSectionProps<T>) {
-  const neighbors = useNeighbors({ previous, next });
   const isClub = useIsClub<Omit<ClubBrowser, 'data'>>(mode);
   return (
     <section>
@@ -26,11 +24,11 @@ function NavigationSection<T extends Mode>({ mode, item, previous, next }: Navig
       <SectionDivider />
       <Section>
         <PageNavigationContainer>
-          <PageNavigationItem to={neighbors.previous?.to ?? '#'} disabled={!neighbors.previous}>
-            <Typography variant="body2">{neighbors.previous?.title}</Typography>
+          <PageNavigationItem to={previous?.to ?? '#'} disabled={!previous}>
+            <Typography variant="body2">{previous?.title}</Typography>
           </PageNavigationItem>
-          <PageNavigationItem to={neighbors.next?.to ?? '#'} next disabled={!neighbors.next}>
-            <Typography variant="body2">{neighbors.next?.title}</Typography>
+          <PageNavigationItem to={next?.to ?? '#'} next disabled={!next}>
+            <Typography variant="body2">{next?.title}</Typography>
           </PageNavigationItem>
         </PageNavigationContainer>
       </Section>

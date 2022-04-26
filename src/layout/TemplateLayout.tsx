@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 import AppBar from '@mui/material/AppBar';
 import Tabs from '@mui/material/Tabs';
 import MuiTab from '@mui/material/Tab';
@@ -9,7 +10,7 @@ import Tooltip from '@mui/material/Tooltip';
 import Slide from '@mui/material/Slide';
 import useScrollTriger from '@mui/material/useScrollTrigger';
 import MenuIcon from '@mui/icons-material/Menu';
-import { SectionDivider } from '@cieloazul310/gatsby-theme-aoi';
+import { Section, SectionDivider, PanelLink } from '@cieloazul310/gatsby-theme-aoi';
 
 import SEO from './SEO';
 import AppBarInner from './AppBarInner';
@@ -17,24 +18,26 @@ import DrawerInner from './DrawerInner';
 import Footer from './Footer';
 
 import { useAppState, useDispatch } from '../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
-import { Mode, YearPageContext, ClubPageContext } from '../../types';
+// import { Mode, YearPageContext, ClubPageContext } from '../../types';
 
 const iOS = typeof window !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-type TemplateLayoutProps<T extends Mode> = {
+type TemplateLayoutProps = {
   title: string;
   headerTitle?: string;
   description?: string;
-  pageContext: T extends 'club' ? ClubPageContext : YearPageContext;
+  // pageContext: T extends 'club' ? ClubPageContext : YearPageContext;
   children: React.ReactNode;
+  previous: { to: string; title: string } | null;
+  next: { to: string; title: string } | null;
 };
 
-function TemplateLayout<T extends Mode>({ children, title, headerTitle, description, pageContext }: TemplateLayoutProps<T>) {
+function TemplateLayout({ children, title, headerTitle, description, previous, next }: TemplateLayoutProps) {
   const { tab } = useAppState();
   const dispatch = useDispatch();
   const trigger = useScrollTriger();
   const [drawerOpen, setDrawerOpen] = React.useState(false);
-  const { previous, next } = pageContext;
+  // const { previous, next } = pageContext;
 
   const handleDrawer = (newValue: boolean | undefined = undefined) => {
     return () => setDrawerOpen(newValue ?? !drawerOpen);
@@ -65,6 +68,14 @@ function TemplateLayout<T extends Mode>({ children, title, headerTitle, descript
           <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>{children}</Box>
         </main>
         <Box>
+          <SectionDivider />
+          <Section>
+            <Container maxWidth="md" disableGutters>
+              <PanelLink to="/" disableBorder disableMargin>
+                トップページへ
+              </PanelLink>
+            </Container>
+          </Section>
           <SectionDivider />
           <Footer />
         </Box>

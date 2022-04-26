@@ -68,6 +68,20 @@ function FooterLinks() {
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
         <Typography variant="subtitle1" component="p" gutterBottom>
+          <AppLink to="/posts/" color="inherit">
+            記事一覧
+          </AppLink>
+        </Typography>
+      </Grid>
+      <Grid item xs={12} sm={6} md={3}>
+        <Typography variant="subtitle1" component="p" gutterBottom>
+          <AppLink to="/posts/archive/" color="inherit">
+            記事アーカイブ
+          </AppLink>
+        </Typography>
+      </Grid>
+      <Grid item xs={12} sm={6} md={3}>
+        <Typography variant="subtitle1" component="p" gutterBottom>
           <AppLink to="/series/" color="inherit">
             項目別表示
           </AppLink>

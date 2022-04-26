@@ -4,7 +4,7 @@ import Chart from '../Chart';
 import { ClubBrowser, DatumBrowser } from '../../../types';
 
 type ClubInfoProps = {
-  club: Omit<ClubBrowser, 'data'>;
+  club: Omit<ClubBrowser, 'data' | 'posts'>;
   edges: {
     node: DatumBrowser;
   }[];

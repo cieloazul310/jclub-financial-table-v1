@@ -6,12 +6,11 @@ import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
 import MenuIcon from '@mui/icons-material/Menu';
 import AppBarNavigation from './AppBarNavigation';
-import { YearPageNeighbor, ClubPageNeighbor } from '../../../types';
 
 type AppBarInnerProps = {
   title?: string;
-  previous?: YearPageNeighbor | ClubPageNeighbor;
-  next?: YearPageNeighbor | ClubPageNeighbor;
+  previous?: { to: string; title: string } | null;
+  next?: { to: string; title: string } | null;
   onLeftButtonClick?: () => void;
 };
 

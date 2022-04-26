@@ -5,17 +5,14 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import useNeighbors from '../../utils/useNeighbors';
-import { YearPageNeighbor, ClubPageNeighbor } from '../../../types';
 
 type AppBarNavigationProps = {
-  previous?: YearPageNeighbor | ClubPageNeighbor;
-  next?: YearPageNeighbor | ClubPageNeighbor;
+  previous?: { to: string; title: string } | null;
+  next?: { to: string; title: string } | null;
 };
 
-function AppBarNavigation(props: AppBarNavigationProps) {
-  const { previous, next } = useNeighbors(props);
-  return (
+function AppBarNavigation({ previous, next }: AppBarNavigationProps) {
+  return previous || next ? (
     <div>
       <Tooltip title={previous?.title ?? ''}>
         <span>
@@ -32,7 +29,7 @@ function AppBarNavigation(props: AppBarNavigationProps) {
         </span>
       </Tooltip>
     </div>
-  );
+  ) : null;
 }
 
 AppBarNavigation.defaultProps = {

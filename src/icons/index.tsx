@@ -5,7 +5,8 @@ import SummaryIcon from '@mui/icons-material/Description';
 import SettingsIcon from '@mui/icons-material/Settings';
 
 import FigureIcon from '@mui/icons-material/TableChart';
-import ArticleIcon from '@mui/icons-material/School';
+import ArticleIcon from '@mui/icons-material/Article';
+import ArchiveIcon from '@mui/icons-material/History';
 
 import TableIcon from '@mui/icons-material/ViewComfy';
 import ListIcon from '@mui/icons-material/ListAlt';
@@ -21,6 +22,7 @@ export {
   SettingsIcon,
   FigureIcon,
   ArticleIcon,
+  ArchiveIcon,
   TableIcon,
   ListIcon,
   DarkModeIcon,

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 import AppBar from '@mui/material/AppBar';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Fab from '@mui/material/Fab';
@@ -7,7 +8,7 @@ import Slide from '@mui/material/Slide';
 import Tooltip from '@mui/material/Tooltip';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import MenuIcon from '@mui/icons-material/Menu';
-import { SectionDivider } from '@cieloazul310/gatsby-theme-aoi';
+import { Section, SectionDivider, PanelLink } from '@cieloazul310/gatsby-theme-aoi';
 import SEO from './SEO';
 import AppBarInner from './AppBarInner';
 import DrawerInner from './DrawerInner';
@@ -20,9 +21,11 @@ type LayoutProps = {
   title?: string;
   description?: string;
   headerTitle?: string;
+  previous?: { to: string; title: string } | null;
+  next?: { to: string; title: string } | null;
 };
 
-function Layout({ children, title, description, headerTitle }: LayoutProps) {
+function Layout({ children, title, description, headerTitle, previous, next }: LayoutProps) {
   const trigger = useScrollTrigger();
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const setDrawer = (open: boolean) => () => {
@@ -43,13 +46,21 @@ function Layout({ children, title, description, headerTitle }: LayoutProps) {
       >
         <Slide appear={false} direction="down" in={!trigger}>
           <AppBar>
-            <AppBarInner title={headerTitle || title} onLeftButtonClick={toggleDrawer} />
+            <AppBarInner title={headerTitle || title} onLeftButtonClick={toggleDrawer} previous={previous} next={next} />
           </AppBar>
         </Slide>
         <main>
           <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>{children}</Box>
         </main>
         <Box>
+          <SectionDivider />
+          <Section>
+            <Container maxWidth="md" disableGutters>
+              <PanelLink to="/" disableBorder disableMargin>
+                トップページへ
+              </PanelLink>
+            </Container>
+          </Section>
           <SectionDivider />
           <Footer />
         </Box>
@@ -79,7 +90,7 @@ function Layout({ children, title, description, headerTitle }: LayoutProps) {
           disableBackdropTransition={!iOS}
           disableDiscovery={iOS}
         >
-          <DrawerInner onCloseIconClick={setDrawer(false)} title={title} />
+          <DrawerInner onCloseIconClick={setDrawer(false)} title={title} previous={previous} next={next} />
         </SwipeableDrawer>
       </Box>
     </>
@@ -90,6 +101,8 @@ Layout.defaultProps = {
   title: undefined,
   description: undefined,
   headerTitle: undefined,
+  previous: undefined,
+  next: undefined,
 };
 
 export default Layout;

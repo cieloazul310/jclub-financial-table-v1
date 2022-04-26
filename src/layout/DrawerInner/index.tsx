@@ -12,18 +12,15 @@ import DrawerLinks from './DrawerLinks';
 import StateHandler from './StateHandler';
 import ThemeHandler from './ThemeHandler';
 import DrawerShare from './DrawerShare';
-import useNeighbors from '../../utils/useNeighbors';
-import { ClubPageNeighbor, YearPageNeighbor } from '../../../types';
 
 type DrawerInnerProps = {
   title?: string;
-  next?: ClubPageNeighbor | YearPageNeighbor;
-  previous?: ClubPageNeighbor | YearPageNeighbor;
+  previous?: { to: string; title: string } | null;
+  next?: { to: string; title: string } | null;
   onCloseIconClick: () => void;
 };
 
 function DrawerInner({ title, next, previous, onCloseIconClick }: DrawerInnerProps) {
-  const neighbors = useNeighbors({ previous, next });
   return (
     <Box sx={{ width: 280, display: 'flex', flexDirection: 'column', overflow: 'auto' }}>
       <div>
@@ -39,7 +36,7 @@ function DrawerInner({ title, next, previous, onCloseIconClick }: DrawerInnerPro
       <Box sx={{ flexGrow: 1, overflowY: 'auto' }}>
         <DrawerTop title={title} />
         <Divider />
-        {previous || next ? <DrawerPageNavigation previous={neighbors.previous} next={neighbors.next} /> : null}
+        {previous || next ? <DrawerPageNavigation previous={previous} next={next} /> : null}
         <Divider />
         <DrawerLinks />
         <DrawerMenu />
@@ -67,8 +64,8 @@ function DrawerInner({ title, next, previous, onCloseIconClick }: DrawerInnerPro
 
 DrawerInner.defaultProps = {
   title: undefined,
-  next: undefined,
   previous: undefined,
+  next: undefined,
 };
 
 export default DrawerInner;
