@@ -22,7 +22,7 @@
   category: J1
   hometown: 鹿嶋市、潮来市、神栖市、行方市、鉾田市
   area: 茨城県
-  settlement: https://www.antlers.co.jp/news/release/82312
+  settlement: https://www.antlers.co.jp/news/release/87459
 
 - id: "4"
   slug: urawa
@@ -129,7 +129,7 @@
   short_name: 京都
   company: 株式会社京都パープルサンガ
   category: J1
-  hometown: 京都市、宇治市、城陽市、向日市、長岡京市、京田辺市、木津川市、亀岡市、南丹市、京丹波町、福知山市、舞鶴市、綾部市、八幡市
+  hometown: 京都市、宇治市、城陽市、向日市、長岡京市、京田辺市、木津川市、亀岡市、南丹市、京丹波町、福知山市、舞鶴市、綾部市、八幡市、宮津市
   area: 京都府
   settlement: http://www.sanga-fc.jp/club/
 
@@ -195,7 +195,7 @@
   category: J1
   hometown: 鳥栖市
   area: 佐賀県
-  settlement: https://www.sagan-tosu.net/news/p/5401/
+  settlement: https://www.sagan-tosu.net/news/p/6204/
 
 # J2 22 clubs
 - id: "41"
@@ -215,7 +215,7 @@
   short_name: 仙台
   company: 株式会社ベガルタ仙台
   category: J2
-  hometown: 仙台市
+  hometown: 仙台市を中心とする全県
   area: 宮城県
   settlement: https://www.vegalta.co.jp/club/company.html
   relatedCompanies:
@@ -252,7 +252,7 @@
   category: J2
   hometown: 水戸市、ひたちなか市、笠間市、那珂市、小美玉市、茨城町、城里町、大洗町、東海村
   area: 茨城県
-  settlement: https://www.mito-hollyhock.net/news/p=9262/
+  settlement: https://www.mito-hollyhock.net/news/p=17555/
   relatedCompanies:
     - 一般社団法人ホーリーホックIBARAKIクラブ
 
@@ -265,7 +265,7 @@
   category: J2
   hometown: 宇都宮市
   area: 栃木県
-  settlement: http://www.tochigisc.jp/info/_15
+  settlement: https://www.tochigisc.jp/info/info_220425
 
 - id: "21"
   slug: thespa
@@ -343,7 +343,7 @@
   category: J2
   hometown: 甲府市、韮崎市を中心とする全県
   area: 山梨県
-  settlement: https://www.ventforet.jp/news/press_release/520817
+  settlement: https://www.ventforet.jp/news/press_release/521827
   relatedCompanies:
     - 一般社団法人ヴァンフォーレスポーツクラブ
 
@@ -379,7 +379,9 @@
   category: J2
   hometown: 岡山市、倉敷市、津山市を中心とする全県
   area: 岡山県
-  settlement: https://www.fagiano-okayama.com/news/p1473056626.html
+  settlement: https://www.fagiano-okayama.com/news/p1473057449.html
+  relatedCompanies:
+    - 一般社団法人ファジアーノ岡山スポーツクラブ
 
 - id: "33"
   slug: renofa
@@ -438,7 +440,7 @@
   category: J2
   hometown: 大分市、別府市、佐伯市を中心とする全県
   area: 大分県
-  settlement: https://www.oita-trinita.co.jp/news/20210467777/
+  settlement: https://www.oita-trinita.co.jp/news/20220482903/
 
 - id: "54"
   slug: fcryukyu
@@ -471,7 +473,7 @@
   short_name: 福島
   company: 株式会社AC福島ユナイテッド
   category: J3
-  hometown: 福島市、会津若松市を中心とする全県
+  hometown: 福島市、会津若松市、伊達市、国見町、桑折町、川俣町を中心とする全県
   area: 福島県
   relatedCompanies:
     - NPO法人福島ユナイテッドスポーツクラブ
