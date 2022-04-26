@@ -30,7 +30,7 @@ export default async function createPages({ graphql, actions, reporter }: Create
   const result = await graphql<GraphQLResult>(
     `
       query CreatePages($draft: Boolean) {
-        allClub {
+        allClub(sort: { fields: index, order: ASC }) {
           edges {
             node {
               slug
@@ -136,7 +136,7 @@ export default async function createPages({ graphql, actions, reporter }: Create
 
   // 記事一覧ページを作成
   const numAllPostsPages = Math.ceil(allMdxPost.edges.length / postsPerPage);
-  const allPostsBasePath = '/post';
+  const allPostsBasePath = '/posts';
   Array.from({ length: numAllPostsPages }).forEach((_, i) => {
     createPage({
       path: i === 0 ? allPostsBasePath : `${allPostsBasePath}/${i + 1}`,

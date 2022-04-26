@@ -9,10 +9,10 @@ export default async function souceNodes({ actions, createNodeId, createContentD
 
   const clubs: Omit<Club, 'href'>[] = yaml.parse(fs.readFileSync(path.resolve('./data/frames/clubs.yml'), 'utf-8'));
 
-  clubs.forEach((data) => {
+  clubs.forEach((data, index) => {
     const href = `/club/${data.slug}/`;
     const nodeId = createNodeId(`club-${data.slug}`);
-    const nodeContent = JSON.stringify({ ...data, href });
+    const nodeContent = JSON.stringify({ ...data, href, index });
     const nodeMeta = {
       id: nodeId,
       parent: null,
@@ -25,7 +25,7 @@ export default async function souceNodes({ actions, createNodeId, createContentD
       },
     };
 
-    const node = { ...data, href, ...nodeMeta };
+    const node = { ...data, href, index, ...nodeMeta };
     createNode(node);
   });
 

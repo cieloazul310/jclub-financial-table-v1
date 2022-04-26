@@ -95,7 +95,7 @@ function IndexPage({ data }: PageProps<IndexPageQueryData>) {
       <SectionDivider />
       <Section>
         <Article maxWidth="md">
-          <PostList posts={allMdxPost.edges} title="最新の記事" more={{ to: '/post/', title: '記事一覧' }} />
+          <PostList posts={allMdxPost.edges} title="最新の記事" more={{ to: '/posts/', title: '記事一覧' }} />
         </Article>
       </Section>
       <AdInSectionDividerOne />

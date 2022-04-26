@@ -8,6 +8,7 @@ export default async function createClubSchema({ actions, schema }: CreateSchema
   createTypes(`
     type Club implements Node @dontInfer {
       id: String!
+      index: Int!
       slug: String!
       href: String!
       name: String!

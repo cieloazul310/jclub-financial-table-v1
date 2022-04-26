@@ -53,7 +53,7 @@ function PostsByClubTemplate({ data, pageContext }: PageProps<PostsByClubPageDat
       <AdInSectionDividerOne />
       <Section>
         <Container maxWidth="md" disableGutters>
-          <PanelLink to="/post/archive/" disableBorder disableMargin>
+          <PanelLink to="/posts/archive/" disableBorder disableMargin>
             記事アーカイブへ
           </PanelLink>
         </Container>
