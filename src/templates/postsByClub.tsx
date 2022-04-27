@@ -26,17 +26,6 @@ type PageContext = {
   basePath: string;
   totalCount: number;
 };
-/*
-// previous,
-            // next,
-            club: node.short_name,
-            limit: postsPerPage,
-            skip: i * postsPerPage,
-            numPages,
-            currentPage: i + 1,
-            basePath,
-            totalCount,
-*/
 
 function PostsByClubTemplate({ data, pageContext }: PageProps<PostsByClubPageData, PageContext>) {
   const { allMdxPost, club } = data;

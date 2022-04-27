@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { UpIcon, DownIcon } from '../icons';
 
 type DiffProps = {
   children: string | number;
@@ -24,7 +23,11 @@ function Diff({ children }: DiffProps) {
       component="span"
       sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', whiteSpace: 'nowrap' }}
     >
-      {plus ? <ArrowDropUpIcon color="success" aria-label="plus" /> : <ArrowDropDownIcon color="error" aria-label="minus" />}
+      {plus ? (
+        <UpIcon color="success" aria-label="plus" fontSize="small" />
+      ) : (
+        <DownIcon color="error" aria-label="minus" fontSize="small" />
+      )}
       {val}
     </Typography>
   );

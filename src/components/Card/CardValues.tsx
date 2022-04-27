@@ -1,9 +1,8 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { useAppState, useDispatch } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
+import { UpIcon, DownIcon } from '../../icons';
 import val from '../../utils/val';
 import { General, PL, BS, Revenue, Expense, AttdBrowser, Mode } from '../../../types';
 
@@ -22,7 +21,11 @@ type CardValueProps<T> = {
 
 function diffIcon(diffval: number | null) {
   if (!diffval) return null;
-  return diffval > 0 ? <ArrowDropUpIcon color="success" /> : <ArrowDropDownIcon color="error" />;
+  return diffval > 0 ? (
+    <UpIcon color="success" aria-label="plus" fontSize="small" />
+  ) : (
+    <DownIcon color="error" aria-label="minus" fontSize="small" />
+  );
 }
 
 function CardValueCore<T>(
