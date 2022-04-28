@@ -20,7 +20,6 @@ function ClubInfo({ club, edges }: ClubInfoProps) {
         <Li>法人名: {club.company}</Li>
         <Li>所属カテゴリ: {club.category}</Li>
         <Li>ホームタウン: {club.hometown}</Li>
-        <Li>活動区域: {club.area}</Li>
         {club.settlement ? (
           <Li>
             経営情報: <ExternalLink href={club.settlement}>{decodeURIComponent(club.settlement)}</ExternalLink>

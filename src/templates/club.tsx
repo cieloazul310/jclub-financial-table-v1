@@ -57,7 +57,6 @@ export const query = graphql`
       href
       company
       hometown
-      area
       settlement
       relatedCompanies
     }

@@ -16,7 +16,7 @@ export type Club = {
   company: string;
   category: Category;
   hometown: string;
-  area: string;
+  // area: string;
   settlement: string | null;
   relatedCompanies: string[] | null;
 };
