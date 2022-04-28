@@ -17,7 +17,6 @@ export default async function createClubSchema({ actions, schema }: CreateSchema
       company: String!
       category: String!
       hometown: String!
-      area: String!
       settlement: String
       relatedCompanies: [String]
       data: [Data]!

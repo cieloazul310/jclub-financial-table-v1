@@ -15,7 +15,6 @@ type AllClubsQueryData = {
         | 'category'
         | 'company'
         | 'hometown'
-        | 'area'
         | 'realatedCompanies'
         | 'settlement'
       >;
@@ -38,7 +37,6 @@ export default function useAllClubs() {
             category
             company
             hometown
-            area
             relatedCompanies
             settlement
           }
