@@ -9,6 +9,7 @@ import { Jumbotron, Section, SectionDivider, Article, PanelLink, Alert } from '@
 import { PageNavigationContainer, PageNavigationItem, muiComponents } from '@cieloazul310/gatsby-theme-aoi-blog-components';
 import Diff from '../components/Diff';
 import PostList from '../components/PostList';
+import { Red, Green } from '../components/Shortcodes';
 import { AdInSectionDividerOne, AdInArticle as Ad } from '../components/Ads';
 import Layout from '../layout';
 import { ClubBrowser, MdxPost } from '../../types';
@@ -59,7 +60,7 @@ function PostTemplate({ data }: PageProps<PostTemplatePageData, PostTemplatePage
               {draft ? <Alert severity="warning">この記事は下書きです。</Alert> : null}
               {daysFromLastmod > 183 ? <Alert severity="warning">この記事は最終更新日から6ヶ月以上経過しています。</Alert> : null}
             </NoSsr>
-            <MDXProvider components={{ ...muiComponents, Diff, Ad }}>
+            <MDXProvider components={{ ...muiComponents, Diff, Ad, Green, Red, Typography }}>
               <MDXRenderer>{body}</MDXRenderer>
             </MDXProvider>
           </Article>
