@@ -7,27 +7,39 @@ type DiffProps = {
 };
 
 function Diff({ children }: DiffProps) {
-  const { val, plus }: { val: string | number; plus: boolean } = React.useMemo(() => {
+  const { val, icon } = React.useMemo(() => {
     if (typeof children === 'number') {
-      return { val: Math.abs(children), plus: children > 0 };
+      const value = Math.abs(children);
+      if (children === 0) return { val: value, type: 'even', icon: null };
+      return {
+        val: value,
+        type: children > 0 ? 'plus' : 'minus',
+        icon:
+          children > 0 ? (
+            <UpIcon color="success" aria-label="plus" fontSize="small" />
+          ) : (
+            <DownIcon color="error" aria-label="minus" fontSize="small" />
+          ),
+      };
     }
+
     const first = children.slice(0, 1);
-    if (first === '-') return { val: children.slice(1), plus: false };
-    if (first === '+') return { val: children.slice(1), plus: true };
-    return { val: children, plus: true };
+    if (children === '0') return { val: children, icon: null };
+
+    const value = children.slice(1);
+    if (first === '-') return { val: value, icon: <DownIcon color="error" aria-label="minus" fontSize="small" /> };
+    if (first === '+') return { val: value, icon: <UpIcon color="success" aria-label="plus" fontSize="small" /> };
+
+    return { val: children, icon: <UpIcon color="success" aria-label="plus" fontSize="small" /> };
   }, [children]);
 
   return (
     <Typography
       variant="inherit"
       component="span"
-      sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', whiteSpace: 'nowrap' }}
+      sx={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'flex-end', whiteSpace: 'nowrap', verticalAlign: 'bottom' }}
     >
-      {plus ? (
-        <UpIcon color="success" aria-label="plus" fontSize="small" />
-      ) : (
-        <DownIcon color="error" aria-label="minus" fontSize="small" />
-      )}
+      {icon}
       {val}
     </Typography>
   );
