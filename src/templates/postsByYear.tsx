@@ -66,7 +66,10 @@ export default PostsByClubTemplate;
 
 export const query = graphql`
   query PostsByYear($gte: Date!, $lt: Date!, $draft: Boolean) {
-    allMdxPost(filter: { date: { gte: $gte, lt: $lt }, draft: { ne: $draft } }, sort: { fields: [date, lastmod], order: [DESC, DESC] }) {
+    allMdxPost(
+      filter: { date: { gte: $gte, lt: $lt }, draft: { ne: $draft } }
+      sort: { fields: [date, lastmod, slug], order: [DESC, DESC, DESC] }
+    ) {
       edges {
         node {
           title

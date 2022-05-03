@@ -86,7 +86,7 @@ export const query = graphql`
   query PostsByClub($slug: String!, $skip: Int!, $limit: Int!, $draft: Boolean) {
     allMdxPost(
       filter: { club: { slug: { eq: $slug } }, draft: { ne: $draft } }
-      sort: { fields: [date, lastmod], order: [DESC, DESC] }
+      sort: { fields: [date, lastmod, slug], order: [DESC, DESC, DESC] }
       limit: $limit
       skip: $skip
     ) {
