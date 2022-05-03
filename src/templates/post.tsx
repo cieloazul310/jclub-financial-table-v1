@@ -151,7 +151,7 @@ export const query = graphql`
     }
     allMdxPost(
       filter: { club: { slug: { eq: $club } }, draft: { ne: $draft } }
-      sort: { fields: [date, lastmod], order: [DESC, DESC] }
+      sort: { fields: [date, lastmod, slug], order: [DESC, DESC, DESC] }
       limit: 5
     ) {
       edges {
