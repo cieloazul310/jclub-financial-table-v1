@@ -74,7 +74,12 @@ export default AllPostsTemplate;
 
 export const query = graphql`
   query AllPosts($skip: Int!, $limit: Int!, $draft: Boolean) {
-    allMdxPost(filter: { draft: { ne: $draft } }, sort: { fields: [date, lastmod], order: [DESC, DESC] }, limit: $limit, skip: $skip) {
+    allMdxPost(
+      filter: { draft: { ne: $draft } }
+      sort: { fields: [date, lastmod, slug], order: [DESC, DESC, DESC] }
+      limit: $limit
+      skip: $skip
+    ) {
       edges {
         node {
           title
