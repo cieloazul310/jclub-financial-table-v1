@@ -1,5 +1,5 @@
-const path = require('path');
-const converter = require('./converter');
+import * as path from 'path';
+import converter from './converter';
 
 console.log(process.argv);
 const file = path.resolve(process.argv[2]);

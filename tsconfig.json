@@ -16,5 +16,10 @@
     "emitDecoratorMetadata": true,
     "noEmit": true,
     "skipLibCheck": true
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs"
+    }
   }
 }
