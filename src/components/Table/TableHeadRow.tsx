@@ -36,8 +36,12 @@ export function PLTableHeadRow({ mode }: Pick<TableHeadRowProps, 'mode'>) {
       <TableHeadCell mode={mode} sortableKey="sp_exp">
         特別損失
       </TableHeadCell>
-      <TableHeadCell mode={mode}>税引前</TableHeadCell>
-      <TableHeadCell mode={mode}>法人税等</TableHeadCell>
+      <TableHeadCell mode={mode} sortableKey="profit_before_tax">
+        税引前
+      </TableHeadCell>
+      <TableHeadCell mode={mode} sortableKey="tax">
+        法人税等
+      </TableHeadCell>
       <TableHeadCell mode={mode} sortableKey="profit">
         当期純利益
       </TableHeadCell>
@@ -54,21 +58,33 @@ export function BSTableHeadRow({ mode }: Pick<TableHeadRowProps, 'mode'>) {
       <TableHeadCell mode={mode} sortableKey="assets">
         総資産
       </TableHeadCell>
-      <TableHeadCell mode={mode}>流動資産</TableHeadCell>
-      <TableHeadCell mode={mode}>固定資産等</TableHeadCell>
+      <TableHeadCell mode={mode} sortableKey="curr_assets">
+        流動資産
+      </TableHeadCell>
+      <TableHeadCell mode={mode} sortableKey="fixed_assets">
+        固定資産等
+      </TableHeadCell>
       <TableHeadCell mode={mode} sortableKey="liabilities">
         総負債
       </TableHeadCell>
-      <TableHeadCell mode={mode}>流動負債</TableHeadCell>
-      <TableHeadCell mode={mode}>固定負債</TableHeadCell>
+      <TableHeadCell mode={mode} sortableKey="curr_liabilities">
+        流動負債
+      </TableHeadCell>
+      <TableHeadCell mode={mode} sortableKey="fixed_liabilities">
+        固定負債
+      </TableHeadCell>
       <TableHeadCell mode={mode} sortableKey="net_worth">
         純資産
       </TableHeadCell>
       <TableHeadCell mode={mode} sortableKey="capital_stock">
         資本金
       </TableHeadCell>
-      <TableHeadCell mode={mode}>資本剰余金等</TableHeadCell>
-      <TableHeadCell mode={mode}>利益剰余金</TableHeadCell>
+      <TableHeadCell mode={mode} sortableKey="capital_surplus">
+        資本剰余金等
+      </TableHeadCell>
+      <TableHeadCell mode={mode} sortableKey="retained_earnings">
+        利益剰余金
+      </TableHeadCell>
       <TableHeadCell mode={mode} sortableKey="profit">
         (当期純利益)
       </TableHeadCell>
