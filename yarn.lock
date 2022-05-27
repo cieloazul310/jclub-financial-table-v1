@@ -6454,6 +6454,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"csv-parse@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "csv-parse@npm:5.1.0"
+  checksum: c64dec952823a25508fdbbc40036bbf832dbc9df559abbc7cdc62e94d4733f97e2a3a896e2fb6bb028b997a766da4a1cb15521b8754a0d7db3dfcb6d764d9a23
+  languageName: node
+  linkType: hard
+
 "d3-array@npm:2 - 3, d3-array@npm:2.10.0 - 3, d3-array@npm:2.5.0 - 3, d3-array@npm:3":
   version: 3.1.1
   resolution: "d3-array@npm:3.1.1"
@@ -11102,6 +11109,7 @@ __metadata:
     "@types/react-helmet-async": ^1.0.3
     "@typescript-eslint/eslint-plugin": ^5.17.0
     "@typescript-eslint/parser": ^5.17.0
+    csv-parse: ^5.1.0
     d3: ^7.4.0
     eslint: ^8.12.0
     eslint-config-airbnb: ^19.0.4
