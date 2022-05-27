@@ -4,7 +4,7 @@ import { line as d3Line, Line, ScaleLinear } from 'd3';
 import { j1color, j2color, j3color } from '../../utils/categoryColors';
 import { useAppState } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
 import { DatumBrowser, Statistics } from '../../../types';
-import { useStatistics } from '../../utils/graphql-hooks';
+import { useStatistics, useAllYears } from '../../utils/graphql-hooks';
 
 function useStatisticsField() {
   const { tab } = useAppState();
@@ -15,9 +15,12 @@ function useStatisticsField() {
 
 function useAverageLine(scale: ScaleLinear<number, number>, years: number[], itemWidth: number) {
   const field = useStatisticsField();
+  const allYears = useAllYears().map(({ node }) => node.year);
+  const diff = years[0] - allYears[0];
+
   return React.useMemo(() => {
     return d3Line<Statistics>()
-      .x((d) => years.indexOf(d.year) * itemWidth + itemWidth / 2)
+      .x((d) => (allYears.indexOf(d.year) - diff) * itemWidth + itemWidth / 2)
       .y((d) => scale(d[field].average));
   }, [field, years, scale, itemWidth]);
 }
