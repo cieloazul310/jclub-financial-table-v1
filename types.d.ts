@@ -283,7 +283,7 @@ export type MdxPostBare = Node &
 export type MdxPost = Node &
   Pick<MdxPostBare, 'title' | 'date' | 'draft' | 'slug' | 'body' | 'excerpt'> & {
     lastmod: string;
-    club: Club | null;
+    club: Club[] | null;
   };
 
 export type MdxPostByYear = {

@@ -28,7 +28,7 @@ export default async function createDataSchema({ actions, schema }: CreateSchema
       slug: String!
       date: Date! @dateformat
       lastmod: Date! @dateformat
-      club: Club
+      club: [Club]
       draft: Boolean!
       body: String!
       excerpt: String!
@@ -54,9 +54,17 @@ export default async function createDataSchema({ actions, schema }: CreateSchema
           },
         },
         club: {
-          type: `Club`,
+          type: `[Club]`,
           resolve: async (source: MdxPostBare, args: unknown, context: GatsbyGraphQLContext) => {
             if (!source.club) return null;
+            const { entries } = await context.nodeModel.findAll({
+              type: `Club`,
+              query: {
+                filter: { short_name: { in: source.club } },
+              },
+            });
+            return entries;
+            /*
             const club = await context.nodeModel.findOne({
               type: `Club`,
               query: {
@@ -64,6 +72,7 @@ export default async function createDataSchema({ actions, schema }: CreateSchema
               },
             });
             return club;
+            */
           },
         },
         body: {

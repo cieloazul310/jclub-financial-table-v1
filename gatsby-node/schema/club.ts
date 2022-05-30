@@ -51,7 +51,7 @@ export default async function createClubSchema({ actions, schema }: CreateSchema
             return context.nodeModel.findAll<MdxPost>({
               type: `MdxPost`,
               query: {
-                filter: { club: { short_name: { eq: source.short_name } } },
+                filter: { club: { elemMatch: { short_name: { eq: source.short_name } } } },
                 sort: { fields: ['date'], order: ['DESC'] },
               },
             });

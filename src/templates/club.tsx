@@ -91,7 +91,7 @@ export const query = graphql`
       }
     }
     allMdxPost(
-      filter: { club: { slug: { eq: $slug } }, draft: { ne: $draft } }
+      filter: { club: { elemMatch: { slug: { eq: $slug } } }, draft: { ne: $draft } }
       sort: { fields: [date, lastmod], order: [DESC, DESC] }
       limit: 5
     ) {

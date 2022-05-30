@@ -5,7 +5,7 @@ import { MDXRenderer } from 'gatsby-plugin-mdx';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import NoSsr from '@mui/material/NoSsr';
-import { Jumbotron, Section, SectionDivider, Article, PanelLink, Alert } from '@cieloazul310/gatsby-theme-aoi';
+import { Jumbotron, Section, SectionDivider, Article, PanelLink, Alert, AppLink } from '@cieloazul310/gatsby-theme-aoi';
 import { PageNavigationContainer, PageNavigationItem, muiComponents } from '@cieloazul310/gatsby-theme-aoi-blog-components';
 import PostList from '../components/PostList';
 import shortcodes from '../components/Shortcodes';
@@ -16,7 +16,7 @@ import { ClubBrowser, MdxPost } from '../../types';
 type PostTemplatePageData = {
   mdxPost: Pick<MdxPost, 'body' | 'title' | 'lastmod' | 'date' | 'excerpt' | 'draft'> & {
     lastmodDate: string;
-    club: Pick<ClubBrowser, 'short_name' | 'name' | 'href'> | null;
+    club: Pick<ClubBrowser, 'short_name' | 'name' | 'href'>[] | null;
   };
   previous: { to: string; title: string } | null;
   next: { to: string; title: string } | null;
@@ -30,7 +30,8 @@ type PostTemplatePageContext = {
   slug: string;
   previous: string | null;
   next: string | null;
-  club: string | null;
+  club: string[] | null;
+  specifiedClub: string | null;
 };
 
 function PostTemplate({ data }: PageProps<PostTemplatePageData, PostTemplatePageContext>) {
@@ -40,6 +41,7 @@ function PostTemplate({ data }: PageProps<PostTemplatePageData, PostTemplatePage
     const today = new Date();
     return Math.floor((today.valueOf() - new Date(lastmodDate).valueOf()) / (1000 * 60 * 60 * 24));
   }, [lastmodDate]);
+  const specifiedClub = club && club.length === 1 ? club[0] : null;
 
   return (
     <Layout title={title} headerTitle="記事" previous={previous} next={next} description={excerpt}>
@@ -73,26 +75,35 @@ function PostTemplate({ data }: PageProps<PostTemplatePageData, PostTemplatePage
               </Typography>
               <Typography>日付: {date}</Typography>
               <Typography>最終更新日: {lastmod}</Typography>
-              {club ? <Typography>クラブ: {club.name}</Typography> : null}
+              {club ? (
+                <Typography>
+                  クラブ:{' '}
+                  {club.map(({ name, short_name, href }) => (
+                    <AppLink key={name} to={`${href}posts/`} mr={1} color="inherit">
+                      {short_name}
+                    </AppLink>
+                  ))}
+                </Typography>
+              ) : null}
             </Article>
           </Section>
           <SectionDivider />
-          {club ? (
+          {specifiedClub ? (
             <>
               <Section>
                 <Article maxWidth="md">
                   <PostList
                     posts={allMdxPost.edges}
-                    title={`${club.name}の最新の記事`}
-                    more={{ to: `${club.href}posts`, title: `${club.name}の記事一覧` }}
+                    title={`${specifiedClub.name}の最新の記事`}
+                    more={{ to: `${specifiedClub.href}posts/`, title: `${specifiedClub.name}の記事一覧` }}
                   />
                 </Article>
               </Section>
               <SectionDivider />
               <Section>
                 <Container maxWidth="md" disableGutters>
-                  <PanelLink to={club.href} disableBorder disableMargin>
-                    {club.name}の経営情報一覧
+                  <PanelLink to={specifiedClub.href} disableBorder disableMargin>
+                    {specifiedClub.name}の経営情報一覧
                   </PanelLink>
                 </Container>
               </Section>
@@ -126,7 +137,7 @@ function PostTemplate({ data }: PageProps<PostTemplatePageData, PostTemplatePage
 export default PostTemplate;
 
 export const query = graphql`
-  query Post($slug: String!, $previous: String, $next: String, $club: String, $draft: Boolean) {
+  query Post($slug: String!, $previous: String, $next: String, $specifiedClub: String, $draft: Boolean) {
     mdxPost(slug: { eq: $slug }) {
       date(formatString: "YYYY年MM月DD日")
       title
@@ -150,7 +161,7 @@ export const query = graphql`
       title
     }
     allMdxPost(
-      filter: { club: { slug: { eq: $club } }, draft: { ne: $draft } }
+      filter: { club: { elemMatch: { slug: { eq: $specifiedClub } } }, draft: { ne: $draft } }
       sort: { fields: [date, lastmod, slug], order: [DESC, DESC, DESC] }
       limit: 5
     ) {

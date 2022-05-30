@@ -17,7 +17,7 @@ type GraphQLResult = {
   };
   allMdxPost: {
     edges: {
-      node: Pick<MdxPost, 'slug' | 'draft'> & { club: Pick<Club, 'slug'> | null };
+      node: Pick<MdxPost, 'slug' | 'draft'> & { club: Pick<Club, 'slug'>[] | null };
     }[];
   };
   allMdxPostByYears: MdxPostByYear[];
@@ -120,6 +120,7 @@ export default async function createPages({ graphql, actions, reporter }: Create
   allMdxPost.edges.forEach(({ node }, index, arr) => {
     const previous = index !== 0 ? arr[index - 1] : null;
     const next = index !== arr.length - 1 ? arr[index + 1] : null;
+    const specifiedClub = node.club && node.club.length === 1 ? node.club[0].slug : null;
 
     createPage({
       path: node.slug,
@@ -128,7 +129,8 @@ export default async function createPages({ graphql, actions, reporter }: Create
         previous: previous?.node.slug ?? null,
         next: next?.node.slug ?? null,
         slug: node.slug,
-        club: node.club?.slug ?? null,
+        specifiedClub,
+        club: node.club?.map(({ slug }) => slug) ?? null,
         draft: isProduction ? true : null,
       },
     });
