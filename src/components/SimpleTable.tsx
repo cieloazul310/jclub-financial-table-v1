@@ -24,6 +24,7 @@ type SimpleTableProps = {
   diff?: boolean;
   diffLabel?: string;
   separator?: boolean;
+  decimal?: number;
 };
 
 function SimpleTable({
@@ -38,6 +39,7 @@ function SimpleTable({
   diff,
   diffLabel,
   separator = false,
+  decimal = 0,
 }: SimpleTableProps) {
   const { palette } = useTheme();
   const minusColor = palette.mode === 'light' ? palette.error.dark : palette.error.light;
@@ -86,7 +88,7 @@ function SimpleTable({
                         whiteSpace: 'nowrap',
                       }}
                     >
-                      {val(value, separator)}
+                      {val(value, separator, decimal)}
                       {customUnits?.[colIndex]}
                     </TableCell>
                   ))}
@@ -100,7 +102,7 @@ function SimpleTable({
                   {diffData.map((value, colIndex) => (
                     // eslint-disable-next-line react/no-array-index-key
                     <TableCell key={`diff-${colIndex}`} align="right" sx={{ whiteSpace: 'nowrap' }}>
-                      <Diff>{val(value, separator)}</Diff>
+                      <Diff>{val(value, separator, decimal)}</Diff>
                       {customUnits?.[colIndex]}
                     </TableCell>
                   ))}
@@ -123,6 +125,7 @@ SimpleTable.defaultProps = {
   diff: undefined,
   diffLabel: undefined,
   separator: false,
+  decimal: 0,
 };
 
 export default SimpleTable;
