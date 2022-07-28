@@ -26,7 +26,6 @@ ordinary_profit: -159
 sp_rev: 0
 sp_exp: 2
 profit_before_tax: -161
-related_revenue: 0
 tax: 0
 profit: -161
 curr_assets: 72
