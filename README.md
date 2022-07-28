@@ -28,7 +28,7 @@ Jリーグが毎年公開している「Jクラブ個別経営情報開示資料
 - [2018年度(平成30年度)](https://www.jleague.jp/docs/aboutj/club-h30kaiji_3.pdf "2018年度(平成30年度) Jクラブ個別経営情報開示資料")
 - [2019年度(平成31年度)](https://www.jleague.jp/docs/aboutj/club-h31kaiji-1.pdf "2019年度(平成31年度) Jクラブ個別経営情報開示資料")
 - [2020年度(令和2年度)](https://aboutj.jleague.jp/corporate/wp-content/themes/j_corp/assets/pdf/club-r2kaiji_1_20210729.pdf "2020年度(令和2年度) Jクラブ個別経営情報開示資料")
-- [2021年度(令和3年度)・先行発表](https://aboutj.jleague.jp/corporate/wp-content/themes/j_corp/assets/pdf/club-r3kaiji_1_20220526.pdf "2021年度(令和3年度) Jクラブ個別経営情報開示資料")
+- [2021年度(令和3年度)](https://aboutj.jleague.jp/corporate/wp-content/themes/j_corp/assets/pdf/club-r3kaiji_1_20220728.pdf "2021年度(令和3年度) Jクラブ個別経営情報開示資料")
 
 #### データの留意点
 
@@ -82,6 +82,7 @@ Jリーグのコーポレートサイトでは、報道資料である「クラ�
 - 2022-03-12 レイアウトと解説を更新
 - 2022-04-26 Jクラブ経営情報に関するプレスリリースや報道の収集を始めました
 - 2022-05-27 2021年度のデータを3月決算の柏、湘南、磐田、及び関連する法人の営業収益を除いた形で更新
+- 2022-07-28 2021年度のデータに柏、湘南、磐田、及び関連する法人の営業収益を加えて更新
 
 ### 制作
 
