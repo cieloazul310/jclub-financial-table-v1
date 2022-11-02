@@ -1,13 +1,14 @@
 import * as React from 'react';
-import { graphql, PageProps } from 'gatsby';
+import { graphql, type PageProps, type HeadProps } from 'gatsby';
 import { SectionDivider } from '@cieloazul310/gatsby-theme-aoi';
 import TemplateLayout from '../layout/TemplateLayout';
+import Seo from '../components/Seo';
 import SummarySection from '../components/Summary';
 import NavigationSection from '../components/Navigation';
 import FigureSection from '../components/Figure';
 import ArticleSection from '../components/Article';
 import { AdInSectionDividerOne } from '../components/Ads';
-import { YearPageData, YearPageContext } from '../../types';
+import type { YearPageData, YearPageContext } from '../../types';
 
 function YearTemplate({ data }: PageProps<YearPageData, YearPageContext>) {
   const { year, previous, next } = data;
@@ -15,7 +16,6 @@ function YearTemplate({ data }: PageProps<YearPageData, YearPageContext>) {
   return (
     <TemplateLayout
       title={`${year.year}年Jクラブ経営情報`}
-      description={`${year.year}年のJクラブ経営情報一覧。各Jクラブの損益計算書・貸借対照表・営業収入・営業費用・入場者数を項目ごとに表示。`}
       previous={previous ? { to: previous.href, title: `${previous.year}年度` } : null}
       next={next ? { to: next.href, title: `${next.year}年度` } : null}
     >
@@ -43,6 +43,16 @@ function YearTemplate({ data }: PageProps<YearPageData, YearPageContext>) {
 }
 
 export default YearTemplate;
+
+export function Head({ data }: HeadProps<YearPageData>) {
+  const { year } = data;
+  return (
+    <Seo
+      title={`${year.year}年Jクラブ経営情報`}
+      description={`${year.year}年のJクラブ経営情報一覧。各Jクラブの損益計算書・貸借対照表・営業収入・営業費用・入場者数を項目ごとに表示。`}
+    />
+  );
+}
 
 export const query = graphql`
   query YearTemplate($year: Int!, $previous: Int, $next: Int) {

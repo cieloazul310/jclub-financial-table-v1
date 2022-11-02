@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { graphql, PageProps } from 'gatsby';
+import { graphql, type PageProps, type HeadProps } from 'gatsby';
 import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import Container from '@mui/material/Container';
@@ -7,11 +7,12 @@ import Typography from '@mui/material/Typography';
 import NoSsr from '@mui/material/NoSsr';
 import { Jumbotron, Section, SectionDivider, Article, PanelLink, Alert, AppLink } from '@cieloazul310/gatsby-theme-aoi';
 import { PageNavigationContainer, PageNavigationItem, muiComponents } from '@cieloazul310/gatsby-theme-aoi-blog-components';
+import Seo from '../components/Seo';
 import PostList from '../components/PostList';
 import shortcodes from '../components/Shortcodes';
 import { AdInSectionDividerOne } from '../components/Ads';
 import Layout from '../layout';
-import { ClubBrowser, MdxPost } from '../../types';
+import type { ClubBrowser, MdxPost } from '../../types';
 
 type PostTemplatePageData = {
   mdxPost: Pick<MdxPost, 'body' | 'title' | 'lastmod' | 'date' | 'excerpt' | 'draft'> & {
@@ -36,7 +37,7 @@ type PostTemplatePageContext = {
 
 function PostTemplate({ data }: PageProps<PostTemplatePageData, PostTemplatePageContext>) {
   const { mdxPost, previous, next, allMdxPost } = data;
-  const { title, body, excerpt, date, lastmod, lastmodDate, club, draft } = mdxPost;
+  const { title, body, date, lastmod, lastmodDate, club, draft } = mdxPost;
   const daysFromLastmod = React.useMemo(() => {
     const today = new Date();
     return Math.floor((today.valueOf() - new Date(lastmodDate).valueOf()) / (1000 * 60 * 60 * 24));
@@ -44,7 +45,7 @@ function PostTemplate({ data }: PageProps<PostTemplatePageData, PostTemplatePage
   const specifiedClub = club && club.length === 1 ? club[0] : null;
 
   return (
-    <Layout title={title} headerTitle="記事" previous={previous} next={next} description={excerpt}>
+    <Layout title={title} headerTitle="記事" previous={previous} next={next}>
       <article>
         <header>
           <Jumbotron maxWidth="md">
@@ -135,6 +136,12 @@ function PostTemplate({ data }: PageProps<PostTemplatePageData, PostTemplatePage
 }
 
 export default PostTemplate;
+
+export function Head({ data }: HeadProps<PostTemplatePageData, PostTemplatePageContext>) {
+  const { mdxPost } = data;
+  const { title, excerpt } = mdxPost;
+  return <Seo title={title} description={excerpt} />;
+}
 
 export const query = graphql`
   query Post($slug: String!, $previous: String, $next: String, $specifiedClub: String, $draft: Boolean) {

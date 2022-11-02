@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { graphql, PageProps } from 'gatsby';
+import { graphql, type PageProps } from 'gatsby';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
 import { Jumbotron, Section, SectionDivider, Article, PanelLink, ListItemLink } from '@cieloazul310/gatsby-theme-aoi';
 import Layout from '../../layout';
-import { MdxPostByYear } from '../../../types';
+import Seo from '../../components/Seo';
+import type { MdxPostByYear } from '../../../types';
 
 type ArchivePageData = {
   allMdxPostByYears: Pick<MdxPostByYear, 'basePath' | 'year' | 'totalCount'>[];
@@ -50,6 +51,10 @@ function ArchivePage({ data }: PageProps<ArchivePageData>) {
 }
 
 export default ArchivePage;
+
+export function Head() {
+  return <Seo title="記事アーカイブ" />;
+}
 
 export const query = graphql`
   {

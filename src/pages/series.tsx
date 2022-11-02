@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { graphql, PageProps } from 'gatsby';
+import { graphql, type PageProps } from 'gatsby';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
@@ -25,13 +25,14 @@ import CheckIcon from '@mui/icons-material/Check';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { Section, Article } from '@cieloazul310/gatsby-theme-aoi';
 import Layout from '../layout';
+import Seo from '../components/Seo';
 import AttributionDoc from '../components/Article/Attribution';
 import { AdInSectionDividerOne } from '../components/Ads';
 import { allSortableFields } from '../utils/allFields';
 import { j1color, j2color, j3color, othersColor } from '../utils/categoryColors';
 import useCopy from '../utils/useCopy';
 import { useDictionary } from '../utils/graphql-hooks';
-import { DatumBrowser, ClubBrowser, YearBrowser, SortableKeys } from '../../types';
+import type { DatumBrowser, ClubBrowser, YearBrowser, SortableKeys } from '../../types';
 
 function isFields(input: string): input is SortableKeys {
   return allSortableFields.includes(input as SortableKeys);
@@ -312,6 +313,10 @@ function SeriesPage({ data }: PageProps<SeriesPageData>) {
   );
 }
 export default SeriesPage;
+
+export function Head() {
+  return <Seo title="項目別表示" />;
+}
 
 export const query = graphql`
   query {

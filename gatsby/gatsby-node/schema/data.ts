@@ -1,6 +1,6 @@
-import { CreateSchemaCustomizationArgs } from 'gatsby';
-import { GatsbyGraphQLContext } from '../graphql';
-import { Datum } from '../../types';
+import type { CreateSchemaCustomizationArgs } from 'gatsby';
+import type { GatsbyGraphQLContext } from '../graphql';
+import type { Datum } from '../../../types';
 
 export default async function createDataSchema({ actions, schema }: CreateSchemaCustomizationArgs) {
   const { createTypes } = actions;
