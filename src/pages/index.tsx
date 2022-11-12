@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { graphql, PageProps } from 'gatsby';
+import { graphql, type PageProps } from 'gatsby';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import { useTheme } from '@mui/material/styles';
@@ -14,11 +14,12 @@ import {
   useSiteMetadata,
 } from '@cieloazul310/gatsby-theme-aoi';
 import Layout from '../layout';
+import Seo from '../components/Seo';
 import PostList from '../components/PostList';
 import { J1Link, J2Link, J3Link, YearsLink } from '../components/Links';
 import AttributionDoc from '../components/Article/Attribution';
 import { AdInSectionDividerOne } from '../components/Ads';
-import { MdxPost } from '../../types';
+import type { MdxPost } from '../../types';
 
 type IndexPageQueryData = {
   allMdxPost: {
@@ -33,7 +34,7 @@ function IndexPage({ data }: PageProps<IndexPageQueryData>) {
   const { palette } = useTheme();
   const { title, description } = useSiteMetadata();
   return (
-    <Layout headerTitle={title}>
+    <Layout title={title}>
       <Jumbotron maxWidth="md" bgcolor={palette.mode === 'light' ? 'primary.dark' : 'grey.800'} height={280}>
         <Typography variant="h5" component="h2" gutterBottom>
           {title}
@@ -117,6 +118,10 @@ function IndexPage({ data }: PageProps<IndexPageQueryData>) {
   );
 }
 export default IndexPage;
+
+export function Head() {
+  return <Seo />;
+}
 
 export const query = graphql`
   query IndexPage($draft: Boolean) {

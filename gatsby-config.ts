@@ -1,4 +1,4 @@
-import { GatsbyConfig } from 'gatsby';
+import type { GatsbyConfig } from 'gatsby';
 
 const baseUrl = 'https://cieloazul310.github.io';
 const pathPrefix = '/jclub-financial-table';

@@ -1,5 +1,5 @@
-import { Node } from 'gatsby';
-import { GatsbyIterable } from 'gatsby/dist/datastore/common/iterable';
+import type { Node } from 'gatsby';
+import type { GatsbyIterable } from 'gatsby/dist/datastore/common/iterable';
 
 export type GatsbyNodeModelFindArgs = {
   query?: {

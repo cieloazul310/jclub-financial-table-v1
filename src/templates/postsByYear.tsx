@@ -1,13 +1,14 @@
 import * as React from 'react';
-import { graphql, PageProps } from 'gatsby';
+import { graphql, type PageProps, type HeadProps } from 'gatsby';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import { Jumbotron, Section, SectionDivider, Article, PanelLink } from '@cieloazul310/gatsby-theme-aoi';
 import { PageNavigationContainer, PageNavigationItem } from '@cieloazul310/gatsby-theme-aoi-blog-components';
+import Seo from '../components/Seo';
 import PostList from '../components/PostList';
 import { AdInSectionDividerOne } from '../components/Ads';
 import Layout from '../layout';
-import { MdxPost, MdxPostByYear } from '../../types';
+import type { MdxPost, MdxPostByYear } from '../../types';
 
 type PostsByClubPageData = {
   allMdxPost: {
@@ -16,12 +17,12 @@ type PostsByClubPageData = {
     }[];
   };
 };
-type PageContext = MdxPostByYear & {
+type PostsByClubPageContext = MdxPostByYear & {
   previous: MdxPostByYear | null;
   next: MdxPostByYear | null;
 };
 
-function PostsByClubTemplate({ data, pageContext }: PageProps<PostsByClubPageData, PageContext>) {
+function PostsByClubTemplate({ data, pageContext }: PageProps<PostsByClubPageData, PostsByClubPageContext>) {
   const { allMdxPost } = data;
   const { totalCount, year, previous, next } = pageContext;
 
@@ -63,6 +64,11 @@ function PostsByClubTemplate({ data, pageContext }: PageProps<PostsByClubPageDat
 }
 
 export default PostsByClubTemplate;
+
+export function Head({ pageContext }: HeadProps<PostsByClubPageData, PostsByClubPageContext>) {
+  const { year } = pageContext;
+  return <Seo title={`${year}年の記事一覧`} />;
+}
 
 export const query = graphql`
   query PostsByYear($gte: Date!, $lt: Date!, $draft: Boolean) {

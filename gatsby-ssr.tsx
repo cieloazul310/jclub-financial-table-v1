@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { RenderBodyArgs } from 'gatsby';
+import type { RenderBodyArgs } from 'gatsby';
 /**
  * Implement Gatsby's SSR (Server Side Rendering) APIs in this file.
  *

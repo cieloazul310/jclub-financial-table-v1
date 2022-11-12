@@ -1,22 +1,23 @@
 import * as React from 'react';
-import { graphql, PageProps } from 'gatsby';
+import { graphql, type PageProps, type HeadProps } from 'gatsby';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import { Jumbotron, Section, SectionDivider, Article, PanelLink } from '@cieloazul310/gatsby-theme-aoi';
 import { PageNavigationContainer, PageNavigationItem } from '@cieloazul310/gatsby-theme-aoi-blog-components';
+import Seo from '../components/Seo';
 import PostList from '../components/PostList';
 import { AdInSectionDividerOne } from '../components/Ads';
 import Layout from '../layout';
-import { MdxPost } from '../../types';
+import type { MdxPost } from '../../types';
 
-type PostsByClubPageData = {
+type AllPostsTemplateData = {
   allMdxPost: {
     edges: {
       node: Pick<MdxPost, 'title' | 'date' | 'slug'>;
     }[];
   };
 };
-type PageContext = {
+type AllPostsTemplateContext = {
   limit: number;
   skip: number;
   numPages: number;
@@ -25,7 +26,7 @@ type PageContext = {
   totalCount: number;
 };
 
-function AllPostsTemplate({ data, pageContext }: PageProps<PostsByClubPageData, PageContext>) {
+function AllPostsTemplate({ data, pageContext }: PageProps<AllPostsTemplateData, AllPostsTemplateContext>) {
   const { allMdxPost } = data;
   const { numPages, currentPage, basePath, totalCount } = pageContext;
 
@@ -71,6 +72,12 @@ function AllPostsTemplate({ data, pageContext }: PageProps<PostsByClubPageData, 
 }
 
 export default AllPostsTemplate;
+
+export function Head({ pageContext }: HeadProps<AllPostsTemplateData, AllPostsTemplateContext>) {
+  const { numPages, currentPage } = pageContext;
+  const title = `記事一覧 (${currentPage}/${numPages})`;
+  return <Seo title={title} />;
+}
 
 export const query = graphql`
   query AllPosts($skip: Int!, $limit: Int!, $draft: Boolean) {

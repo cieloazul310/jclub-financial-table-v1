@@ -1,13 +1,14 @@
 import * as React from 'react';
-import { graphql, PageProps } from 'gatsby';
+import { graphql, type PageProps, type HeadProps } from 'gatsby';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import { Jumbotron, Section, SectionDivider, Article, PanelLink } from '@cieloazul310/gatsby-theme-aoi';
 import { PageNavigationContainer, PageNavigationItem } from '@cieloazul310/gatsby-theme-aoi-blog-components';
+import Seo from '../components/Seo';
 import PostList from '../components/PostList';
 import { AdInSectionDividerTwo } from '../components/Ads';
 import Layout from '../layout';
-import { ClubBrowser, MdxPost } from '../../types';
+import type { ClubBrowser, MdxPost } from '../../types';
 
 type PostsByClubPageData = {
   allMdxPost: {
@@ -81,6 +82,11 @@ function PostsByClubTemplate({ data, pageContext }: PageProps<PostsByClubPageDat
 }
 
 export default PostsByClubTemplate;
+
+export function Head({ data }: HeadProps<PostsByClubPageData>) {
+  const { club } = data;
+  return <Seo title={`${club.name}の記事一覧`} />;
+}
 
 export const query = graphql`
   query PostsByClub($slug: String!, $skip: Int!, $limit: Int!, $draft: Boolean) {
