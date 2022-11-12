@@ -1,4 +1,4 @@
-import { CreateSchemaCustomizationArgs } from 'gatsby';
+import type { CreateSchemaCustomizationArgs } from 'gatsby';
 import { createClubSchema, createDataSchema, createPostSchema, createYearSchema } from './schema';
 
 export default async function createSchemaCustomization(args: CreateSchemaCustomizationArgs) {

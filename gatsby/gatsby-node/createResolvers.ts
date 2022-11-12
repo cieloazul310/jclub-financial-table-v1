@@ -1,9 +1,9 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as yaml from 'yaml';
-import { CreateResolversArgs } from 'gatsby';
-import { Dict, MdxPost, MdxPostByYear } from '../types';
-import { GatsbyGraphQLContext } from './graphql';
+import type { CreateResolversArgs } from 'gatsby';
+import type { Dict, MdxPost, MdxPostByYear } from '../../types';
+import type { GatsbyGraphQLContext } from './graphql';
 
 function mdxPostToYears(posts: MdxPost[]): MdxPostByYear[] {
   const years = posts

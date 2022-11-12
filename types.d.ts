@@ -1,4 +1,4 @@
-import { Node } from 'gatsby';
+import type { Node } from 'gatsby';
 
 export type Mode = 'club' | 'year';
 export type Tab = 'pl' | 'bs' | 'revenue' | 'expense' | 'attd';

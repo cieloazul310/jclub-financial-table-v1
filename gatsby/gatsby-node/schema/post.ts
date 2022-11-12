@@ -1,8 +1,8 @@
-import { CreateSchemaCustomizationArgs, Node } from 'gatsby';
-import { GraphQLFieldResolver, GraphQLResolveInfo, GraphQLObjectType } from 'gatsby/graphql';
+import type { CreateSchemaCustomizationArgs, Node } from 'gatsby';
+import type { GraphQLFieldResolver, GraphQLResolveInfo, GraphQLObjectType } from 'gatsby/graphql';
 // import { GatsbyIterable,} from 'gatsby/dist/datastore/common/iterable';
-import { GatsbyGraphQLContext } from '../graphql';
-import { MdxBare, MdxPostBare } from '../../types';
+import type { GatsbyGraphQLContext } from '../graphql';
+import type { MdxBare, MdxPostBare } from '../../../types';
 
 function mdxResolverPassthrough(fieldName: string): GraphQLFieldResolver<MdxBare & Node, GatsbyGraphQLContext> {
   return async (source, args, context, info) => {

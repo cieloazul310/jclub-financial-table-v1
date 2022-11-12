@@ -12,7 +12,6 @@ import useScrollTriger from '@mui/material/useScrollTrigger';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Section, SectionDivider, PanelLink } from '@cieloazul310/gatsby-theme-aoi';
 
-import SEO from './SEO';
 import AppBarInner from './AppBarInner';
 import DrawerInner from './DrawerInner';
 import Footer from './Footer';
@@ -25,14 +24,13 @@ const iOS = typeof window !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.u
 type TemplateLayoutProps = {
   title: string;
   headerTitle?: string;
-  description?: string;
   // pageContext: T extends 'club' ? ClubPageContext : YearPageContext;
   children: React.ReactNode;
   previous: { to: string; title: string } | null;
   next: { to: string; title: string } | null;
 };
 
-function TemplateLayout({ children, title, headerTitle, description, previous, next }: TemplateLayoutProps) {
+function TemplateLayout({ children, title, headerTitle, previous, next }: TemplateLayoutProps) {
   const { tab } = useAppState();
   const dispatch = useDispatch();
   const trigger = useScrollTriger();
@@ -50,93 +48,89 @@ function TemplateLayout({ children, title, headerTitle, description, previous, n
   };
 
   return (
-    <>
-      <SEO title={title} description={description} />
+    <Box
+      sx={{
+        flexGrow: 1,
+        paddingTop: { xs: '56px', sm: '112px' },
+        paddingBottom: { xs: '48px', sm: 0 },
+      }}
+    >
+      <Slide appear={false} direction="down" in={!trigger}>
+        <AppBar>
+          <AppBarInner title={headerTitle ?? title} onLeftButtonClick={handleDrawer()} previous={previous} next={next} />
+        </AppBar>
+      </Slide>
+      <main>
+        <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>{children}</Box>
+      </main>
+      <Box>
+        <SectionDivider />
+        <Section>
+          <Container maxWidth="md" disableGutters>
+            <PanelLink to="/" disableBorder disableMargin>
+              トップページへ
+            </PanelLink>
+          </Container>
+        </Section>
+        <SectionDivider />
+        <Footer />
+      </Box>
       <Box
+        component="nav"
         sx={{
-          flexGrow: 1,
-          paddingTop: { xs: '56px', sm: '112px' },
-          paddingBottom: { xs: '48px', sm: 0 },
+          position: 'fixed',
+          width: 1,
+          top: { xs: 'unset', sm: trigger ? 0 : '64px' },
+          bottom: { xs: 0, sm: 'unset' },
+          bgcolor: 'background.paper',
+          borderColor: 'divider',
+          zIndex: (theme) => theme.zIndex.appBar - 1,
+          boxShadow: 1,
+          transition: (theme) => theme.transitions.create(['top', 'bottom'], { delay: 100 }),
         }}
       >
-        <Slide appear={false} direction="down" in={!trigger}>
-          <AppBar>
-            <AppBarInner title={headerTitle ?? title} onLeftButtonClick={handleDrawer()} previous={previous} next={next} />
-          </AppBar>
-        </Slide>
-        <main>
-          <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>{children}</Box>
-        </main>
-        <Box>
-          <SectionDivider />
-          <Section>
-            <Container maxWidth="md" disableGutters>
-              <PanelLink to="/" disableBorder disableMargin>
-                トップページへ
-              </PanelLink>
-            </Container>
-          </Section>
-          <SectionDivider />
-          <Footer />
-        </Box>
-        <Box
-          component="nav"
-          sx={{
-            position: 'fixed',
-            width: 1,
-            top: { xs: 'unset', sm: trigger ? 0 : '64px' },
-            bottom: { xs: 0, sm: 'unset' },
-            bgcolor: 'background.paper',
-            borderColor: 'divider',
-            zIndex: (theme) => theme.zIndex.appBar - 1,
-            boxShadow: 1,
-            transition: (theme) => theme.transitions.create(['top', 'bottom'], { delay: 100 }),
-          }}
-        >
-          <Tabs value={tab} variant="scrollable" indicatorColor="secondary" textColor="secondary" scrollButtons="auto" onChange={handleTab}>
-            <MuiTab label="損益計算書" value="pl" wrapped />
-            <MuiTab label="貸借対照表" value="bs" wrapped />
-            <MuiTab label="営業収入" value="revenue" wrapped />
-            <MuiTab label="営業費用" value="expense" wrapped />
-            <MuiTab label="入場者数" value="attd" wrapped />
-          </Tabs>
-        </Box>
-        <Box
-          sx={{
-            position: 'fixed',
-            right: (theme) => theme.spacing(2),
-            bottom: (theme) => ({ xs: `calc(${theme.spacing(2)} + 56px)`, sm: theme.spacing(2) }),
-            zIndex: (theme) => theme.zIndex.appBar - 1,
-            opacity: 0.4,
-            transition: (theme) => theme.transitions.create('opacity'),
-            '&:hover': {
-              opacity: 1,
-            },
-          }}
-        >
-          <Tooltip title="メニュー">
-            <Fab color="secondary" onClick={handleDrawer()}>
-              <MenuIcon />
-            </Fab>
-          </Tooltip>
-        </Box>
-        <SwipeableDrawer
-          open={drawerOpen}
-          onClose={handleDrawer(false)}
-          onOpen={handleDrawer(true)}
-          disableBackdropTransition={!iOS}
-          disableDiscovery={iOS}
-        >
-          <DrawerInner title={headerTitle ?? title} previous={previous} next={next} onCloseIconClick={handleDrawer(false)} />
-        </SwipeableDrawer>
+        <Tabs value={tab} variant="scrollable" indicatorColor="secondary" textColor="secondary" scrollButtons="auto" onChange={handleTab}>
+          <MuiTab label="損益計算書" value="pl" wrapped />
+          <MuiTab label="貸借対照表" value="bs" wrapped />
+          <MuiTab label="営業収入" value="revenue" wrapped />
+          <MuiTab label="営業費用" value="expense" wrapped />
+          <MuiTab label="入場者数" value="attd" wrapped />
+        </Tabs>
       </Box>
-    </>
+      <Box
+        sx={{
+          position: 'fixed',
+          right: (theme) => theme.spacing(2),
+          bottom: (theme) => ({ xs: `calc(${theme.spacing(2)} + 56px)`, sm: theme.spacing(2) }),
+          zIndex: (theme) => theme.zIndex.appBar - 1,
+          opacity: 0.4,
+          transition: (theme) => theme.transitions.create('opacity'),
+          '&:hover': {
+            opacity: 1,
+          },
+        }}
+      >
+        <Tooltip title="メニュー">
+          <Fab color="secondary" onClick={handleDrawer()}>
+            <MenuIcon />
+          </Fab>
+        </Tooltip>
+      </Box>
+      <SwipeableDrawer
+        open={drawerOpen}
+        onClose={handleDrawer(false)}
+        onOpen={handleDrawer(true)}
+        disableBackdropTransition={!iOS}
+        disableDiscovery={iOS}
+      >
+        <DrawerInner title={headerTitle ?? title} previous={previous} next={next} onCloseIconClick={handleDrawer(false)} />
+      </SwipeableDrawer>
+    </Box>
   );
 }
 
 TemplateLayout.defaultProps = {
   headerTitle: undefined,
-  description: undefined,
 };
 
 export default TemplateLayout;

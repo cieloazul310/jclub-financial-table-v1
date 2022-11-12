@@ -1,8 +1,8 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as yaml from 'yaml';
-import { SourceNodesArgs } from 'gatsby';
-import { Club, Year } from '../types';
+import type { SourceNodesArgs } from 'gatsby';
+import type { Club, Year } from '../../types';
 
 export default async function souceNodes({ actions, createNodeId, createContentDigest }: SourceNodesArgs) {
   const { createNode } = actions;

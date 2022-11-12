@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { graphql, PageProps } from 'gatsby';
+import { graphql, type PageProps } from 'gatsby';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { TabPane, Section, Article } from '@cieloazul310/gatsby-theme-aoi';
 import Layout from '../layout';
+import Seo from '../components/Seo';
 import ItemFilter from '../components/Download/ItemFilter';
 import FieldFilter from '../components/Download/FieldFilter';
 import Preview from '../components/Download/Preview';
@@ -14,7 +15,7 @@ import { AdInSectionDividerOne } from '../components/Ads';
 import allFields from '../utils/allFields';
 import useIsMobile from '../utils/useIsMobile';
 import { useDictionary } from '../utils/graphql-hooks';
-import { DatumBrowser, ClubBrowser, YearBrowser, Dict, DownloadDatum } from '../../types';
+import type { DatumBrowser, ClubBrowser, YearBrowser, Dict, DownloadDatum } from '../../types';
 
 function getCategory(category: string | number | null) {
   return category === 'J1' || category === 'J2' || category === 'J3' ? category : 'others';
@@ -151,6 +152,10 @@ function DownloadPage({ data }: PageProps<DownloadPageData>) {
   );
 }
 export default DownloadPage;
+
+export function Head() {
+  return <Seo title="データダウンロード" />;
+}
 
 export const query = graphql`
   query {

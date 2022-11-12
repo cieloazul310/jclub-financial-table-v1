@@ -1,4 +1,4 @@
-import { CreatePageArgs } from 'gatsby';
+import type { CreatePageArgs } from 'gatsby';
 
 export default function onCreatePage({ page, actions }: CreatePageArgs) {
   const { createPage, deletePage } = actions;

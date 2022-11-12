@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
+import { Blockquote } from '@cieloazul310/gatsby-theme-aoi';
 import Diff from './Diff';
 import SimpleTable from './SimpleTable';
 import SummaryTable from './SummaryTable';
@@ -22,4 +23,4 @@ function Red({ children }: React.PropsWithChildren<unknown>) {
   );
 }
 
-export default { Typography, Green, Red, SimpleTable, SummaryTable, SummaryTableRow, Ad, Diff };
+export default { Typography, Green, Red, SimpleTable, SummaryTable, SummaryTableRow, Ad, Diff, Blockquote };

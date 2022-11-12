@@ -1,6 +1,6 @@
-import { CreateSchemaCustomizationArgs } from 'gatsby';
-import { GatsbyGraphQLContext } from '../graphql';
-import { Club, DatumNode, MdxPost } from '../../types';
+import type { CreateSchemaCustomizationArgs } from 'gatsby';
+import type { GatsbyGraphQLContext } from '../graphql';
+import type { Club, DatumNode, MdxPost } from '../../../types';
 
 export default async function createClubSchema({ actions, schema }: CreateSchemaCustomizationArgs) {
   const { createTypes } = actions;
