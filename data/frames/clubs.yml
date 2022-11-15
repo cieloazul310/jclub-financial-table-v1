@@ -13,6 +13,7 @@
   settlement: https://www.consadole-sapporo.jp/club/settlement/
   relatedCompanies:
     - 一般社団法人コンサドーレ北海道スポーツクラブ
+    - 株式会社エゾデン
 
 - id: "3"
   slug: antlers
@@ -24,6 +25,8 @@
   hometown: 鹿嶋市、潮来市、神栖市、行方市、鉾田市
   area: 茨城県
   website: https://www.antlers.co.jp
+  relatedCompanies:
+    - 一般社団法人アントラーズホームタウンDMO
 
 - id: "4"
   slug: urawa
@@ -179,6 +182,8 @@
   hometown: 神戸市
   area: 兵庫県
   website: https://www.vissel-kobe.co.jp
+  relatedCompanies:
+    - 一般社団法人ヴィッセル神戸スポーツクラブ
 
 - id: "17"
   slug: sanfrecce
@@ -249,6 +254,8 @@
   hometown: 秋田市、由利本荘市、にかほ市、男鹿市、潟上市を中心とする全県
   area: 秋田県
   website: https://blaublitz.jp
+  relatedCompanies:
+    - NPO法人ブラウブリッツ秋田スポーツネットワーク
 
 - id: "19"
   slug: montedio
@@ -332,6 +339,8 @@
   hometown: 東京都
   area: 東京都
   website: https://www.verdy.co.jp
+  relatedCompanies:
+    - 一般社団法人ヴェルディクラブ
 
 - id: "24"
   slug: zelvia
@@ -382,6 +391,8 @@
   hometown: 新潟市、聖籠町、長岡市、三条市、柏崎市、新発田市、小千谷市、加茂市、十日町市、見附市、村上市、燕市、糸魚川市、妙高市、五泉市、上越市、阿賀野市、佐渡市、魚沼市、南魚沼市、胎内市、弥彦村、田上町、阿賀町、出雲崎市、湯沢町、津南町、刈羽村、関川村、粟島浦村【新潟県全県】
   area: 新潟県
   website: https://www.albirex.co.jp
+  relatedCompanies:
+    - 株式会社アルビレックス新潟レディース
 
 - id: "28"
   slug: zweigen
@@ -408,6 +419,7 @@
   website: https://www.fagiano-okayama.com
   relatedCompanies:
     - 一般社団法人ファジアーノ岡山スポーツクラブ
+    - NPO法人岡山ヒューマンスポーツクラブ
 
 - id: "33"
   slug: renofa
@@ -433,6 +445,8 @@
   area: 徳島県
   website: https://www.vortis.jp
   settlement: https://www.vortis.jp/clubinfo/index.html
+  relatedCompanies:
+    - NPO法人徳島スポーツビレッジ
 
 - id: "38"
   slug: vvaren
@@ -529,6 +543,8 @@
   hometown: 横浜市
   area: 神奈川県
   website: https://www.yscc1986.net
+  relatedCompanies:
+    - NPO法人横浜スポーツ&カルチャークラブ
 
 - id: "46"
   slug: scsagamihara
@@ -556,6 +572,7 @@
   settlement: https://www.yamaga-fc.com/club-info/company/accounting
   relatedCompanies:
     - NPO法人松本山雅スポーツクラブ
+    - 一般社団法人松本山雅SC南信
 
 - id: "47"
   slug: parceiro
@@ -635,6 +652,8 @@
   hometown: 高松市、丸亀市を中心とする全県
   area: 香川県
   website: https://www.kamatamare.jp
+  relatedCompanies:
+    - NPO法人カマタマーレスポーツクラブ
 
 - id: "36"
   slug: ehimefc
@@ -695,3 +714,4 @@
   settlement: https://www.kufc.co.jp/club/mind/
   relatedCompanies:
     - 一般社団法人鹿児島プロスポーツプロジェクト
+    - 株式会社KMP
