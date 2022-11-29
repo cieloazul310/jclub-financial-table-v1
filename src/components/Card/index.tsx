@@ -1,14 +1,8 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import ButtonBase from '@mui/material/ButtonBase';
-import { useTheme, type Theme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { type Swiper as SwiperCore, Navigation, Mousewheel } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import CardItem from './CardItem';
-import useElementSize from '../../utils/useElementSize';
 import useIsMobile from '../../utils/useIsMobile';
 import useStateEdges from '../../utils/useStateEdges';
 import { useAppState } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
@@ -60,23 +54,33 @@ type CardProps = {
 
 function Card({ edges, mode }: CardProps) {
   const [swiper, setSwiper] = React.useState<SwiperCore | null>(null);
-  const theme = useTheme();
-  const smDown = useMediaQuery(theme.breakpoints.down('sm'));
   const isMobile = useIsMobile();
   const stateEdges = useStateEdges(edges, mode);
   const { range, totalCount } = useRange(stateEdges, mode);
+  const { sortAsc, sortKey } = useAppState();
   const initialIndex = useInitialIndex(range, mode);
+
   const modules = React.useMemo(() => {
     if (!isMobile) return [Navigation, Mousewheel];
     return [Mousewheel];
   }, [isMobile]);
 
+  /**
+   * 年度別表示 ソート順とソート項目を変更した場合に先頭へ戻るエフェクト
+   */
+  React.useLayoutEffect(() => {
+    if (mode !== 'year') return;
+    swiper?.slideTo(0);
+  }, [sortAsc, sortKey]);
+
   const onSwiper = (currentSwiper: SwiperCore) => {
     setSwiper(currentSwiper);
   };
 
+  /**
+   * 表示中の年度、クラブをsessionStorage に保存
+   */
   const onSlideChange = (currentSwiper: SwiperCore) => {
-    console.log('onSlideChange');
     const { activeIndex } = currentSwiper;
     if (rangeIsNumbers(range, mode)) {
       const currentYear = range[activeIndex];
@@ -99,7 +103,6 @@ function Card({ edges, mode }: CardProps) {
     >
       <Swiper
         modules={modules}
-        navigation={{ enabled: !smDown }}
         cssMode
         mousewheel
         centeredSlides
@@ -108,12 +111,8 @@ function Card({ edges, mode }: CardProps) {
         slidesPerView={1}
         spaceBetween={16}
         breakpoints={{
-          640: {
-            slidesPerView: 1,
-            spaceBetween: 48,
-          },
-          768: {
-            slidesPerView: 3,
+          700: {
+            slidesPerView: 2,
             spaceBetween: 16,
           },
           1024: {
@@ -123,13 +122,10 @@ function Card({ edges, mode }: CardProps) {
         }}
         onSwiper={onSwiper}
         onSlideChange={onSlideChange}
-        // onSlideChange={onSlideChange}
       >
         {stateEdges.map((edge, index) => (
           <SwiperSlide key={edge.node.id}>
-            <Box minWidth={320} maxWidth={400}>
-              <CardItem edge={edge} previous={edge.node.previousData} mode={mode} index={index} length={totalCount} />
-            </Box>
+            <CardItem edge={edge} previous={edge.node.previousData} mode={mode} index={index} length={totalCount} />
           </SwiperSlide>
         ))}
       </Swiper>
