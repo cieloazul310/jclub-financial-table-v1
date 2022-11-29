@@ -1,16 +1,144 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
-import { Theme } from '@mui/material/styles';
+import { useTheme, type Theme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { type Swiper as SwiperCore, Navigation, Mousewheel } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import CardItem from './CardItem';
 import useElementSize from '../../utils/useElementSize';
 import useIsMobile from '../../utils/useIsMobile';
 import useStateEdges from '../../utils/useStateEdges';
 import { useAppState } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
-import { DatumBrowser, Mode } from '../../../types';
+import type { DatumBrowser, Mode } from '../../../types';
 
+import 'swiper/css';
+import 'swiper/css/navigation';
+
+function rangeIsNumbers(range: (number | string)[], mode: Mode): range is number[] {
+  return mode === 'club';
+}
+function rangeIsStrings(range: (number | string)[], mode: Mode): range is string[] {
+  return mode === 'year';
+}
+
+function useRange(edges: { node: DatumBrowser }[], mode: Mode) {
+  const range = edges.map(({ node }) => (mode === 'club' ? node.year : node.slug));
+  return {
+    range,
+    totalCount: edges.length,
+  };
+}
+
+function useInitialIndex(range: (string | number)[], mode: Mode) {
+  if (rangeIsNumbers(range, mode)) {
+    const storaged = window.sessionStorage.getItem('currentYear');
+    if (!storaged) return range.length - 1;
+    const currentYear = parseInt(storaged, 10);
+    const index = range.indexOf(currentYear);
+    if (index < 0) return range.length - 1;
+    return index;
+  }
+  if (rangeIsStrings(range, mode)) {
+    const storaged = window.sessionStorage.getItem('currentClub');
+    if (!storaged) return 0;
+    const index = range.indexOf(storaged);
+    if (index < 0) return 0;
+    return index;
+  }
+  return 0;
+}
+
+type CardProps = {
+  edges: {
+    node: DatumBrowser;
+  }[];
+  mode: Mode;
+};
+
+function Card({ edges, mode }: CardProps) {
+  const [swiper, setSwiper] = React.useState<SwiperCore | null>(null);
+  const theme = useTheme();
+  const smDown = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMobile = useIsMobile();
+  const stateEdges = useStateEdges(edges, mode);
+  const { range, totalCount } = useRange(stateEdges, mode);
+  const initialIndex = useInitialIndex(range, mode);
+  const modules = React.useMemo(() => {
+    if (!isMobile) return [Navigation, Mousewheel];
+    return [Mousewheel];
+  }, [isMobile]);
+
+  const onSwiper = (currentSwiper: SwiperCore) => {
+    setSwiper(currentSwiper);
+  };
+
+  const onSlideChange = (currentSwiper: SwiperCore) => {
+    console.log('onSlideChange');
+    const { activeIndex } = currentSwiper;
+    if (rangeIsNumbers(range, mode)) {
+      const currentYear = range[activeIndex];
+      window.sessionStorage.setItem('currentYear', currentYear.toString());
+    }
+    if (rangeIsStrings(range, mode)) {
+      const currentClub = range[activeIndex];
+      window.sessionStorage.setItem('currentClub', currentClub);
+    }
+  };
+
+  return (
+    <Box
+      display="flex"
+      flexGrow={1}
+      width={1}
+      minHeight={400}
+      p={1}
+      bgcolor={({ palette }) => (palette.mode === 'light' ? 'grey.100' : 'Background.default')}
+    >
+      <Swiper
+        modules={modules}
+        navigation={{ enabled: !smDown }}
+        cssMode
+        mousewheel
+        centeredSlides
+        simulateTouch={false}
+        initialSlide={initialIndex}
+        slidesPerView={1}
+        spaceBetween={16}
+        breakpoints={{
+          640: {
+            slidesPerView: 1,
+            spaceBetween: 48,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 16,
+          },
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 32,
+          },
+        }}
+        onSwiper={onSwiper}
+        onSlideChange={onSlideChange}
+        // onSlideChange={onSlideChange}
+      >
+        {stateEdges.map((edge, index) => (
+          <SwiperSlide key={edge.node.id}>
+            <Box minWidth={320} maxWidth={400}>
+              <CardItem edge={edge} previous={edge.node.previousData} mode={mode} index={index} length={totalCount} />
+            </Box>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </Box>
+  );
+}
+
+export default Card;
+/*
 function rangeIsNumbers(range: (number | string)[], mode: Mode): range is number[] {
   return mode === 'club';
 }
@@ -190,3 +318,4 @@ function Card({ edges, mode }: CardProps) {
 }
 
 export default Card;
+*/
