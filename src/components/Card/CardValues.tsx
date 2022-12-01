@@ -1,10 +1,11 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import ButtonBase from '@mui/material/ButtonBase';
 import { useAppState, useDispatch } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
 import { UpIcon, DownIcon } from '../../icons';
 import val from '../../utils/val';
-import { General, PL, BS, Revenue, Expense, AttdBrowser, Mode } from '../../../types';
+import type { General, PL, BS, Revenue, Expense, AttdBrowser, Mode } from '../../../types';
 
 type CardValueProps<T> = {
   label: string;
@@ -71,17 +72,21 @@ function CardValueCore<T>(
           sx={{
             pl: inset ? 2 : undefined,
             flexGrow: 1,
-            color: selected ? 'secondary.main' : 'inherit',
-            '&:hover': {
-              textDecoration: mode === 'year' ? 'underline' : undefined,
-              cursor: mode === 'year' ? 'pointer' : undefined,
-            },
           }}
-          role="button"
-          tabIndex={0}
-          onClick={onClick}
         >
-          {label}
+          <ButtonBase
+            sx={{
+              color: selected ? 'secondary.main' : 'inherit',
+              '&:hover': {
+                textDecoration: mode === 'year' ? 'underline' : undefined,
+              },
+            }}
+            disableRipple
+            disabled={mode === 'club'}
+            onClick={onClick}
+          >
+            {label}
+          </ButtonBase>
         </Box>
         <Typography
           sx={{ fontWeight: emphasized || strong || selected ? 'bold' : undefined }}
