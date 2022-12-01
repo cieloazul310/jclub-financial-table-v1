@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useTheme } from '@mui/material/styles';
 import { j1color, j2color, j3color, othersColor } from './categoryColors';
-import { FilterCategory } from '../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppState';
+import type { FilterCategory } from '../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppState';
 
 const categoryColors = {
   J1: j1color,

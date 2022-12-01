@@ -1,7 +1,7 @@
 import * as React from 'react';
-import TableCell, { TableCellProps } from '@mui/material/TableCell';
+import TableCell, { type TableCellProps } from '@mui/material/TableCell';
 import { useAppState, useDispatch } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
-import { Mode, SortableKeys } from '../../../types';
+import type { Mode, SortableKeys } from '../../../types';
 
 type TableHeadCellProps = Omit<TableCellProps, 'align'> & {
   mode: Mode;

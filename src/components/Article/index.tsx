@@ -9,23 +9,21 @@ import ExpenseDoc from './Expense';
 import AttdDoc from './Attd';
 import AttributionDoc from './Attribution';
 
-function ArticleTab() {
-  const { tab } = useAppState();
-  if (tab === 'pl') return <PLDoc />;
-  if (tab === 'bs') return <BSDoc />;
-  if (tab === 'revenue') return <RevenueDoc />;
-  if (tab === 'expense') return <ExpenseDoc />;
-  return <AttdDoc />;
-}
-
 function ArticleSection() {
+  const { tab } = useAppState();
+  const articleTab = React.useMemo(() => {
+    if (tab === 'pl') return <PLDoc />;
+    if (tab === 'bs') return <BSDoc />;
+    if (tab === 'revenue') return <RevenueDoc />;
+    if (tab === 'expense') return <ExpenseDoc />;
+    return <AttdDoc />;
+  }, [tab]);
+
   return (
     <section>
       <Section>
         <Article maxWidth="md">
-          <article>
-            <ArticleTab />
-          </article>
+          <article>{articleTab}</article>
         </Article>
       </Section>
       <AdInSectionDividerTwo />

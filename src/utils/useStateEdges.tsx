@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useAppState } from '../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
 import { FilterCategory } from '../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppState';
-import { SortableKeys, Mode, DatumBrowser } from '../../types';
+import type { SortableKeys, Mode, DatumBrowser } from '../../types';
 
 function getCategory({ category }: Pick<DatumBrowser, 'category'>): FilterCategory {
   return category !== 'J1' && category !== 'J2' && category !== 'J3' ? 'others' : category;

@@ -1,13 +1,13 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
-import { scaleLinear, ScaleLinear } from 'd3';
+import { scaleLinear, type ScaleLinear } from 'd3';
 import ChartTitle from './ChartTitle';
 import Bars from './Bars';
 import AverageLines from './AverageLines';
 import BarGradient from './BarGradient';
 import useExtent from './useExtent';
-import { DatumBrowser } from '../../../types';
+import type { DatumBrowser } from '../../../types';
 
 type ChartPadding = {
   top: number;

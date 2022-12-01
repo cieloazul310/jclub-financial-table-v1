@@ -8,7 +8,7 @@ import TableCell from '@mui/material/TableCell';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { useAppState } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
-import { YearStats } from '../../../types';
+import type { YearStats } from '../../../types';
 
 function diffIcon(diffval: number | null) {
   if (!diffval) return null;

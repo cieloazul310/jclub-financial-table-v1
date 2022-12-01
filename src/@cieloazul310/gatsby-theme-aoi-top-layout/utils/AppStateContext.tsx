@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AppState, initialAppState, Action } from './AppState';
+import { initialAppState, type AppState, type Action } from './AppState';
 
 const AppStateContext = React.createContext<{
   state: AppState;

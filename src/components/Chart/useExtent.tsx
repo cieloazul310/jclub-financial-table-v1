@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useAppState } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
 import { useStatistics } from '../../utils/graphql-hooks';
-import { DatumBrowser } from '../../../types';
+import type { DatumBrowser } from '../../../types';
 
 function useExtentByCategory(categories: string[]) {
   const { tab } = useAppState();

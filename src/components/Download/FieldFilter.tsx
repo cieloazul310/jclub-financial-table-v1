@@ -10,7 +10,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { generalFields, plFields, bsFields, revenueFields, expenseFields, attdFields } from '../../utils/allFields';
 import { useDictionary } from '../../utils/graphql-hooks';
-import { Dict } from '../../../types';
+import type { Dict } from '../../../types';
 
 type FieldTypeListProps = FieldFilterProps & {
   title: string;

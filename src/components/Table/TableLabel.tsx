@@ -1,7 +1,7 @@
 import * as React from 'react';
-import TableCell, { TableCellProps } from '@mui/material/TableCell';
+import TableCell, { type TableCellProps } from '@mui/material/TableCell';
 import { AppLink } from '@cieloazul310/gatsby-theme-aoi';
-import { Mode, General } from '../../../types';
+import type { Mode, General } from '../../../types';
 
 const sxProps = {
   theadLabel: {

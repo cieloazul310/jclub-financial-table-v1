@@ -4,7 +4,6 @@ import TableContainer from '@mui/material/TableContainer';
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
-// import TableCore from './TableCore';
 import TableHeadRow from './TableHeadRow';
 import TableBodyRow from './TableBodyRow';
 import useStateEdges from '../../utils/useStateEdges';

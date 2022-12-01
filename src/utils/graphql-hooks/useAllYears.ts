@@ -1,5 +1,5 @@
 import { useStaticQuery, graphql } from 'gatsby';
-import { Year } from '../../../types';
+import type { Year } from '../../../types';
 
 type AllYearsQueryData = {
   allYear: {

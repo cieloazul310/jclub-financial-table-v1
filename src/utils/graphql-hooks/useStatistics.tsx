@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import { YearBrowser, Statistics } from '../../../types';
+import type { YearBrowser, Statistics } from '../../../types';
 
 type StatisticQueryData = {
   allYear: {

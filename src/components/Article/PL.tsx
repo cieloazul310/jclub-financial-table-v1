@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import DocContainer from './DocContainer';
-import { DocsQueryData } from '../../../types';
+import type { DocsQueryData } from '../../../types';
 
 function PLDoc() {
   const { mdx } = useStaticQuery<DocsQueryData>(graphql`

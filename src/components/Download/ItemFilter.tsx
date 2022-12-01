@@ -10,7 +10,7 @@ import Divider from '@mui/material/Divider';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useAllYears, useClubsByCategory } from '../../utils/graphql-hooks';
-import { ClubBrowser } from '../../../types';
+import type { ClubBrowser } from '../../../types';
 
 type ClubListByCategoryProps = Pick<ItemFilterProps, 'clubsFilter' | 'setClubsFilter'> & {
   clubs: {

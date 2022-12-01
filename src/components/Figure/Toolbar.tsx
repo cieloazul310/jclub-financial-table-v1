@@ -9,7 +9,7 @@ import { useAppState, useDispatch } from '../../@cieloazul310/gatsby-theme-aoi-t
 import useUnitString from '../../utils/useUnitString';
 import { useSortStateString } from '../../utils/useStateString';
 import { TableIcon, ListIcon } from '../../icons';
-import { Mode } from '../../../types';
+import type { Mode } from '../../../types';
 
 type FigureToolbarProps = {
   mode: Mode;

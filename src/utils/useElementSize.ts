@@ -3,10 +3,10 @@ import * as React from 'react';
 // See: https://usehooks-ts.com/react-hook/use-event-listener
 import useEventListener from './useEventListener';
 
-interface Size {
+type Size = {
   width: number;
   height: number;
-}
+};
 
 function useElementSize<T extends HTMLElement = HTMLDivElement>(): [(node: T | null) => void, Size] {
   // Mutable values like 'ref.current' aren't valid dependencies

@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import { H4 } from '@cieloazul310/gatsby-theme-aoi';
 import StatsTable from './StatsTable';
-import { Category, YearStats } from '../../../types';
+import type { Category, YearStats } from '../../../types';
 
 type StatsItemProps = {
   category: Category;

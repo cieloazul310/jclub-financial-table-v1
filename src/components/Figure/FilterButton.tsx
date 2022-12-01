@@ -8,7 +8,7 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import CheckIcon from '@mui/icons-material/Check';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { useAppState, useDispatch } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
-import { FilterCategory } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppState';
+import type { FilterCategory } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppState';
 
 type FilterButtonProps = {
   disabled: boolean;

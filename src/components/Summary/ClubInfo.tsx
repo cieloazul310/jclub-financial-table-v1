@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ExternalLink, ArticleTitle, Ul, Li } from '@cieloazul310/gatsby-theme-aoi';
 import Chart from '../Chart';
-import { ClubBrowser, DatumBrowser } from '../../../types';
+import type { ClubBrowser, DatumBrowser } from '../../../types';
 
 type ClubInfoProps = {
   club: Omit<ClubBrowser, 'data' | 'posts'>;

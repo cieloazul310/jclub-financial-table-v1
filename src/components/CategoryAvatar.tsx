@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Typograhy from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
-import { SxProps } from '@mui/material/styles';
+import type { SxProps } from '@mui/material/styles';
 import { useCategoryColor } from '../utils/categoryColors';
 
 function CategoryAvatar({ category, sx }: { category: string; sx?: SxProps }) {
