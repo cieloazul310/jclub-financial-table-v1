@@ -3,7 +3,7 @@ import { useTheme } from '@mui/material/styles';
 import { ScaleLinear } from 'd3';
 import { useFill } from './BarGradient';
 import { useAppState } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
-import { DatumBrowser, General, PL, BS, AttdBrowser, Expense } from '../../../types';
+import type { DatumBrowser, General, PL, BS, AttdBrowser, Expense } from '../../../types';
 
 type XLegendProps = {
   year: number;

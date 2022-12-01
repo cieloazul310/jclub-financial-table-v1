@@ -1,11 +1,11 @@
 import * as React from 'react';
 import TableRow from '@mui/material/TableRow';
-import TableCell, { TableCellProps } from '@mui/material/TableCell';
+import TableCell, { type TableCellProps } from '@mui/material/TableCell';
 import { TableBodyLabel } from './TableLabel';
 import { CategoryLabel } from '../CategoryAvatar';
 import { useAppState } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
 import val from '../../utils/val';
-import { Tab, Mode, DatumBrowser, General, PL, BS, Revenue, Expense, AttdBrowser } from '../../../types';
+import type { Tab, Mode, DatumBrowser, General, PL, BS, Revenue, Expense, AttdBrowser } from '../../../types';
 
 type DataTableCellProps = {
   value: number | null;

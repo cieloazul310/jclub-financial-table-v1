@@ -1,12 +1,12 @@
 import { useAppState } from '../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
 import { useDictionary } from './graphql-hooks';
-import { SortableKeys } from '../../types';
+import type { SortableKeys } from '../../types';
 
-interface SortStateString {
+type SortStateString = {
   field: string | null | undefined;
   sortKey: SortableKeys;
   sortType: string;
-}
+};
 
 export function useSortStateString(): SortStateString {
   const { sortAsc, sortKey } = useAppState();

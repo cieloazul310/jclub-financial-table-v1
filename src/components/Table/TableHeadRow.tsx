@@ -3,7 +3,7 @@ import TableRow from '@mui/material/TableRow';
 import { TableHeadLabel } from './TableLabel';
 import TableHeadCell from './TableHeadCell';
 import { useAppState } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
-import { Tab, Mode } from '../../../types';
+import type { Tab, Mode } from '../../../types';
 
 type TableHeadRowProps = {
   mode: Mode;

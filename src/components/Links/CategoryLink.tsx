@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { AppLinkButton } from '@cieloazul310/gatsby-theme-aoi';
 import { useClubsByCategory } from '../../utils/graphql-hooks';
-import { ClubBrowser, Category } from '../../../types';
+import type { ClubBrowser, Category } from '../../../types';
 
 type CategoryLinkCoreProps = {
   clubs: {

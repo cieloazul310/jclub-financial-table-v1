@@ -2,7 +2,7 @@ import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
 import { ListItemLink, PanelLink } from '@cieloazul310/gatsby-theme-aoi';
-import { MdxPost } from '../../types';
+import type { MdxPost } from '../../types';
 
 type PostListProps = {
   posts: {

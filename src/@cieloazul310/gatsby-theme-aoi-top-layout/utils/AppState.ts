@@ -1,15 +1,15 @@
-import { Category, SortableKeys, Tab } from '../../../../types';
+import type { Category, SortableKeys, Tab } from '../../../../types';
 
 export type FilterCategory = Category | 'others';
 
-export interface AppState {
+export type AppState = {
   sortKey: SortableKeys;
   sortAsc: boolean;
   filterCategories: FilterCategory[];
   displayFullAttd: boolean;
   listMode: boolean;
   tab: Tab;
-}
+};
 
 export const initialAppState: AppState = {
   sortKey: 'revenue',

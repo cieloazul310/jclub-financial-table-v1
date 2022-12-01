@@ -5,7 +5,7 @@ import FigureToolbar from './Toolbar';
 import FinancialTable from '../Table';
 import FinancialCard from '../Card';
 import { useAppState } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
-import { Mode, DatumBrowser } from '../../../types';
+import type { Mode, DatumBrowser } from '../../../types';
 
 type FigureSectionProps = {
   edges: {

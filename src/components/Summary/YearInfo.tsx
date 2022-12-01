@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ArticleTitle } from '@cieloazul310/gatsby-theme-aoi';
 import Stats from './Stats';
-import { YearBrowser } from '../../../types';
+import type { YearBrowser } from '../../../types';
 
 type YearInfoProps = {
   year: Omit<YearBrowser, 'data'>;

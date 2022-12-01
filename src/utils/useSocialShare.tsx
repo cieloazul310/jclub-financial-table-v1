@@ -1,5 +1,6 @@
 import { useLocation } from '@reach/router';
-import { useSiteMetadata } from './graphql-hooks';
+import { useSiteMetadata } from '@cieloazul310/gatsby-theme-aoi';
+// import { useSiteMetadata } from './graphql-hooks';
 
 export function useTwitterShare(title?: string): string {
   const siteTitle = useSiteMetadata().title;

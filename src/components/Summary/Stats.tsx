@@ -1,8 +1,8 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import { YearBrowser } from '../../../types';
 import StatsItem from './StatsItem';
+import type { YearBrowser } from '../../../types';
 
 type StatsProps = {
   year: Omit<YearBrowser, 'data'>;

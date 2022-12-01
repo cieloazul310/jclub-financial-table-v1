@@ -1,5 +1,5 @@
 import { useStaticQuery, graphql } from 'gatsby';
-import { ClubNode } from '../../../types';
+import type { ClubNode } from '../../../types';
 
 type AllClubsQueryData = {
   allClub: {

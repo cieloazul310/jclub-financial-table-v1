@@ -1,4 +1,4 @@
-import { SortableKeys } from '../../types';
+import type { SortableKeys } from '../../types';
 
 export const generalFields = ['fullname', 'license', 'rank', 'points', 'ppg', 'elevation'];
 export const plFields: SortableKeys[] = [

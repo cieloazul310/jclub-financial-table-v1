@@ -9,7 +9,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import { ListItemAppLink } from '@cieloazul310/gatsby-theme-aoi';
 
 import { useClubsByCategory, useAllYears } from '../../utils/graphql-hooks';
-import { Club } from '../../../types';
+import type { Club } from '../../../types';
 
 type CategoryLinksProps = {
   title: string;

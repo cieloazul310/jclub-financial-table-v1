@@ -3,8 +3,8 @@ import { useTheme } from '@mui/material/styles';
 import { line as d3Line, Line, ScaleLinear } from 'd3';
 import { j1color, j2color, j3color } from '../../utils/categoryColors';
 import { useAppState } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
-import { DatumBrowser, Statistics } from '../../../types';
 import { useStatistics, useAllYears } from '../../utils/graphql-hooks';
+import type { DatumBrowser, Statistics } from '../../../types';
 
 function useStatisticsField() {
   const { tab } = useAppState();
@@ -73,6 +73,9 @@ type AverageLinesTypes = {
   itemWidth: number;
 };
 
+/**
+ * SVG上にカテゴリ別の年度別平均値を表示するコンポーネント
+ */
 function AverageLines({ scale, edges, itemWidth }: AverageLinesTypes) {
   const { tab } = useAppState();
   const categories = Array.from(new Set(edges.map(({ node }) => node.category)));

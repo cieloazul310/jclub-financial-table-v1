@@ -6,7 +6,7 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
 import Checkbox from '@mui/material/Checkbox';
 import { useAppState, useDispatch } from '../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
-import { FilterCategory } from '../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppState';
+import type { FilterCategory } from '../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppState';
 
 function YearStateHandler() {
   const { filterCategories } = useAppState();

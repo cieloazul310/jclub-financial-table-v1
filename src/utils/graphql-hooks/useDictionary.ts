@@ -1,5 +1,5 @@
 import { useStaticQuery, graphql } from 'gatsby';
-import { Dict } from '../../../types';
+import type { Dict } from '../../../types';
 
 export default function useDictionary() {
   const { dictionary } = useStaticQuery<{ dictionary: Dict }>(graphql`

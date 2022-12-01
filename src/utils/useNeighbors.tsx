@@ -1,4 +1,4 @@
-import { YearPageNeighbor, ClubPageNeighbor } from '../../types';
+import type { YearPageNeighbor, ClubPageNeighbor } from '../../types';
 
 function isClubPage(neighbor: YearPageNeighbor | ClubPageNeighbor): neighbor is ClubPageNeighbor {
   return neighbor?.mode === 'club';
