@@ -77,6 +77,7 @@ function CardValueCore<T>(
           <ButtonBase
             sx={{
               color: selected ? 'secondary.main' : 'inherit',
+              fontSize: 'body2.fontSize',
               '&:hover': {
                 textDecoration: mode === 'year' ? 'underline' : undefined,
               },
