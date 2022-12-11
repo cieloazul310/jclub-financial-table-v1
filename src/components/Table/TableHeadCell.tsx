@@ -1,5 +1,6 @@
 import * as React from 'react';
 import TableCell, { type TableCellProps } from '@mui/material/TableCell';
+import ButtonBase from '@mui/material/ButtonBase';
 import { useAppState, useDispatch } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
 import type { Mode, SortableKeys } from '../../../types';
 
@@ -26,28 +27,32 @@ function TableHeadCell({ sortableKey, mode, children, ...props }: TableHeadCellP
   return (
     <TableCell
       sx={{
-        fontWeight: 'bold',
-        fontSize: 'caption.fontSize',
         py: 1,
         px: 0.5,
         lineHeight: 1.2,
+        fontSize: 'caption.fontSize',
         minWidth: '6em',
-        color: () => {
-          if (!sortable) return 'text.secondary';
-          return selected ? 'secondary.main' : 'text.primary';
-        },
-        cursor: sortable ? 'pointer' : undefined,
-        '&:hover': {
-          textDecoration: sortable ? 'underline' : undefined,
-        },
       }}
       align="center"
-      role="button"
-      tabIndex={0}
-      onClick={onClick}
       {...props}
     >
-      {children}
+      <ButtonBase
+        disableRipple
+        sx={{
+          fontSize: 'inherit',
+          fontWeight: 'bold',
+          color: () => {
+            if (!sortable) return 'text.secondary';
+            return selected ? 'secondary.main' : 'text.primary';
+          },
+          '&:hover': {
+            textDecoration: sortable ? 'underline' : undefined,
+          },
+        }}
+        onClick={onClick}
+      >
+        {children}
+      </ButtonBase>
     </TableCell>
   );
 }
