@@ -1,4 +1,4 @@
-# 2022
+# 2023
 # J1 18 clubs
 - id: "1"
   slug: consadole
@@ -89,6 +89,19 @@
   relatedCompanies:
     - 一般社団法人F・マリノススポーツクラブ
 
+- id: "25"
+  slug: yokohamafc
+  name: 横浜FC
+  fullname: 横浜FC
+  short_name: 横浜FC
+  company: 株式会社横浜フリエスポーツクラブ
+  category: J1
+  hometown: 横浜市
+  area: 神奈川県
+  website: https://www.yokohamafc.com
+  relatedCompanies:
+    - 一般社団法人横浜FCスポーツクラブ
+
 - id: "26"
   slug: bellmare
   name: 湘南ベルマーレ
@@ -103,27 +116,18 @@
   relatedCompanies:
     - NPO法人湘南ベルマーレスポーツクラブ
 
-- id: "12"
-  slug: shimizu
-  name: 清水エスパルス
-  fullname: 清水エスパルス
-  short_name: 清水
-  company: 株式会社エスパルス
+- id: "11"
+  slug: albirex
+  name: アルビレックス新潟
+  fullname: アルビレックス新潟
+  short_name: 新潟
+  company: 株式会社アルビレックス新潟
   category: J1
-  hometown: 静岡市
-  area: 静岡県
-  website: https://www.s-pulse.co.jp
-
-- id: "13"
-  slug: jubilo
-  name: ジュビロ磐田
-  fullname: ジュビロ磐田
-  short_name: 磐田
-  company: 株式会社ジュビロ
-  category: J1
-  hometown: 磐田市
-  area: 静岡県
-  website: https://www.jubilo-iwata.co.jp
+  hometown: 新潟市、聖籠町、長岡市、三条市、柏崎市、新発田市、小千谷市、加茂市、十日町市、見附市、村上市、燕市、糸魚川市、妙高市、五泉市、上越市、阿賀野市、佐渡市、魚沼市、南魚沼市、胎内市、弥彦村、田上町、阿賀町、出雲崎市、湯沢町、津南町、刈羽村、関川村、粟島浦村【新潟県全県】
+  area: 新潟県
+  website: https://www.albirex.co.jp
+  relatedCompanies:
+    - 株式会社アルビレックス新潟レディース
 
 - id: "29"
   slug: nagoya
@@ -219,17 +223,6 @@
   website: https://www.sagan-tosu.net
 
 # J2 22 clubs
-- id: "41"
-  slug: gurulla
-  name: いわてグルージャ盛岡
-  fullname: いわてグルージャ盛岡
-  short_name: 岩手
-  company: 株式会社いわてアスリートクラブ
-  category: J2
-  hometown: 盛岡市､宮古市､大船渡市､花巻市､北上市､久慈市､遠野市､一関市､陸前高田市､釜石市､二戸市､八幡平市､奥州市､滝沢市､雫石町､葛巻町､岩手町､紫波町､矢巾町､西和賀町､金ケ崎町､平泉町､住田町､大槌町､山田町､岩泉町､田野畑村､普代村､軽米町､野田村､九戸村､洋野町､一戸町【岩手県全県】
-  area: 岩手県
-  website: https://grulla-morioka.jp
-
 - id: "2"
   slug: vegalta
   name: ベガルタ仙台
@@ -269,6 +262,17 @@
   website: https://www.montedioyamagata.jp
   relatedCompanies:
     - 公益社団法人山形県スポーツ振興21世紀協会
+
+- id: "58"
+  slug: iwakifc
+  name: いわきFC
+  fullname: いわきFC
+  short_name: いわき
+  company: 株式会社いわきスポーツクラブ
+  category: J2
+  hometown: いわき市、広野町、楢葉町、富岡町、川内村、大熊町、双葉町、葛尾村、浪江町
+  area: 福島県
+  website: https://iwakifc.com
 
 - id: "20"
   slug: mitohollyhock
@@ -355,19 +359,6 @@
   relatedCompanies:
     - NPO法人アスレチッククラブ町田
 
-- id: "25"
-  slug: yokohamafc
-  name: 横浜FC
-  fullname: 横浜FC
-  short_name: 横浜FC
-  company: 株式会社横浜フリエスポーツクラブ
-  category: J2
-  hometown: 横浜市
-  area: 神奈川県
-  website: https://www.yokohamafc.com
-  relatedCompanies:
-    - 一般社団法人横浜FCスポーツクラブ
-
 - id: "10"
   slug: ventforet
   name: ヴァンフォーレ甲府
@@ -381,19 +372,6 @@
   relatedCompanies:
     - 一般社団法人ヴァンフォーレスポーツクラブ
 
-- id: "11"
-  slug: albirex
-  name: アルビレックス新潟
-  fullname: アルビレックス新潟
-  short_name: 新潟
-  company: 株式会社アルビレックス新潟
-  category: J2
-  hometown: 新潟市、聖籠町、長岡市、三条市、柏崎市、新発田市、小千谷市、加茂市、十日町市、見附市、村上市、燕市、糸魚川市、妙高市、五泉市、上越市、阿賀野市、佐渡市、魚沼市、南魚沼市、胎内市、弥彦村、田上町、阿賀町、出雲崎市、湯沢町、津南町、刈羽村、関川村、粟島浦村【新潟県全県】
-  area: 新潟県
-  website: https://www.albirex.co.jp
-  relatedCompanies:
-    - 株式会社アルビレックス新潟レディース
-
 - id: "28"
   slug: zweigen
   name: ツエーゲン金沢
@@ -406,6 +384,39 @@
   website: https://www.zweigen-kanazawa.jp
   relatedCompanies:
     - 一般社団法人石川ツエーゲンスポーツクラブ
+
+- id: "12"
+  slug: shimizu
+  name: 清水エスパルス
+  fullname: 清水エスパルス
+  short_name: 清水
+  company: 株式会社エスパルス
+  category: J2
+  hometown: 静岡市
+  area: 静岡県
+  website: https://www.s-pulse.co.jp
+
+- id: "13"
+  slug: jubilo
+  name: ジュビロ磐田
+  fullname: ジュビロ磐田
+  short_name: 磐田
+  company: 株式会社ジュビロ
+  category: J2
+  hometown: 磐田市
+  area: 静岡県
+  website: https://www.jubilo-iwata.co.jp
+
+- id: "49"
+  slug: myfc
+  name: 藤枝MYFC
+  fullname: 藤枝MYFC
+  short_name: 藤枝
+  company: 株式会社藤枝MYFC
+  category: J2
+  hometown: 藤枝市、島田市、焼津市、牧之原市、吉田町、川根本町
+  area: 静岡県
+  website: https://myfc.co.jp
 
 - id: "32"
   slug: fagiano
@@ -484,18 +495,7 @@
   area: 大分県
   website: https://www.oita-trinita.co.jp
 
-- id: "54"
-  slug: fcryukyu
-  name: FC琉球
-  fullname: FC琉球
-  short_name: 琉球
-  company: 琉球フットボールクラブ株式会社
-  category: J2
-  hometown: 沖縄市を中心とする全県
-  area: 沖縄県
-  website: https://www.fcryukyu.com
-
-# J3 18 clubs
+# J3 20 clubs
 - id: "55"
   slug: vanraure
   name: ヴァンラーレ八戸
@@ -509,6 +509,17 @@
   relatedCompanies:
     - NPO法人クローバーズ・ネット
 
+- id: "41"
+  slug: gurulla
+  name: いわてグルージャ盛岡
+  fullname: いわてグルージャ盛岡
+  short_name: 岩手
+  company: 株式会社いわてアスリートクラブ
+  category: J3
+  hometown: 盛岡市､宮古市､大船渡市､花巻市､北上市､久慈市､遠野市､一関市､陸前高田市､釜石市､二戸市､八幡平市､奥州市､滝沢市､雫石町､葛巻町､岩手町､紫波町､矢巾町､西和賀町､金ケ崎町､平泉町､住田町､大槌町､山田町､岩泉町､田野畑村､普代村､軽米町､野田村､九戸村､洋野町､一戸町【岩手県全県】
+  area: 岩手県
+  website: https://grulla-morioka.jp
+
 - id: "43"
   slug: fufc
   name: 福島ユナイテッドFC
@@ -521,17 +532,6 @@
   website: https://fufc.jp
   relatedCompanies:
     - NPO法人福島ユナイテッドスポーツクラブ
-
-- id: "58"
-  slug: iwakifc
-  name: いわきFC
-  fullname: いわきFC
-  short_name: いわき
-  company: 株式会社いわきスポーツクラブ
-  category: J3
-  hometown: いわき市、広野町、楢葉町、富岡町、川内村、大熊町、双葉町、葛尾村
-  area: 福島県
-  website: https://iwakifc.com
 
 - id: "45"
   slug: yscc
@@ -596,17 +596,6 @@
   area: 富山県
   website: https://www.kataller.co.jp
 
-- id: "49"
-  slug: myfc
-  name: 藤枝MYFC
-  fullname: 藤枝MYFC
-  short_name: 藤枝
-  company: 株式会社藤枝MYFC
-  category: J3
-  hometown: 藤枝市、島田市、焼津市、牧之原市、吉田町、川根本町
-  area: 静岡県
-  website: https://myfc.co.jp
-
 - id: "50"
   slug: azulclaro
   name: アスルクラロ沼津
@@ -630,6 +619,28 @@
   hometown: 岐阜市を中心とする全県
   area: 岐阜県
   website: https://www.fc-gifu.com
+
+#- id: "59"
+  #slug: fcosaka
+  #name: FC大阪
+  #fullname: FC大阪
+  #short_name: FC大阪
+  #company: 株式会社F.C.大阪
+  #category: J3
+  #hometown: 東大阪市
+  #area: 大阪府
+  #website: https://fc-osaka.com
+
+#- id: "60"
+  #slug: naraclub
+  #name: 奈良クラブ
+  #fullname: 奈良クラブ
+  #short_name: 奈良
+  #company: 株式会社奈良クラブ
+  #category: J3
+  #hometown: 奈良市を中心とする全県
+  #area: 奈良県
+  #website: https://naraclub.jp
 
 - id: "51"
   slug: gainare
@@ -715,3 +726,14 @@
   relatedCompanies:
     - 一般社団法人鹿児島プロスポーツプロジェクト
     - 株式会社KMP
+
+- id: "54"
+  slug: fcryukyu
+  name: FC琉球
+  fullname: FC琉球
+  short_name: 琉球
+  company: 琉球フットボールクラブ株式会社
+  category: J3
+  hometown: 沖縄市を中心とする全県
+  area: 沖縄県
+  website: https://www.fcryukyu.com

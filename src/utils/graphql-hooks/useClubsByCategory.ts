@@ -22,7 +22,7 @@ type UseClubsByCategoryQueryData = {
 export default function useClubsByCategory() {
   const data = useStaticQuery<UseClubsByCategoryQueryData>(graphql`
     {
-      j1: allClub(filter: { category: { eq: "J1" } }) {
+      j1: allClub(filter: { category: { eq: "J1" } }, sort: { fields: index, order: ASC }) {
         edges {
           node {
             id
@@ -33,7 +33,7 @@ export default function useClubsByCategory() {
           }
         }
       }
-      j2: allClub(filter: { category: { eq: "J2" } }) {
+      j2: allClub(filter: { category: { eq: "J2" } }, sort: { fields: index, order: ASC }) {
         edges {
           node {
             id
@@ -44,7 +44,7 @@ export default function useClubsByCategory() {
           }
         }
       }
-      j3: allClub(filter: { category: { eq: "J3" } }) {
+      j3: allClub(filter: { category: { eq: "J3" } }, sort: { fields: index, order: ASC }) {
         edges {
           node {
             id
