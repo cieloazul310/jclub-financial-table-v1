@@ -8949,18 +8949,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-google-analytics@npm:^4.24.0":
-  version: 4.24.0
-  resolution: "gatsby-plugin-google-analytics@npm:4.24.0"
+"gatsby-plugin-google-gtag@npm:4.25.0":
+  version: 4.25.0
+  resolution: "gatsby-plugin-google-gtag@npm:4.25.0"
   dependencies:
     "@babel/runtime": ^7.15.4
-    minimatch: 3.0.4
-    web-vitals: ^1.1.2
+    minimatch: ^3.1.2
   peerDependencies:
     gatsby: ^4.0.0-next
     react: ^16.9.0 || ^17.0.0 || ^18.0.0 || ^0.0.0
     react-dom: ^16.9.0 || ^17.0.0 || ^18.0.0 || ^0.0.0
-  checksum: 390fe9d54a2241d208953472f3e58f6e6273b71872104c1fc757dd2a37fa74c52e06876d8f5de0e6fd150d8cfecbf1f21ffd4ed559bfe1b295587ae626e2741d
+  checksum: 61801a1c576fbf6a4a8226658154330121366c182b34c5c7eb95fcaee7d49261ea77ff5d11ae0611614a3a5518f04bc29a6f7a93c1dcc0dd171041e0fe2b1c95
   languageName: node
   linkType: hard
 
@@ -10916,7 +10915,7 @@ __metadata:
     eslint-webpack-plugin: ^3.2.0
     gatsby: ^4.24.6
     gatsby-plugin-eslint: ^4.0.2
-    gatsby-plugin-google-analytics: ^4.24.0
+    gatsby-plugin-google-gtag: 4.25.0
     gatsby-plugin-manifest: ^4.24.0
     gatsby-plugin-mdx: ^3.19.0
     gatsby-plugin-sitemap: ^5.24.0
@@ -12060,15 +12059,6 @@ __metadata:
   bin:
     mini-svg-data-uri: cli.js
   checksum: 997f1fbd8d59a70f03761e18626d335197a3479cb9d1ff75678e4b64b864d32a0b8fc18115eabde035e5299b8b4a354a78e57dd6ac10f9d604162a6170898d09
-  languageName: node
-  linkType: hard
-
-"minimatch@npm:3.0.4":
-  version: 3.0.4
-  resolution: "minimatch@npm:3.0.4"
-  dependencies:
-    brace-expansion: ^1.1.7
-  checksum: 66ac295f8a7b59788000ea3749938b0970344c841750abd96694f80269b926ebcafad3deeb3f1da2522978b119e6ae3a5869b63b13a7859a456b3408bd18a078
   languageName: node
   linkType: hard
 
@@ -16854,13 +16844,6 @@ __metadata:
   version: 1.1.4
   resolution: "web-namespaces@npm:1.1.4"
   checksum: 5149842ccbfbc56fe4f8758957b3f8c8616a281874a5bb84aa1b305e4436a9bad853d21c629a7b8f174902449e1489c7a6c724fccf60965077c5636bd8aed42b
-  languageName: node
-  linkType: hard
-
-"web-vitals@npm:^1.1.2":
-  version: 1.1.2
-  resolution: "web-vitals@npm:1.1.2"
-  checksum: 92071029089277166e11141b735831d9011e85737d32c1360034676db898ab0ca95f19041ee01904f2189ad6e711b9da6b17567e4831290a429a586c98bc573f
   languageName: node
   linkType: hard
 
