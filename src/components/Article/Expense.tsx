@@ -10,6 +10,7 @@ function ExpenseDoc() {
         body
         frontmatter {
           title
+          lastmod(formatString: "YYYY年MM月DD日")
         }
       }
     }

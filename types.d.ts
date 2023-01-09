@@ -244,6 +244,7 @@ export type DocsQueryData = {
   mdx: {
     frontmatter: {
       title: string;
+      lastmod?: string;
     };
     body: string;
   };
