@@ -93,7 +93,7 @@ export default async function createPages({ graphql, actions, reporter }: Create
 
     createPage({
       path: node.href,
-      component: path.resolve(`./src/templates/club.tsx`),
+      component: path.resolve(`./src/templates/club/index.tsx`),
       context: {
         previous: previous?.slug ?? null,
         next: next?.slug ?? null,
@@ -110,7 +110,7 @@ export default async function createPages({ graphql, actions, reporter }: Create
 
     createPage({
       path: node.href,
-      component: path.resolve(`./src/templates/year.tsx`),
+      component: path.resolve(`./src/templates/year/index.tsx`),
       context: {
         previous: previous?.year ?? null,
         next: next?.year ?? null,
@@ -126,7 +126,7 @@ export default async function createPages({ graphql, actions, reporter }: Create
     const next = index !== arr.length - 1 ? arr[index + 1] : null;
     const specifiedClub = node.club && node.club.length === 1 ? node.club[0].slug : null;
 
-    const mdxPostTempalte = path.resolve('./src/templates/post.tsx');
+    const mdxPostTempalte = path.resolve('./src/templates/post/index.tsx');
     createPage({
       path: node.slug,
       component: `${mdxPostTempalte}?__contentFilePath=${node.internal.contentFilePath}`,

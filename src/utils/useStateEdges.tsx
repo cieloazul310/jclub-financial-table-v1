@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useAppState } from '../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
 import { FilterCategory } from '../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppState';
-import type { SortableKeys, Mode, Datum } from '../../types';
+import type { SortableKeys, Mode, Datum, AllDataFieldsFragment } from '../../types';
 
 function getCategory({ category }: Pick<Datum, 'category'>): FilterCategory {
   return category !== 'J1' && category !== 'J2' && category !== 'J3' ? 'others' : category;
@@ -18,7 +18,7 @@ export function getRank(data: Pick<Datum, 'category' | 'rank'>): number {
   return addition(data.category) + data.rank;
 }
 
-export function useFilteredData(nodes: Datum[], mode: Mode): Datum[] {
+export function useFilteredData(nodes: AllDataFieldsFragment[], mode: Mode) {
   const { filterCategories } = useAppState();
   return React.useMemo(
     () => (mode === 'club' ? nodes : nodes.filter((node) => filterCategories.includes(getCategory(node)))),
@@ -33,7 +33,7 @@ export function getValue(node: Pick<Datum, SortableKeys | 'category'>, sortKey: 
   return node[sortKey] ?? 1;
 }
 
-export function useSortedData(nodes: Datum[], mode: Mode): Datum[] {
+export function useSortedData(nodes: AllDataFieldsFragment[], mode: Mode) {
   const { sortKey, sortAsc } = useAppState();
   return React.useMemo(
     () => (mode === 'club' ? nodes : [...nodes].sort((a, b) => (sortAsc ? 1 : -1) * (getValue(a, sortKey) - getValue(b, sortKey)))),
@@ -41,7 +41,7 @@ export function useSortedData(nodes: Datum[], mode: Mode): Datum[] {
   );
 }
 
-export function useSortedValue(node: Datum): string {
+export function useSortedValue(node: AllDataFieldsFragment): string {
   const { sortKey } = useAppState();
   if (sortKey === 'unit_price') {
     return node.ticket && node.all_attd ? `${Math.round((node.ticket * 1000000) / node.all_attd)}円` : '-';
@@ -55,7 +55,7 @@ export function useSortedValue(node: Datum): string {
   return '-';
 }
 
-export default function useStateData(nodes: Datum[], mode: Mode): Datum[] {
+export default function useStateData(nodes: AllDataFieldsFragment[], mode: Mode) {
   const filtered = useFilteredData(nodes, mode);
   const sorted = useSortedData(filtered, mode);
   return sorted;

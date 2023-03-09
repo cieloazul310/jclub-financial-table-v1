@@ -194,19 +194,19 @@ export type Attd<T extends 'bare' | 'node' | 'browser' = 'browser'> = {
   unit_price: T extends 'browser' ? number | null : never;
 };
 
-export type AllDatumFields<T extends 'bare' | 'node' | 'browser' = 'browser'> = General &
+export type AllDataFieldsFragment = General &
   SeasonResult &
   PL &
   BS &
   Revenue &
   Expense &
-  Attd<T>;
+  Attd;
 
 export type Datum<T extends 'bare' | 'node' | 'browser' = 'browser'> = (T extends 'bare' ? never : Node) &
-  AllDatumFields<T> &
+  AllDataFieldsFragment &
   (T extends 'browser'
     ? {
-        previousData: AllDatumFields<T>;
+        previousData: AllDataFieldsFragment;
       }
     : never);
 

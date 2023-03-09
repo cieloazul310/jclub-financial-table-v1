@@ -2,6 +2,15 @@ import { useStaticQuery, graphql } from 'gatsby';
 
 export default function useFragments() {
   useStaticQuery(graphql`
+    fragment allDataFields on Data {
+      ...generalFields
+      ...seasonResultFields
+      ...plFields
+      ...bsFields
+      ...revenueFields
+      ...expenseFields
+      ...attdFields
+    }
     fragment generalFields on Data {
       id
       name
@@ -83,6 +92,7 @@ export default function useFragments() {
       average_attd
       unit_price
     }
+
     fragment allStats on Stats {
       revenue {
         ...statsValues
