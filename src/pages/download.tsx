@@ -15,7 +15,7 @@ import { AdInSectionDividerOne } from '../components/Ads';
 import allFields from '../utils/allFields';
 import useIsMobile from '../utils/useIsMobile';
 import { useDictionary } from '../utils/graphql-hooks';
-import type { DatumBrowser, ClubBrowser, YearBrowser, Dict, DownloadDatum } from '../../types';
+import type { Datum, Club, Year, Dict, DownloadDatum } from '../../types';
 
 function getCategory(category: string | number | null) {
   return category === 'J1' || category === 'J2' || category === 'J3' ? category : 'others';
@@ -23,29 +23,19 @@ function getCategory(category: string | number | null) {
 
 type DownloadPageData = {
   allData: {
-    edges: {
-      node: Omit<DatumBrowser, 'previousData'>;
-    }[];
+    nodes: Omit<Datum, 'previousData'>[];
   };
   j1: {
-    edges: {
-      node: Pick<ClubBrowser, 'name' | 'slug'>;
-    }[];
+    nodes: Pick<Club, 'name' | 'slug'>[];
   };
   j2: {
-    edges: {
-      node: Pick<ClubBrowser, 'name' | 'slug'>;
-    }[];
+    nodes: Pick<Club, 'name' | 'slug'>[];
   };
   j3: {
-    edges: {
-      node: Pick<ClubBrowser, 'name' | 'slug'>;
-    }[];
+    nodes: Pick<Club, 'name' | 'slug'>[];
   };
   allYear: {
-    edges: {
-      node: Pick<YearBrowser, 'year'>;
-    }[];
+    nodes: Pick<Year, 'year'>[];
   };
 };
 
@@ -54,8 +44,8 @@ function DownloadPage({ data }: PageProps<DownloadPageData>) {
   const isMobile = useIsMobile();
   const dictionary = useDictionary();
   const allCategories = ['J1', 'J2', 'J3', 'others'];
-  const slugs = [...j1.edges, ...j2.edges, ...j3.edges].map(({ node }) => node.slug);
-  const years = allYear.edges.map(({ node }) => node.year);
+  const slugs = [...j1.nodes, ...j2.nodes, ...j3.nodes].map((node) => node.slug);
+  const years = allYear.nodes.map((node) => node.year);
 
   const [tab, setTab] = React.useState(0);
   const [clubsFilter, setClubsFilter] = React.useState(slugs);
@@ -74,11 +64,11 @@ function DownloadPage({ data }: PageProps<DownloadPageData>) {
 
   const dataset = React.useMemo(() => {
     const selectedFields = allFields.filter((field) => fields.includes(field));
-    return allData.edges
-      .filter(({ node }) => yearsFilter.includes(node.year))
-      .filter(({ node }) => clubsFilter.includes(node.slug))
-      .filter(({ node }) => categoriesFilter.includes(node.category))
-      .map(({ node }) => {
+    return allData.nodes
+      .filter((node) => yearsFilter.includes(node.year))
+      .filter((node) => clubsFilter.includes(node.slug))
+      .filter((node) => categoriesFilter.includes(node.category))
+      .map((node) => {
         const obj: DownloadDatum = {
           クラブ: node.name,
           id: node.slug,
@@ -158,49 +148,39 @@ export function Head() {
 }
 
 export const query = graphql`
-  query {
-    allData(sort: { fields: [year, slug] }) {
-      edges {
-        node {
-          ...generalFields
-          ...seasonResultFields
-          ...plFields
-          ...bsFields
-          ...revenueFields
-          ...expenseFields
-          ...attdFields
-        }
+  {
+    allData(sort: [{ year: ASC }, { slug: ASC }]) {
+      nodes {
+        ...generalFields
+        ...seasonResultFields
+        ...plFields
+        ...bsFields
+        ...revenueFields
+        ...expenseFields
+        ...attdFields
       }
     }
     j1: allClub(filter: { category: { eq: "J1" } }) {
-      edges {
-        node {
-          name
-          slug
-        }
+      nodes {
+        name
+        slug
       }
     }
     j2: allClub(filter: { category: { eq: "J2" } }) {
-      edges {
-        node {
-          name
-          slug
-        }
+      nodes {
+        name
+        slug
       }
     }
     j3: allClub(filter: { category: { eq: "J3" } }) {
-      edges {
-        node {
-          name
-          slug
-        }
+      nodes {
+        name
+        slug
       }
     }
-    allYear(sort: { fields: year }) {
-      edges {
-        node {
-          year
-        }
+    allYear(sort: { year: ASC }) {
+      nodes {
+        year
       }
     }
   }

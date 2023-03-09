@@ -2,21 +2,19 @@ import * as React from 'react';
 import { graphql, type PageProps, type HeadProps } from 'gatsby';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import { Jumbotron, Section, SectionDivider, Article, PanelLink } from '@cieloazul310/gatsby-theme-aoi';
+import { Jumbotron, Section, Article, PanelLink } from '@cieloazul310/gatsby-theme-aoi';
 import { PageNavigationContainer, PageNavigationItem } from '@cieloazul310/gatsby-theme-aoi-blog-components';
 import Seo from '../components/Seo';
 import PostList from '../components/PostList';
 import { AdInSectionDividerTwo } from '../components/Ads';
 import Layout from '../layout';
-import type { ClubBrowser, MdxPost } from '../../types';
+import type { Club, MdxPost } from '../../types';
 
 type PostsByClubPageData = {
   allMdxPost: {
-    edges: {
-      node: Pick<MdxPost, 'title' | 'date' | 'slug'>;
-    }[];
+    nodes: Pick<MdxPost, 'title' | 'date' | 'slug'>[];
   };
-  club: Pick<ClubBrowser, 'name' | 'href'>;
+  club: Pick<Club, 'name' | 'href'>;
 };
 type PageContext = {
   club: string;
@@ -34,45 +32,40 @@ function PostsByClubTemplate({ data, pageContext }: PageProps<PostsByClubPageDat
 
   return (
     <Layout title={`${club.name}の記事一覧`}>
-      <Jumbotron maxWidth="md">
+      <Jumbotron maxWidth="md" component="header">
         <Typography variant="h5" component="h2" gutterBottom>
           {club.name}の記事一覧 ({currentPage}/{numPages})
         </Typography>
         <Typography>{totalCount} posts</Typography>
       </Jumbotron>
-      <SectionDivider />
-      <Section>
+      <Section component="main">
         <Article maxWidth="md">
-          <PostList posts={allMdxPost.edges} />
+          <PostList posts={allMdxPost.nodes} />
         </Article>
       </Section>
-      <SectionDivider />
       <Section>
         <Container maxWidth="md" disableGutters>
-          <PanelLink to={club.href} disableBorder disableMargin>
+          <PanelLink href={club.href} disableBorder disableMargin>
             {club.name}の経営情報一覧
           </PanelLink>
         </Container>
       </Section>
       {currentPage !== 1 || currentPage !== numPages ? (
-        <>
-          <SectionDivider />
-          <Section>
-            <PageNavigationContainer>
-              <PageNavigationItem to={currentPage === 2 ? `${basePath}/` : `${basePath}/${currentPage - 1}/`} disabled={currentPage === 1}>
-                <Typography variant="body2">{currentPage - 1}</Typography>
-              </PageNavigationItem>
-              <PageNavigationItem to={`${basePath}/${currentPage + 1}`} disabled={currentPage === numPages} next>
-                <Typography variant="body2">{currentPage + 1}</Typography>
-              </PageNavigationItem>
-            </PageNavigationContainer>
-          </Section>
-        </>
+        <Section component="nav">
+          <PageNavigationContainer>
+            <PageNavigationItem href={currentPage === 2 ? `${basePath}/` : `${basePath}/${currentPage - 1}/`} disabled={currentPage === 1}>
+              <Typography variant="body2">{currentPage - 1}</Typography>
+            </PageNavigationItem>
+            <PageNavigationItem href={`${basePath}/${currentPage + 1}`} disabled={currentPage === numPages} right>
+              <Typography variant="body2">{currentPage + 1}</Typography>
+            </PageNavigationItem>
+          </PageNavigationContainer>
+        </Section>
       ) : null}
       <AdInSectionDividerTwo />
       <Section>
         <Container maxWidth="md" disableGutters>
-          <PanelLink to="/posts/" disableBorder disableMargin>
+          <PanelLink href="/posts/" disableBorder disableMargin>
             記事一覧へ
           </PanelLink>
         </Container>
@@ -92,16 +85,14 @@ export const query = graphql`
   query PostsByClub($slug: String!, $skip: Int!, $limit: Int!, $draft: Boolean) {
     allMdxPost(
       filter: { club: { elemMatch: { slug: { eq: $slug } } }, draft: { ne: $draft } }
-      sort: { fields: [date, lastmod, slug], order: [DESC, DESC, DESC] }
+      sort: [{ date: DESC }, { lastmod: DESC }, { slug: DESC }]
       limit: $limit
       skip: $skip
     ) {
-      edges {
-        node {
-          title
-          date(formatString: "YYYY年MM月DD日")
-          slug
-        }
+      nodes {
+        title
+        date(formatString: "YYYY年MM月DD日")
+        slug
       }
     }
     club(slug: { eq: $slug }) {

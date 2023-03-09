@@ -3,9 +3,7 @@ import type { Year } from '../../../types';
 
 type AllYearsQueryData = {
   allYear: {
-    edges: {
-      node: Pick<Year, 'id' | 'year' | 'href'>;
-    }[];
+    nodes: Pick<Year, 'id' | 'year' | 'href'>[];
   };
 };
 
@@ -13,15 +11,13 @@ export default function useAllYears() {
   const data = useStaticQuery<AllYearsQueryData>(graphql`
     {
       allYear {
-        edges {
-          node {
-            id
-            year
-            href
-          }
+        nodes {
+          id
+          year
+          href
         }
       }
     }
   `);
-  return data.allYear.edges;
+  return data.allYear.nodes;
 }

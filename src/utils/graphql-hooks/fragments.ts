@@ -1,7 +1,7 @@
 import { useStaticQuery, graphql } from 'gatsby';
 
 export default function useFragments() {
-  useStaticQuery<Record<string, unknown>>(graphql`
+  useStaticQuery(graphql`
     fragment generalFields on Data {
       id
       name

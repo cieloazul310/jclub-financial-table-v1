@@ -1,3 +1,4 @@
+import * as React from 'react';
 import type { Category, SortableKeys, Tab } from '../../../../types';
 
 export type FilterCategory = Category | 'others';
@@ -19,13 +20,6 @@ export const initialAppState: AppState = {
   listMode: false,
   tab: 'pl',
 };
-
-export function useInitialAppState(isMobile: boolean): AppState {
-  return {
-    ...initialAppState,
-    listMode: isMobile,
-  };
-}
 
 export type Action =
   | { type: 'TOGGLE_FULL_ATTD' }
@@ -81,4 +75,12 @@ export default function reducer(state: AppState, action: Action): AppState {
     default:
       throw new Error();
   }
+}
+
+export function useInitialAppState(dispatch: React.Dispatch<Action>, isMobile: boolean) {
+  React.useEffect(() => {
+    if (isMobile) {
+      dispatch({ type: 'TOGGLE_LISTMODE' });
+    }
+  }, []);
 }

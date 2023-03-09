@@ -8,15 +8,15 @@ import TableHeadRow from './TableHeadRow';
 import TableBodyRow from './TableBodyRow';
 import useStateEdges from '../../utils/useStateEdges';
 import useTableId from '../../utils/useTableId';
-import { Mode, DatumBrowser } from '../../../types';
+import { Mode, Datum } from '../../../types';
 
 type FinancialTableProps = {
-  edges: { node: DatumBrowser }[];
+  nodes: Datum[];
   mode: Mode;
 };
 
-function FinancialTable({ edges, mode }: FinancialTableProps) {
-  const stateEdges = useStateEdges(edges, mode);
+function FinancialTable({ nodes, mode }: FinancialTableProps) {
+  const stateEdges = useStateEdges(nodes, mode);
   const id = useTableId();
   return (
     <TableContainer
@@ -31,8 +31,8 @@ function FinancialTable({ edges, mode }: FinancialTableProps) {
           <TableHeadRow mode={mode} />
         </TableHead>
         <TableBody>
-          {stateEdges.map((edge, index) => (
-            <TableBodyRow key={edge.node.id ?? index} edge={edge} mode={mode} index={index} />
+          {stateEdges.map((node, index) => (
+            <TableBodyRow key={node.id ?? index} node={node} mode={mode} index={index} />
           ))}
         </TableBody>
       </Table>

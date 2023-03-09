@@ -5,7 +5,7 @@ import { TableBodyLabel } from './TableLabel';
 import { CategoryLabel } from '../CategoryAvatar';
 import { useAppState } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
 import val from '../../utils/val';
-import type { Tab, Mode, DatumBrowser, General, PL, BS, Revenue, Expense, AttdBrowser } from '../../../types';
+import type { Tab, Mode, Datum, General, PL, BS, Revenue, Expense, Attd } from '../../../types';
 
 type DataTableCellProps = {
   value: number | null;
@@ -43,13 +43,10 @@ DataTableCell.defaultProps = {
 };
 
 type TableRowProps<T> = {
-  edge: {
-    node: Pick<General, 'year'> & T;
-  };
+  node: Pick<General, 'year'> & T;
 };
 
-export function PLTableRow({ edge }: TableRowProps<PL>) {
-  const { node } = edge;
+export function PLTableRow({ node }: TableRowProps<PL>) {
   return (
     <>
       <DataTableCell value={node.revenue} strong />
@@ -68,8 +65,7 @@ export function PLTableRow({ edge }: TableRowProps<PL>) {
   );
 }
 
-export function BSTableRow({ edge }: TableRowProps<BS>) {
-  const { node } = edge;
+export function BSTableRow({ node }: TableRowProps<BS>) {
   return (
     <>
       <DataTableCell value={node.assets} emphasized />
@@ -87,8 +83,7 @@ export function BSTableRow({ edge }: TableRowProps<BS>) {
   );
 }
 
-export function RevenueTableRow({ edge }: TableRowProps<Revenue>) {
-  const { node } = edge;
+export function RevenueTableRow({ node }: TableRowProps<Revenue>) {
   const otherRevs = (year: number) => {
     if (year <= 2010) return <DataTableCell value={node.other_revs} align="center" colSpan={3} />;
     if (year <= 2015)
@@ -119,8 +114,7 @@ export function RevenueTableRow({ edge }: TableRowProps<Revenue>) {
   );
 }
 
-export function ExpenseTableRow({ edge }: TableRowProps<Expense>) {
-  const { node } = edge;
+export function ExpenseTableRow({ node }: TableRowProps<Expense>) {
   const expenseData = (year: number) => {
     if (year <= 2005 && !node.salary)
       return (
@@ -169,8 +163,7 @@ export function ExpenseTableRow({ edge }: TableRowProps<Expense>) {
   );
 }
 
-export function AttdTableRow({ edge }: TableRowProps<AttdBrowser>) {
-  const { node } = edge;
+export function AttdTableRow({ node }: TableRowProps<Attd>) {
   const { displayFullAttd } = useAppState();
   return (
     <>
@@ -194,45 +187,43 @@ export function AttdTableRow({ edge }: TableRowProps<AttdBrowser>) {
 }
 
 type TableBodyRowProps = {
-  edge: {
-    node: Omit<DatumBrowser, 'previousData'>;
-  };
+  node: Omit<Datum, 'previousData'>;
   mode: Mode;
   index: number;
   selected?: boolean;
 };
 
-function TableBodyRow({ index, mode, edge, selected = false }: TableBodyRowProps) {
+function TableBodyRow({ index, mode, node, selected = false }: TableBodyRowProps) {
   const { tab } = useAppState();
   const rowData = (currentTab: Tab) => {
-    if (currentTab === 'pl') return <PLTableRow edge={edge} />;
-    if (currentTab === 'bs') return <BSTableRow edge={edge} />;
-    if (currentTab === 'revenue') return <RevenueTableRow edge={edge} />;
-    if (currentTab === 'expense') return <ExpenseTableRow edge={edge} />;
-    return <AttdTableRow edge={edge} />;
+    if (currentTab === 'pl') return <PLTableRow node={node} />;
+    if (currentTab === 'bs') return <BSTableRow node={node} />;
+    if (currentTab === 'revenue') return <RevenueTableRow node={node} />;
+    if (currentTab === 'expense') return <ExpenseTableRow node={node} />;
+    return <AttdTableRow node={node} />;
   };
 
   return (
     <TableRow selected={selected} hover>
-      <TableBodyLabel mode={mode} edge={edge} index={index} />
+      <TableBodyLabel mode={mode} node={node} index={index} />
       <TableCell sx={{ fontSize: 'body2.fontSize', color: 'text.secondary', width: 80 }} align="center" padding="none">
-        <CategoryLabel category={edge.node.category ?? ''} />
+        <CategoryLabel category={node.category ?? ''} />
       </TableCell>
       <TableCell
         sx={{
-          fontWeight: edge.node.elevation ? 'bold' : undefined,
+          fontWeight: node.elevation ? 'bold' : undefined,
           width: 80,
           borderRight: (theme) => `1px solid ${theme.palette.divider}`,
           color: ({ palette }) => {
-            if (edge.node.elevation === '昇格') return palette.mode === 'light' ? 'success.main' : 'success.light';
-            if (edge.node.elevation === '降格') return palette.mode === 'light' ? 'error.main' : 'error.light';
+            if (node.elevation === '昇格') return palette.mode === 'light' ? 'success.main' : 'success.light';
+            if (node.elevation === '降格') return palette.mode === 'light' ? 'error.main' : 'error.light';
             return undefined;
           },
         }}
         align="center"
         padding="none"
       >
-        {edge.node.rank}
+        {node.rank}
       </TableCell>
       {rowData(tab)}
     </TableRow>

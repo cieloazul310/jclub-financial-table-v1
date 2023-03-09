@@ -6,30 +6,40 @@ export type MobileTab = 'summary' | 'figure' | 'article' | 'settings';
 
 export type Category = 'J1' | 'J2' | 'J3';
 
-export type Club = {
-  id: string;
+export type Club<T extends 'bare' | 'node' | 'browser' = 'browser'> = (T extends 'bare' ? never : Node) & {
   slug: string;
-  href: string;
+  href: T extends 'bare' ? never : string;
   name: string;
   fullname: string;
   short_name: string;
   company: string;
   category: Category;
   hometown: string;
-  // area: string;
   settlement: string | null;
   relatedCompanies: string[] | null;
+  data: T extends 'browser' ? Datum<'browser'>[] : never;
+  posts: T extends 'browser'
+    ? {
+        entries: MdxPost[];
+        totalCount: number;
+      }
+    : never;
 };
-export type ClubNode = Node & Club;
-export type ClubBrowser = Club & { data: DatumBrowser[]; posts: { entries: MdxPost[]; totalCount: number } };
 
-export type Year = {
-  id: string;
+export type Year<T extends 'bare' | 'node' | 'browser' = 'browser'> = (T extends 'bare' ? never : Node) & {
   year: number;
-  href: string;
+  href: T extends 'bare' ? never : string;
   categories: Category[];
+  data: T extends 'browser' ? Datum<'browser'>[] : never;
+  stats: T extends 'browser'
+    ? {
+        J1: YearStats;
+        J2: YearStats;
+        J3: YearStats | null;
+      }
+    : never;
 };
-export type YearNode = Node & Year;
+
 export type StatsValues = {
   values: number[];
   totalCount: number;
@@ -46,8 +56,6 @@ export type YearStats = {
   average_attd: StatsValues;
   unit_price: StatsValues;
 };
-
-export type YearBrowser = Year & { data: DatumBrowser[]; stats: { J1: YearStats; J2: YearStats; J3: YearStats | null } };
 
 export type General = {
   id: string;
@@ -154,7 +162,7 @@ export type Expense = {
   /** 販売費および一般管理費 */
   sga: number | null;
 };
-export type Attd = {
+export type Attd<T extends 'bare' | 'node' | 'browser' = 'browser'> = {
   /** 入場料収入 */
   ticket: number | null;
   /** リーグ戦入場者数 */
@@ -181,64 +189,60 @@ export type Attd = {
   all_attd: number;
   /** ホーム総試合数 */
   all_games: number;
-};
-export type AttdBrowser = Attd & {
   /** リーグ戦平均入場者数 */
-  average_attd: number;
-  /** 客単価 */
-  unit_price: number | null;
+  average_attd: T extends 'browser' ? number : never;
+  unit_price: T extends 'browser' ? number | null : never;
 };
-export type Datum = General & SeasonResult & PL & BS & Revenue & Expense & Attd;
-export type DatumNode = Node & Datum;
-export type DatumBrowser = Datum &
-  AttdBrowser & { previousData: (General & SeasonResult & PL & BS & Revenue & Expense & AttdBrowser) | null };
-export type DatumBrowserNode = DatumBrowser & Node;
 
-export type SortableKeys = keyof (Omit<SeasonResult, 'elevation'> & PL & BS & Revenue & Expense & AttdBrowser);
+export type AllDatumFields<T extends 'bare' | 'node' | 'browser' = 'browser'> = General &
+  SeasonResult &
+  PL &
+  BS &
+  Revenue &
+  Expense &
+  Attd<T>;
+
+export type Datum<T extends 'bare' | 'node' | 'browser' = 'browser'> = (T extends 'bare' ? never : Node) &
+  AllDatumFields<T> &
+  (T extends 'browser'
+    ? {
+        previousData: AllDatumFields<T>;
+      }
+    : never);
+
+export type SortableKeys = keyof (Omit<SeasonResult, 'elevation'> & PL & BS & Revenue & Expense & Attd<'browser'>);
 
 export type Dict = {
-  [K in Exclude<keyof DatumBrowser, 'slug' | 'previousData'>]: string;
+  [K in Exclude<keyof Datum<'browser'>, 'slug' | 'previousData'>]: string;
+};
+
+export type MdxFrontmatter = {
+  title: string;
+  date: string;
+  lastmod: string | null;
+  club: string[] | null;
+  draft: boolean;
+};
+
+export type Mdx<T extends 'bare' | 'node' = 'node'> = (T extends 'node' ? Node : never) & {
+  frontmatter: MdxFrontmatter;
+};
+
+export type MdxPost<T extends 'node' | 'browser' = 'browser'> = Node & {
+  title: string;
+  date: string;
+  draft: boolean;
+  slug: string;
+  club: (T extends 'browser' ? Club : string)[] | null;
+  lastmod: string;
 };
 
 export type YearPageNeighbor = {
   mode: Mode;
   node: Pick<YearBrowser, 'year' | 'href'>;
 } | null;
-export type YearPageData = {
-  year: Omit<YearBrowser, 'data'>;
-  previous: Pick<YearBrowser, 'year' | 'href' | 'stats'> | null;
-  next: Pick<YearBrowser, 'year' | 'href'> | null;
-  allData: {
-    edges: {
-      node: DatumBrowser;
-    }[];
-  };
-};
-export type YearPageContext = {
-  previous: number | null;
-  next: number | null;
-};
 
 export type ClubPageNeighbor = { mode: Mode; node: Pick<ClubBrowser, 'short_name' | 'name' | 'href'> } | null;
-export type ClubPageData = {
-  club: Omit<ClubBrowser, 'data' | 'posts'>;
-  previous: Pick<ClubBrowser, 'name' | 'href'> | null;
-  next: Pick<ClubBrowser, 'name' | 'href'> | null;
-  allData: {
-    edges: {
-      node: DatumBrowser;
-    }[];
-  };
-  allMdxPost: {
-    edges: {
-      node: Pick<MdxPost, 'title' | 'slug' | 'date'>;
-    }[];
-  };
-};
-export type ClubPageContext = {
-  previous: string | null;
-  next: string | null;
-};
 
 export type DocsQueryData = {
   mdx: {
@@ -260,32 +264,6 @@ export type Statistics = {
   year: number;
   category: string;
 } & YearStats;
-
-export type Frontmatter = {
-  title: string;
-  date: string;
-  lastmod: string | null;
-  club: string | null;
-  draft: boolean;
-};
-
-export type MdxBare = {
-  frontmatter: Frontmatter;
-};
-export type MdxNode = Node & MdxBare;
-
-export type MdxPostBare = Node &
-  Frontmatter & {
-    slug: string;
-    body: string;
-    excerpt: string;
-  };
-
-export type MdxPost = Node &
-  Pick<MdxPostBare, 'title' | 'date' | 'draft' | 'slug' | 'body' | 'excerpt'> & {
-    lastmod: string;
-    club: Club[] | null;
-  };
 
 export type MdxPostByYear = {
   id: string;

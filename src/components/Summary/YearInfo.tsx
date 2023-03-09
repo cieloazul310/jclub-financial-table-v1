@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { ArticleTitle } from '@cieloazul310/gatsby-theme-aoi';
 import Stats from './Stats';
-import type { YearBrowser } from '../../../types';
+import type { Year } from '../../../types';
 
 type YearInfoProps = {
-  year: Omit<YearBrowser, 'data'>;
-  prevYear: Pick<YearBrowser, 'stats'> | null;
+  year: Omit<Year, 'data'>;
+  prevYear: Pick<Year, 'stats'> | null;
 };
 
 function YearInfo({ year, prevYear }: YearInfoProps) {

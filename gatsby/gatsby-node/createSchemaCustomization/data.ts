@@ -82,20 +82,18 @@ export default async function createDataSchema({ actions, schema }: CreateSchema
       fields: {
         average_attd: {
           type: `Int!`,
-          resolve: (source: Datum) => {
-            return Math.round(source.league_attd / source.league_games);
-          },
+          resolve: (source: Datum<'bare'>) => Math.round(source.league_attd / source.league_games),
         },
         unit_price: {
           type: `Int`,
-          resolve: (source: Datum) => {
+          resolve: (source: Datum<'bare'>) => {
             if (!source.ticket) return null;
             return Math.round((source.ticket * 1000000) / source.all_attd);
           },
         },
         previousData: {
           type: `Data`,
-          resolve: async (source: Datum, args, context: GatsbyGraphQLContext) => {
+          resolve: async (source: Datum<'bare'>, args, context: GatsbyGraphQLContext) => {
             const node = await context.nodeModel.findOne({
               type: `Data`,
               query: {
@@ -108,70 +106,4 @@ export default async function createDataSchema({ actions, schema }: CreateSchema
       },
     })
   );
-
-  createTypes(`
-    type Dict {
-      name: String!
-      fullname: String!
-      id: String!
-      year: String!
-      category: String!
-      license: String!
-      rank: String!
-      points: String!
-      ppg: String!
-      elevation: String!
-      revenue: String!
-      sponsor: String!
-      ticket: String!
-      broadcast: String!
-      academy_rev: String!
-      goods_rev: String!
-      other_revs: String!
-      expense: String!
-      salary: String!
-      manage_exp: String!
-      general_exp: String!
-      game_exp: String!
-      team_exp: String!
-      academy_exp: String!
-      women_exp: String!
-      goods_exp: String!
-      sga: String!
-      op_profit: String!
-      no_rev: String!
-      no_exp: String!
-      ordinary_profit: String!
-      sp_rev: String!
-      sp_exp: String!
-      profit_before_tax: String!
-      related_revenue: String!
-      tax: String!
-      profit: String!
-      curr_assets: String!
-      fixed_assets: String!
-      assets: String!
-      curr_liabilities: String!
-      fixed_liabilities: String!
-      liabilities: String!
-      capital_stock: String!
-      capital_surplus: String!
-      retained_earnings: String!
-      net_worth: String!
-      league_attd: String!
-      league_games: String!
-      leaguecup_attd: String!
-      leaguecup_games: String!
-      po_attd: String!
-      po_games: String!
-      acl_attd: String!
-      acl_games: String!
-      second_attd: String!
-      second_games: String!
-      all_attd: String!
-      all_games: String!
-      average_attd: String!
-      unit_price: String!
-    }
-  `);
 }

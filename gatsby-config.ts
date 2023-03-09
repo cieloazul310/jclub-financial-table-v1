@@ -1,3 +1,5 @@
+/* eslint import/no-extraneous-dependencies: warn */
+/* eslint global-require: warn */
 import type { GatsbyConfig } from 'gatsby';
 
 const baseUrl = 'https://cieloazul310.github.io';
@@ -12,13 +14,17 @@ const config: GatsbyConfig = {
     author: `@cieloazul310`,
     keywords: ['Jリーグ', 'Jクラブ経営情報'],
     lang: 'ja',
+    social: [
+      { name: 'twitter', url: 'https://twitter.com/cieloazul310' },
+      { name: 'github', url: 'https://github.com/cieloazul310/rockman' },
+    ],
   },
   pathPrefix,
   plugins: [
     {
       resolve: `@cieloazul310/gatsby-theme-aoi`,
       options: {
-        siteUrl: pathPrefix,
+        siteId: pathPrefix,
       },
     },
     {
@@ -38,7 +44,7 @@ const config: GatsbyConfig = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `docs`,
-        path: `./docs`,
+        path: `./content/docs`,
       },
     },
     {
@@ -51,6 +57,9 @@ const config: GatsbyConfig = {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: ['.md', '.mdx'],
+        mdxOptions: {
+          remarkPlugins: [require('remark-gfm')],
+        },
       },
     },
     {
@@ -107,5 +116,4 @@ const config: GatsbyConfig = {
     `gatsby-plugin-sitemap`,
   ],
 };
-
 export default config;

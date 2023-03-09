@@ -2,7 +2,7 @@ import * as React from 'react';
 import { graphql, type PageProps, type HeadProps } from 'gatsby';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import { Jumbotron, Section, SectionDivider, Article, PanelLink } from '@cieloazul310/gatsby-theme-aoi';
+import { Jumbotron, Section, Article, PanelLink } from '@cieloazul310/gatsby-theme-aoi';
 import { PageNavigationContainer, PageNavigationItem } from '@cieloazul310/gatsby-theme-aoi-blog-components';
 import Seo from '../components/Seo';
 import PostList from '../components/PostList';
@@ -12,9 +12,7 @@ import type { MdxPost } from '../../types';
 
 type AllPostsTemplateData = {
   allMdxPost: {
-    edges: {
-      node: Pick<MdxPost, 'title' | 'date' | 'slug'>;
-    }[];
+    nodes: Pick<MdxPost, 'title' | 'date' | 'slug'>[];
   };
 };
 type AllPostsTemplateContext = {
@@ -32,37 +30,33 @@ function AllPostsTemplate({ data, pageContext }: PageProps<AllPostsTemplateData,
 
   return (
     <Layout title="記事一覧">
-      <Jumbotron maxWidth="md">
+      <Jumbotron maxWidth="md" component="header">
         <Typography variant="h5" component="h2" gutterBottom>
           記事一覧 ({currentPage}/{numPages})
         </Typography>
         <Typography>{totalCount} posts</Typography>
       </Jumbotron>
-      <SectionDivider />
-      <Section>
+      <Section component="main">
         <Article maxWidth="md">
-          <PostList posts={allMdxPost.edges} />
+          <PostList posts={allMdxPost.nodes} />
         </Article>
       </Section>
       {currentPage !== 1 || currentPage !== numPages ? (
-        <>
-          <SectionDivider />
-          <Section>
-            <PageNavigationContainer>
-              <PageNavigationItem to={currentPage === 2 ? `${basePath}/` : `${basePath}/${currentPage - 1}/`} disabled={currentPage === 1}>
-                <Typography variant="body2">Newer</Typography>
-              </PageNavigationItem>
-              <PageNavigationItem to={`${basePath}/${currentPage + 1}/`} disabled={currentPage === numPages} next>
-                <Typography variant="body2">Older</Typography>
-              </PageNavigationItem>
-            </PageNavigationContainer>
-          </Section>
-        </>
+        <Section component="nav">
+          <PageNavigationContainer>
+            <PageNavigationItem href={currentPage === 2 ? `${basePath}/` : `${basePath}/${currentPage - 1}/`} disabled={currentPage === 1}>
+              <Typography variant="body2">Newer</Typography>
+            </PageNavigationItem>
+            <PageNavigationItem href={`${basePath}/${currentPage + 1}/`} disabled={currentPage === numPages} right>
+              <Typography variant="body2">Older</Typography>
+            </PageNavigationItem>
+          </PageNavigationContainer>
+        </Section>
       ) : null}
       <AdInSectionDividerOne />
       <Section>
         <Container maxWidth="md" disableGutters>
-          <PanelLink to="/posts/archive/" disableBorder disableMargin>
+          <PanelLink href="/posts/archive/" disableBorder disableMargin>
             記事アーカイブへ
           </PanelLink>
         </Container>
@@ -81,18 +75,11 @@ export function Head({ pageContext }: HeadProps<AllPostsTemplateData, AllPostsTe
 
 export const query = graphql`
   query AllPosts($skip: Int!, $limit: Int!, $draft: Boolean) {
-    allMdxPost(
-      filter: { draft: { ne: $draft } }
-      sort: { fields: [date, lastmod, slug], order: [DESC, DESC, DESC] }
-      limit: $limit
-      skip: $skip
-    ) {
-      edges {
-        node {
-          title
-          date(formatString: "YYYY年MM月DD日")
-          slug
-        }
+    allMdxPost(filter: { draft: { ne: $draft } }, sort: [{ date: DESC }, { lastmod: DESC }, { slug: DESC }], limit: $limit, skip: $skip) {
+      nodes {
+        title
+        date(formatString: "YYYY年MM月DD日")
+        slug
       }
     }
   }

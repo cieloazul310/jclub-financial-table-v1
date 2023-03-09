@@ -5,9 +5,7 @@ import { ListItemLink, PanelLink } from '@cieloazul310/gatsby-theme-aoi';
 import type { MdxPost } from '../../types';
 
 type PostListProps = {
-  posts: {
-    node: Pick<MdxPost, 'title' | 'date' | 'slug'>;
-  }[];
+  posts: Pick<MdxPost, 'title' | 'date' | 'slug'>[];
   title?: string;
   more?: {
     to: string;
@@ -24,10 +22,10 @@ function PostList({ posts, title, more }: PostListProps) {
         </Typography>
       ) : null}
       <List>
-        {posts.map(({ node }, index) => (
+        {posts.map((node, index) => (
           <ListItemLink
             key={node.slug}
-            to={node.slug}
+            href={node.slug}
             primaryText={node.title}
             secondaryText={node.date}
             divider={index !== posts.length - 1}
@@ -35,7 +33,7 @@ function PostList({ posts, title, more }: PostListProps) {
         ))}
       </List>
       {more ? (
-        <PanelLink to={more.to} disableMargin>
+        <PanelLink href={more.to} disableMargin>
           {more.title}
         </PanelLink>
       ) : null}

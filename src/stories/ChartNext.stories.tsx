@@ -17,29 +17,29 @@ const Template: ComponentStory<typeof ChartNext> = (args) => <ChartNext {...args
 export const PL = Template.bind({});
 PL.args = {
   tab: 'pl',
-  edges: data,
+  nodes: data,
 };
 
 export const BS = Template.bind({});
 BS.args = {
   tab: 'bs',
-  edges: data,
+  nodes: data,
 };
 
 export const Revenue = Template.bind({});
 Revenue.args = {
   tab: 'revenue',
-  edges: data,
+  nodes: data,
 };
 
 export const Attd = Template.bind({});
 Attd.args = {
   tab: 'attd',
-  edges: data,
+  nodes: data,
 };
 
 export const Fewer = Template.bind({});
 Fewer.args = {
   tab: 'pl',
-  edges: [...data].slice(0, 4),
+  nodes: [...data].slice(0, 4),
 };

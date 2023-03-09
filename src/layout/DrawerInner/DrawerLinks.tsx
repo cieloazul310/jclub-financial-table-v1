@@ -13,7 +13,7 @@ import type { Club } from '../../../types';
 
 type CategoryLinksProps = {
   title: string;
-  clubs: { node: Pick<Club, 'href' | 'short_name' | 'name'> }[];
+  clubs: Pick<Club, 'href' | 'short_name' | 'name'>[];
 };
 
 export function CategoryLinks({ title, clubs }: CategoryLinksProps) {
@@ -35,8 +35,8 @@ export function CategoryLinks({ title, clubs }: CategoryLinksProps) {
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          {clubs.map(({ node }, index) => (
-            <ListItemAppLink key={node.short_name ?? index} button to={node.href}>
+          {clubs.map((node, index) => (
+            <ListItemAppLink key={node.short_name ?? index} button href={node.href}>
               <ListItemText primary={node.name} />
             </ListItemAppLink>
           ))}
@@ -66,8 +66,8 @@ export function YearsLinks() {
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          {years.map(({ node }) => (
-            <ListItemAppLink key={node.id} button to={node.href}>
+          {years.map((node) => (
+            <ListItemAppLink key={node.id} button href={node.href}>
               <ListItemText primary={node.year} />
             </ListItemAppLink>
           ))}
@@ -81,9 +81,9 @@ function DrawerLinks() {
   const { j1, j2, j3 } = useClubsByCategory();
   return (
     <List subheader={<ListSubheader>経営情報</ListSubheader>}>
-      <CategoryLinks title="J1" clubs={j1.edges} />
-      <CategoryLinks title="J2" clubs={j2.edges} />
-      <CategoryLinks title="J3" clubs={j3.edges} />
+      <CategoryLinks title="J1" clubs={j1.nodes} />
+      <CategoryLinks title="J2" clubs={j2.nodes} />
+      <CategoryLinks title="J3" clubs={j3.nodes} />
       <YearsLinks />
     </List>
   );

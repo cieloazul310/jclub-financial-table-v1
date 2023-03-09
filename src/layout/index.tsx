@@ -8,7 +8,7 @@ import Slide from '@mui/material/Slide';
 import Tooltip from '@mui/material/Tooltip';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Section, SectionDivider, PanelLink } from '@cieloazul310/gatsby-theme-aoi';
+import { Section, SectionWrapper, PanelLink } from '@cieloazul310/gatsby-theme-aoi';
 import AppBarInner from './AppBarInner';
 import DrawerInner from './DrawerInner';
 import Footer from './Footer';
@@ -45,21 +45,17 @@ function Layout({ children, title, headerTitle, previous, next }: LayoutProps) {
           <AppBarInner title={headerTitle || title} onLeftButtonClick={toggleDrawer} previous={previous} next={next} />
         </AppBar>
       </Slide>
-      <main>
-        <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>{children}</Box>
-      </main>
-      <Box>
-        <SectionDivider />
+      <SectionWrapper>
+        {children}
         <Section>
           <Container maxWidth="md" disableGutters>
-            <PanelLink to="/" disableBorder disableMargin>
+            <PanelLink href="/" disableBorder disableMargin>
               トップページへ
             </PanelLink>
           </Container>
         </Section>
-        <SectionDivider />
         <Footer />
-      </Box>
+      </SectionWrapper>
       <Box
         sx={{
           position: 'fixed',

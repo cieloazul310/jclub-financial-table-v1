@@ -5,25 +5,23 @@ import YearInfo from './YearInfo';
 import PostList from '../PostList';
 import useIsClub from '../../utils/useIsClub';
 
-import { Mode, DatumBrowser, ClubBrowser, YearBrowser, MdxPost } from '../../../types';
+import { Mode, Datum, Club, Year, MdxPost } from '../../../types';
 
 type SummarySectionProps<T extends Mode> = {
   mode: T;
-  edges: {
-    node: DatumBrowser;
-  }[];
-  item: T extends 'club' ? Omit<ClubBrowser, 'data' | 'posts'> : Omit<YearBrowser, 'data'>;
-  prevYear: T extends 'year' ? Pick<YearBrowser, 'stats'> | null : null;
-  posts: T extends 'club' ? { node: Pick<MdxPost, 'slug' | 'title' | 'date'> }[] : null;
+  nodes: Datum[];
+  item: T extends 'club' ? Omit<Club, 'data' | 'posts'> : Omit<Year, 'data'>;
+  prevYear: T extends 'year' ? Pick<Year, 'stats'> | null : null;
+  posts: T extends 'club' ? Pick<MdxPost, 'slug' | 'title' | 'date'>[] : null;
 };
 
-function SummarySection<T extends Mode>({ mode, edges, item, prevYear, posts }: SummarySectionProps<T>) {
-  const isClub = useIsClub<Omit<ClubBrowser, 'data' | 'posts'>>(mode);
+function SummarySection<T extends Mode>({ mode, nodes, item, prevYear, posts }: SummarySectionProps<T>) {
+  const isClub = useIsClub<Omit<Club, 'data' | 'posts'>>(mode);
   return (
     <section>
       <Section>
         <Article maxWidth="md">
-          {isClub(item) ? <ClubInfo club={item} edges={edges} /> : <YearInfo year={item} prevYear={prevYear} />}
+          {isClub(item) ? <ClubInfo club={item} nodes={nodes} /> : <YearInfo year={item} prevYear={prevYear} />}
         </Article>
       </Section>
       {isClub(item) && posts && posts.length ? (
@@ -37,7 +35,7 @@ function SummarySection<T extends Mode>({ mode, edges, item, prevYear, posts }: 
                 最新の記事
               </Typography>
               <List>
-                {posts.map(({ node }, index) => (
+                {posts.map((node, index) => (
                   <ListItemLink
                     key={node.slug}
                     to={node.slug}

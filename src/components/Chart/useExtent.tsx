@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useAppState } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
 import { useStatistics } from '../../utils/graphql-hooks';
-import type { DatumBrowser } from '../../../types';
+import type { Datum } from '../../../types';
 
 function useExtentByCategory(categories: string[]) {
   const { tab } = useAppState();
@@ -30,28 +30,28 @@ function useExtentByCategory(categories: string[]) {
   }, [tab, categories]);
 }
 
-function useExtent(edges: { node: Omit<DatumBrowser, 'previousData'> }[]) {
+function useExtent(nodes: Omit<Datum, 'previousData'>[]) {
   const { tab } = useAppState();
-  const categories = Array.from(new Set(edges.map(({ node }) => node.category)));
-  const [averageMin, averageMax] = useExtentByCategory(categories);
+  const categories = Array.from(new Set(nodes.map((node) => node.category)));
+  const [, averageMax] = useExtentByCategory(categories);
 
   return React.useMemo(() => {
     if (tab === 'bs') {
-      const max = edges.reduce((accum, { node }) => Math.max(accum, node.assets ?? 0), 0);
-      const min = edges.reduce((accum, { node }) => Math.min(accum, node.net_worth ?? 0), 0);
+      const max = nodes.reduce((accum, node) => Math.max(accum, node.assets ?? 0), 0);
+      const min = nodes.reduce((accum, node) => Math.min(accum, node.net_worth ?? 0), 0);
       return [Math.min(0, min), max];
     }
     if (tab === 'expense') {
-      const max = edges.reduce((accum, { node }) => Math.max(accum, node.expense), 0);
+      const max = nodes.reduce((accum, node) => Math.max(accum, node.expense), 0);
       return [0, Math.max(max, averageMax)];
     }
     if (tab === 'attd') {
-      const max = edges.reduce((accum, { node }) => Math.max(accum, node.average_attd), 0);
+      const max = nodes.reduce((accum, node) => Math.max(accum, node.average_attd), 0);
       return [0, Math.max(max, averageMax)];
     }
-    const max = edges.reduce((accum, curr) => Math.max(accum, curr.node.revenue), 0);
+    const max = nodes.reduce((accum, curr) => Math.max(accum, curr.node.revenue), 0);
     return [0, Math.max(max, averageMax)];
-  }, [tab, edges, averageMax]);
+  }, [tab, nodes, averageMax]);
 }
 
 export default useExtent;

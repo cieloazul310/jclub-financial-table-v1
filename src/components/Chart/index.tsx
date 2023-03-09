@@ -7,7 +7,7 @@ import Bars from './Bars';
 import AverageLines from './AverageLines';
 import BarGradient from './BarGradient';
 import useExtent from './useExtent';
-import type { DatumBrowser } from '../../../types';
+import type { Datum } from '../../../types';
 
 type ChartPadding = {
   top: number;
@@ -44,8 +44,8 @@ function AxisY({ scale, chartHeight, padding }: AxisYProps) {
 }
 
 type ChartMainProps = {
-  edges: {
-    node: Omit<DatumBrowser, 'previousData'>;
+  nodes: {
+    node: Omit<Datum, 'previousData'>;
   }[];
   height: number;
   itemWidth: number;
@@ -53,9 +53,9 @@ type ChartMainProps = {
   scale: ScaleLinear<number, number>;
 };
 
-function ChartMain({ edges, height, itemWidth, padding, scale }: ChartMainProps) {
+function ChartMain({ nodes, height, itemWidth, padding, scale }: ChartMainProps) {
   const { palette, typography } = useTheme();
-  const chartWidth = edges.length * itemWidth + padding.right;
+  const chartWidth = nodes.length * itemWidth + padding.right;
   const chartHeight = height + padding.top + padding.bottom;
   const ticks = scale.ticks();
   const { fontSize, fontFamily } = typography.caption;
@@ -65,7 +65,7 @@ function ChartMain({ edges, height, itemWidth, padding, scale }: ChartMainProps)
       <svg width={chartWidth} height={chartHeight} fontSize={fontSize} fontFamily={fontFamily} textAnchor="middle">
         <BarGradient />
         <g transform={`translate(0, ${padding.top})`}>
-          <Bars edges={edges} height={height} scale={scale} itemWidth={itemWidth} />
+          <Bars nodes={nodes} height={height} scale={scale} itemWidth={itemWidth} />
           <g strokeWidth={1}>
             {ticks.map((value) =>
               value !== 0 ? (
@@ -73,7 +73,7 @@ function ChartMain({ edges, height, itemWidth, padding, scale }: ChartMainProps)
               ) : null
             )}
           </g>
-          <AverageLines edges={edges} itemWidth={itemWidth} scale={scale} />
+          <AverageLines nodes={nodes} itemWidth={itemWidth} scale={scale} />
           <line x1={0} x2={chartWidth} y1={scale(0)} y2={scale(0)} stroke={palette.text.secondary} />
         </g>
       </svg>
@@ -82,16 +82,16 @@ function ChartMain({ edges, height, itemWidth, padding, scale }: ChartMainProps)
 }
 
 type ChartProps = {
-  edges: {
-    node: Omit<DatumBrowser, 'previousData'>;
+  nodes: {
+    node: Omit<Datum, 'previousData'>;
   }[];
 };
 
-function Chart({ edges }: ChartProps) {
+function Chart({ nodes }: ChartProps) {
   const height = 320;
   const itemWidth = 40;
   const padding = { top: 20, right: 42, bottom: 40, left: 46 };
-  const [min, max] = useExtent(edges);
+  const [min, max] = useExtent(nodes);
   const scale = scaleLinear().domain([min, max]).range([height, 0]).nice();
 
   return (
@@ -105,14 +105,14 @@ function Chart({ edges }: ChartProps) {
           <Box
             display="flex"
             flexDirection="column"
-            width={itemWidth * edges.length + padding.right}
+            width={itemWidth * nodes.length + padding.right}
             height={height + padding.top + padding.bottom}
             sx={{
               overflowX: 'auto',
               overflowY: 'hidden',
             }}
           >
-            <ChartMain edges={edges} itemWidth={itemWidth} height={height} padding={padding} scale={scale} />
+            <ChartMain nodes={nodes} itemWidth={itemWidth} height={height} padding={padding} scale={scale} />
           </Box>
         </Box>
       </Box>

@@ -2,11 +2,11 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import StatsItem from './StatsItem';
-import type { YearBrowser } from '../../../types';
+import type { Year } from '../../../types';
 
 type StatsProps = {
-  year: Omit<YearBrowser, 'data'>;
-  prevYear: Pick<YearBrowser, 'stats'> | null;
+  year: Omit<Year, 'data'>;
+  prevYear: Pick<Year, 'stats'> | null;
 };
 
 function Stats({ year, prevYear }: StatsProps) {

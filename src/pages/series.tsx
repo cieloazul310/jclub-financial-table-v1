@@ -32,14 +32,14 @@ import { allSortableFields } from '../utils/allFields';
 import { j1color, j2color, j3color, othersColor } from '../utils/categoryColors';
 import useCopy from '../utils/useCopy';
 import { useDictionary } from '../utils/graphql-hooks';
-import type { DatumBrowser, ClubBrowser, YearBrowser, SortableKeys } from '../../types';
+import type { Datum, Club, Year, SortableKeys } from '../../types';
 
 function isFields(input: string): input is SortableKeys {
   return allSortableFields.includes(input as SortableKeys);
 }
 
 type CategoryTableCellProps = {
-  datum: DatumBrowser | null;
+  datum: Datum | null;
   field: SortableKeys;
 };
 
@@ -68,51 +68,51 @@ function CategoryTableCell({ datum, field }: CategoryTableCellProps) {
 
 type SeriesPageData = {
   allClub: {
-    edges: {
-      node: Pick<ClubBrowser, 'short_name' | 'slug' | 'data'>;
-    }[];
+    nodes: Pick<Club, 'short_name' | 'slug' | 'data'>[];
   };
   allYear: {
-    edges: {
-      node: Pick<YearBrowser, 'year'>;
-    }[];
+    nodes: Pick<Year, 'year'>[];
   };
 };
 
 function SeriesPage({ data }: PageProps<SeriesPageData>) {
   const { allClub, allYear } = data;
   const dict = useDictionary();
-  const slugs = allClub.edges.map(({ node }) => node.slug);
-  const yearsRange = [allYear.edges[0].node.year, allYear.edges[allYear.edges.length - 1].node.year];
+  const slugs = allClub.nodes.map((node) => node.slug);
+  const yearsRange = [allYear.nodes[0].year, allYear.nodes[allYear.nodes.length - 1].year];
   const [field, setField] = React.useState<SortableKeys>('revenue');
   const [sortField, setSortField] = React.useState<SortableKeys>('revenue');
   const [clubFilter, setClubFilter] = React.useState(slugs);
-  const [sortIndex, setSortIndex] = React.useState(allYear.edges.length - 1);
+  const [sortIndex, setSortIndex] = React.useState(allYear.nodes.length - 1);
   const [sortAsc, setSortAsc] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [open, setOpen] = React.useState(false);
 
-  const allClubValues = React.useMemo(() => {
-    return allClub.edges.map(({ node }) => {
-      if (node.data.length === allYear.edges.length) return node;
+  const allClubValues = React.useMemo(
+    () =>
+      allClub.nodes.map((node) => {
+        if (node.data.length === allYear.nodes.length) return node;
 
-      const firstYear = node.data[0].year;
-      const lastYear = node.data[node.data.length - 1].year;
-      return {
-        ...node,
-        data: [
-          ...Array.from({ length: firstYear - yearsRange[0] }, () => null),
-          ...node.data,
-          ...Array.from({ length: yearsRange[1] - lastYear }, () => null),
-        ],
-      };
-    });
-  }, [allClub]);
-  const statedClubs = React.useMemo(() => {
-    return allClubValues
-      .filter(({ slug }) => clubFilter.includes(slug))
-      .sort((a, b) => (sortAsc ? 1 : -1) * ((a.data[sortIndex]?.[sortField] ?? 0) - (b.data[sortIndex]?.[sortField] ?? 0)));
-  }, [allClubValues, clubFilter, sortIndex, sortField, sortAsc]);
+        const firstYear = node.data[0].year;
+        const lastYear = node.data[node.data.length - 1].year;
+        return {
+          ...node,
+          data: [
+            ...Array.from({ length: firstYear - yearsRange[0] }, () => null),
+            ...node.data,
+            ...Array.from({ length: yearsRange[1] - lastYear }, () => null),
+          ],
+        };
+      }),
+    [allClub]
+  );
+  const statedClubs = React.useMemo(
+    () =>
+      allClubValues
+        .filter(({ slug }) => clubFilter.includes(slug))
+        .sort((a, b) => (sortAsc ? 1 : -1) * ((a.data[sortIndex]?.[sortField] ?? 0) - (b.data[sortIndex]?.[sortField] ?? 0))),
+    [allClubValues, clubFilter, sortIndex, sortField, sortAsc]
+  );
 
   const handleClose = () => {
     setOpen(false);
@@ -189,7 +189,7 @@ function SeriesPage({ data }: PageProps<SeriesPageData>) {
               <Menu id="filter-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleMenuClose}>
                 <MenuItem onClick={setAllFilter(true)}>全て選択</MenuItem>
                 <MenuItem onClick={setAllFilter(false)}>全て解除</MenuItem>
-                {allClub.edges.map(({ node }) => (
+                {allClub.nodes.map((node) => (
                   <MenuItem key={node.slug} onClick={onMenuItemClick(node.slug ?? '')}>
                     <ListItemIcon>{clubFilter.includes(node.slug ?? '') ? <CheckIcon /> : <RemoveIcon />}</ListItemIcon>
                     {node.short_name}
@@ -209,7 +209,7 @@ function SeriesPage({ data }: PageProps<SeriesPageData>) {
                 単位: 百万円
               </Typography>
               <Typography variant="body2" sx={{ textAlign: { xs: 'left', sm: 'right' } }}>
-                ソート: {`${dict[sortField]}(${allYear.edges[sortIndex].node.year}) ${sortAsc ? '少ない順' : '多い順'}`}
+                ソート: {`${dict[sortField]}(${allYear.nodes[sortIndex].year}) ${sortAsc ? '少ない順' : '多い順'}`}
               </Typography>
             </Box>
           </Box>
@@ -241,7 +241,7 @@ function SeriesPage({ data }: PageProps<SeriesPageData>) {
                   >
                     クラブ
                   </TableCell>
-                  {allYear.edges.map(({ node }, index) => (
+                  {allYear.nodes.map((node, index) => (
                     <TableCell
                       key={node.year.toString()}
                       component="th"
@@ -319,29 +319,25 @@ export function Head() {
 }
 
 export const query = graphql`
-  query {
+  {
     allClub {
-      edges {
-        node {
-          data {
-            ...generalFields
-            ...seasonResultFields
-            ...plFields
-            ...bsFields
-            ...revenueFields
-            ...expenseFields
-            ...attdFields
-          }
-          short_name
-          slug
+      nodes {
+        data {
+          ...generalFields
+          ...seasonResultFields
+          ...plFields
+          ...bsFields
+          ...revenueFields
+          ...expenseFields
+          ...attdFields
         }
+        short_name
+        slug
       }
     }
-    allYear(sort: { fields: year, order: ASC }) {
-      edges {
-        node {
-          year
-        }
+    allYear(sort: { year: ASC }) {
+      nodes {
+        year
       }
     }
   }

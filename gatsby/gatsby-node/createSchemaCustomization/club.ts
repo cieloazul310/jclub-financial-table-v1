@@ -1,6 +1,6 @@
 import type { CreateSchemaCustomizationArgs } from 'gatsby';
 import type { GatsbyGraphQLContext } from '../graphql';
-import type { Club, DatumNode, MdxPost } from '../../../types';
+import type { Club, Datum, MdxPost } from '../../../types';
 
 export default async function createClubSchema({ actions, schema }: CreateSchemaCustomizationArgs) {
   const { createTypes } = actions;
@@ -35,11 +35,11 @@ export default async function createClubSchema({ actions, schema }: CreateSchema
         data: {
           type: `[Data]!`,
           resolve: async (source: Club, args, context: GatsbyGraphQLContext) => {
-            const { entries } = await context.nodeModel.findAll<DatumNode>({
+            const { entries } = await context.nodeModel.findAll<Datum<'node'>>({
               type: `Data`,
               query: {
                 filter: { slug: { eq: source.slug } },
-                sort: { fields: ['year'], order: ['ASC'] },
+                sort: { year: 'ASC' },
               },
             });
             return entries;
@@ -47,15 +47,14 @@ export default async function createClubSchema({ actions, schema }: CreateSchema
         },
         posts: {
           type: `PostsByClub!`,
-          resolve: async (source: Club, args: unknown, context: GatsbyGraphQLContext) => {
-            return context.nodeModel.findAll<MdxPost>({
+          resolve: async (source: Club<'bare'>, args: unknown, context: GatsbyGraphQLContext) =>
+            context.nodeModel.findAll<MdxPost<'node'>>({
               type: `MdxPost`,
               query: {
                 filter: { club: { elemMatch: { short_name: { eq: source.short_name } } } },
-                sort: { fields: ['date'], order: ['DESC'] },
+                sort: { date: 'DESC' },
               },
-            });
-          },
+            }),
         },
       },
     })

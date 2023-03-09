@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { graphql, type PageProps, type HeadProps } from 'gatsby';
-import { SectionDivider } from '@cieloazul310/gatsby-theme-aoi';
 import TemplateLayout from '../layout/TemplateLayout';
 import Seo from '../components/Seo';
 import SummarySection from '../components/Summary';
@@ -8,7 +7,23 @@ import NavigationSection from '../components/Navigation';
 import FigureSection from '../components/Figure';
 import ArticleSection from '../components/Article';
 import { AdInSectionDividerOne } from '../components/Ads';
-import type { ClubPageData, ClubPageContext } from '../../types';
+import type { Club, Datum, MdxPost } from '../../types';
+
+export type ClubPageData = {
+  club: Omit<Club, 'data' | 'posts'>;
+  previous: Pick<Club, 'name' | 'href'> | null;
+  next: Pick<Club, 'name' | 'href'> | null;
+  allData: {
+    nodes: Datum[];
+  };
+  allMdxPost: {
+    nodes: Pick<MdxPost, 'title' | 'slug' | 'date'>[];
+  };
+};
+export type ClubPageContext = {
+  previous: string | null;
+  next: string | null;
+};
 
 function ClubTemplate({ data }: PageProps<ClubPageData, ClubPageContext>) {
   const { club, previous, next, allMdxPost } = data;
@@ -20,10 +35,8 @@ function ClubTemplate({ data }: PageProps<ClubPageData, ClubPageContext>) {
       previous={previous ? { to: previous.href, title: previous.name } : null}
       next={next ? { to: next.href, title: next.name } : null}
     >
-      <FigureSection edges={data.allData.edges} mode="club" />
-      <SectionDivider />
-      <SummarySection mode="club" edges={data.allData.edges} item={data.club} prevYear={null} posts={allMdxPost.edges} />
-      <SectionDivider />
+      <FigureSection nodes={data.allData.nodes} mode="club" />
+      <SummarySection mode="club" nodes={data.allData.nodes} item={data.club} prevYear={null} posts={allMdxPost.nodes} />
       <NavigationSection
         mode="club"
         item={data.club}
@@ -32,7 +45,6 @@ function ClubTemplate({ data }: PageProps<ClubPageData, ClubPageContext>) {
       />
       <AdInSectionDividerOne />
       <ArticleSection />
-      <SectionDivider />
       <NavigationSection
         mode="club"
         item={data.club}
@@ -79,9 +91,16 @@ export const query = graphql`
       href
       name
     }
-    allData(filter: { slug: { eq: $slug } }, sort: { fields: year, order: ASC }) {
-      edges {
-        node {
+    allData(filter: { slug: { eq: $slug } }, sort: { year: ASC }) {
+      nodes {
+        ...generalFields
+        ...seasonResultFields
+        ...plFields
+        ...bsFields
+        ...revenueFields
+        ...expenseFields
+        ...attdFields
+        previousData {
           ...generalFields
           ...seasonResultFields
           ...plFields
@@ -89,29 +108,18 @@ export const query = graphql`
           ...revenueFields
           ...expenseFields
           ...attdFields
-          previousData {
-            ...generalFields
-            ...seasonResultFields
-            ...plFields
-            ...bsFields
-            ...revenueFields
-            ...expenseFields
-            ...attdFields
-          }
         }
       }
     }
     allMdxPost(
       filter: { club: { elemMatch: { slug: { eq: $slug } } }, draft: { ne: $draft } }
-      sort: { fields: [date, lastmod], order: [DESC, DESC] }
+      sort: [{ date: DESC }, { lastmod: DESC }]
       limit: 5
     ) {
-      edges {
-        node {
-          slug
-          title
-          date(formatString: "YYYY年MM月DD日")
-        }
+      nodes {
+        slug
+        title
+        date(formatString: "YYYY年MM月DD日")
       }
     }
   }

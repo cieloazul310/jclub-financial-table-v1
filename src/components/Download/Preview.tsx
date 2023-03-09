@@ -18,7 +18,7 @@ type PreviewProps = {
 function Preview({ dataset }: PreviewProps) {
   const allClubs = useAllClubs();
   const allYears = useAllYears();
-  const slugs = allClubs.map(({ node }) => node.slug);
+  const slugs = allClubs.map((node) => node.slug);
   const [dataFormat, setDataFormat] = React.useState('json');
   const [grouping, setGrouping] = React.useState('none');
   const handleChangeDataFormat = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,14 +36,14 @@ function Preview({ dataset }: PreviewProps) {
     const json = (() => {
       if (grouping === 'year')
         return allYears
-          .map(({ node }) => ({
+          .map((node) => ({
             year: node.year,
             items: dataset.filter((datum) => datum['年'] === node.year),
           }))
           .filter(({ items }) => items.length > 0);
       if (grouping === 'club')
         return allClubs
-          .map(({ node }) => {
+          .map((node) => {
             const { id, href, slug, ...club } = node;
             return {
               id: slug,

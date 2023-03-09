@@ -1,7 +1,7 @@
 import type { CreateSchemaCustomizationArgs } from 'gatsby';
 import type { GatsbyIterable } from 'gatsby/dist/datastore/common/iterable';
 import type { GatsbyGraphQLContext } from '../graphql';
-import type { Year, DatumNode, Category, SortableKeys } from '../../../types';
+import type { Year, Datum, Category, SortableKeys } from '../../../types';
 
 function valuesToStats(data: number[]) {
   const values = data.sort((a, b) => a - b);
@@ -12,7 +12,7 @@ function valuesToStats(data: number[]) {
   return { values, totalCount, average };
 }
 
-function createStats(data: DatumNode[], key: SortableKeys) {
+function createStats(data: Datum<'node'>[], key: SortableKeys) {
   if (key === 'average_attd') {
     const values = data.map(({ league_attd, league_games }) => Math.round(league_attd / league_games));
     return valuesToStats(values);
@@ -27,7 +27,7 @@ function createStats(data: DatumNode[], key: SortableKeys) {
   return valuesToStats(values);
 }
 
-function entriesToStats(entries: GatsbyIterable<DatumNode>, categories: Category[]) {
+function entriesToStats(entries: GatsbyIterable<Datum<'node'>>, categories: Category[]) {
   const item = categories.map((category) => {
     const data = Array.from(entries).filter((datum) => datum.category === category);
     return {
@@ -88,11 +88,11 @@ export default async function createYearSchema({ actions, schema }: CreateSchema
         data: {
           type: `[Data]!`,
           resolve: async (source: Year, args, context: GatsbyGraphQLContext) => {
-            const { entries } = await context.nodeModel.findAll<DatumNode>({
+            const { entries } = await context.nodeModel.findAll<Datum<'node'>>({
               type: `Data`,
               query: {
                 filter: { year: { eq: source.year } },
-                sort: { fields: ['revenue', 'profit'], order: ['DESC', 'DESC'] },
+                sort: { revenue: 'DESC', profit: 'DESC' },
               },
             });
             return entries;
@@ -101,7 +101,7 @@ export default async function createYearSchema({ actions, schema }: CreateSchema
         stats: {
           type: `YearStats!`,
           resolve: async (source: Year, args, context: GatsbyGraphQLContext) => {
-            const { entries } = await context.nodeModel.findAll<DatumNode>({
+            const { entries } = await context.nodeModel.findAll<Datum<'node'>>({
               type: `Data`,
               query: {
                 filter: { year: { eq: source.year } },

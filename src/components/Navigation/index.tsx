@@ -5,17 +5,17 @@ import { PageNavigationContainer, PageNavigationItem } from '@cieloazul310/gatsb
 import { CategoryLink, YearsLink } from '../Links';
 import useIsClub from '../../utils/useIsClub';
 
-import { Mode, ClubBrowser, YearBrowser } from '../../../types';
+import { Mode, Club, Year } from '../../../types';
 
 type NavigationSectionProps<T extends Mode> = {
   mode: T;
-  item: T extends 'club' ? Omit<ClubBrowser, 'data' | 'posts'> : Omit<YearBrowser, 'data'>;
+  item: T extends 'club' ? Omit<Club, 'data' | 'posts'> : Omit<Year, 'data'>;
   previous: { to: string; title: string } | null;
   next: { to: string; title: string } | null;
 };
 
 function NavigationSection<T extends Mode>({ mode, item, previous, next }: NavigationSectionProps<T>) {
-  const isClub = useIsClub<Omit<ClubBrowser, 'data'>>(mode);
+  const isClub = useIsClub<Omit<Club, 'data'>>(mode);
   return (
     <section>
       <Section>
@@ -24,10 +24,10 @@ function NavigationSection<T extends Mode>({ mode, item, previous, next }: Navig
       <SectionDivider />
       <Section>
         <PageNavigationContainer>
-          <PageNavigationItem to={previous?.to ?? '#'} disabled={!previous}>
+          <PageNavigationItem href={previous?.to ?? '#'} disabled={!previous}>
             <Typography variant="body2">{previous?.title}</Typography>
           </PageNavigationItem>
-          <PageNavigationItem to={next?.to ?? '#'} next disabled={!next}>
+          <PageNavigationItem href={next?.to ?? '#'} right disabled={!next}>
             <Typography variant="body2">{next?.title}</Typography>
           </PageNavigationItem>
         </PageNavigationContainer>

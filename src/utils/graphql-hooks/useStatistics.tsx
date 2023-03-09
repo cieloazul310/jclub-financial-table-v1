@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import type { YearBrowser, Statistics } from '../../../types';
+import type { Year, Statistics } from '../../../types';
 
 type StatisticQueryData = {
   allYear: {
-    edges: {
-      node: Pick<YearBrowser, 'year' | 'categories' | 'stats'>;
-    }[];
+    nodes: Pick<Year, 'year' | 'categories' | 'stats'>[];
   };
 };
 
@@ -16,22 +14,20 @@ function useStatistics(): {
   J3: Statistics[];
 } {
   const { allYear } = useStaticQuery<StatisticQueryData>(graphql`
-    query {
-      allYear(sort: { fields: year, order: ASC }) {
-        edges {
-          node {
-            year
-            categories
-            stats {
-              J1 {
-                ...allStats
-              }
-              J2 {
-                ...allStats
-              }
-              J3 {
-                ...allStats
-              }
+    {
+      allYear(sort: { year: ASC }) {
+        nodes {
+          year
+          categories
+          stats {
+            J1 {
+              ...allStats
+            }
+            J2 {
+              ...allStats
+            }
+            J3 {
+              ...allStats
             }
           }
         }
@@ -39,19 +35,19 @@ function useStatistics(): {
     }
   `);
   return React.useMemo(() => {
-    const J1 = allYear.edges.map(({ node }) => ({
+    const J1 = allYear.nodes.map((node) => ({
       year: node.year,
       category: 'J1',
       ...node.stats.J1,
     }));
-    const J2 = allYear.edges.map(({ node }) => ({
+    const J2 = allYear.nodes.map((node) => ({
       year: node.year,
       category: 'J2',
       ...node.stats.J2,
     }));
-    const J3 = allYear.edges
-      .filter(({ node }) => node.categories.includes('J3'))
-      .map(({ node }) => ({
+    const J3 = allYear.nodes
+      .filter((node) => node.categories.includes('J3'))
+      .map((node) => ({
         year: node.year,
         category: 'J3',
         ...node.stats.J3,

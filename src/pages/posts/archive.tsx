@@ -3,7 +3,7 @@ import { graphql, type PageProps } from 'gatsby';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
-import { Jumbotron, Section, SectionDivider, Article, PanelLink, ListItemLink } from '@cieloazul310/gatsby-theme-aoi';
+import { Jumbotron, Section, Article, PanelLink, ListItemLink } from '@cieloazul310/gatsby-theme-aoi';
 import Layout from '../../layout';
 import Seo from '../../components/Seo';
 import type { MdxPostByYear } from '../../../types';
@@ -17,19 +17,18 @@ function ArchivePage({ data }: PageProps<ArchivePageData>) {
 
   return (
     <Layout title="記事アーカイブ">
-      <Jumbotron maxWidth="md">
+      <Jumbotron maxWidth="md" component="header">
         <Typography variant="h5" component="h2" gutterBottom>
           記事アーカイブ
         </Typography>
       </Jumbotron>
-      <SectionDivider />
-      <Section>
+      <Section component="main">
         <Article maxWidth="md">
           <List>
             {allMdxPostByYears.map(({ basePath, year, totalCount }, index) => (
               <ListItemLink
                 key={basePath}
-                to={basePath}
+                href={basePath}
                 primaryText={`${year}年`}
                 secondaryText={`${totalCount} posts`}
                 divider={index !== allMdxPostByYears.length - 1}
@@ -38,10 +37,9 @@ function ArchivePage({ data }: PageProps<ArchivePageData>) {
           </List>
         </Article>
       </Section>
-      <SectionDivider />
       <Section>
         <Container maxWidth="md" disableGutters>
-          <PanelLink to="/posts/" disableBorder disableMargin>
+          <PanelLink href="/posts/" disableBorder disableMargin>
             記事一覧へ
           </PanelLink>
         </Container>

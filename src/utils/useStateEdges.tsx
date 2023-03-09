@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { useAppState } from '../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
 import { FilterCategory } from '../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppState';
-import type { SortableKeys, Mode, DatumBrowser } from '../../types';
+import type { SortableKeys, Mode, Datum } from '../../types';
 
-function getCategory({ category }: Pick<DatumBrowser, 'category'>): FilterCategory {
+function getCategory({ category }: Pick<Datum, 'category'>): FilterCategory {
   return category !== 'J1' && category !== 'J2' && category !== 'J3' ? 'others' : category;
 }
 
-export function getRank(data: Pick<DatumBrowser, 'category' | 'rank'>): number {
+export function getRank(data: Pick<Datum, 'category' | 'rank'>): number {
   const addition = (category: string) => {
     if (category === 'J1') return 0;
     if (category === 'J2') return 100;
@@ -18,30 +18,30 @@ export function getRank(data: Pick<DatumBrowser, 'category' | 'rank'>): number {
   return addition(data.category) + data.rank;
 }
 
-export function useFilteredEdges(edges: { node: DatumBrowser }[], mode: Mode): { node: DatumBrowser }[] {
+export function useFilteredData(nodes: Datum[], mode: Mode): Datum[] {
   const { filterCategories } = useAppState();
   return React.useMemo(
-    () => (mode === 'club' ? edges : edges.filter((edge) => filterCategories.includes(getCategory(edge.node)))),
-    [edges, mode, filterCategories]
+    () => (mode === 'club' ? nodes : nodes.filter((node) => filterCategories.includes(getCategory(node)))),
+    [nodes, mode, filterCategories]
   );
 }
 
-export function getValue({ node }: { node: Pick<DatumBrowser, SortableKeys | 'category'> }, sortKey: SortableKeys): number {
+export function getValue(node: Pick<Datum, SortableKeys | 'category'>, sortKey: SortableKeys): number {
   if (sortKey === 'rank') return getRank(node);
   if (sortKey === 'unit_price') return (node.ticket ?? 1) / (node.all_attd ?? 1);
   if (sortKey === 'average_attd') return (node.league_attd ?? 1) / (node.league_games ?? 1);
   return node[sortKey] ?? 1;
 }
 
-export function useSortedEdges(edges: { node: DatumBrowser }[], mode: Mode): { node: DatumBrowser }[] {
+export function useSortedData(nodes: Datum[], mode: Mode): Datum[] {
   const { sortKey, sortAsc } = useAppState();
   return React.useMemo(
-    () => (mode === 'club' ? edges : [...edges].sort((a, b) => (sortAsc ? 1 : -1) * (getValue(a, sortKey) - getValue(b, sortKey)))),
-    [mode, edges, sortKey, sortAsc]
+    () => (mode === 'club' ? nodes : [...nodes].sort((a, b) => (sortAsc ? 1 : -1) * (getValue(a, sortKey) - getValue(b, sortKey)))),
+    [mode, nodes, sortKey, sortAsc]
   );
 }
 
-export function useSortedValue({ node }: { node: DatumBrowser }): string {
+export function useSortedValue(node: Datum): string {
   const { sortKey } = useAppState();
   if (sortKey === 'unit_price') {
     return node.ticket && node.all_attd ? `${Math.round((node.ticket * 1000000) / node.all_attd)}円` : '-';
@@ -55,8 +55,8 @@ export function useSortedValue({ node }: { node: DatumBrowser }): string {
   return '-';
 }
 
-export default function useStateEdges(edges: { node: DatumBrowser }[], mode: Mode): { node: DatumBrowser }[] {
-  const filtered = useFilteredEdges(edges, mode);
-  const sorted = useSortedEdges(filtered, mode);
+export default function useStateData(nodes: Datum[], mode: Mode): Datum[] {
+  const filtered = useFilteredData(nodes, mode);
+  const sorted = useSortedData(filtered, mode);
   return sorted;
 }

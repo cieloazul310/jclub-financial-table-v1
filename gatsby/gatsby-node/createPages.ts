@@ -4,25 +4,32 @@ import type { Club, MdxPost, Year, MdxPostByYear } from '../../types';
 
 type GraphQLResult = {
   allClub: {
-    edges: {
-      node: Pick<Club, 'slug' | 'href'> & {
-        posts: { totalCount: number };
-      };
-    }[];
+    nodes: (Pick<Club, 'slug' | 'href'> & {
+      posts: { totalCount: number };
+    })[];
   };
   allYear: {
-    edges: {
-      node: Pick<Year, 'year' | 'href'>;
-    }[];
+    nodes: Pick<Year, 'year' | 'href'>[];
   };
   allMdxPost: {
-    edges: {
-      node: Pick<MdxPost, 'slug' | 'draft'> & { club: Pick<Club, 'slug'>[] | null };
-    }[];
+    nodes: (Pick<MdxPost, 'slug' | 'draft'> & {
+      club: Pick<Club, 'slug'>[] | null;
+      internal: Pick<MdxPost['internal'], 'contentFilePath'>;
+    })[];
   };
   allMdxPostByYears: MdxPostByYear[];
 };
 
+/**
+ * createPages で何をするか
+ *
+ * 1. クラブごとの経営情報一覧ページを作成
+ * 2. 年度別の経営情報一覧ページを作成
+ * 3. 記事ごとのページを作成
+ * 4. 記事一覧のページを作成
+ * 5. クラブごとの記事一覧のページを作成
+ * 6. 年別の記事一覧のページを作成
+ */
 export default async function createPages({ graphql, actions, reporter }: CreatePagesArgs) {
   const { createPage } = actions;
   const isProduction = process.env.NODE_ENV === 'production';
@@ -30,33 +37,30 @@ export default async function createPages({ graphql, actions, reporter }: Create
   const result = await graphql<GraphQLResult>(
     `
       query CreatePages($draft: Boolean) {
-        allClub(sort: { fields: index, order: ASC }) {
-          edges {
-            node {
-              slug
-              href
-              posts {
-                totalCount
-              }
+        allClub(sort: { index: ASC }) {
+          nodes {
+            slug
+            href
+            posts {
+              totalCount
             }
           }
         }
-        allYear(sort: { fields: year, order: ASC }) {
-          edges {
-            node {
-              year
-              href
-            }
+        allYear(sort: { year: ASC }) {
+          nodes {
+            year
+            href
           }
         }
-        allMdxPost(filter: { draft: { ne: $draft } }, sort: { fields: [date, lastmod, slug], order: [ASC, ASC, ASC] }) {
-          edges {
-            node {
+        allMdxPost(filter: { draft: { ne: $draft } }, sort: [{ date: ASC }, { lastmod: ASC }, { slug: ASC }]) {
+          nodes {
+            slug
+            draft
+            club {
               slug
-              draft
-              club {
-                slug
-              }
+            }
+            internal {
+              contentFilePath
             }
           }
         }
@@ -78,56 +82,57 @@ export default async function createPages({ graphql, actions, reporter }: Create
     reporter.panicOnBuild('🚨  ERROR: Loading "createPages" query');
   }
   if (!result.data) throw new Error('There are no data');
-  const { allClub, allYear, allMdxPost, allMdxPostByYears } = result.data;
+  const { allClub, allYear /* allMdxPost, allMdxPostByYears */ } = result.data;
 
-  const postsPerPage = 20;
+  // const postsPerPage = 20;
 
-  // クラブ毎の経営情報ページを作成
-  allClub.edges.forEach(({ node }, index) => {
-    const previous = index !== 0 ? allClub.edges[index - 1] : null;
-    const next = index !== allClub.edges.length - 1 ? allClub.edges[index + 1] : null;
+  // 1. クラブごとの経営情報一覧ページを作成
+  allClub.nodes.forEach((node, index) => {
+    const previous = index !== 0 ? allClub.nodes[index - 1] : null;
+    const next = index !== allClub.nodes.length - 1 ? allClub.nodes[index + 1] : null;
 
     createPage({
       path: node.href,
       component: path.resolve(`./src/templates/club.tsx`),
       context: {
-        previous: previous?.node.slug ?? null,
-        next: next?.node.slug ?? null,
+        previous: previous?.slug ?? null,
+        next: next?.slug ?? null,
         slug: node.slug,
         draft: isProduction ? true : null,
       },
     });
   });
 
-  // 年度毎の経営情報ページを作成
-  allYear.edges.forEach(({ node }, index) => {
-    const previous = index !== 0 ? allYear.edges[index - 1] : null;
-    const next = index !== allYear.edges.length - 1 ? allYear.edges[index + 1] : null;
+  // 2. 年度別の経営情報一覧ページを作成
+  allYear.nodes.forEach((node, index) => {
+    const previous = index !== 0 ? allYear.nodes[index - 1] : null;
+    const next = index !== allYear.nodes.length - 1 ? allYear.nodes[index + 1] : null;
 
     createPage({
       path: node.href,
       component: path.resolve(`./src/templates/year.tsx`),
       context: {
-        previous: previous?.node.year ?? null,
-        next: next?.node.year ?? null,
+        previous: previous?.year ?? null,
+        next: next?.year ?? null,
         year: node.year,
         draft: isProduction ? true : null,
       },
     });
   });
-
-  // 記事のページを作成
-  allMdxPost.edges.forEach(({ node }, index, arr) => {
+  /*
+  // 3. 記事ごとのページを作成
+  allMdxPost.nodes.forEach((node, index, arr) => {
     const previous = index !== 0 ? arr[index - 1] : null;
     const next = index !== arr.length - 1 ? arr[index + 1] : null;
     const specifiedClub = node.club && node.club.length === 1 ? node.club[0].slug : null;
 
+    const mdxPostTempalte = path.resolve('./src/templates/post.tsx');
     createPage({
       path: node.slug,
-      component: path.resolve('./src/templates/post.tsx'),
+      component: `${mdxPostTempalte}?__contentFilePath=${node.internal.contentFilePath}`,
       context: {
-        previous: previous?.node.slug ?? null,
-        next: next?.node.slug ?? null,
+        previous: previous?.slug ?? null,
+        next: next?.slug ?? null,
         slug: node.slug,
         specifiedClub,
         club: node.club?.map(({ slug }) => slug) ?? null,
@@ -136,8 +141,8 @@ export default async function createPages({ graphql, actions, reporter }: Create
     });
   });
 
-  // 記事一覧ページを作成
-  const numAllPostsPages = Math.ceil(allMdxPost.edges.length / postsPerPage);
+  // 4. 記事一覧のページを作成
+  const numAllPostsPages = Math.ceil(allMdxPost.nodes.length / postsPerPage);
   const allPostsBasePath = '/posts';
   Array.from({ length: numAllPostsPages }).forEach((_, i) => {
     createPage({
@@ -149,16 +154,16 @@ export default async function createPages({ graphql, actions, reporter }: Create
         numPages: numAllPostsPages,
         currentPage: i + 1,
         basePath: allPostsBasePath,
-        totalCount: allMdxPost.edges.length,
+        totalCount: allMdxPost.nodes.length,
         draft: isProduction ? true : null,
       },
     });
   });
 
-  // クラブ毎の記事一覧ページを作成
-  allClub.edges
-    .filter(({ node }) => node.posts.totalCount)
-    .forEach(({ node }) => {
+  // 5. クラブごとの記事一覧のページを作成
+  allClub.nodes
+    .filter((node) => node.posts.totalCount)
+    .forEach((node) => {
       const { totalCount } = node.posts;
       const basePath = `/club/${node.slug}/posts`;
       const numPages = Math.ceil(totalCount / postsPerPage);
@@ -181,7 +186,7 @@ export default async function createPages({ graphql, actions, reporter }: Create
       });
     });
 
-  // 年別の記事一覧ページを作成
+  // 6. 年別の記事一覧のページを作成
   allMdxPostByYears.forEach(({ year, basePath, totalCount, lt, gte }, index) => {
     const next = index === 0 ? null : allMdxPostByYears[index - 1];
     const previous = index === allMdxPostByYears.length - 1 ? null : allMdxPostByYears[index + 1];
@@ -201,4 +206,5 @@ export default async function createPages({ graphql, actions, reporter }: Create
       },
     });
   });
+  */
 }

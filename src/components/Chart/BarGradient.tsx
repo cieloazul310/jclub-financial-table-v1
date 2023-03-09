@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useTheme } from '@mui/material/styles';
 import { j1color, j2color, j3color } from '../../utils/categoryColors';
-import type { DatumBrowser } from '../../../types';
+import type { Datum } from '../../../types';
 
 function BarGradient() {
   const { palette } = useTheme();
@@ -30,7 +30,7 @@ function BarGradient() {
 
 export default BarGradient;
 
-export function useFill({ category }: Pick<DatumBrowser, 'category'>) {
+export function useFill({ category }: Pick<Datum, 'category'>) {
   const { palette } = useTheme();
   const shade = palette.mode === 'light' ? 400 : 700;
   return React.useMemo(() => {

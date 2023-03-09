@@ -1,11 +1,17 @@
+import * as path from 'path';
 import type { CreateNodeArgs, Node } from 'gatsby';
 import { createFilePath } from 'gatsby-source-filesystem';
-import type { MdxNode } from '../../types';
+import type { Mdx } from '../../types';
 
-function isMdxNode(node: Node & Record<string, unknown>): node is MdxNode {
+function isMdx(node: Node & Record<string, unknown>): node is Mdx<'node'> {
   return node.internal.type === `Mdx`;
 }
 
+/**
+ * onCreateNode で何をするか
+ *
+ * 1. Mdx ノードから MdxPost ノードを作成
+ */
 export default async function onCreateNode({
   node,
   actions: { createNode, createParentChildLink },
@@ -16,9 +22,9 @@ export default async function onCreateNode({
   const parentFileNode = getNode(node.parent ?? '');
   const source = parentFileNode?.sourceInstanceName;
 
-  if (isMdxNode(node) && source !== 'docs') {
+  if (isMdx(node) && source !== 'docs') {
     const value = createFilePath({ node, getNode });
-    const slug = `/posts${value}`;
+    const slug = path.join('/posts', value);
 
     const mdxPostId = createNodeId(`${node.id} >>> MdxPost`);
     const mdxPostNode = getNode(mdxPostId);
@@ -43,6 +49,7 @@ export default async function onCreateNode({
         contentDigest: createContentDigest(fieldData),
         content: JSON.stringify(fieldData),
         description: `Mdx implementation of the BlogPost interface`,
+        contentFilePath: node.internal.contentFilePath,
       },
     });
 

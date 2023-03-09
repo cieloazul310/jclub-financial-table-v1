@@ -15,9 +15,7 @@ export default AppStateContext;
 
 export function useAppState(): AppState {
   const { state } = React.useContext(AppStateContext);
-  return React.useMemo(() => {
-    return state;
-  }, [state]);
+  return React.useMemo(() => state, [state]);
 }
 
 export function useDispatch(): React.Dispatch<Action> {

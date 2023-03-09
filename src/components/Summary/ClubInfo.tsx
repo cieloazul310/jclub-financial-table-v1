@@ -1,20 +1,20 @@
 import * as React from 'react';
-import { ExternalLink, ArticleTitle, Ul, Li } from '@cieloazul310/gatsby-theme-aoi';
+import { AppLink, ArticleTitle, Ul, Li } from '@cieloazul310/gatsby-theme-aoi';
 import Chart from '../Chart';
-import type { ClubBrowser, DatumBrowser } from '../../../types';
+import type { Club, Datum } from '../../../types';
 
 type ClubInfoProps = {
-  club: Omit<ClubBrowser, 'data' | 'posts'>;
-  edges: {
-    node: DatumBrowser;
+  club: Omit<Club, 'data' | 'posts'>;
+  nodes: {
+    node: Datum;
   }[];
 };
 
-function ClubInfo({ club, edges }: ClubInfoProps) {
+function ClubInfo({ club, nodes }: ClubInfoProps) {
   return (
     <>
       <ArticleTitle>{club.name}</ArticleTitle>
-      {edges.length > 2 ? <Chart edges={edges} /> : null}
+      {nodes.length > 2 ? <Chart nodes={nodes} /> : null}
       <Ul>
         <Li>正式名称: {club.fullname}</Li>
         <Li>法人名: {club.company}</Li>
@@ -22,7 +22,7 @@ function ClubInfo({ club, edges }: ClubInfoProps) {
         <Li>ホームタウン: {club.hometown}</Li>
         {club.settlement ? (
           <Li>
-            経営情報: <ExternalLink href={club.settlement}>{decodeURIComponent(club.settlement)}</ExternalLink>
+            経営情報: <AppLink href={club.settlement}>{decodeURIComponent(club.settlement)}</AppLink>
           </Li>
         ) : null}
         {club.relatedCompanies ? <Li>関連する法人: {club.relatedCompanies.join(', ')}</Li> : null}

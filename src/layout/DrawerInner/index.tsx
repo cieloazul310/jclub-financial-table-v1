@@ -4,7 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import Divider from '@mui/material/Divider';
 import Tooltip from '@mui/material/Tooltip';
 import ClearIcon from '@mui/icons-material/Clear';
-import { ExternalLink, SubParagraph } from '@cieloazul310/gatsby-theme-aoi';
+import { AppLink, SubParagraph } from '@cieloazul310/gatsby-theme-aoi';
 import { DrawerPageNavigation } from '@cieloazul310/gatsby-theme-aoi-blog-components';
 import DrawerTop from './DrawerTop';
 import DrawerMenu from './DrawerMenu';
@@ -51,9 +51,9 @@ function DrawerInner({ title, next, previous, onCloseIconClick }: DrawerInnerPro
             <SubParagraph>
               © {new Date().getFullYear()} cieloazul310 All rights reserved. Built with
               {` `}
-              <ExternalLink color="inherit" href="https://www.gatsbyjs.org">
+              <AppLink color="inherit" href="https://www.gatsbyjs.org">
                 Gatsby
-              </ExternalLink>
+              </AppLink>
             </SubParagraph>
           </footer>
         </Box>

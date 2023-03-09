@@ -13,7 +13,7 @@ function DrawerTop({ title }: DrawerTopProps) {
     <Box height={140} p={2} display="flex" flexDirection="column" justifyContent="center">
       {title ? (
         <Typography variant="body2" gutterBottom>
-          <AppLink to="/" color="inherit">
+          <AppLink href="/" color="inherit">
             {siteTitle}
           </AppLink>
         </Typography>

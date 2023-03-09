@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import CardItem from './CardItem';
 import useStateEdges from '../../utils/useStateEdges';
 import { useAppState } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
-import type { DatumBrowser, Mode } from '../../../types';
+import type { Datum, Mode } from '../../../types';
 
 import 'swiper/css';
 import 'swiper/css/scrollbar';
@@ -17,11 +17,11 @@ function rangeIsStrings(range: (number | string)[], mode: Mode): range is string
   return mode === 'year';
 }
 
-function useRange(edges: { node: DatumBrowser }[], mode: Mode) {
-  const range = edges.map(({ node }) => (mode === 'club' ? node.year : node.slug));
+function useRange(nodes: Datum[], mode: Mode) {
+  const range = nodes.map((node) => (mode === 'club' ? node.year : node.slug));
   return {
     range,
-    totalCount: edges.length,
+    totalCount: nodes.length,
   };
 }
 
@@ -45,16 +45,14 @@ function useInitialIndex(range: (string | number)[], mode: Mode) {
 }
 
 type CardProps = {
-  edges: {
-    node: DatumBrowser;
-  }[];
+  nodes: Datum[];
   mode: Mode;
 };
 
-function Card({ edges, mode }: CardProps) {
+function Card({ nodes, mode }: CardProps) {
   const [swiper, setSwiper] = React.useState<SwiperCore | null>(null);
   let timer: NodeJS.Timeout;
-  const stateEdges = useStateEdges(edges, mode);
+  const stateEdges = useStateEdges(nodes, mode);
   const { range, totalCount } = useRange(stateEdges, mode);
   const { sortAsc, sortKey } = useAppState();
   const initialIndex = useInitialIndex(range, mode);
@@ -126,10 +124,10 @@ function Card({ edges, mode }: CardProps) {
         onSwiper={onSwiper}
         onSlideChange={onSlideChange}
       >
-        {stateEdges.map((edge, index) => (
-          <SwiperSlide key={edge.node.id}>
+        {stateEdges.map((node, index) => (
+          <SwiperSlide key={node.id}>
             <Box pb={2}>
-              <CardItem edge={edge} previous={edge.node.previousData} mode={mode} index={index} length={totalCount} />
+              <CardItem node={node} previous={node.previousData} mode={mode} index={index} length={totalCount} />
             </Box>
           </SwiperSlide>
         ))}

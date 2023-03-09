@@ -2,8 +2,7 @@ module.exports = {
   globals: {
     __PATH_PREFIX__: true,
   },
-  extends: ['airbnb', 'airbnb-typescript', 'plugin:@typescript-eslint/recommended', 'prettier', 'plugin:prettier/recommended'],
-  plugins: ['react', '@typescript-eslint'],
+  extends: ['airbnb', 'airbnb-typescript', 'prettier'],
   parser: `@typescript-eslint/parser`,
   parserOptions: {
     ecmaFeatures: {
@@ -20,21 +19,9 @@ module.exports = {
     node: true,
   },
   rules: {
-    'prettier/prettier': [
-      'warn',
-      {
-        endOfLine: 'auto',
-      },
-    ],
     'react/jsx-props-no-spreading': 'warn',
   },
   overrides: [
-    {
-      files: ['*.js'],
-      rules: {
-        '@typescript-eslint/no-var-requires': 'off',
-      },
-    },
     {
       files: ['**/stories/**/*'],
       rules: {

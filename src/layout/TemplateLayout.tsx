@@ -10,7 +10,7 @@ import Tooltip from '@mui/material/Tooltip';
 import Slide from '@mui/material/Slide';
 import useScrollTriger from '@mui/material/useScrollTrigger';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Section, SectionDivider, PanelLink } from '@cieloazul310/gatsby-theme-aoi';
+import { Section, SectionWrapper, PanelLink } from '@cieloazul310/gatsby-theme-aoi';
 
 import AppBarInner from './AppBarInner';
 import DrawerInner from './DrawerInner';
@@ -37,9 +37,10 @@ function TemplateLayout({ children, title, headerTitle, previous, next }: Templa
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   // const { previous, next } = pageContext;
 
-  const handleDrawer = (newValue: boolean | undefined = undefined) => {
-    return () => setDrawerOpen(newValue ?? !drawerOpen);
-  };
+  const handleDrawer =
+    (newValue: boolean | undefined = undefined) =>
+    () =>
+      setDrawerOpen(newValue ?? !drawerOpen);
   const handleTab = (_: React.ChangeEvent<unknown>, newValue: string) => {
     if (tab === newValue) return;
     if (newValue !== 'pl' && newValue !== 'bs' && newValue !== 'revenue' && newValue !== 'expense' && newValue !== 'attd') return;
@@ -60,21 +61,17 @@ function TemplateLayout({ children, title, headerTitle, previous, next }: Templa
           <AppBarInner title={headerTitle ?? title} onLeftButtonClick={handleDrawer()} previous={previous} next={next} />
         </AppBar>
       </Slide>
-      <main>
-        <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>{children}</Box>
-      </main>
-      <Box>
-        <SectionDivider />
+      <SectionWrapper>
+        {children}
         <Section>
           <Container maxWidth="md" disableGutters>
-            <PanelLink to="/" disableBorder disableMargin>
+            <PanelLink href="/" disableBorder disableMargin>
               トップページへ
             </PanelLink>
           </Container>
         </Section>
-        <SectionDivider />
         <Footer />
-      </Box>
+      </SectionWrapper>
       <Box
         component="nav"
         sx={{

@@ -1,9 +1,12 @@
 import * as React from 'react';
+/*
 import { useStaticQuery, graphql } from 'gatsby';
 import DocContainer from './DocContainer';
 import type { DocsQueryData } from '../../../types';
+*/
 
 function RevenueDoc() {
+  /*
   const { mdx } = useStaticQuery<DocsQueryData>(graphql`
     query {
       mdx(frontmatter: { id: { eq: "revenue" } }) {
@@ -16,6 +19,8 @@ function RevenueDoc() {
     }
   `);
   return <DocContainer mdx={mdx} />;
+  */
+  return <p>Article</p>;
 }
 
 export default RevenueDoc;

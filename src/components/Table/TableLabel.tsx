@@ -92,16 +92,13 @@ export function TableHeadLabel({ mode }: TableHeadLabelProps) {
 interface TableBodyLabelProps {
   mode: Mode;
   index: number;
-  edge: {
-    node: Pick<General, 'name' | 'slug' | 'year'>;
-  };
+  node: Pick<General, 'name' | 'slug' | 'year'>;
 }
 
-export function TableBodyLabel({ mode, index, edge }: TableBodyLabelProps) {
-  const { node } = edge;
+export function TableBodyLabel({ mode, index, node }: TableBodyLabelProps) {
   return mode === 'club' ? (
     <TableCellLabel mode={mode} sx={sxProps.tbodyLabel} component="th" scope="row" align="center">
-      <AppLink to={`/year/${node.year}/`} color="inherit">
+      <AppLink href={`/year/${node.year}/`} color="inherit">
         {node.year}
       </AppLink>
     </TableCellLabel>
@@ -111,7 +108,7 @@ export function TableBodyLabel({ mode, index, edge }: TableBodyLabelProps) {
         {index + 1}
       </TableCellIndex>
       <TableCellLabel mode={mode} sx={sxProps.tbodyLabel} component="th" scope="row" align="right">
-        <AppLink to={`/club/${node.slug}/`} color="inherit">
+        <AppLink href={`/club/${node.slug}/`} color="inherit">
           {node.name}
         </AppLink>
       </TableCellLabel>

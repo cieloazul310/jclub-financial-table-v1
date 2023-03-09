@@ -5,16 +5,14 @@ import FigureToolbar from './Toolbar';
 import FinancialTable from '../Table';
 import FinancialCard from '../Card';
 import { useAppState } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
-import type { Mode, DatumBrowser } from '../../../types';
+import type { Mode, Datum } from '../../../types';
 
 type FigureSectionProps = {
-  edges: {
-    node: DatumBrowser;
-  }[];
+  nodes: Datum[];
   mode: Mode;
 };
 
-function FigureSection({ edges, mode }: FigureSectionProps) {
+function FigureSection({ nodes, mode }: FigureSectionProps) {
   const { listMode } = useAppState();
   const isYearTable = !listMode && mode === 'year';
 
@@ -32,7 +30,7 @@ function FigureSection({ edges, mode }: FigureSectionProps) {
       >
         <FigureToolbar mode={mode} />
         <Box flexGrow={1} overflow="auto" display="flex">
-          {listMode ? <FinancialCard edges={edges} mode={mode} /> : <FinancialTable edges={edges} mode={mode} />}
+          {listMode ? <FinancialCard nodes={nodes} mode={mode} /> : <FinancialTable nodes={nodes} mode={mode} />}
         </Box>
       </Container>
     </section>

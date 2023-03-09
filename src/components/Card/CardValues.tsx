@@ -5,7 +5,7 @@ import ButtonBase from '@mui/material/ButtonBase';
 import { useAppState, useDispatch } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
 import { UpIcon, DownIcon } from '../../icons';
 import val from '../../utils/val';
-import type { General, PL, BS, Revenue, Expense, AttdBrowser, Mode } from '../../../types';
+import type { General, PL, BS, Revenue, Expense, Attd, Mode } from '../../../types';
 
 type CardValueProps<T> = {
   label: string;
@@ -189,7 +189,7 @@ export function ExpenseCardValues<T extends Expense>({ edge, previous, mode }: C
   );
 }
 
-export function AttdCardValues<T extends AttdBrowser>({ edge, previous, mode }: CardValuesProps<T>) {
+export function AttdCardValues<T extends Attd>({ edge, previous, mode }: CardValuesProps<T>) {
   const CardValue = CardValueCore(edge, previous, mode);
   return (
     <>

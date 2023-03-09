@@ -3,7 +3,7 @@ import { useTheme } from '@mui/material/styles';
 import { ScaleLinear } from 'd3';
 import { useFill } from './BarGradient';
 import { useAppState } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
-import type { DatumBrowser, General, PL, BS, AttdBrowser, Expense } from '../../../types';
+import type { Datum, General, PL, BS, Attd, Expense } from '../../../types';
 
 type XLegendProps = {
   year: number;
@@ -94,7 +94,7 @@ function ExpenseBar({ node, scale, itemWidth, barWidth, barPadding }: BarProps<E
   );
 }
 
-function AttdBar({ node, scale, itemWidth, barWidth, barPadding }: BarProps<AttdBrowser>) {
+function AttdBar({ node, scale, itemWidth, barWidth, barPadding }: BarProps<Attd>) {
   const fill = useFill(node);
   return (
     <rect
@@ -108,20 +108,20 @@ function AttdBar({ node, scale, itemWidth, barWidth, barPadding }: BarProps<Attd
 }
 
 type BarsProps = {
-  edges: {
-    node: Omit<DatumBrowser, 'previousData'>;
+  nodes: {
+    node: Omit<Datum, 'previousData'>;
   }[];
   scale: ScaleLinear<number, number>;
   height: number;
   itemWidth: number;
 };
 
-function Bars({ edges, scale, height, itemWidth }: BarsProps) {
+function Bars({ nodes, scale, height, itemWidth }: BarsProps) {
   const { tab } = useAppState();
   const barPadding = 0.2;
   const barWidth = itemWidth * (1 - barPadding);
 
-  function barByTab(node: Omit<DatumBrowser, 'previousData'>) {
+  function barByTab(node: Omit<Datum, 'previousData'>) {
     if (tab === 'bs')
       return (
         <BSBar key={node.year.toString()} node={node} scale={scale} itemWidth={itemWidth} barWidth={barWidth} barPadding={barPadding} />
@@ -146,7 +146,7 @@ function Bars({ edges, scale, height, itemWidth }: BarsProps) {
 
   return (
     <g>
-      {edges.map(({ node }, index) => (
+      {nodes.map((node, index) => (
         <g key={node.year.toString()} transform={`translate(${itemWidth * index}, 0)`}>
           {barByTab(node)}
           <XLegend year={node.year} category={node.category} height={height} itemWidth={itemWidth} />

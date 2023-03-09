@@ -2,7 +2,7 @@ import * as React from 'react';
 import { graphql, type PageProps, type HeadProps } from 'gatsby';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import { Jumbotron, Section, SectionDivider, Article, PanelLink } from '@cieloazul310/gatsby-theme-aoi';
+import { Jumbotron, Section, Article, PanelLink } from '@cieloazul310/gatsby-theme-aoi';
 import { PageNavigationContainer, PageNavigationItem } from '@cieloazul310/gatsby-theme-aoi-blog-components';
 import Seo from '../components/Seo';
 import PostList from '../components/PostList';
@@ -12,9 +12,7 @@ import type { MdxPost, MdxPostByYear } from '../../types';
 
 type PostsByClubPageData = {
   allMdxPost: {
-    edges: {
-      node: Pick<MdxPost, 'title' | 'date' | 'slug'>;
-    }[];
+    nodes: Pick<MdxPost, 'title' | 'date' | 'slug'>[];
   };
 };
 type PostsByClubPageContext = MdxPostByYear & {
@@ -28,25 +26,23 @@ function PostsByClubTemplate({ data, pageContext }: PageProps<PostsByClubPageDat
 
   return (
     <Layout title={`${year}年の記事一覧`}>
-      <Jumbotron maxWidth="md">
+      <Jumbotron maxWidth="md" component="header">
         <Typography variant="h5" component="h2" gutterBottom>
           {year}年の記事一覧
         </Typography>
         <Typography>{totalCount} posts</Typography>
       </Jumbotron>
-      <SectionDivider />
-      <Section>
+      <Section component="main">
         <Article maxWidth="md">
-          <PostList posts={allMdxPost.edges} />
+          <PostList posts={allMdxPost.nodes} />
         </Article>
       </Section>
-      <SectionDivider />
       <Section>
         <PageNavigationContainer>
-          <PageNavigationItem to={next?.basePath ?? '#'} disabled={!next}>
+          <PageNavigationItem href={next?.basePath ?? '#'} disabled={!next}>
             <Typography variant="body2">{next?.year}年の記事一覧</Typography>
           </PageNavigationItem>
-          <PageNavigationItem to={previous?.basePath ?? '#'} disabled={!previous} next>
+          <PageNavigationItem href={previous?.basePath ?? '#'} disabled={!previous} right>
             <Typography variant="body2">{previous?.year}年の記事一覧</Typography>
           </PageNavigationItem>
         </PageNavigationContainer>
@@ -54,7 +50,7 @@ function PostsByClubTemplate({ data, pageContext }: PageProps<PostsByClubPageDat
       <AdInSectionDividerOne />
       <Section>
         <Container maxWidth="md" disableGutters>
-          <PanelLink to="/posts/archive/" disableBorder disableMargin>
+          <PanelLink href="/posts/archive/" disableBorder disableMargin>
             記事アーカイブへ
           </PanelLink>
         </Container>
@@ -72,16 +68,11 @@ export function Head({ pageContext }: HeadProps<PostsByClubPageData, PostsByClub
 
 export const query = graphql`
   query PostsByYear($gte: Date!, $lt: Date!, $draft: Boolean) {
-    allMdxPost(
-      filter: { date: { gte: $gte, lt: $lt }, draft: { ne: $draft } }
-      sort: { fields: [date, lastmod, slug], order: [DESC, DESC, DESC] }
-    ) {
-      edges {
-        node {
-          title
-          date(formatString: "YYYY年MM月DD日")
-          slug
-        }
+    allMdxPost(filter: { date: { gte: $gte, lt: $lt }, draft: { ne: $draft } }, sort: [{ date: DESC }, { lastmod: DESC }, { slug: DESC }]) {
+      nodes {
+        title
+        date(formatString: "YYYY年MM月DD日")
+        slug
       }
     }
   }

@@ -8,19 +8,17 @@ import { useAppState, useDispatch } from '../../@cieloazul310/gatsby-theme-aoi-t
 import { CategoryLabel } from '../CategoryAvatar';
 import { PLCardValues, BSCardValues, RevenueCardValues, ExpenseCardValues, AttdCardValues } from './CardValues';
 
-import type { DatumBrowser, Mode, General, SeasonResult } from '../../../types';
+import type { Datum, Mode, General, SeasonResult } from '../../../types';
 
 type CardItemProps<T extends Mode> = {
-  edge: {
-    node: Omit<DatumBrowser, 'previousData'>;
-  };
-  previous: Omit<DatumBrowser, 'previousData' | keyof General | keyof SeasonResult> | null;
+  node: Omit<Datum, 'previousData'>;
+  previous: Omit<Datum, 'previousData' | keyof General | keyof SeasonResult> | null;
   mode: T;
   index: number;
   length: number;
 };
 
-function CardItem<T extends Mode>({ edge, previous, mode, index, length }: CardItemProps<T>) {
+function CardItem<T extends Mode>({ node, previous, mode, index, length }: CardItemProps<T>) {
   const { tab, sortKey } = useAppState();
   const dispatch = useDispatch();
 
@@ -33,11 +31,11 @@ function CardItem<T extends Mode>({ edge, previous, mode, index, length }: CardI
   }, [tab]);
 
   const cardValues = React.useMemo(() => {
-    if (tab === 'pl') return <PLCardValues edge={edge} previous={previous} mode={mode} />;
-    if (tab === 'bs') return <BSCardValues edge={edge} previous={previous} mode={mode} />;
-    if (tab === 'revenue') return <RevenueCardValues edge={edge} previous={previous} mode={mode} />;
-    if (tab === 'expense') return <ExpenseCardValues edge={edge} previous={previous} mode={mode} />;
-    return <AttdCardValues edge={edge} previous={previous} mode={mode} />;
+    if (tab === 'pl') return <PLCardValues node={node} previous={previous} mode={mode} />;
+    if (tab === 'bs') return <BSCardValues node={node} previous={previous} mode={mode} />;
+    if (tab === 'revenue') return <RevenueCardValues node={node} previous={previous} mode={mode} />;
+    if (tab === 'expense') return <ExpenseCardValues node={node} previous={previous} mode={mode} />;
+    return <AttdCardValues node={node} previous={previous} mode={mode} />;
   }, [tab]);
 
   const onRankClick = () => {
@@ -52,7 +50,7 @@ function CardItem<T extends Mode>({ edge, previous, mode, index, length }: CardI
     <MuiCard sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
       <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
         <Typography sx={{ fontSize: 14 }} gutterBottom display="flex" alignItems="center">
-          <CategoryLabel category={edge.node.category} />
+          <CategoryLabel category={node.category} />
           <Typography component="span" flexGrow={1} color="text.secondary" ml={1} display="flex" alignItems="center">
             <ButtonBase
               sx={{
@@ -67,12 +65,12 @@ function CardItem<T extends Mode>({ edge, previous, mode, index, length }: CardI
               disabled={mode === 'club'}
               onClick={onRankClick}
             >
-              {mode === 'club' ? edge.node.name : `${edge.node.year}年`}
-              {` ${edge.node.category} ${edge.node.rank}位`}
+              {mode === 'club' ? node.name : `${node.year}年`}
+              {` ${node.category} ${node.rank}位`}
             </ButtonBase>
-            {edge.node.elevation ? (
-              <Typography component="span" ml={1} color={edge.node.elevation === '昇格' ? 'success.main' : 'error.main'}>
-                {edge.node.elevation}
+            {node.elevation ? (
+              <Typography component="span" ml={1} color={node.elevation === '昇格' ? 'success.main' : 'error.main'}>
+                {node.elevation}
               </Typography>
             ) : null}
           </Typography>
@@ -83,8 +81,8 @@ function CardItem<T extends Mode>({ edge, previous, mode, index, length }: CardI
           ) : null}
         </Typography>
         <Typography variant="h6" component="div">
-          <AppLink color="inherit" to={mode === 'club' ? `/year/${edge.node.year}/` : `/club/${edge.node.slug}/`}>
-            {mode === 'club' ? `${edge.node.year}年度決算` : edge.node.fullname}
+          <AppLink color="inherit" href={mode === 'club' ? `/year/${node.year}/` : `/club/${node.slug}/`}>
+            {mode === 'club' ? `${node.year}年度決算` : node.fullname}
           </AppLink>
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">

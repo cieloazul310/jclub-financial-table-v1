@@ -10,19 +10,17 @@ import Divider from '@mui/material/Divider';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useAllYears, useClubsByCategory } from '../../utils/graphql-hooks';
-import type { ClubBrowser } from '../../../types';
+import type { Club } from '../../../types';
 
 type ClubListByCategoryProps = Pick<ItemFilterProps, 'clubsFilter' | 'setClubsFilter'> & {
   clubs: {
-    edges: {
-      node: Pick<ClubBrowser, 'name' | 'slug'>;
-    }[];
+    nodes: Pick<Club, 'name' | 'slug'>[];
   };
   title: string;
 };
 
 function ClubListByCategory({ clubs, title, clubsFilter, setClubsFilter }: ClubListByCategoryProps) {
-  const slugs = clubs.edges.map(({ node }) => node.slug);
+  const slugs = clubs.nodes.map((node) => node.slug);
   const allSelected = slugs.every((slug) => clubsFilter.includes(slug));
   const allEmpty = !slugs.some((slug) => clubsFilter.includes(slug));
   const [open, setOpen] = React.useState(false);
@@ -55,7 +53,7 @@ function ClubListByCategory({ clubs, title, clubsFilter, setClubsFilter }: ClubL
         <ListItem button onClick={clearAll}>
           <ListItemText primary="全て解除" />
         </ListItem>
-        {clubs.edges.map(({ node }) => (
+        {clubs.nodes.map((node) => (
           <ListItem key={node.slug} button dense onClick={onClick(node.slug)}>
             <ListItemIcon>
               <Checkbox checked={clubsFilter.includes(node.slug)} edge="start" color="secondary" disableRipple />
@@ -72,7 +70,7 @@ type ClubListProps = Pick<ItemFilterProps, 'clubsFilter' | 'setClubsFilter'>;
 
 function ClubList({ clubsFilter, setClubsFilter }: ClubListProps) {
   const { j1, j2, j3 } = useClubsByCategory();
-  const slugs = [...j1.edges, ...j2.edges, ...j3.edges].map(({ node }) => node.slug ?? '');
+  const slugs = [...j1.nodes, ...j2.nodes, ...j3.nodes].map((node) => node.slug ?? '');
   const setAllClub = () => {
     setClubsFilter(slugs);
   };
@@ -97,7 +95,7 @@ function ClubList({ clubsFilter, setClubsFilter }: ClubListProps) {
 type YearsListProps = Pick<ItemFilterProps, 'yearsFilter' | 'setYearsFilter'>;
 
 function YearsList({ yearsFilter, setYearsFilter }: YearsListProps) {
-  const allYears = useAllYears().map(({ node }) => node.year);
+  const allYears = useAllYears().map((node) => node.year);
   const toggleYear = (newYear: number) => () => {
     setYearsFilter(yearsFilter.includes(newYear) ? yearsFilter.filter((year) => year !== newYear) : [...yearsFilter, newYear]);
   };

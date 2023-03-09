@@ -6,8 +6,8 @@ export function YearsLink() {
   const years = useAllYears();
   return (
     <>
-      {years.map(({ node }) => (
-        <AppLinkButton key={node.year.toString()} to={node.href} color="inherit">
+      {years.map((node) => (
+        <AppLinkButton key={node.year.toString()} href={node.href} color="inherit">
           {node.year}
         </AppLinkButton>
       ))}

@@ -4,7 +4,7 @@ import { line as d3Line, Line, ScaleLinear } from 'd3';
 import { j1color, j2color, j3color } from '../../utils/categoryColors';
 import { useAppState } from '../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
 import { useStatistics, useAllYears } from '../../utils/graphql-hooks';
-import type { DatumBrowser, Statistics } from '../../../types';
+import type { Datum, Statistics } from '../../../types';
 
 function useStatisticsField() {
   const { tab } = useAppState();
@@ -15,14 +15,16 @@ function useStatisticsField() {
 
 function useAverageLine(scale: ScaleLinear<number, number>, years: number[], itemWidth: number) {
   const field = useStatisticsField();
-  const allYears = useAllYears().map(({ node }) => node.year);
+  const allYears = useAllYears().map((node) => node.year);
   const diff = years[0] - allYears[0];
 
-  return React.useMemo(() => {
-    return d3Line<Statistics>()
-      .x((d) => (allYears.indexOf(d.year) - diff) * itemWidth + itemWidth / 2)
-      .y((d) => scale(d[field].average));
-  }, [field, years, scale, itemWidth]);
+  return React.useMemo(
+    () =>
+      d3Line<Statistics>()
+        .x((d) => (allYears.indexOf(d.year) - diff) * itemWidth + itemWidth / 2)
+        .y((d) => scale(d[field].average)),
+    [field, years, scale, itemWidth]
+  );
 }
 
 type CategoryLineProps = {
@@ -30,10 +32,10 @@ type CategoryLineProps = {
   itemWidth: number;
   category: string;
   line: Line<Statistics>;
-  edgesLength: number;
+  nodesLength: number;
 };
 
-function CategoryLine({ scale, itemWidth, edgesLength, category, line }: CategoryLineProps) {
+function CategoryLine({ scale, itemWidth, nodesLength, category, line }: CategoryLineProps) {
   const { palette } = useTheme();
   const statistics = useStatistics();
   const field = useStatisticsField();
@@ -53,7 +55,7 @@ function CategoryLine({ scale, itemWidth, edgesLength, category, line }: Categor
     <g>
       <path d={line(arr) ?? undefined} fill="none" stroke={color} />
       <text
-        x={itemWidth * edgesLength}
+        x={itemWidth * nodesLength}
         y={scale(arr[arr.length - 1][field].average)}
         textAnchor="start"
         fill={palette.text.primary}
@@ -67,8 +69,8 @@ function CategoryLine({ scale, itemWidth, edgesLength, category, line }: Categor
 
 type AverageLinesTypes = {
   scale: ScaleLinear<number, number>;
-  edges: {
-    node: Omit<DatumBrowser, 'previousData'>;
+  nodes: {
+    node: Omit<Datum, 'previousData'>;
   }[];
   itemWidth: number;
 };
@@ -76,16 +78,16 @@ type AverageLinesTypes = {
 /**
  * SVG上にカテゴリ別の年度別平均値を表示するコンポーネント
  */
-function AverageLines({ scale, edges, itemWidth }: AverageLinesTypes) {
+function AverageLines({ scale, nodes, itemWidth }: AverageLinesTypes) {
   const { tab } = useAppState();
-  const categories = Array.from(new Set(edges.map(({ node }) => node.category)));
-  const years = edges.map(({ node }) => node.year);
+  const categories = Array.from(new Set(nodes.map((node) => node.category)));
+  const years = nodes.map((node) => node.year);
   const line = useAverageLine(scale, years, itemWidth);
 
   return tab !== 'bs' ? (
     <g strokeWidth={2} strokeDasharray="4,2">
       {categories.map((category) => (
-        <CategoryLine key={category} scale={scale} itemWidth={itemWidth} category={category} line={line} edgesLength={edges.length} />
+        <CategoryLine key={category} scale={scale} itemWidth={itemWidth} category={category} line={line} nodesLength={nodes.length} />
       ))}
     </g>
   ) : null;

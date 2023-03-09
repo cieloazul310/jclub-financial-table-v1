@@ -2,17 +2,7 @@ import * as React from 'react';
 import { graphql, type PageProps } from 'gatsby';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import { useTheme } from '@mui/material/styles';
-import {
-  Jumbotron,
-  Section,
-  SectionDivider,
-  Article,
-  Paragraph,
-  AppLink,
-  AppLinkButton,
-  useSiteMetadata,
-} from '@cieloazul310/gatsby-theme-aoi';
+import { Jumbotron, Section, Article, Paragraph, AppLink, AppLinkButton, useSiteMetadata } from '@cieloazul310/gatsby-theme-aoi';
 import Layout from '../layout';
 import Seo from '../components/Seo';
 import PostList from '../components/PostList';
@@ -23,39 +13,35 @@ import type { MdxPost } from '../../types';
 
 type IndexPageQueryData = {
   allMdxPost: {
-    edges: {
-      node: Pick<MdxPost, 'slug' | 'title' | 'date'>;
-    }[];
+    nodes: Pick<MdxPost, 'slug' | 'title' | 'date'>[];
   };
 };
 
 function IndexPage({ data }: PageProps<IndexPageQueryData>) {
   const { allMdxPost } = data;
-  const { palette } = useTheme();
   const { title, description } = useSiteMetadata();
   return (
     <Layout title={title}>
-      <Jumbotron maxWidth="md" bgcolor={palette.mode === 'light' ? 'primary.dark' : 'grey.800'} height={280}>
+      <Jumbotron maxWidth="md">
         <Typography variant="h5" component="h2" gutterBottom>
           {title}
         </Typography>
         <Paragraph>{description}</Paragraph>
         <span>
-          <AppLinkButton to="/year/2021/" variant="contained" color="primary">
+          <AppLinkButton href="/year/2021/" variant="contained" color="primary">
             最新の経営情報を見る
           </AppLinkButton>
         </span>
       </Jumbotron>
       {/*
         <Jumbotron maxWidth="md" bgcolor={palette.mode === 'light' ? 'primary.light' : 'primary.dark'} height={40}>
-        <AppLink to="/year/2021/" color="inherit">
+        <AppLink href="/year/2021/" color="inherit">
           <Typography variant="h6" component="h3" color="inherit">
             2021年度決算(完全版)を更新しました
           </Typography>
         </AppLink>
       </Jumbotron>
       */}
-      <SectionDivider />
       <Section>
         <Article maxWidth="md">
           <Grid container spacing={2} component="nav">
@@ -85,7 +71,7 @@ function IndexPage({ data }: PageProps<IndexPageQueryData>) {
             </Grid>
             <Grid item xs={12} sm={6}>
               <Typography variant="h6" component="h3" gutterBottom>
-                <AppLink to="/series" color="inherit">
+                <AppLink href="/series" color="inherit">
                   項目別表示
                 </AppLink>
               </Typography>
@@ -93,7 +79,7 @@ function IndexPage({ data }: PageProps<IndexPageQueryData>) {
             </Grid>
             <Grid item xs={12} sm={6}>
               <Typography variant="h6" component="h3" gutterBottom>
-                <AppLink to="/download" color="inherit">
+                <AppLink href="/download" color="inherit">
                   データダウンロード
                 </AppLink>
               </Typography>
@@ -102,10 +88,9 @@ function IndexPage({ data }: PageProps<IndexPageQueryData>) {
           </Grid>
         </Article>
       </Section>
-      <SectionDivider />
       <Section>
         <Article maxWidth="md">
-          <PostList posts={allMdxPost.edges} title="最新の記事" more={{ to: '/posts/', title: '記事一覧' }} />
+          <PostList posts={allMdxPost.nodes} title="最新の記事" more={{ to: '/posts/', title: '記事一覧' }} />
         </Article>
       </Section>
       <AdInSectionDividerOne />
@@ -125,13 +110,11 @@ export function Head() {
 
 export const query = graphql`
   query IndexPage($draft: Boolean) {
-    allMdxPost(filter: { draft: { ne: $draft } }, sort: { fields: [date, lastmod, slug], order: [DESC, DESC, DESC] }, limit: 5) {
-      edges {
-        node {
-          slug
-          title
-          date(formatString: "YYYY年MM月DD日")
-        }
+    allMdxPost(filter: { draft: { ne: $draft } }, sort: [{ date: DESC }, { lastmod: DESC }, { slug: DESC }], limit: 5) {
+      nodes {
+        slug
+        title
+        date(formatString: "YYYY年MM月DD日")
       }
     }
   }

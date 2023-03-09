@@ -43,9 +43,7 @@ function SimpleTable({
 }: SimpleTableProps) {
   const { palette } = useTheme();
   const minusColor = palette.mode === 'light' ? palette.error.dark : palette.error.light;
-  const diffData = React.useMemo(() => {
-    return data[data.length - 1].map((value, index) => value - data[data.length - 2][index]);
-  }, [data]);
+  const diffData = React.useMemo(() => data[data.length - 1].map((value, index) => value - data[data.length - 2][index]), [data]);
 
   return (
     <Box my={4}>
