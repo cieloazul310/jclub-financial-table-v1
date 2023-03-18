@@ -8,11 +8,11 @@ import Seo from '../components/Seo';
 import PostList from '../components/PostList';
 import { AdInSectionDividerOne } from '../components/Ads';
 import Layout from '../layout';
-import type { MdxPost, MdxPostByYear } from '../../types';
+import type { MdxPostListFragment, MdxPostByYear } from '../../types';
 
 type PostsByClubPageData = {
   allMdxPost: {
-    nodes: Pick<MdxPost, 'title' | 'date' | 'slug'>[];
+    nodes: MdxPostListFragment[];
   };
 };
 type PostsByClubPageContext = MdxPostByYear & {
@@ -70,9 +70,7 @@ export const query = graphql`
   query PostsByYear($gte: Date!, $lt: Date!, $draft: Boolean) {
     allMdxPost(filter: { date: { gte: $gte, lt: $lt }, draft: { ne: $draft } }, sort: [{ date: DESC }, { lastmod: DESC }, { slug: DESC }]) {
       nodes {
-        title
-        date(formatString: "YYYY年MM月DD日")
-        slug
+        ...mdxPostList
       }
     }
   }

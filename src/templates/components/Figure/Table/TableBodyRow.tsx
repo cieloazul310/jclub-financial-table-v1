@@ -2,7 +2,7 @@ import * as React from 'react';
 import TableRow from '@mui/material/TableRow';
 import TableCell, { type TableCellProps } from '@mui/material/TableCell';
 import { TableBodyLabel } from './TableLabel';
-import { CategoryLabel } from '../../../../components/CategoryAvatar';
+import CategoryLabel from '../../../../components/CategoryAvatar';
 import { useAppState } from '../../../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
 import val from '../../../../utils/val';
 import type { Tab, Mode, General, PL, BS, Revenue, Expense, Attd, AllDataFieldsFragment } from '../../../../../types';

@@ -6,7 +6,7 @@ export type MobileTab = 'summary' | 'figure' | 'article' | 'settings';
 
 export type Category = 'J1' | 'J2' | 'J3';
 
-export type Club<T extends 'bare' | 'node' | 'browser' = 'browser'> = (T extends 'bare' ? never : Node) & {
+export type Club<T extends 'bare' | 'node' | 'browser' = 'browser'> = (T extends 'bare' ? Record<string, unknown> : Node) & {
   slug: string;
   href: T extends 'bare' ? never : string;
   name: string;
@@ -26,7 +26,7 @@ export type Club<T extends 'bare' | 'node' | 'browser' = 'browser'> = (T extends
     : never;
 };
 
-export type Year<T extends 'bare' | 'node' | 'browser' = 'browser'> = (T extends 'bare' ? never : Node) & {
+export type Year<T extends 'bare' | 'node' | 'browser' = 'browser'> = (T extends 'bare' ? Record<string, unknown> : Node) & {
   year: number;
   href: T extends 'bare' ? never : string;
   categories: Category[];
@@ -41,7 +41,7 @@ export type Year<T extends 'bare' | 'node' | 'browser' = 'browser'> = (T extends
 };
 
 export type StatsValues = {
-  values: number[];
+  values: { name: string; value: number }[];
   totalCount: number;
   average: number;
 };
@@ -194,21 +194,15 @@ export type Attd<T extends 'bare' | 'node' | 'browser' = 'browser'> = {
   unit_price: T extends 'browser' ? number | null : never;
 };
 
-export type AllDataFieldsFragment = General &
-  SeasonResult &
-  PL &
-  BS &
-  Revenue &
-  Expense &
-  Attd;
+export type AllDataFieldsFragment = General & SeasonResult & PL & BS & Revenue & Expense & Attd;
 
-export type Datum<T extends 'bare' | 'node' | 'browser' = 'browser'> = (T extends 'bare' ? never : Node) &
+export type Datum<T extends 'bare' | 'node' | 'browser' = 'browser'> = (T extends 'bare' ? Record<string, unknown> : Node) &
   AllDataFieldsFragment &
   (T extends 'browser'
     ? {
         previousData: AllDataFieldsFragment;
       }
-    : never);
+    : Record<string, unknown>);
 
 export type SortableKeys = keyof (Omit<SeasonResult, 'elevation'> & PL & BS & Revenue & Expense & Attd<'browser'>);
 
@@ -224,7 +218,7 @@ export type MdxFrontmatter = {
   draft: boolean;
 };
 
-export type Mdx<T extends 'bare' | 'node' = 'node'> = (T extends 'node' ? Node : never) & {
+export type Mdx<T extends 'bare' | 'node' = 'node'> = (T extends 'node' ? Node : Record<string, unknown>) & {
   frontmatter: MdxFrontmatter;
 };
 
@@ -237,12 +231,7 @@ export type MdxPost<T extends 'node' | 'browser' = 'browser'> = Node & {
   lastmod: string;
 };
 
-export type YearPageNeighbor = {
-  mode: Mode;
-  node: Pick<YearBrowser, 'year' | 'href'>;
-} | null;
-
-export type ClubPageNeighbor = { mode: Mode; node: Pick<ClubBrowser, 'short_name' | 'name' | 'href'> } | null;
+export type MdxPostListFragment = Pick<MdxPost, 'title' | 'date' | 'slug'>;
 
 export type DocsQueryData = {
   mdx: {

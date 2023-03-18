@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import { TabPane, Section, Article } from '@cieloazul310/gatsby-theme-aoi';
+import { TabPane, Section, Article, useIsMobile } from '@cieloazul310/gatsby-theme-aoi';
 import Layout from '../layout';
 import Seo from '../components/Seo';
 import ItemFilter from '../components/Download/ItemFilter';
@@ -13,9 +13,8 @@ import Preview from '../components/Download/Preview';
 import AttributionDoc from '../components/Article/Attribution';
 import { AdInSectionDividerOne } from '../components/Ads';
 import allFields from '../utils/allFields';
-import useIsMobile from '../utils/useIsMobile';
 import { useDictionary } from '../utils/graphql-hooks';
-import type { Datum, Club, Year, Dict, DownloadDatum } from '../../types';
+import type { Club, Year, Dict, DownloadDatum, AllDataFieldsFragment } from '../../types';
 
 function getCategory(category: string | number | null) {
   return category === 'J1' || category === 'J2' || category === 'J3' ? category : 'others';
@@ -23,7 +22,7 @@ function getCategory(category: string | number | null) {
 
 type DownloadPageData = {
   allData: {
-    nodes: Omit<Datum, 'previousData'>[];
+    nodes: AllDataFieldsFragment[];
   };
   j1: {
     nodes: Pick<Club, 'name' | 'slug'>[];

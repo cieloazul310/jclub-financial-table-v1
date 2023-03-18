@@ -1,18 +1,24 @@
 import * as React from 'react';
 import { graphql, type PageProps, type HeadProps } from 'gatsby';
-import TemplateLayout from '../../layout/TemplateLayout';
+import Typography from '@mui/material/Typography';
+import { Section, Article } from '@cieloazul310/gatsby-theme-aoi';
+import { PageNavigationContainer, PageNavigationItem } from '@cieloazul310/gatsby-theme-aoi-blog-components';
+import Layout from '../../layout';
 import Seo from '../../components/Seo';
-import SummarySection from '../components/Summary';
-import NavigationSection from '../components/Navigation';
+import PostList from '../../components/PostList';
+import { CategoryLink } from '../../components/Links';
 import FigureSection from '../components/Figure';
-// import ArticleSection from '../../components/Article';
+import ClubSummary from './Summary';
 import { AdInSectionDividerOne } from '../../components/Ads';
 import type { Club, AllDataFieldsFragment, MdxPost } from '../../../types';
 
 export type ClubPageData = {
-  club: Omit<Club, 'data' | 'posts'>;
-  previous: Pick<Club, 'name' | 'href'> | null;
-  next: Pick<Club, 'name' | 'href'> | null;
+  club: Pick<
+    Club,
+    'id' | 'short_name' | 'name' | 'fullname' | 'category' | 'slug' | 'href' | 'company' | 'hometown' | 'settlement' | 'relatedCompanies'
+  >;
+  left: Pick<Club, 'name' | 'href'> | null;
+  right: Pick<Club, 'name' | 'href'> | null;
   allData: {
     nodes: (AllDataFieldsFragment & { previousData: AllDataFieldsFragment })[];
   };
@@ -21,37 +27,53 @@ export type ClubPageData = {
   };
 };
 export type ClubPageContext = {
-  previous: string | null;
-  next: string | null;
+  left: string | null;
+  right: string | null;
 };
 
 function ClubTemplate({ data }: PageProps<ClubPageData, ClubPageContext>) {
-  const { club, previous, next, allMdxPost } = data;
+  const { club, left, right, allMdxPost, allData } = data;
+  const pageNavigation = React.useMemo(
+    () => (
+      <Section component="nav">
+        <PageNavigationContainer>
+          <PageNavigationItem href={left?.href ?? '#'} disabled={!left}>
+            <Typography variant="body2">{left?.name}</Typography>
+          </PageNavigationItem>
+          <PageNavigationItem href={right?.href ?? '#'} disabled={!right} right>
+            <Typography variant="body2">{right?.name}</Typography>
+          </PageNavigationItem>
+        </PageNavigationContainer>
+      </Section>
+    ),
+    [left, right]
+  );
 
   return (
-    <TemplateLayout
+    <Layout
       title={`${club.name}の経営情報`}
-      headerTitle={`${club.name}`}
-      previous={previous ? { to: previous.href, title: previous.name } : null}
-      next={next ? { to: next.href, title: next.name } : null}
+      // headerTitle={`${club.name}`}
+      left={left ? { href: left.href, title: left.name, secondaryText: 'Previous' } : null}
+      right={right ? { href: right.href, title: right.name, secondaryText: 'Next' } : null}
     >
-      <FigureSection nodes={data.allData.nodes} mode="club" />
-      <SummarySection mode="club" nodes={data.allData.nodes} item={data.club} prevYear={null} posts={allMdxPost.nodes} />
-      <NavigationSection
-        mode="club"
-        item={data.club}
-        previous={previous ? { to: previous.href, title: previous.name } : null}
-        next={next ? { to: next.href, title: next.name } : null}
-      />
+      <FigureSection nodes={allData.nodes} mode="club" />
+      {pageNavigation}
+      <ClubSummary club={club} nodes={allData.nodes} />
+      {allMdxPost.nodes.length ? (
+        <Section component="section">
+          <Article maxWidth="md">
+            <PostList posts={allMdxPost.nodes} title="最新の記事" more={{ href: `${club.href}posts/`, title: `${club.name}の記事一覧` }} />
+          </Article>
+        </Section>
+      ) : null}
+      <Section component="section">
+        <Article maxWidth="md">
+          <CategoryLink category={club.category} />
+        </Article>
+      </Section>
       <AdInSectionDividerOne />
-      {/* <ArticleSection /> */}
-      <NavigationSection
-        mode="club"
-        item={data.club}
-        previous={previous ? { to: previous.href, title: previous.name } : null}
-        next={next ? { to: next.href, title: next.name } : null}
-      />
-    </TemplateLayout>
+      {pageNavigation}
+    </Layout>
   );
 }
 
@@ -69,7 +91,7 @@ export function Head({ data }: HeadProps<ClubPageData>) {
 }
 
 export const query = graphql`
-  query ClubTemplate($slug: String!, $previous: String, $next: String, $draft: Boolean) {
+  query ClubTemplate($slug: String!, $left: String, $right: String, $draft: Boolean) {
     club(slug: { eq: $slug }) {
       id
       short_name
@@ -83,11 +105,11 @@ export const query = graphql`
       settlement
       relatedCompanies
     }
-    previous: club(slug: { eq: $previous }) {
+    left: club(slug: { eq: $left }) {
       href
       name
     }
-    next: club(slug: { eq: $next }) {
+    right: club(slug: { eq: $right }) {
       href
       name
     }

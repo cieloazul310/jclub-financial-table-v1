@@ -34,7 +34,7 @@ export default async function createClubSchema({ actions, schema }: CreateSchema
       fields: {
         data: {
           type: `[Data]!`,
-          resolve: async (source: Club, args, context: GatsbyGraphQLContext) => {
+          resolve: async (source: Club<'bare'>, args, context: GatsbyGraphQLContext) => {
             const { entries } = await context.nodeModel.findAll<Datum<'node'>>({
               type: `Data`,
               query: {

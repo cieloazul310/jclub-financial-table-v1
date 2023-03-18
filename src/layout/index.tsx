@@ -1,98 +1,46 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import AppBar from '@mui/material/AppBar';
-import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-import Fab from '@mui/material/Fab';
-import Slide from '@mui/material/Slide';
-import Tooltip from '@mui/material/Tooltip';
-import useScrollTrigger from '@mui/material/useScrollTrigger';
-import MenuIcon from '@mui/icons-material/Menu';
-import { Section, SectionWrapper, PanelLink } from '@cieloazul310/gatsby-theme-aoi';
-import AppBarInner from './AppBarInner';
-import DrawerInner from './DrawerInner';
-import Footer from './Footer';
+import { Layout as AoiLayout, type LayoutProps as AoiLayoutProps } from '@cieloazul310/gatsby-theme-aoi';
+import { DrawerPageNavigation } from '@cieloazul310/gatsby-theme-aoi-blog-components';
 
-const iOS = typeof window !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
+type LayoutProps = AoiLayoutProps<{
+  left?: { href: string; title: string; secondaryText?: string } | null;
+  right?: { href: string; title: string; secondaryText?: string } | null;
+}>;
 
-type LayoutProps = {
-  children: React.ReactNode;
-  title?: string;
-  headerTitle?: string;
-  previous?: { to: string; title: string } | null;
-  next?: { to: string; title: string } | null;
-};
-
-function Layout({ children, title, headerTitle, previous, next }: LayoutProps) {
-  const trigger = useScrollTrigger();
-  const [drawerOpen, setDrawerOpen] = React.useState(false);
-  const setDrawer = (open: boolean) => () => {
-    setDrawerOpen(open);
-  };
-  const toggleDrawer = () => {
-    setDrawerOpen(!drawerOpen);
-  };
+function Layout({
+  children,
+  componentViewports = { fab: 'lgDown', swipeableDrawer: 'lgDown' },
+  disableBottomNav = true,
+  appBarPosition = 'fixed',
+  left,
+  right,
+  ...props
+}: LayoutProps) {
+  const drawerContents = React.useMemo(() => {
+    if (!left && !right) return null;
+    return <DrawerPageNavigation left={left} right={right} />;
+  }, [left, right]);
 
   return (
-    <Box
-      sx={{
-        flexGrow: 1,
-        paddingTop: { xs: '56px', sm: '64px' },
-      }}
+    <AoiLayout
+      componentViewports={componentViewports}
+      drawerContents={drawerContents}
+      appBarPosition={appBarPosition}
+      left={left}
+      right={right}
+      disableBottomNav={disableBottomNav}
+      {...props}
     >
-      <Slide appear={false} direction="down" in={!trigger}>
-        <AppBar>
-          <AppBarInner title={headerTitle || title} onLeftButtonClick={toggleDrawer} previous={previous} next={next} />
-        </AppBar>
-      </Slide>
-      <SectionWrapper>
-        {children}
-        <Section>
-          <Container maxWidth="md" disableGutters>
-            <PanelLink href="/" disableBorder disableMargin>
-              トップページへ
-            </PanelLink>
-          </Container>
-        </Section>
-        <Footer />
-      </SectionWrapper>
-      <Box
-        sx={{
-          position: 'fixed',
-          bottom: (theme) => theme.spacing(2),
-          right: (theme) => theme.spacing(2),
-          zIndex: (theme) => theme.zIndex.appBar - 1,
-          opacity: 0.4,
-          transition: (theme) => theme.transitions.create('opacity'),
-          '&:hover': {
-            opacity: 1,
-          },
-        }}
-      >
-        <Tooltip title="メニュー">
-          <Fab color="secondary" onClick={toggleDrawer}>
-            <MenuIcon />
-          </Fab>
-        </Tooltip>
-      </Box>
-      <SwipeableDrawer
-        open={drawerOpen}
-        onClose={setDrawer(false)}
-        onOpen={setDrawer(true)}
-        disableBackdropTransition={!iOS}
-        disableDiscovery={iOS}
-      >
-        <DrawerInner onCloseIconClick={setDrawer(false)} title={title} previous={previous} next={next} />
-      </SwipeableDrawer>
-    </Box>
+      {children}
+    </AoiLayout>
   );
 }
 
 Layout.defaultProps = {
   title: undefined,
   headerTitle: undefined,
-  previous: undefined,
-  next: undefined,
+  headerLeft: undefined,
+  headerRight: undefined,
 };
 
 export default Layout;

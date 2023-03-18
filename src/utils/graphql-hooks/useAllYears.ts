@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import type { Year } from '../../../types';
 
@@ -7,10 +8,10 @@ type AllYearsQueryData = {
   };
 };
 
-export default function useAllYears() {
+export default function useAllYears(sort?: 'asc' | 'desc') {
   const data = useStaticQuery<AllYearsQueryData>(graphql`
     {
-      allYear {
+      allYear(sort: { year: ASC }) {
         nodes {
           id
           year
@@ -19,5 +20,8 @@ export default function useAllYears() {
       }
     }
   `);
-  return data.allYear.nodes;
+  return React.useMemo(() => {
+    if (!sort || sort === 'asc') return data.allYear.nodes;
+    return [...data.allYear.nodes].sort((a, b) => b.year - a.year);
+  }, [data, sort]);
 }

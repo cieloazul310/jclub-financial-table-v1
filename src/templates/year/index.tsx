@@ -1,53 +1,64 @@
 import * as React from 'react';
 import { graphql, type PageProps, type HeadProps } from 'gatsby';
-import TemplateLayout from '../../layout/TemplateLayout';
+import Typography from '@mui/material/Typography';
+import { Section, Article } from '@cieloazul310/gatsby-theme-aoi';
+import { PageNavigationContainer, PageNavigationItem } from '@cieloazul310/gatsby-theme-aoi-blog-components';
+import Layout from '../../layout';
 import Seo from '../../components/Seo';
-import SummarySection from '../components/Summary';
-import NavigationSection from '../components/Navigation';
+import YearSummary from './Summary';
+import { YearsLink } from '../../components/Links';
 import FigureSection from '../components/Figure';
-// import ArticleSection from '../components/Article';
 import { AdInSectionDividerOne } from '../../components/Ads';
 import type { Year, AllDataFieldsFragment } from '../../../types';
 
 export type YearPageData = {
-  year: Omit<Year, 'data'>;
-  previous: Pick<Year, 'year' | 'href' | 'stats'> | null;
-  next: Pick<Year, 'year' | 'href'> | null;
+  year: Pick<Year, 'id' | 'year' | 'href' | 'categories' | 'stats'>;
+  right: Pick<Year, 'year' | 'href'> | null;
+  left: Pick<Year, 'year' | 'href' | 'stats'> | null;
   allData: {
     nodes: (AllDataFieldsFragment & { previousData: AllDataFieldsFragment })[];
   };
 };
 export type YearPageContext = {
-  previous: number | null;
-  next: number | null;
+  right: number | null;
+  left: number | null;
 };
 
 function YearTemplate({ data }: PageProps<YearPageData, YearPageContext>) {
-  const { year, previous, next } = data;
+  const { year, right, left } = data;
+  const pageNavigation = React.useMemo(
+    () => (
+      <Section>
+        <PageNavigationContainer>
+          <PageNavigationItem href={left?.href ?? '#'} disabled={!left}>
+            <Typography variant="body2">{left?.year}</Typography>
+          </PageNavigationItem>
+          <PageNavigationItem href={right?.href ?? '#'} disabled={!right} right>
+            <Typography variant="body2">{right?.year}</Typography>
+          </PageNavigationItem>
+        </PageNavigationContainer>
+      </Section>
+    ),
+    [left, right]
+  );
 
   return (
-    <TemplateLayout
+    <Layout
       title={`${year.year}年Jクラブ経営情報`}
-      previous={previous ? { to: previous.href, title: `${previous.year}年度` } : null}
-      next={next ? { to: next.href, title: `${next.year}年度` } : null}
+      right={right ? { href: right.href, title: `${right.year}年度`, secondaryText: 'Next' } : null}
+      left={left ? { href: left.href, title: `${left.year}年度`, secondaryText: 'Previous' } : null}
     >
       <FigureSection nodes={data.allData.nodes} mode="year" />
-      <SummarySection mode="year" nodes={data.allData.nodes} item={data.year} prevYear={previous} posts={null} />
-      <NavigationSection
-        mode="year"
-        item={data.year}
-        previous={previous ? { to: previous.href, title: `${previous.year}年度` } : null}
-        next={next ? { to: next.href, title: `${next.year}年度` } : null}
-      />
+      {pageNavigation}
+      <YearSummary year={year} prevYear={left} />
+      <Section>
+        <Article maxWidth="md">
+          <YearsLink />
+        </Article>
+      </Section>
       <AdInSectionDividerOne />
-      {/* <ArticleSection /> */}
-      <NavigationSection
-        mode="year"
-        item={data.year}
-        previous={previous ? { to: previous.href, title: `${previous.year}年度` } : null}
-        next={next ? { to: next.href, title: `${next.year}年度` } : null}
-      />
-    </TemplateLayout>
+      {pageNavigation}
+    </Layout>
   );
 }
 
@@ -64,7 +75,7 @@ export function Head({ data }: HeadProps<YearPageData>) {
 }
 
 export const query = graphql`
-  query YearTemplate($year: Int!, $previous: Int, $next: Int) {
+  query YearTemplate($year: Int!, $right: Int, $left: Int) {
     year(year: { eq: $year }) {
       id
       year
@@ -82,7 +93,11 @@ export const query = graphql`
         }
       }
     }
-    previous: year(year: { eq: $previous }) {
+    right: year(year: { eq: $right }) {
+      year
+      href
+    }
+    left: year(year: { eq: $left }) {
       year
       href
       stats {
@@ -96,10 +111,6 @@ export const query = graphql`
           ...allStats
         }
       }
-    }
-    next: year(year: { eq: $next }) {
-      year
-      href
     }
     allData(filter: { year: { eq: $year } }, sort: { revenue: DESC }) {
       nodes {

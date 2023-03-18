@@ -11,29 +11,29 @@ import PostList from '../../components/PostList';
 import shortcodes from '../../components/Shortcodes';
 import { AdInSectionDividerOne } from '../../components/Ads';
 import Layout from '../../layout';
-import type { Club, MdxPost } from '../../../types';
+import type { Club, MdxPost, MdxPostListFragment } from '../../../types';
 
 type PostTemplatePageData = {
-  mdxPost: Pick<MdxPost, 'body' | 'title' | 'lastmod' | 'date' | 'excerpt' | 'draft'> & {
+  mdxPost: Pick<MdxPost, 'title' | 'lastmod' | 'date' | 'excerpt' | 'draft'> & {
     lastmodDate: string;
     club: Pick<Club, 'short_name' | 'name' | 'href'>[] | null;
   };
-  previous: { to: string; title: string } | null;
-  next: { to: string; title: string } | null;
+  older: { href: string; title: string } | null;
+  newer: { href: string; title: string } | null;
   allMdxPost: {
-    nodes: Pick<MdxPost, 'title' | 'date' | 'slug'>[];
+    nodes: MdxPostListFragment[];
   };
 };
 type PostTemplatePageContext = {
   slug: string;
-  previous: string | null;
-  next: string | null;
+  older: string | null;
+  newer: string | null;
   club: string[] | null;
   specifiedClub: string | null;
 };
 
 function PostTemplate({ data, children }: PageProps<PostTemplatePageData, PostTemplatePageContext>) {
-  const { mdxPost, previous, next, allMdxPost } = data;
+  const { mdxPost, older, newer, allMdxPost } = data;
   const { title, date, lastmod, lastmodDate, club, draft } = mdxPost;
   const daysFromLastmod = React.useMemo(() => {
     const today = new Date();
@@ -42,7 +42,7 @@ function PostTemplate({ data, children }: PageProps<PostTemplatePageData, PostTe
   const specifiedClub = club && club.length === 1 ? club[0] : null;
 
   return (
-    <Layout title={title} headerTitle="記事" previous={previous} next={next}>
+    <Layout title={title} right={older} left={newer}>
       <Jumbotron maxWidth="md" component="header">
         <Typography>{date}</Typography>
         <Typography variant="h5" component="h2" gutterBottom>
@@ -85,7 +85,7 @@ function PostTemplate({ data, children }: PageProps<PostTemplatePageData, PostTe
               <PostList
                 posts={allMdxPost.nodes}
                 title={`${specifiedClub.name}の最新の記事`}
-                more={{ to: `${specifiedClub.href}posts/`, title: `${specifiedClub.name}の記事一覧` }}
+                more={{ href: `${specifiedClub.href}posts/`, title: `${specifiedClub.name}の記事一覧` }}
               />
             </Article>
           </Section>
@@ -100,11 +100,11 @@ function PostTemplate({ data, children }: PageProps<PostTemplatePageData, PostTe
       ) : null}
       <Section>
         <PageNavigationContainer>
-          <PageNavigationItem href={previous?.to ?? '#'} disabled={!previous}>
-            <Typography variant="body2">{previous?.title}</Typography>
+          <PageNavigationItem href={newer?.href ?? '#'} disabled={!newer}>
+            <Typography variant="body2">{newer?.title}</Typography>
           </PageNavigationItem>
-          <PageNavigationItem href={next?.to ?? '#'} disabled={!next} right>
-            <Typography variant="body2">{next?.title}</Typography>
+          <PageNavigationItem href={older?.href ?? '#'} disabled={!older} right>
+            <Typography variant="body2">{older?.title}</Typography>
           </PageNavigationItem>
         </PageNavigationContainer>
       </Section>
@@ -128,13 +128,12 @@ export function Head({ data }: HeadProps<PostTemplatePageData, PostTemplatePageC
 }
 
 export const query = graphql`
-  query Post($slug: String!, $previous: String, $next: String, $specifiedClub: String, $draft: Boolean) {
+  query Post($slug: String!, $older: String, $newer: String, $specifiedClub: String, $draft: Boolean) {
     mdxPost(slug: { eq: $slug }) {
       date(formatString: "YYYY年MM月DD日")
       title
       lastmod(formatString: "YYYY年MM月DD日")
       lastmodDate: lastmod(formatString: "YYYY-MM-DD")
-      body
       draft
       excerpt
       club {
@@ -143,12 +142,12 @@ export const query = graphql`
         name
       }
     }
-    previous: mdxPost(slug: { eq: $previous }) {
-      to: slug
+    older: mdxPost(slug: { eq: $older }) {
+      href: slug
       title
     }
-    next: mdxPost(slug: { eq: $next }) {
-      to: slug
+    newer: mdxPost(slug: { eq: $newer }) {
+      href: slug
       title
     }
     allMdxPost(
@@ -157,9 +156,7 @@ export const query = graphql`
       limit: 5
     ) {
       nodes {
-        title
-        date(formatString: "YYYY年MM月DD日")
-        slug
+        ...mdxPostList
       }
     }
   }

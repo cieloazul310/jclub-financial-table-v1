@@ -8,11 +8,11 @@ import Seo from '../components/Seo';
 import PostList from '../components/PostList';
 import { AdInSectionDividerTwo } from '../components/Ads';
 import Layout from '../layout';
-import type { Club, MdxPost } from '../../types';
+import type { Club, MdxPostListFragment } from '../../types';
 
 type PostsByClubPageData = {
   allMdxPost: {
-    nodes: Pick<MdxPost, 'title' | 'date' | 'slug'>[];
+    nodes: MdxPostListFragment[];
   };
   club: Pick<Club, 'name' | 'href'>;
 };
@@ -90,9 +90,7 @@ export const query = graphql`
       skip: $skip
     ) {
       nodes {
-        title
-        date(formatString: "YYYY年MM月DD日")
-        slug
+        ...mdxPostList
       }
     }
     club(slug: { eq: $slug }) {

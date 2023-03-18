@@ -8,11 +8,11 @@ import Seo from '../components/Seo';
 import PostList from '../components/PostList';
 import { AdInSectionDividerOne } from '../components/Ads';
 import Layout from '../layout';
-import type { MdxPost } from '../../types';
+import type { MdxPostListFragment } from '../../types';
 
 type AllPostsTemplateData = {
   allMdxPost: {
-    nodes: Pick<MdxPost, 'title' | 'date' | 'slug'>[];
+    nodes: MdxPostListFragment[];
   };
 };
 type AllPostsTemplateContext = {
@@ -77,9 +77,7 @@ export const query = graphql`
   query AllPosts($skip: Int!, $limit: Int!, $draft: Boolean) {
     allMdxPost(filter: { draft: { ne: $draft } }, sort: [{ date: DESC }, { lastmod: DESC }, { slug: DESC }], limit: $limit, skip: $skip) {
       nodes {
-        title
-        date(formatString: "YYYY年MM月DD日")
-        slug
+        ...mdxPostList
       }
     }
   }

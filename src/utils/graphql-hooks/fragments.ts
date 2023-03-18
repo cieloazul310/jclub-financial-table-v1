@@ -93,6 +93,12 @@ export default function useFragments() {
       unit_price
     }
 
+    fragment mdxPostList on MdxPost {
+      title
+      date(formatString: "YYYY年MM月DD日")
+      slug
+    }
+
     fragment allStats on Stats {
       revenue {
         ...statsValues
@@ -124,7 +130,10 @@ export default function useFragments() {
     }
     fragment statsValues on StatsValues {
       average
-      values
+      values {
+        name
+        value
+      }
       totalCount
     }
   `);

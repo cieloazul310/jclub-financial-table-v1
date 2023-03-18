@@ -1,30 +1,24 @@
 import * as React from 'react';
-/*
-import { MDXProvider } from '@mdx-js/react';
-import { ArticleTitle, SubParagraph } from '@cieloazul310/gatsby-theme-aoi';
-import { muiComponents } from '@cieloazul310/gatsby-theme-aoi-blog-components';
-import Shortcodes from '../Shortcodes';
-import type { DocsQueryData } from '../../../types';
-*/
+import { H2, SubParagraph } from '@cieloazul310/gatsby-theme-aoi';
 
 type DocContainerProps = {
-  // mdx: DocsQueryData['mdx'];
+  title: string;
+  lastmod?: string;
   children: React.ReactNode;
 };
 
-function DocContainer({ children }: DocContainerProps) {
-  /*
-  const { frontmatter, body } = mdx;
-  const { title, lastmod } = frontmatter;
+function DocContainer({ children, title, lastmod }: DocContainerProps) {
   return (
-    <MDXProvider components={{ ...muiComponents, ...Shortcodes }}>
-      <ArticleTitle>{title}</ArticleTitle>
+    <>
+      <H2>{title}</H2>
       {children}
       {lastmod ? <SubParagraph>最終更新日: {lastmod}</SubParagraph> : null}
-    </MDXProvider>
+    </>
   );
-  */
-  return children;
 }
+
+DocContainer.defaultProps = {
+  lastmod: undefined,
+};
 
 export default DocContainer;

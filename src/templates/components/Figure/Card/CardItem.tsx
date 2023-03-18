@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import ButtonBase from '@mui/material/ButtonBase';
 import { AppLink } from '@cieloazul310/gatsby-theme-aoi';
 import { useAppState, useDispatch } from '../../../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
-import { CategoryLabel } from '../../../../components/CategoryAvatar';
+import CategoryLabel from '../../../../components/CategoryAvatar';
 import { PLCardValues, BSCardValues, RevenueCardValues, ExpenseCardValues, AttdCardValues } from './CardValues';
 
 import type { AllDataFieldsFragment, Mode, General, SeasonResult } from '../../../../../types';

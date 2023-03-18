@@ -9,11 +9,11 @@ import PostList from '../components/PostList';
 import { J1Link, J2Link, J3Link, YearsLink } from '../components/Links';
 import AttributionDoc from '../components/Article/Attribution';
 import { AdInSectionDividerOne } from '../components/Ads';
-import type { MdxPost } from '../../types';
+import type { MdxPostListFragment } from '../../types';
 
 type IndexPageQueryData = {
   allMdxPost: {
-    nodes: Pick<MdxPost, 'slug' | 'title' | 'date'>[];
+    nodes: MdxPostListFragment[];
   };
 };
 
@@ -27,11 +27,11 @@ function IndexPage({ data }: PageProps<IndexPageQueryData>) {
           {title}
         </Typography>
         <Paragraph>{description}</Paragraph>
-        <span>
+        <div>
           <AppLinkButton href="/year/2021/" variant="contained" color="primary">
             最新の経営情報を見る
           </AppLinkButton>
-        </span>
+        </div>
       </Jumbotron>
       {/*
         <Jumbotron maxWidth="md" bgcolor={palette.mode === 'light' ? 'primary.light' : 'primary.dark'} height={40}>
@@ -43,7 +43,7 @@ function IndexPage({ data }: PageProps<IndexPageQueryData>) {
       </Jumbotron>
       */}
       <Section>
-        <Article maxWidth="md">
+        <Article maxWidth="md" py={2}>
           <Grid container spacing={2} component="nav">
             <Grid item xs={12} sm={6} md={3}>
               <Typography variant="h6" component="h3" gutterBottom>
@@ -90,7 +90,7 @@ function IndexPage({ data }: PageProps<IndexPageQueryData>) {
       </Section>
       <Section>
         <Article maxWidth="md">
-          <PostList posts={allMdxPost.nodes} title="最新の記事" more={{ to: '/posts/', title: '記事一覧' }} />
+          <PostList posts={allMdxPost.nodes} title="最新の記事" more={{ href: '/posts/', title: '記事一覧' }} />
         </Article>
       </Section>
       <AdInSectionDividerOne />
@@ -112,9 +112,7 @@ export const query = graphql`
   query IndexPage($draft: Boolean) {
     allMdxPost(filter: { draft: { ne: $draft } }, sort: [{ date: DESC }, { lastmod: DESC }, { slug: DESC }], limit: 5) {
       nodes {
-        slug
-        title
-        date(formatString: "YYYY年MM月DD日")
+        ...mdxPostList
       }
     }
   }

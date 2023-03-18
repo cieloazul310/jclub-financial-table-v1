@@ -3,10 +3,10 @@ import type { GatsbyIterable } from 'gatsby/dist/datastore/common/iterable';
 import type { GatsbyGraphQLContext } from '../graphql';
 import type { Year, Datum, Category, SortableKeys } from '../../../types';
 
-function valuesToStats(data: number[]) {
-  const values = data.sort((a, b) => a - b);
+function valuesToStats(data: { name: string; value: number }[]) {
+  const values = data.sort((a, b) => a.value - b.value);
   const totalCount = values.length;
-  const sum = values.reduce((accum, curr) => accum + curr, 0);
+  const sum = values.reduce((accum, curr) => accum + curr.value, 0);
   const average = Math.round(sum / totalCount);
 
   return { values, totalCount, average };
@@ -14,16 +14,16 @@ function valuesToStats(data: number[]) {
 
 function createStats(data: Datum<'node'>[], key: SortableKeys) {
   if (key === 'average_attd') {
-    const values = data.map(({ league_attd, league_games }) => Math.round(league_attd / league_games));
+    const values = data.map(({ league_attd, league_games, name }) => ({ name, value: Math.round(league_attd / league_games) }));
     return valuesToStats(values);
   }
   if (key === 'unit_price') {
     const values = data
       .filter(({ ticket }) => ticket !== null)
-      .map(({ ticket, all_attd }) => Math.round(((ticket ?? 0) * 1000000) / all_attd));
+      .map(({ ticket, all_attd, name }) => ({ name, value: Math.round(((ticket ?? 0) * 1000000) / all_attd) }));
     return valuesToStats(values);
   }
-  const values = data.filter((datum) => datum[key] !== null).map((datum) => datum[key] ?? 0);
+  const values = data.filter((datum) => datum[key] !== null).map((datum) => ({ name: datum.name, value: datum[key] ?? 0 }));
   return valuesToStats(values);
 }
 
@@ -75,9 +75,13 @@ export default async function createYearSchema({ actions, schema }: CreateSchema
       unit_price: StatsValues!
     }
     type StatsValues {
-      values: [Int]!
+      values: [StatsValuesItem]!
       totalCount: Int!
       average: Int!
+    }
+    type StatsValuesItem {
+      name: String!
+      value: Int!
     }
   `);
 

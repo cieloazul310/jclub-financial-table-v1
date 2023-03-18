@@ -2,6 +2,7 @@ import * as React from 'react';
 import List from '@mui/material/List';
 import ListSubheader from '@mui/material/ListSubheader';
 import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Checkbox from '@mui/material/Checkbox';
@@ -37,26 +38,34 @@ function FieldTypeList({ title, fields, setFields, items }: FieldTypeListProps) 
   };
   return (
     <List>
-      <ListItem button onClick={toggleOpen}>
-        <ListItemIcon>
-          <Checkbox disableRipple checked={!allEmpty} indeterminate={!allSelected && !allEmpty} edge="start" color="secondary" />
-        </ListItemIcon>
-        <ListItemText primary={title} />
-        {open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+      <ListItem disablePadding>
+        <ListItemButton onClick={toggleOpen}>
+          <ListItemIcon>
+            <Checkbox disableRipple checked={!allEmpty} indeterminate={!allSelected && !allEmpty} edge="start" color="secondary" />
+          </ListItemIcon>
+          <ListItemText primary={title} />
+          {open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+        </ListItemButton>
       </ListItem>
       <Collapse in={open}>
-        <ListItem button dense onClick={setAllFields}>
-          <ListItemText primary="全て選択" />
+        <ListItem disablePadding dense>
+          <ListItemButton onClick={setAllFields}>
+            <ListItemText primary="全て選択" />
+          </ListItemButton>
         </ListItem>
-        <ListItem button dense onClick={clearAllFields}>
-          <ListItemText primary="全て解除" />
+        <ListItem disablePadding dense>
+          <ListItemButton onClick={clearAllFields}>
+            <ListItemText primary="全て解除" />
+          </ListItemButton>
         </ListItem>
         {items.map((item) => (
-          <ListItem key={item} button dense onClick={toggleField(item)}>
-            <ListItemIcon>
-              <Checkbox checked={fields.includes(item)} edge="start" color="secondary" />
-            </ListItemIcon>
-            <ListItemText primary={dictionary[item as keyof Dict]} />
+          <ListItem key={item} disablePadding dense>
+            <ListItemButton onClick={toggleField(item)}>
+              <ListItemIcon>
+                <Checkbox checked={fields.includes(item)} edge="start" color="secondary" />
+              </ListItemIcon>
+              <ListItemText primary={dictionary[item as keyof Dict]} />
+            </ListItemButton>
           </ListItem>
         ))}
       </Collapse>

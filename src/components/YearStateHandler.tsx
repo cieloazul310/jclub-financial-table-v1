@@ -2,6 +2,7 @@ import * as React from 'react';
 import List from '@mui/material/List';
 import ListSubheader from '@mui/material/ListSubheader';
 import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
 import Checkbox from '@mui/material/Checkbox';
@@ -16,29 +17,37 @@ function YearStateHandler() {
   };
   return (
     <List subheader={<ListSubheader>年別フィルタ</ListSubheader>}>
-      <ListItem button onClick={toggleCategory('J1')}>
-        <ListItemText primary="J1" />
-        <ListItemSecondaryAction>
-          <Checkbox checked={filterCategories.includes('J1')} onClick={toggleCategory('J1')} />
-        </ListItemSecondaryAction>
+      <ListItem disablePadding>
+        <ListItemButton onClick={toggleCategory('J1')}>
+          <ListItemText primary="J1" />
+          <ListItemSecondaryAction>
+            <Checkbox checked={filterCategories.includes('J1')} onClick={toggleCategory('J1')} />
+          </ListItemSecondaryAction>
+        </ListItemButton>
       </ListItem>
-      <ListItem button onClick={toggleCategory('J2')}>
-        <ListItemText primary="J2" />
-        <ListItemSecondaryAction>
-          <Checkbox checked={filterCategories.includes('J2')} onClick={toggleCategory('J2')} />
-        </ListItemSecondaryAction>
+      <ListItem disablePadding>
+        <ListItemButton onClick={toggleCategory('J2')}>
+          <ListItemText primary="J2" />
+          <ListItemSecondaryAction>
+            <Checkbox checked={filterCategories.includes('J2')} onClick={toggleCategory('J2')} />
+          </ListItemSecondaryAction>
+        </ListItemButton>
       </ListItem>
-      <ListItem button onClick={toggleCategory('J3')}>
-        <ListItemText primary="J3" />
-        <ListItemSecondaryAction>
-          <Checkbox checked={filterCategories.includes('J3')} onClick={toggleCategory('J3')} />
-        </ListItemSecondaryAction>
+      <ListItem disablePadding>
+        <ListItemButton onClick={toggleCategory('J3')}>
+          <ListItemText primary="J3" />
+          <ListItemSecondaryAction>
+            <Checkbox checked={filterCategories.includes('J3')} onClick={toggleCategory('J3')} />
+          </ListItemSecondaryAction>
+        </ListItemButton>
       </ListItem>
-      <ListItem button onClick={toggleCategory('others')}>
-        <ListItemText primary="その他" />
-        <ListItemSecondaryAction>
-          <Checkbox checked={filterCategories.includes('others')} onClick={toggleCategory('others')} />
-        </ListItemSecondaryAction>
+      <ListItem disablePadding>
+        <ListItemButton onClick={toggleCategory('others')}>
+          <ListItemText primary="その他" />
+          <ListItemSecondaryAction>
+            <Checkbox checked={filterCategories.includes('others')} onClick={toggleCategory('others')} />
+          </ListItemSecondaryAction>
+        </ListItemButton>
       </ListItem>
     </List>
   );

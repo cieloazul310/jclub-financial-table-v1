@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
+import Tab from './Tab';
 import FigureToolbar from './Toolbar';
 import FinancialTable from './Table';
 import FinancialCard from './Card';
@@ -24,11 +25,14 @@ function FigureSection({ nodes, mode }: FigureSectionProps) {
         sx={{
           overflowY: 'auto',
           display: 'flex',
-          flexDirection: { xs: 'column-reverse', sm: 'column' },
-          height: isYearTable ? { xs: 'calc(100vh - 104px)', sm: 'calc(100vh - 112px)' } : undefined,
+          flexDirection: 'column',
+          height: isYearTable ? { xs: 'calc(100vh - 128px)', sm: 'calc(100vh - 64px)' } : undefined,
         }}
       >
-        <FigureToolbar mode={mode} />
+        <Box display="flex" flexDirection={{ xs: 'column', sm: 'column', md: 'row-reverse' }} bgcolor="background.paper">
+          <FigureToolbar mode={mode} />
+          <Tab />
+        </Box>
         <Box flexGrow={1} overflow="auto" display="flex">
           {listMode ? <FinancialCard nodes={nodes} mode={mode} /> : <FinancialTable nodes={nodes} mode={mode} />}
         </Box>

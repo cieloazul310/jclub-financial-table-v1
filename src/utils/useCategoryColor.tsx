@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useTheme } from '@mui/material/styles';
 import { j1color, j2color, j3color, othersColor } from './categoryColors';
-import type { FilterCategory } from '../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppState';
 
 const categoryColors = {
   J1: j1color,
@@ -10,12 +9,16 @@ const categoryColors = {
   others: othersColor,
 };
 
-function useCategoryColor(category: FilterCategory) {
+function isFilterCategory(str: string): str is keyof typeof categoryColors {
+  return Object.prototype.hasOwnProperty.call(categoryColors, str);
+}
+
+function useCategoryColor(category: string) {
   const theme = useTheme();
   return React.useMemo(() => {
     const paletteType = theme.palette.mode;
     const shade = paletteType === 'light' ? 600 : 800;
-    const color = categoryColors[category][shade];
+    const color = categoryColors[isFilterCategory(category) ? category : 'others'][shade];
     return {
       color,
       contrastText: theme.palette.getContrastText(color),

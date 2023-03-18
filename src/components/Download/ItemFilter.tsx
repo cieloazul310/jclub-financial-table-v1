@@ -2,6 +2,7 @@ import * as React from 'react';
 import List from '@mui/material/List';
 import ListSubheader from '@mui/material/ListSubheader';
 import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
@@ -39,26 +40,34 @@ function ClubListByCategory({ clubs, title, clubsFilter, setClubsFilter }: ClubL
 
   return (
     <>
-      <ListItem button onClick={toggleOpen}>
-        <ListItemIcon>
-          <Checkbox checked={!allEmpty} indeterminate={!allSelected && !allEmpty} edge="start" color="secondary" disableRipple />
-        </ListItemIcon>
-        <ListItemText primary={title} />
-        {open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+      <ListItem disablePadding>
+        <ListItemButton onClick={toggleOpen}>
+          <ListItemIcon>
+            <Checkbox checked={!allEmpty} indeterminate={!allSelected && !allEmpty} edge="start" color="secondary" disableRipple />
+          </ListItemIcon>
+          <ListItemText primary={title} />
+          {open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+        </ListItemButton>
       </ListItem>
       <Collapse in={open}>
-        <ListItem button onClick={setAll}>
-          <ListItemText primary="全て選択" />
+        <ListItem disablePadding>
+          <ListItemButton onClick={setAll}>
+            <ListItemText primary="全て選択" />
+          </ListItemButton>
         </ListItem>
-        <ListItem button onClick={clearAll}>
-          <ListItemText primary="全て解除" />
+        <ListItem disablePadding>
+          <ListItemButton onClick={clearAll}>
+            <ListItemText primary="全て解除" />
+          </ListItemButton>
         </ListItem>
         {clubs.nodes.map((node) => (
-          <ListItem key={node.slug} button dense onClick={onClick(node.slug)}>
-            <ListItemIcon>
-              <Checkbox checked={clubsFilter.includes(node.slug)} edge="start" color="secondary" disableRipple />
-            </ListItemIcon>
-            <ListItemText primary={node.name} />
+          <ListItem key={node.slug} disablePadding dense>
+            <ListItemButton onClick={onClick(node.slug)}>
+              <ListItemIcon>
+                <Checkbox checked={clubsFilter.includes(node.slug)} edge="start" color="secondary" disableRipple />
+              </ListItemIcon>
+              <ListItemText primary={node.name} />
+            </ListItemButton>
           </ListItem>
         ))}
       </Collapse>
@@ -79,11 +88,15 @@ function ClubList({ clubsFilter, setClubsFilter }: ClubListProps) {
   };
   return (
     <List subheader={<ListSubheader>クラブ</ListSubheader>}>
-      <ListItem button onClick={setAllClub}>
-        <ListItemText primary="全て選択" />
+      <ListItem disablePadding>
+        <ListItemButton onClick={setAllClub}>
+          <ListItemText primary="全て選択" />
+        </ListItemButton>
       </ListItem>
-      <ListItem button onClick={clearAllClub}>
-        <ListItemText primary="全て解除" />
+      <ListItem disablePadding>
+        <ListItemButton onClick={clearAllClub}>
+          <ListItemText primary="全て解除" />
+        </ListItemButton>
       </ListItem>
       <ClubListByCategory clubs={j1} title="J1" clubsFilter={clubsFilter} setClubsFilter={setClubsFilter} />
       <ClubListByCategory clubs={j2} title="J2" clubsFilter={clubsFilter} setClubsFilter={setClubsFilter} />
@@ -107,18 +120,24 @@ function YearsList({ yearsFilter, setYearsFilter }: YearsListProps) {
   };
   return (
     <List subheader={<ListSubheader>年度</ListSubheader>}>
-      <ListItem button onClick={setAllYears}>
-        <ListItemText primary="全て選択" />
+      <ListItem disablePadding>
+        <ListItemButton onClick={setAllYears}>
+          <ListItemText primary="全て選択" />
+        </ListItemButton>
       </ListItem>
-      <ListItem button onClick={clearAllYears}>
-        <ListItemText primary="全て解除" />
+      <ListItem disablePadding>
+        <ListItemButton onClick={clearAllYears}>
+          <ListItemText primary="全て解除" />
+        </ListItemButton>
       </ListItem>
       {allYears.map((year) => (
-        <ListItem key={year.toString()} button onClick={toggleYear(year)}>
-          <ListItemIcon>
-            <Checkbox checked={yearsFilter.includes(year)} edge="start" color="secondary" disableRipple />
-          </ListItemIcon>
-          <ListItemText primary={year} />
+        <ListItem key={year.toString()} disablePadding>
+          <ListItemButton onClick={toggleYear(year)}>
+            <ListItemIcon>
+              <Checkbox checked={yearsFilter.includes(year)} edge="start" color="secondary" disableRipple />
+            </ListItemIcon>
+            <ListItemText primary={year} />
+          </ListItemButton>
         </ListItem>
       ))}
     </List>
@@ -142,35 +161,47 @@ function CategoriesList({ categoriesFilter, setCategoriesFilter }: CategoriesLis
   };
   return (
     <List subheader={<ListSubheader>カテゴリ</ListSubheader>}>
-      <ListItem button onClick={setAllCategories}>
-        <ListItemText primary="全て選択" />
+      <ListItem disablePadding>
+        <ListItemButton onClick={setAllCategories}>
+          <ListItemText primary="全て選択" />
+        </ListItemButton>
       </ListItem>
-      <ListItem button onClick={clearAllCategories}>
-        <ListItemText primary="全て解除" />
+      <ListItem disablePadding>
+        <ListItemButton onClick={clearAllCategories}>
+          <ListItemText primary="全て解除" />
+        </ListItemButton>
       </ListItem>
-      <ListItem button onClick={toggleCategory('J1')}>
-        <ListItemIcon>
-          <Checkbox checked={categoriesFilter.includes('J1')} edge="start" color="secondary" disableRipple />
-        </ListItemIcon>
-        <ListItemText primary="J1" />
+      <ListItem disablePadding>
+        <ListItemButton onClick={toggleCategory('J1')}>
+          <ListItemIcon>
+            <Checkbox checked={categoriesFilter.includes('J1')} edge="start" color="secondary" disableRipple />
+          </ListItemIcon>
+          <ListItemText primary="J1" />
+        </ListItemButton>
       </ListItem>
-      <ListItem button onClick={toggleCategory('J2')}>
-        <ListItemIcon>
-          <Checkbox checked={categoriesFilter.includes('J2')} edge="start" color="secondary" disableRipple />
-        </ListItemIcon>
-        <ListItemText primary="J2" />
+      <ListItem disablePadding>
+        <ListItemButton onClick={toggleCategory('J2')}>
+          <ListItemIcon>
+            <Checkbox checked={categoriesFilter.includes('J2')} edge="start" color="secondary" disableRipple />
+          </ListItemIcon>
+          <ListItemText primary="J2" />
+        </ListItemButton>
       </ListItem>
-      <ListItem button onClick={toggleCategory('J3')}>
-        <ListItemIcon>
-          <Checkbox checked={categoriesFilter.includes('J3')} edge="start" color="secondary" disableRipple />
-        </ListItemIcon>
-        <ListItemText primary="J3" />
+      <ListItem disablePadding>
+        <ListItemButton onClick={toggleCategory('J3')}>
+          <ListItemIcon>
+            <Checkbox checked={categoriesFilter.includes('J3')} edge="start" color="secondary" disableRipple />
+          </ListItemIcon>
+          <ListItemText primary="J3" />
+        </ListItemButton>
       </ListItem>
-      <ListItem button onClick={toggleCategory('others')}>
-        <ListItemIcon>
-          <Checkbox checked={categoriesFilter.includes('others')} edge="start" color="secondary" disableRipple />
-        </ListItemIcon>
-        <ListItemText primary="その他" />
+      <ListItem disablePadding>
+        <ListItemButton onClick={toggleCategory('others')}>
+          <ListItemIcon>
+            <Checkbox checked={categoriesFilter.includes('others')} edge="start" color="secondary" disableRipple />
+          </ListItemIcon>
+          <ListItemText primary="その他" />
+        </ListItemButton>
       </ListItem>
     </List>
   );

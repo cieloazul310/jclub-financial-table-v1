@@ -1,39 +1,15 @@
 import * as React from 'react';
 import Typograhy from '@mui/material/Typography';
-import Avatar from '@mui/material/Avatar';
-import type { SxProps } from '@mui/material/styles';
-import { useCategoryColor } from '../utils/categoryColors';
+import useCategoryColor from '../utils/useCategoryColor';
 
-function CategoryAvatar({ category, sx }: { category: string; sx?: SxProps }) {
-  const sxProps = useCategoryColor(category);
-  const textSmall = !['J1', 'J2', 'J3', 'JFL'].includes(category);
-  return (
-    <Avatar
-      sx={{
-        ...sx,
-        ...sxProps,
-        fontSize: textSmall ? 'caption.fontSize' : undefined,
-        fontWeight: textSmall ? 'bold' : undefined,
-      }}
-    >
-      {category}
-    </Avatar>
-  );
-}
-
-CategoryAvatar.defaultProps = {
-  sx: undefined,
-};
-
-export default CategoryAvatar;
-
-export function CategoryLabel({ category }: { category: string }) {
-  const sx = useCategoryColor(category);
+function CategoryLabel({ category }: { category: string }) {
+  const { color, contrastText } = useCategoryColor(category);
   return (
     <Typograhy
       component="span"
       sx={{
-        ...sx,
+        bgcolor: color,
+        color: contrastText,
         px: 1,
         fontSize: 'inherit',
         borderRadius: 1,
@@ -44,3 +20,5 @@ export function CategoryLabel({ category }: { category: string }) {
     </Typograhy>
   );
 }
+
+export default CategoryLabel;

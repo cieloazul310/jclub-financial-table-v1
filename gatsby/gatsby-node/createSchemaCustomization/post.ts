@@ -31,8 +31,7 @@ export default async function createDataSchema({ actions, schema }: CreateSchema
       lastmod: Date! @dateformat
       club: [Club]
       draft: Boolean!
-      body: String!
-      excerpt: String!
+      excerpt: String
     }
     type MdxPostByYear {
       id: String!
@@ -63,19 +62,10 @@ export default async function createDataSchema({ actions, schema }: CreateSchema
               },
             });
             return entries;
-            /*
-            const club = await context.nodeModel.findOne({
-              type: `Club`,
-              query: {
-                filter: { short_name: { eq: source.club } },
-              },
-            });
-            return club;
-            */
           },
         },
         excerpt: {
-          type: `String!`,
+          type: `String`,
           args: {
             pruneLength: {
               type: `Int`,
