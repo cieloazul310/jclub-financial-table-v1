@@ -29,9 +29,9 @@ function FigureSection({ nodes, mode }: FigureSectionProps) {
           height: isYearTable ? { xs: 'calc(100vh - 128px)', sm: 'calc(100vh - 64px)' } : undefined,
         }}
       >
-        <Box display="flex" flexDirection={{ xs: 'column', sm: 'column', md: 'row-reverse' }} bgcolor="background.paper">
-          <FigureToolbar mode={mode} />
+        <Box display="flex" flexDirection={{ xs: 'column', sm: 'column', md: 'row' }} bgcolor="background.paper">
           <Tab />
+          <FigureToolbar mode={mode} />
         </Box>
         <Box flexGrow={1} overflow="auto" display="flex">
           {listMode ? <FinancialCard nodes={nodes} mode={mode} /> : <FinancialTable nodes={nodes} mode={mode} />}

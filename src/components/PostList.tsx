@@ -29,6 +29,7 @@ function PostList({ posts, title, more }: PostListProps) {
             primaryText={node.title}
             secondaryText={node.date}
             divider={index !== posts.length - 1}
+            disableGutters
           />
         ))}
       </List>
