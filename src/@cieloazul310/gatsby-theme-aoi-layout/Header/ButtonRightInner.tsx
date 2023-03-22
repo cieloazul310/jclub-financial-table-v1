@@ -12,7 +12,7 @@ type AppBarNavigationProps = {
 };
 
 function AppBarNavigation({ left, right }: AppBarNavigationProps) {
-  // if (!left && !right) return null;
+  if (!left && !right) return null;
   return (
     <>
       <Tooltip title={left?.title ?? ''}>

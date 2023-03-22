@@ -2,9 +2,10 @@ import * as React from 'react';
 import { graphql, type PageProps } from 'gatsby';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import { Jumbotron, Section, Article, Paragraph, AppLink, AppLinkButton, useSiteMetadata } from '@cieloazul310/gatsby-theme-aoi';
+import { Jumbotron, Section, Article, Paragraph, useSiteMetadata } from '@cieloazul310/gatsby-theme-aoi';
 import Layout from '../layout';
 import Seo from '../components/Seo';
+import GridItemMenu from '../components/GridItemMenu';
 import PostList from '../components/PostList';
 import { J1Link, J2Link, J3Link, YearsLink } from '../components/Links';
 import AttributionDoc from '../components/Article/Attribution';
@@ -22,16 +23,11 @@ function IndexPage({ data }: PageProps<IndexPageQueryData>) {
   const { title, description } = useSiteMetadata();
   return (
     <Layout title={title}>
-      <Jumbotron maxWidth="md">
+      <Jumbotron maxWidth="md" component="header">
         <Typography variant="h5" component="h2" gutterBottom>
           {title}
         </Typography>
         <Paragraph>{description}</Paragraph>
-        <div>
-          <AppLinkButton href="/year/2021/" variant="contained" color="primary">
-            最新の経営情報を見る
-          </AppLinkButton>
-        </div>
       </Jumbotron>
       {/*
         <Jumbotron maxWidth="md" bgcolor={palette.mode === 'light' ? 'primary.light' : 'primary.dark'} height={40}>
@@ -69,22 +65,13 @@ function IndexPage({ data }: PageProps<IndexPageQueryData>) {
               </Typography>
               <YearsLink />
             </Grid>
-            <Grid item xs={12} sm={6}>
-              <Typography variant="h6" component="h3" gutterBottom>
-                <AppLink href="/series" color="inherit">
-                  項目別表示
-                </AppLink>
-              </Typography>
-              <Paragraph>営業収入や入場者数など特定の項目を、縦軸にクラブ、横軸に年度で表したページです</Paragraph>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Typography variant="h6" component="h3" gutterBottom>
-                <AppLink href="/download" color="inherit">
-                  データダウンロード
-                </AppLink>
-              </Typography>
-              <Paragraph>データをJSONやCSV形式でダウンロードできるページです</Paragraph>
-            </Grid>
+            <GridItemMenu title="経営情報の見方" href="/docs" description="経営情報の項目と用語の簡易な解説" />
+            <GridItemMenu
+              title="項目別表示"
+              href="/series"
+              description="営業収入や入場者数など特定の項目を、縦軸にクラブ、横軸に年度で表したページ"
+            />
+            <GridItemMenu title="データダウンロード" href="/download" description="データをJSONやCSV形式でダウンロードできるページ" />
           </Grid>
         </Article>
       </Section>

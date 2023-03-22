@@ -3,7 +3,8 @@ import Box from '@mui/material/Box';
 import { type Swiper as SwiperCore, Mousewheel, Scrollbar } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import CardItem from './CardItem';
-import useStateEdges from '../../../../utils/useStateEdges';
+import Handler from './Handler';
+import useStateData from '../../../../utils/useStateEdges';
 import { useAppState } from '../../../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
 import type { AllDataFieldsFragment, Mode } from '../../../../../types';
 
@@ -45,14 +46,14 @@ function useInitialIndex(range: (string | number)[], mode: Mode) {
 }
 
 type CardProps = {
-  nodes: AllDataFieldsFragment[];
+  nodes: (AllDataFieldsFragment & { previousData: AllDataFieldsFragment | null })[];
   mode: Mode;
 };
 
 function Card({ nodes, mode }: CardProps) {
   const [swiper, setSwiper] = React.useState<SwiperCore | null>(null);
   let timer: NodeJS.Timeout;
-  const stateEdges = useStateEdges(nodes, mode);
+  const stateEdges = useStateData(nodes, mode);
   const { range, totalCount } = useRange(stateEdges, mode);
   const { sortAsc, sortKey } = useAppState();
   const initialIndex = useInitialIndex(range, mode);
@@ -91,47 +92,48 @@ function Card({ nodes, mode }: CardProps) {
   };
 
   return (
-    <Box
-      display="flex"
-      flexGrow={1}
-      width={1}
-      minHeight={400}
-      p={1}
-      bgcolor={({ palette }) => (palette.mode === 'light' ? 'grey.100' : 'Background.default')}
-    >
-      <Swiper
-        modules={[Mousewheel, Scrollbar]}
-        cssMode
-        mousewheel
-        centeredSlides
-        simulateTouch={false}
-        initialSlide={initialIndex}
-        scrollbar={{
-          draggable: true,
-        }}
-        slidesPerView={1}
-        spaceBetween={16}
-        breakpoints={{
-          700: {
-            slidesPerView: 2,
-            spaceBetween: 16,
-          },
-          1024: {
-            slidesPerView: 3,
-            spaceBetween: 32,
-          },
-        }}
-        onSwiper={onSwiper}
-        onSlideChange={onSlideChange}
+    <Box display="flex" flexGrow={1} width={1} flexDirection="column">
+      <Box
+        display="flex"
+        flexGrow={1}
+        width={1}
+        minHeight={400}
+        p={1}
+        bgcolor={({ palette }) => (palette.mode === 'light' ? 'grey.100' : 'background.default')}
       >
-        {stateEdges.map((node, index) => (
-          <SwiperSlide key={node.id}>
-            <Box pb={2}>
+        <Swiper
+          modules={[Mousewheel, Scrollbar]}
+          cssMode
+          mousewheel
+          centeredSlides
+          simulateTouch={false}
+          initialSlide={initialIndex}
+          scrollbar={{
+            draggable: true,
+          }}
+          slidesPerView={1}
+          spaceBetween={16}
+          breakpoints={{
+            700: {
+              slidesPerView: 2,
+              spaceBetween: 16,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 32,
+            },
+          }}
+          onSwiper={onSwiper}
+          onSlideChange={onSlideChange}
+        >
+          {stateEdges.map((node, index) => (
+            <SwiperSlide key={node.id}>
               <CardItem node={node} previous={node.previousData} mode={mode} index={index} length={totalCount} />
-            </Box>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </Box>
+      <Handler swiper={swiper} />
     </Box>
   );
 }

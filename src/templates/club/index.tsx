@@ -7,6 +7,7 @@ import Layout from '../../layout';
 import Seo from '../../components/Seo';
 import PostList from '../../components/PostList';
 import { CategoryLink } from '../../components/Links';
+import Tab from '../components/Tab';
 import FigureSection from '../components/Figure';
 import ClubSummary from './Summary';
 import { AdInSectionDividerOne } from '../../components/Ads';
@@ -53,8 +54,11 @@ function ClubTemplate({ data }: PageProps<ClubPageData, ClubPageContext>) {
     <Layout
       title={`${club.name}の経営情報`}
       // headerTitle={`${club.name}`}
+      appBarPosition="relative"
       left={left ? { href: left.href, title: left.name, secondaryText: 'Previous' } : null}
       right={right ? { href: right.href, title: right.name, secondaryText: 'Next' } : null}
+      tabs={<Tab />}
+      tabSticky
     >
       <FigureSection nodes={allData.nodes} mode="club" />
       {pageNavigation}

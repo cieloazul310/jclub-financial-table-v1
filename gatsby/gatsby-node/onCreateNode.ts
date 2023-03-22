@@ -11,16 +11,23 @@ function isMdx(node: Node & Record<string, unknown>): node is Mdx<'node'> {
  * onCreateNode で何をするか
  *
  * 1. Mdx ノードから MdxPost ノードを作成
+ * 2. docs のために Mdx ノードに fields.slug を追加
  */
 export default async function onCreateNode({
   node,
-  actions: { createNode, createParentChildLink },
+  actions: { createNode, createParentChildLink, createNodeField },
   getNode,
   createNodeId,
   createContentDigest,
 }: CreateNodeArgs) {
   const parentFileNode = getNode(node.parent ?? '');
   const source = parentFileNode?.sourceInstanceName;
+
+  if (isMdx(node) && source === 'docs') {
+    const value = createFilePath({ node, getNode });
+    const slug = path.join('/docs', value);
+    createNodeField({ node, name: 'slug', value: slug });
+  }
 
   if (isMdx(node) && source !== 'docs') {
     const value = createFilePath({ node, getNode });

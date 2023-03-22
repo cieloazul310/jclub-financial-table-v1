@@ -18,7 +18,7 @@ export function getRank(data: Pick<Datum, 'category' | 'rank'>): number {
   return addition(data.category) + data.rank;
 }
 
-export function useFilteredData(nodes: AllDataFieldsFragment[], mode: Mode) {
+export function useFilteredData<T extends AllDataFieldsFragment = AllDataFieldsFragment>(nodes: T[], mode: Mode) {
   const { filterCategories } = useAppState();
   return React.useMemo(
     () => (mode === 'club' ? nodes : nodes.filter((node) => filterCategories.includes(getCategory(node)))),
@@ -33,7 +33,7 @@ export function getValue(node: Pick<Datum, SortableKeys | 'category'>, sortKey: 
   return node[sortKey] ?? 1;
 }
 
-export function useSortedData(nodes: AllDataFieldsFragment[], mode: Mode) {
+export function useSortedData<T extends AllDataFieldsFragment = AllDataFieldsFragment>(nodes: T[], mode: Mode) {
   const { sortKey, sortAsc } = useAppState();
   return React.useMemo(
     () => (mode === 'club' ? nodes : [...nodes].sort((a, b) => (sortAsc ? 1 : -1) * (getValue(a, sortKey) - getValue(b, sortKey)))),
@@ -41,7 +41,7 @@ export function useSortedData(nodes: AllDataFieldsFragment[], mode: Mode) {
   );
 }
 
-export function useSortedValue(node: AllDataFieldsFragment): string {
+export function useSortedValue<T extends AllDataFieldsFragment = AllDataFieldsFragment>(node: T): string {
   const { sortKey } = useAppState();
   if (sortKey === 'unit_price') {
     return node.ticket && node.all_attd ? `${Math.round((node.ticket * 1000000) / node.all_attd)}円` : '-';
@@ -55,7 +55,7 @@ export function useSortedValue(node: AllDataFieldsFragment): string {
   return '-';
 }
 
-export default function useStateData(nodes: AllDataFieldsFragment[], mode: Mode) {
+export default function useStateData<T extends AllDataFieldsFragment = AllDataFieldsFragment>(nodes: T[], mode: Mode) {
   const filtered = useFilteredData(nodes, mode);
   const sorted = useSortedData(filtered, mode);
   return sorted;

@@ -1,5 +1,5 @@
 import * as path from 'path';
-import type { CreatePagesArgs } from 'gatsby';
+import type { Node, CreatePagesArgs } from 'gatsby';
 import type { Club, MdxPost, Year, MdxPostByYear } from '../../types';
 
 type GraphQLResult = {
@@ -18,6 +18,14 @@ type GraphQLResult = {
     })[];
   };
   allMdxPostByYears: MdxPostByYear[];
+  docs: {
+    nodes: {
+      fields: {
+        slug: string;
+      };
+      internal: Pick<Node['internal'], 'contentFilePath'>;
+    }[];
+  };
 };
 
 /**
@@ -29,6 +37,7 @@ type GraphQLResult = {
  * 4. 記事一覧のページを作成
  * 5. クラブごとの記事一覧のページを作成
  * 6. 年別の記事一覧のページを作成
+ * 7. 用語解説のページを作成
  */
 export default async function createPages({ graphql, actions, reporter }: CreatePagesArgs) {
   const { createPage } = actions;
@@ -72,6 +81,16 @@ export default async function createPages({ graphql, actions, reporter }: Create
           totalCount
           year
         }
+        docs: allMdx(filter: { fields: { slug: { ne: null } } }) {
+          nodes {
+            fields {
+              slug
+            }
+            internal {
+              contentFilePath
+            }
+          }
+        }
       }
     `,
     {
@@ -82,7 +101,7 @@ export default async function createPages({ graphql, actions, reporter }: Create
     reporter.panicOnBuild('🚨  ERROR: Loading "createPages" query');
   }
   if (!result.data) throw new Error('There are no data');
-  const { allClub, allYear, allMdxPost, allMdxPostByYears } = result.data;
+  const { allClub, allYear, allMdxPost, allMdxPostByYears, docs } = result.data;
 
   const postsPerPage = 20;
 
@@ -208,6 +227,20 @@ export default async function createPages({ graphql, actions, reporter }: Create
         totalCount,
         basePath,
         draft: isProduction ? true : null,
+      },
+    });
+  });
+
+  // 7. 用語解説のページを作成
+  const docsTemplate = path.resolve('./src/templates/docs.tsx');
+  docs.nodes.forEach(({ fields, internal }) => {
+    const { slug } = fields;
+    const { contentFilePath } = internal;
+    createPage({
+      path: slug,
+      component: `${docsTemplate}?__contentFilePath=${contentFilePath}`,
+      context: {
+        slug,
       },
     });
   });

@@ -7,6 +7,7 @@ import Layout from '../../layout';
 import Seo from '../../components/Seo';
 import YearSummary from './Summary';
 import { YearsLink } from '../../components/Links';
+import Tab from '../components/Tab';
 import FigureSection from '../components/Figure';
 import { AdInSectionDividerOne } from '../../components/Ads';
 import type { Year, AllDataFieldsFragment } from '../../../types';
@@ -45,8 +46,11 @@ function YearTemplate({ data }: PageProps<YearPageData, YearPageContext>) {
   return (
     <Layout
       title={`${year.year}年Jクラブ経営情報`}
+      appBarPosition="relative"
       right={right ? { href: right.href, title: `${right.year}年度`, secondaryText: 'Next' } : null}
       left={left ? { href: left.href, title: `${left.year}年度`, secondaryText: 'Previous' } : null}
+      tabs={<Tab />}
+      tabSticky
     >
       <FigureSection nodes={data.allData.nodes} mode="year" />
       {pageNavigation}

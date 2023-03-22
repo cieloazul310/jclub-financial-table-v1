@@ -14,7 +14,7 @@ type StatsProps = {
 
 function Stats({ year, prevYear }: StatsProps) {
   return (
-    <TableContainer sx={{ maxHeight: '60vh' }}>
+    <TableContainer>
       <Table size="small" stickyHeader sx={{ minWidth: '400px' }}>
         <TableHeader year={year.year} />
         <TableBody>

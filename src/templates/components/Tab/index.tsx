@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import MuiTab from '@mui/material/Tab';
-import { useAppState, useDispatch } from '../../../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
+import { useAppState, useDispatch } from '../../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
 
 function Tab() {
   const { tab } = useAppState();

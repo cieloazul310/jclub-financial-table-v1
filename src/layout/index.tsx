@@ -12,11 +12,13 @@ function Layout({
   componentViewports = { fab: 'lgDown', swipeableDrawer: 'lgDown' },
   disableBottomNav = true,
   appBarPosition = 'fixed',
+  drawerContents,
   left,
   right,
   ...props
 }: LayoutProps) {
-  const drawerContents = React.useMemo(() => {
+  const customDrawerContents = React.useMemo(() => {
+    if (drawerContents) return drawerContents;
     if (!left && !right) return null;
     return <DrawerPageNavigation left={left} right={right} />;
   }, [left, right]);
@@ -24,7 +26,7 @@ function Layout({
   return (
     <AoiLayout
       componentViewports={componentViewports}
-      drawerContents={drawerContents}
+      drawerContents={customDrawerContents}
       appBarPosition={appBarPosition}
       left={left}
       right={right}
