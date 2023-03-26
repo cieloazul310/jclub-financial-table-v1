@@ -17,7 +17,7 @@ export default async function sourceNodes({ actions, createNodeId, createContent
   const clubs: Club<'bare'>[] = yaml.parse(fs.readFileSync(path.resolve('./data/frames/clubs.yml'), 'utf-8'));
 
   clubs.forEach((data, index) => {
-    const href = path.join('/club', data.slug);
+    const href = path.join('/club', data.slug, '/');
     const nodeId = createNodeId(`club-${data.slug}`);
     const nodeContent = JSON.stringify({ ...data, href, index });
     const nodeMeta = {
@@ -40,7 +40,7 @@ export default async function sourceNodes({ actions, createNodeId, createContent
   const years: Year<'bare'>[] = yaml.parse(fs.readFileSync(path.resolve('./data/frames/years.yml'), 'utf-8'));
 
   years.forEach((data) => {
-    const href = path.join('/year', data.year.toString());
+    const href = path.join('/year', data.year.toString(), '/');
     const nodeId = createNodeId(`year-${data.year}`);
     const nodeContent = JSON.stringify({ ...data, href });
     const nodeMeta = {

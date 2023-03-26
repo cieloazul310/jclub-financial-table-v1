@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { HomeIcon, ArticleIcon, ArchiveIcon, SeriesIcon, DownloadIcon } from '../../icons';
+import { HomeIcon, ArticleIcon, ArchiveIcon, SeriesIcon, DownloadIcon, DocsIcon } from '../../icons';
 
 export type Menu = {
   title: string;
@@ -9,6 +9,7 @@ export type Menu = {
 
 const menu: Menu[] = [
   { title: 'トップページ', path: '/', icon: <HomeIcon /> },
+  { title: '経営情報の見方', path: '/docs/', icon: <DocsIcon /> },
   { title: '記事一覧', path: '/posts/', icon: <ArticleIcon /> },
   { title: '記事アーカイブ', path: '/posts/archive/', icon: <ArchiveIcon /> },
   { title: '項目別表示', path: '/series/', icon: <SeriesIcon /> },

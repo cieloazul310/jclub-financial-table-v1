@@ -19,11 +19,14 @@ type GraphQLResult = {
   };
   allMdxPostByYears: MdxPostByYear[];
   docs: {
-    nodes: {
-      fields: {
-        slug: string;
-      };
-      internal: Pick<Node['internal'], 'contentFilePath'>;
+    group: {
+      fieldValue: string;
+      nodes: {
+        fields: {
+          slug: string;
+        };
+        internal: Pick<Node['internal'], 'contentFilePath'>;
+      }[];
     }[];
   };
 };
@@ -45,7 +48,7 @@ export default async function createPages({ graphql, actions, reporter }: Create
 
   const result = await graphql<GraphQLResult>(
     `
-      query CreatePages($draft: Boolean) {
+      query CreatePages($draft: Boolean, $limit: Int) {
         allClub(sort: { index: ASC }) {
           nodes {
             slug
@@ -61,7 +64,7 @@ export default async function createPages({ graphql, actions, reporter }: Create
             href
           }
         }
-        allMdxPost(limit: 20, filter: { draft: { ne: $draft } }, sort: [{ date: DESC }, { lastmod: DESC }, { slug: DESC }]) {
+        allMdxPost(limit: $limit, filter: { draft: { ne: $draft } }, sort: [{ date: DESC }, { lastmod: DESC }, { slug: DESC }]) {
           nodes {
             slug
             draft
@@ -81,13 +84,19 @@ export default async function createPages({ graphql, actions, reporter }: Create
           totalCount
           year
         }
-        docs: allMdx(filter: { fields: { slug: { ne: null } } }) {
-          nodes {
-            fields {
-              slug
-            }
-            internal {
-              contentFilePath
+        docs: allMdx(sort: { frontmatter: { order: ASC } }, filter: { fields: { slug: { regex: "/docs/" } } }) {
+          group(field: { frontmatter: { group: SELECT } }) {
+            fieldValue
+            nodes {
+              fields {
+                slug
+              }
+              frontmatter {
+                title
+              }
+              internal {
+                contentFilePath
+              }
             }
           }
         }
@@ -95,6 +104,7 @@ export default async function createPages({ graphql, actions, reporter }: Create
     `,
     {
       draft: isProduction ? true : null,
+      limit: isProduction ? null : 20,
     }
   );
   if (result.errors) {
@@ -232,16 +242,20 @@ export default async function createPages({ graphql, actions, reporter }: Create
   });
 
   // 7. 用語解説のページを作成
-  const docsTemplate = path.resolve('./src/templates/docs.tsx');
-  docs.nodes.forEach(({ fields, internal }) => {
-    const { slug } = fields;
-    const { contentFilePath } = internal;
-    createPage({
-      path: slug,
-      component: `${docsTemplate}?__contentFilePath=${contentFilePath}`,
-      context: {
-        slug,
-      },
+  const docsTemplate = path.resolve('./src/templates/docs/index.tsx');
+  docs.group.forEach((group) => {
+    group.nodes.forEach(({ fields, internal }, index) => {
+      const { slug } = fields;
+      const next = index === group.nodes.length - 1 ? null : group.nodes[index + 1].fields.slug;
+      const { contentFilePath } = internal;
+      createPage({
+        path: slug,
+        component: `${docsTemplate}?__contentFilePath=${contentFilePath}`,
+        context: {
+          slug,
+          next,
+        },
+      });
     });
   });
 }

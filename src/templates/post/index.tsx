@@ -42,7 +42,7 @@ function PostTemplate({ data, children }: PageProps<PostTemplatePageData, PostTe
   const specifiedClub = club && club.length === 1 ? club[0] : null;
 
   return (
-    <Layout title={title} right={older} left={newer}>
+    <Layout title={title} right={older} left={newer} componentViewports={{ swipeableDrawer: 'smDown' }}>
       <Jumbotron maxWidth="md" component="header">
         <Typography>{date}</Typography>
         <Typography variant="h5" component="h2" gutterBottom>

@@ -7,7 +7,8 @@ import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import { ListItemAppLink } from '@cieloazul310/gatsby-theme-aoi';
+import { ListItemAppLink, withoutPrefix } from '@cieloazul310/gatsby-theme-aoi';
+import { useLocation } from '@reach/router';
 
 import { useClubsByCategory, useAllYears } from '../../../utils/graphql-hooks';
 import type { Club } from '../../../../types';
@@ -18,6 +19,7 @@ type CategoryLinksProps = {
 };
 
 export function CategoryLinks({ title, clubs }: CategoryLinksProps) {
+  const { pathname } = useLocation();
   const [open, setOpen] = React.useState(false);
   const toggleOpen = () => {
     setOpen(!open);
@@ -43,9 +45,9 @@ export function CategoryLinks({ title, clubs }: CategoryLinksProps) {
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          {clubs.map((node, index) => (
-            <ListItemAppLink key={node.short_name ?? index} href={node.href}>
-              <ListItemText primary={node.name} />
+          {clubs.map(({ name, short_name, href }) => (
+            <ListItemAppLink key={short_name} href={href} selected={href === withoutPrefix(pathname)}>
+              <ListItemText primary={name} />
             </ListItemAppLink>
           ))}
         </List>
@@ -55,6 +57,7 @@ export function CategoryLinks({ title, clubs }: CategoryLinksProps) {
 }
 
 export function YearsLinks() {
+  const { pathname } = useLocation();
   const years = useAllYears();
   const [open, setOpen] = React.useState(false);
   const toggleOpen = () => {
@@ -82,7 +85,7 @@ export function YearsLinks() {
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           {years.map((node) => (
-            <ListItemAppLink key={node.id} href={node.href}>
+            <ListItemAppLink key={node.id} href={node.href} selected={node.href === withoutPrefix(pathname)}>
               <ListItemText primary={node.year} />
             </ListItemAppLink>
           ))}

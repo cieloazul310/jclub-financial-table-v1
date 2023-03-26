@@ -1,6 +1,7 @@
 import HomeIcon from '@mui/icons-material/Home';
 import SeriesIcon from '@mui/icons-material/GridOn';
 import DownloadIcon from '@mui/icons-material/GetApp';
+import DocsIcon from '@mui/icons-material/School';
 import SummaryIcon from '@mui/icons-material/Description';
 import SettingsIcon from '@mui/icons-material/Settings';
 
@@ -21,6 +22,7 @@ export {
   HomeIcon,
   SeriesIcon,
   DownloadIcon,
+  DocsIcon,
   SummaryIcon,
   SettingsIcon,
   FigureIcon,
