@@ -104,7 +104,7 @@ export default async function createPages({ graphql, actions, reporter }: Create
     `,
     {
       draft: isProduction ? true : null,
-      limit: isProduction ? null : 20,
+      limit: isProduction ? 9999 : 20,
     }
   );
   if (result.errors) {
