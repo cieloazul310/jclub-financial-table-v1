@@ -20,8 +20,6 @@ function mdxPostToYears(posts: MdxPost<'node'>[]): MdxPostByYear[] {
             year: year.toString(),
             id: yearId,
             basePath,
-            gte: `${year}-01`,
-            lt: `${year + 1}-01`,
             totalCount: posts.filter((post) => new Date(post.date).getFullYear() === year).length,
           },
         ];

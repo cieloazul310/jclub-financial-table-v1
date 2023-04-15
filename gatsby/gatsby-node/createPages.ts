@@ -78,9 +78,7 @@ export default async function createPages({ graphql, actions, reporter }: Create
         }
         allMdxPostByYears {
           basePath
-          gte
           id
-          lt
           totalCount
           year
         }
@@ -221,7 +219,7 @@ export default async function createPages({ graphql, actions, reporter }: Create
     });
 
   // 6. 年別の記事一覧のページを作成
-  allMdxPostByYears.forEach(({ year, basePath, totalCount, lt, gte }, index) => {
+  allMdxPostByYears.forEach(({ year, basePath, totalCount }, index) => {
     const older = index === 0 ? null : allMdxPostByYears[index - 1];
     const newer = index === allMdxPostByYears.length - 1 ? null : allMdxPostByYears[index + 1];
 
@@ -232,8 +230,6 @@ export default async function createPages({ graphql, actions, reporter }: Create
         older,
         newer,
         year,
-        gte,
-        lt,
         totalCount,
         basePath,
         draft: isProduction ? true : null,

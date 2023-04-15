@@ -27,6 +27,7 @@ export default async function createDataSchema({ actions, schema }: CreateSchema
     type MdxPost implements Node @dontInfer {
       title: String!
       slug: String!
+      year: String!
       date: Date! @dateformat
       lastmod: Date! @dateformat
       club: [Club]
@@ -47,6 +48,10 @@ export default async function createDataSchema({ actions, schema }: CreateSchema
     schema.buildObjectType({
       name: `MdxPost`,
       fields: {
+        year: {
+          type: `String!`,
+          resolve: (source: MdxPost<'node'>) => new Date(source.date).getFullYear().toString(),
+        },
         lastmod: {
           type: `Date!`,
           resolve: (source: MdxPost<'node'>) => source.lastmod ?? source.date,

@@ -147,7 +147,7 @@
   short_name: 京都
   company: 株式会社京都パープルサンガ
   category: J1
-  hometown: 京都市、宇治市、城陽市、向日市、長岡京市、京田辺市、木津川市、亀岡市、南丹市、京丹波町、福知山市、舞鶴市、綾部市、八幡市、宮津市
+  hometown: 京都市、宇治市、城陽市、向日市、長岡京市、京田辺市、木津川市、亀岡市、南丹市、京丹波町、福知山市、舞鶴市、綾部市、八幡市、宮津市、大山崎町、久御山町
   area: 京都府
   website: https://www.sanga-fc.jp
   settlement: https://www.sanga-fc.jp/club/
@@ -638,7 +638,7 @@
   #short_name: 奈良
   #company: 株式会社奈良クラブ
   #category: J3
-  #hometown: 奈良市を中心とする全県
+  #hometown: 奈良市、三郷町を中心とする全県
   #area: 奈良県
   #website: https://naraclub.jp
 

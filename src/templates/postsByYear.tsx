@@ -67,8 +67,8 @@ export function Head({ pageContext }: HeadProps<PostsByClubPageData, PostsByClub
 }
 
 export const query = graphql`
-  query PostsByYear($gte: Date!, $lt: Date!, $draft: Boolean) {
-    allMdxPost(filter: { date: { gte: $gte, lt: $lt }, draft: { ne: $draft } }, sort: [{ date: DESC }, { lastmod: DESC }, { slug: DESC }]) {
+  query PostsByYear($year: String!, $draft: Boolean) {
+    allMdxPost(filter: { year: { eq: $year }, draft: { ne: $draft } }, sort: [{ date: DESC }, { lastmod: DESC }, { slug: DESC }]) {
       nodes {
         ...mdxPostList
       }

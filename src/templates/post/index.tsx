@@ -85,7 +85,7 @@ function PostTemplate({ data, children }: PageProps<PostTemplatePageData, PostTe
               <PostList
                 posts={allMdxPost.nodes}
                 title={`${specifiedClub.name}の最新の記事`}
-                more={{ href: `${specifiedClub.href}/posts/`, title: `${specifiedClub.name}の記事一覧` }}
+                more={{ href: `${specifiedClub.href}posts/`, title: `${specifiedClub.name}の記事一覧` }}
               />
             </Article>
           </Section>
