@@ -224,6 +224,7 @@ export type Mdx<T extends 'bare' | 'node' = 'node'> = (T extends 'node' ? Node :
 
 export type MdxPost<T extends 'node' | 'browser' = 'browser'> = Node & {
   title: string;
+  year: T extends 'browser' ? string : null;
   date: string;
   draft: boolean;
   slug: string;
@@ -258,7 +259,5 @@ export type MdxPostByYear = {
   id: string;
   year: string;
   basePath: string;
-  gte: string;
-  lt: string;
   totalCount: number;
 };

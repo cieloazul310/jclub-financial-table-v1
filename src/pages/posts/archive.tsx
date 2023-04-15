@@ -9,7 +9,7 @@ import Seo from '../../components/Seo';
 import type { MdxPostByYear } from '../../../types';
 
 type ArchivePageData = {
-  allMdxPostByYears: Pick<MdxPostByYear, 'basePath' | 'year' | 'totalCount'>[];
+  allMdxPostByYears: Pick<MdxPostByYear, 'basePath' | 'year'>[];
 };
 
 function ArchivePage({ data }: PageProps<ArchivePageData>) {
@@ -25,12 +25,11 @@ function ArchivePage({ data }: PageProps<ArchivePageData>) {
       <Section component="main">
         <Article maxWidth="md">
           <List>
-            {allMdxPostByYears.map(({ basePath, year, totalCount }, index) => (
+            {allMdxPostByYears.map(({ basePath, year }, index) => (
               <ListItemLink
                 key={basePath}
                 href={basePath}
-                primaryText={`${year}年`}
-                secondaryText={`${totalCount} posts`}
+                primaryText={`${year}年の記事一覧`}
                 divider={index !== allMdxPostByYears.length - 1}
               />
             ))}
@@ -58,7 +57,6 @@ export const query = graphql`
   {
     allMdxPostByYears {
       basePath
-      totalCount
       year
     }
   }
