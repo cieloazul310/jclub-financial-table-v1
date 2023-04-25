@@ -45,6 +45,7 @@ type GraphQLResult = {
 export default async function createPages({ graphql, actions, reporter }: CreatePagesArgs) {
   const { createPage } = actions;
   const isProduction = process.env.NODE_ENV === 'production';
+  const draft = isProduction ? true : null;
 
   const result = await graphql<GraphQLResult>(
     `
@@ -101,7 +102,7 @@ export default async function createPages({ graphql, actions, reporter }: Create
       }
     `,
     {
-      draft: isProduction ? true : null,
+      draft,
       limit: isProduction ? 9999 : 20,
     }
   );
@@ -126,7 +127,7 @@ export default async function createPages({ graphql, actions, reporter }: Create
         left: left?.slug ?? null,
         right: right?.slug ?? null,
         slug: node.slug,
-        draft: isProduction ? true : null,
+        draft,
       },
     });
   });
@@ -150,7 +151,6 @@ export default async function createPages({ graphql, actions, reporter }: Create
 
   // 3. 記事ごとのページを作成
   const mdxPostTempalte = path.resolve('./src/templates/post/index.tsx');
-  // const mdxPostTempalte = path.resolve('./src/templates/post/light.tsx');
   allMdxPost.nodes.forEach((node, index, arr) => {
     const newer = index !== 0 ? arr[index - 1] : null;
     const older = index !== arr.length - 1 ? arr[index + 1] : null;
@@ -165,7 +165,7 @@ export default async function createPages({ graphql, actions, reporter }: Create
         slug: node.slug,
         specifiedClub,
         club: node.club?.map(({ slug }) => slug) ?? null,
-        draft: isProduction ? true : null,
+        draft,
       },
     });
   });
@@ -185,7 +185,7 @@ export default async function createPages({ graphql, actions, reporter }: Create
         currentPage: i + 1,
         basePath: allPostsBasePath,
         totalCount: allMdxPost.nodes.length,
-        draft: isProduction ? true : null,
+        draft,
       },
     });
   });
@@ -212,7 +212,7 @@ export default async function createPages({ graphql, actions, reporter }: Create
             currentPage: i + 1,
             basePath,
             totalCount,
-            draft: isProduction ? true : null,
+            draft,
           },
         });
       });
@@ -232,7 +232,7 @@ export default async function createPages({ graphql, actions, reporter }: Create
         year,
         totalCount,
         basePath,
-        draft: isProduction ? true : null,
+        draft,
       },
     });
   });
