@@ -23,6 +23,22 @@ function Red({ children }: React.PropsWithChildren<unknown>) {
   );
 }
 
+function WorkInProgress() {
+  return (
+    <Alert severity="warning" title="更新作業中">
+      この記事は現在、更新作業中です。
+    </Alert>
+  );
+}
+
+function Written({ date, written }: { date: string; written: string }) {
+  return (
+    <Alert severity="warning">
+      この記事は{date}の内容を、{written}に編集したものです。
+    </Alert>
+  );
+}
+
 export default {
   Typography,
   Green,
@@ -37,4 +53,6 @@ export default {
   SubParagraph,
   AppLink,
   PanelLink,
+  WorkInProgress,
+  Written,
 };
