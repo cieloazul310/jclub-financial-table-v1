@@ -17,6 +17,7 @@ export type Club<T extends 'bare' | 'node' | 'browser' = 'browser'> = (T extends
   hometown: string;
   settlement: string | null;
   relatedCompanies: string[] | null;
+  annotation: string[] | null;
   data: T extends 'browser' ? Datum<'browser'>[] : never;
   posts: T extends 'browser'
     ? {

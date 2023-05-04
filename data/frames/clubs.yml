@@ -41,6 +41,8 @@
   settlement: https://www.urawa-reds.co.jp/club/managdata.php
   relatedCompanies:
     - 一般社団法人レッズランド
+  annotation:
+    - 2021年度以前の「チーム人件費」はアカデミー指導者報酬、レディースチーム選手・指導者報酬を含む
 
 - id: "6"
   slug: reysol
@@ -88,6 +90,8 @@
   website: https://www.f-marinos.com
   relatedCompanies:
     - 一般社団法人F・マリノススポーツクラブ
+  annotation:
+    - 2021年度以降はアカデミー事業を一般社団法人F・マリノススポーツクラブに移管
 
 - id: "25"
   slug: yokohamafc
@@ -262,6 +266,9 @@
   website: https://www.montedioyamagata.jp
   relatedCompanies:
     - 公益社団法人山形県スポーツ振興21世紀協会
+  annotation:
+    - 2013年度までは公益社団法人であったため資本の内訳は表示されない
+    - 2014年度以降もアカデミー事業は公益社団法人山形県スポーツ振興21世紀協会の管轄
 
 - id: "58"
   slug: iwakifc
@@ -406,6 +413,8 @@
   hometown: 磐田市
   area: 静岡県
   website: https://www.jubilo-iwata.co.jp
+  annotation:
+    - 2022年度は決算期の変更により10ヶ月間
 
 - id: "49"
   slug: myfc
@@ -431,6 +440,8 @@
   relatedCompanies:
     - 一般社団法人ファジアーノ岡山スポーツクラブ
     - NPO法人岡山ヒューマンスポーツクラブ
+  annotation:
+    - 2022年度以降はアカデミー事業を一般社団法人ファジアーノ岡山スポーツクラブに移管
 
 - id: "33"
   slug: renofa
@@ -444,6 +455,8 @@
   website: https://www.renofa.com
   relatedCompanies:
     - NPO法人レノファ山口スポーツクラブ
+  annotation:
+    - 2021年度までは税込経理方式、2022年度以降は税抜経理方式
 
 - id: "35"
   slug: vortis
@@ -483,6 +496,8 @@
   settlement: https://roasso-k.com/top_team/club_outline
   relatedCompanies:
     - 一般社団法人ロアッソ熊本スポーツクラブ
+  annotation:
+    - 2020年度4月よりアカデミー事業を一般社団法人ロアッソ熊本スポーツクラブに移管
 
 - id: "40"
   slug: trinita
@@ -545,6 +560,9 @@
   website: https://www.yscc1986.net
   relatedCompanies:
     - NPO法人横浜スポーツ&カルチャークラブ
+  annotation:
+    - 2019年度までは特定非営利活動法人であったため資本の内訳は表示されない
+    - 2020年度以降もアカデミー事業はNPO法人横浜スポーツ&カルチャークラブの管轄
 
 - id: "46"
   slug: scsagamihara

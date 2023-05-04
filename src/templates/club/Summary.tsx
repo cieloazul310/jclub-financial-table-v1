@@ -6,7 +6,7 @@ import { AllDataFieldsFragment, Club } from '../../../types';
 
 type ClubSummaryProps = {
   nodes: AllDataFieldsFragment[];
-  club: Pick<Club, 'name' | 'fullname' | 'company' | 'category' | 'hometown' | 'settlement' | 'relatedCompanies'>;
+  club: Pick<Club, 'name' | 'fullname' | 'company' | 'category' | 'hometown' | 'settlement' | 'relatedCompanies' | 'annotation'>;
 };
 
 function ClubSummary({ nodes, club }: ClubSummaryProps) {
@@ -26,6 +26,17 @@ function ClubSummary({ nodes, club }: ClubSummaryProps) {
             </Li>
           ) : null}
           {club.relatedCompanies ? <Li>関連する法人: {club.relatedCompanies.join(', ')}</Li> : null}
+          {club.annotation ? (
+            <Li>
+              注釈:
+              <br />
+              <Ul>
+                {club.annotation.map((str) => (
+                  <Li key={str}>{str}</Li>
+                ))}
+              </Ul>
+            </Li>
+          ) : null}
         </Ul>
       </Article>
     </Section>

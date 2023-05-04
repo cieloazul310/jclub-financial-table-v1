@@ -16,7 +16,18 @@ import type { Club, AllDataFieldsFragment, MdxPost } from '../../../types';
 export type ClubPageData = {
   club: Pick<
     Club,
-    'id' | 'short_name' | 'name' | 'fullname' | 'category' | 'slug' | 'href' | 'company' | 'hometown' | 'settlement' | 'relatedCompanies'
+    | 'id'
+    | 'short_name'
+    | 'name'
+    | 'fullname'
+    | 'category'
+    | 'slug'
+    | 'href'
+    | 'company'
+    | 'hometown'
+    | 'settlement'
+    | 'relatedCompanies'
+    | 'annotation'
   >;
   left: Pick<Club, 'name' | 'href'> | null;
   right: Pick<Club, 'name' | 'href'> | null;
@@ -108,6 +119,7 @@ export const query = graphql`
       hometown
       settlement
       relatedCompanies
+      annotation
     }
     left: club(slug: { eq: $left }) {
       href
