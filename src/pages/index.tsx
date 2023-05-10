@@ -96,8 +96,8 @@ export function Head() {
 }
 
 export const query = graphql`
-  query IndexPage($draft: Boolean) {
-    allMdxPost(filter: { draft: { ne: $draft } }, sort: [{ date: DESC }, { lastmod: DESC }, { slug: DESC }], limit: 5) {
+  query IndexPage {
+    allMdxPost(filter: { draft: { ne: true } }, sort: [{ date: DESC }, { lastmod: DESC }, { slug: DESC }], limit: 5) {
       nodes {
         ...mdxPostList
       }
