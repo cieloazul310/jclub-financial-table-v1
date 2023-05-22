@@ -410,7 +410,7 @@
   short_name: 磐田
   company: 株式会社ジュビロ
   category: J2
-  hometown: 磐田市
+  hometown: 御前崎市、菊川市、掛川市、袋井市、森町、磐田市、浜松市、湖西市
   area: 静岡県
   website: https://www.jubilo-iwata.co.jp
   annotation:
@@ -442,6 +442,7 @@
     - NPO法人岡山ヒューマンスポーツクラブ
   annotation:
     - 2022年度以降はアカデミー事業を一般社団法人ファジアーノ岡山スポーツクラブに移管
+    - 2021年度以前の「チーム人件費」はアカデミー指導者報酬を含む
 
 - id: "33"
   slug: renofa
@@ -584,7 +585,7 @@
   short_name: 松本
   company: 株式会社松本山雅
   category: J3
-  hometown: 松本市、塩尻市、山形村、安曇野市、大町市、池田町、生坂村、箕輪町、朝日村、高森町
+  hometown: 松本市、塩尻市、山形村、安曇野市、大町市、池田町、生坂村、箕輪町、朝日村、高森町、麻績村
   area: 長野県
   website: https://www.yamaga-fc.com
   settlement: https://www.yamaga-fc.com/club-info/company/accounting
