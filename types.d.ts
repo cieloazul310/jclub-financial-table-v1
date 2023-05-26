@@ -134,6 +134,8 @@ export type Revenue = {
   broadcast: number | null;
   /** アカデミー関連収入 */
   academy_rev: number | null;
+  /** 女子チーム関連収入 */
+  women_rev: number | null;
   /** 物販収入 */
   goods_rev: number | null;
   /** その他収入 */
@@ -160,6 +162,8 @@ export type Expense = {
   women_exp: number | null;
   /** 物販関連費 */
   goods_exp: number | null;
+  /** その他売上原価 */
+  other_cost: number | null;
   /** 販売費および一般管理費 */
   sga: number | null;
 };

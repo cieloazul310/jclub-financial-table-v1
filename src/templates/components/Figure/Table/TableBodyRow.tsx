@@ -85,18 +85,27 @@ export function BSTableRow({ node }: TableRowProps<BS>) {
 
 export function RevenueTableRow({ node }: TableRowProps<Revenue>) {
   const otherRevs = (year: number) => {
-    if (year <= 2010) return <DataTableCell value={node.other_revs} align="center" colSpan={3} />;
+    if (year <= 2010) return <DataTableCell value={node.other_revs} align="center" colSpan={4} />;
     if (year <= 2015)
       return (
         <>
           <DataTableCell value={node.academy_rev} align="center" />
-          <DataTableCell value={node.other_revs} align="center" colSpan={2} />
+          <DataTableCell value={node.other_revs} align="center" colSpan={3} />
+        </>
+      );
+    if (year <= 2021)
+      return (
+        <>
+          <DataTableCell value={node.academy_rev} align="center" />
+          <DataTableCell value={node.goods_rev} align="center" />
+          <DataTableCell value={node.other_revs} colSpan={2} align="center" />
         </>
       );
     return (
       <>
         <DataTableCell value={node.academy_rev} align="center" />
         <DataTableCell value={node.goods_rev} align="center" />
+        <DataTableCell value={node.women_rev} align="center" />
         <DataTableCell value={node.other_revs} align="center" />
       </>
     );
@@ -119,7 +128,7 @@ export function ExpenseTableRow({ node }: TableRowProps<Expense>) {
     if (year <= 2005 && !node.salary)
       return (
         <>
-          <DataTableCell value={node.general_exp} align="center" colSpan={7} />
+          <DataTableCell value={node.general_exp} align="center" colSpan={8} />
           <DataTableCell value={node.sga} align="center" />
         </>
       );
@@ -127,7 +136,7 @@ export function ExpenseTableRow({ node }: TableRowProps<Expense>) {
       return (
         <>
           <DataTableCell value={node.salary} />
-          <DataTableCell value={node.manage_exp} align="center" colSpan={6} />
+          <DataTableCell value={node.manage_exp} align="center" colSpan={7} />
           <DataTableCell value={node.sga} align="center" />
         </>
       );
@@ -139,9 +148,22 @@ export function ExpenseTableRow({ node }: TableRowProps<Expense>) {
           <DataTableCell value={node.team_exp} />
           <DataTableCell value={node.academy_exp} />
           <DataTableCell value={node.women_exp} />
+          <DataTableCell value={node.sga} align="center" colSpan={4} />
+        </>
+      );
+    if (year <= 2021)
+      return (
+        <>
+          <DataTableCell value={node.salary} />
+          <DataTableCell value={node.game_exp} />
+          <DataTableCell value={node.team_exp} />
+          <DataTableCell value={node.academy_exp} />
+          <DataTableCell value={node.women_exp} />
+          <DataTableCell value={node.goods_exp} />
           <DataTableCell value={node.sga} align="center" colSpan={3} />
         </>
       );
+
     return (
       <>
         <DataTableCell value={node.salary} />
@@ -150,6 +172,7 @@ export function ExpenseTableRow({ node }: TableRowProps<Expense>) {
         <DataTableCell value={node.academy_exp} />
         <DataTableCell value={node.women_exp} />
         <DataTableCell value={node.goods_exp} />
+        <DataTableCell value={node.other_cost} />
         <DataTableCell value={node.sga} align="center" colSpan={2} />
       </>
     );

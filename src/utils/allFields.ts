@@ -27,7 +27,7 @@ export const bsFields: SortableKeys[] = [
   'capital_surplus',
   'retained_earnings',
 ];
-export const revenueFields: SortableKeys[] = ['sponsor', 'ticket', 'broadcast', 'academy_rev', 'goods_rev', 'other_revs'];
+export const revenueFields: SortableKeys[] = ['sponsor', 'ticket', 'broadcast', 'academy_rev', 'women_rev', 'goods_rev', 'other_revs'];
 export const expenseFields: SortableKeys[] = [
   'salary',
   'game_exp',
@@ -35,6 +35,7 @@ export const expenseFields: SortableKeys[] = [
   'academy_exp',
   'women_exp',
   'goods_exp',
+  'other_cost',
   'manage_exp',
   'sga',
 ];

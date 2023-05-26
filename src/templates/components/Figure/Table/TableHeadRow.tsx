@@ -113,6 +113,9 @@ export function RevenueTableHeadRow({ mode }: Pick<TableHeadRowProps, 'mode'>) {
       <TableHeadCell mode={mode} sortableKey="goods_rev">
         物販
       </TableHeadCell>
+      <TableHeadCell mode={mode} sortableKey="women_rev">
+        女子チーム
+      </TableHeadCell>
       <TableHeadCell mode={mode} sortableKey="other_revs">
         その他
       </TableHeadCell>
@@ -146,6 +149,9 @@ export function ExpenseTableHeadRow({ mode }: Pick<TableHeadRowProps, 'mode'>) {
       </TableHeadCell>
       <TableHeadCell mode={mode} sortableKey="goods_exp">
         物販関連
+      </TableHeadCell>
+      <TableHeadCell mode={mode} sortableKey="other_cost">
+        その他売上原価
       </TableHeadCell>
       <TableHeadCell mode={mode}>販売費</TableHeadCell>
       <TableHeadCell mode={mode}>一般管理費</TableHeadCell>

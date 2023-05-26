@@ -59,6 +59,7 @@ export default function useFragments() {
       ticket
       broadcast
       academy_rev
+      women_rev
       goods_rev
       other_revs
       related_revenue
@@ -73,6 +74,7 @@ export default function useFragments() {
       academy_exp
       women_exp
       goods_exp
+      other_cost
       sga
     }
     fragment attdFields on Data {

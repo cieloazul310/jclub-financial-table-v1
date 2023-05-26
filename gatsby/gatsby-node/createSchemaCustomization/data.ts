@@ -45,6 +45,7 @@ export default async function createDataSchema({ actions, schema }: CreateSchema
       ticket: Int
       broadcast: Int
       academy_rev: Int
+      women_rev: Int
       goods_rev: Int
       other_revs: Int
       related_revenue: Int
@@ -57,6 +58,7 @@ export default async function createDataSchema({ actions, schema }: CreateSchema
       academy_exp: Int
       women_exp: Int
       goods_exp: Int
+      other_cost: Int
       sga: Int
       league_attd: Int!
       league_games: Int!

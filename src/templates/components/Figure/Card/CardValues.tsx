@@ -157,6 +157,7 @@ export function RevenueCardValues<T extends Revenue>({ node, previous, mode }: C
       <CardValue label="入場料収入" property="ticket" inset />
       <CardValue label="Jリーグ配分金" property="broadcast" inset />
       <CardValue label="アカデミー関連収入" property="academy_rev" inset />
+      <CardValue label="女子チーム関連収入" property="women_rev" inset />
       <CardValue label="物販関連収入" property="goods_rev" inset />
       <CardValue label="その他収入" property="other_revs" inset />
       <CardValue label="(関連する法人の営業収入)" property="related_revenue" />
@@ -176,6 +177,7 @@ export function ExpenseCardValues<T extends Expense>({ node, previous, mode }: C
       <CardValue label="アカデミー関連経費" property="academy_exp" inset />
       <CardValue label="女子チーム運営経費" property="women_exp" inset />
       <CardValue label="物販関連費" property="goods_exp" inset />
+      <CardValue label="その他売上原価" property="other_cost" inset />
       <CardValue label="販売費および一般管理費" property="sga" inset />
     </>
   );
