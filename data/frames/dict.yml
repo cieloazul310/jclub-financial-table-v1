@@ -9,6 +9,7 @@ sponsor: スポンサー収入
 ticket: 入場料収入
 broadcast: Jリーグ配分金
 academy_rev: アカデミー関連収入
+women_rev: 女子チーム関連収入
 goods_rev: 物販収入
 other_revs: その他収入
 expense: 営業費用
@@ -20,6 +21,7 @@ team_exp: トップチーム運営経費
 academy_exp: アカデミー運営経費
 women_exp: 女子チーム運営経費
 goods_exp: 物販関連費
+other_cost: その他売上原価
 sga: 販売費および一般管理費
 op_profit: 営業利益
 no_rev: 営業外収益
