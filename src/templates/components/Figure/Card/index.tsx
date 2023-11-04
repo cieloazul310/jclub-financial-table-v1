@@ -1,25 +1,32 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import { type Swiper as SwiperCore, Mousewheel, Scrollbar } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import CardItem from './CardItem';
-import Handler from './Handler';
-import useStateData from '../../../../utils/useStateEdges';
-import { useAppState } from '../../../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext';
-import type { AllDataFieldsFragment, Mode } from '../../../../../types';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import type { Swiper as SwiperCore } from "swiper";
+import { Mousewheel, Scrollbar } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import CardItem from "./CardItem";
+import Handler from "./Handler";
+import useStateData from "../../../../utils/useStateEdges";
+import { useAppState } from "../../../../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext";
+import type { AllDataFieldsFragment, Mode } from "../../../../../types";
 
-import 'swiper/css';
-import 'swiper/css/scrollbar';
+import "swiper/css";
+import "swiper/css/scrollbar";
 
-function rangeIsNumbers(range: (number | string)[], mode: Mode): range is number[] {
-  return mode === 'club';
+function rangeIsNumbers(
+  range: (number | string)[],
+  mode: Mode,
+): range is number[] {
+  return mode === "club";
 }
-function rangeIsStrings(range: (number | string)[], mode: Mode): range is string[] {
-  return mode === 'year';
+function rangeIsStrings(
+  range: (number | string)[],
+  mode: Mode,
+): range is string[] {
+  return mode === "year";
 }
 
 function useRange(nodes: AllDataFieldsFragment[], mode: Mode) {
-  const range = nodes.map((node) => (mode === 'club' ? node.year : node.slug));
+  const range = nodes.map((node) => (mode === "club" ? node.year : node.slug));
   return {
     range,
     totalCount: nodes.length,
@@ -28,7 +35,7 @@ function useRange(nodes: AllDataFieldsFragment[], mode: Mode) {
 
 function useInitialIndex(range: (string | number)[], mode: Mode) {
   if (rangeIsNumbers(range, mode)) {
-    const storaged = window.sessionStorage.getItem('currentYear');
+    const storaged = window.sessionStorage.getItem("currentYear");
     if (!storaged) return range.length - 1;
     const currentYear = parseInt(storaged, 10);
     const index = range.indexOf(currentYear);
@@ -36,7 +43,7 @@ function useInitialIndex(range: (string | number)[], mode: Mode) {
     return index;
   }
   if (rangeIsStrings(range, mode)) {
-    const storaged = window.sessionStorage.getItem('currentClub');
+    const storaged = window.sessionStorage.getItem("currentClub");
     if (!storaged) return 0;
     const index = range.indexOf(storaged);
     if (index < 0) return 0;
@@ -46,7 +53,9 @@ function useInitialIndex(range: (string | number)[], mode: Mode) {
 }
 
 type CardProps = {
-  nodes: (AllDataFieldsFragment & { previousData: AllDataFieldsFragment | null })[];
+  nodes: (AllDataFieldsFragment & {
+    previousData: AllDataFieldsFragment | null;
+  })[];
   mode: Mode;
 };
 
@@ -61,7 +70,7 @@ function Card({ nodes, mode }: CardProps) {
    * 年度別表示 ソート順とソート項目を変更した場合に先頭へ戻るエフェクト
    */
   React.useLayoutEffect(() => {
-    if (mode !== 'year') return;
+    if (mode !== "year") return;
     swiper?.slideTo(0);
   }, [sortAsc, sortKey]);
 
@@ -79,13 +88,13 @@ function Card({ nodes, mode }: CardProps) {
       if (rangeIsNumbers(range, mode)) {
         const currentYear = range?.[activeIndex];
         if (currentYear) {
-          window.sessionStorage.setItem('currentYear', currentYear.toString());
+          window.sessionStorage.setItem("currentYear", currentYear.toString());
         }
       }
       if (rangeIsStrings(range, mode)) {
         const currentClub = range?.[activeIndex];
         if (currentClub) {
-          window.sessionStorage.setItem('currentClub', currentClub);
+          window.sessionStorage.setItem("currentClub", currentClub);
         }
       }
     }, 250);
@@ -99,7 +108,9 @@ function Card({ nodes, mode }: CardProps) {
         width={1}
         minHeight={400}
         p={1}
-        bgcolor={({ palette }) => (palette.mode === 'light' ? 'grey.100' : 'background.default')}
+        bgcolor={({ palette }) =>
+          palette.mode === "light" ? "grey.100" : "background.default"
+        }
       >
         <Swiper
           modules={[Mousewheel, Scrollbar]}
@@ -128,7 +139,13 @@ function Card({ nodes, mode }: CardProps) {
         >
           {stateEdges.map((node, index) => (
             <SwiperSlide key={node.id}>
-              <CardItem node={node} previous={node.previousData} mode={mode} index={index} length={totalCount} />
+              <CardItem
+                node={node}
+                previous={node.previousData}
+                mode={mode}
+                index={index}
+                length={totalCount}
+              />
             </SwiperSlide>
           ))}
         </Swiper>
