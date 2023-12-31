@@ -1,5 +1,5 @@
-# 2023
-# J1 18 clubs
+# 2024
+# J1 20 clubs
 - id: "1"
   slug: consadole
   name: 北海道コンサドーレ札幌
@@ -66,6 +66,33 @@
   area: 東京都
   website: https://www.fctokyo.co.jp
 
+
+- id: "23"
+  slug: verdy
+  name: 東京ヴェルディ
+  fullname: 東京ヴェルディ1969
+  short_name: 東京V
+  company: 東京ヴェルディ株式会社
+  category: J2
+  hometown: 東京都
+  area: 東京都
+  website: https://www.verdy.co.jp
+  relatedCompanies:
+    - 一般社団法人ヴェルディクラブ
+
+- id: "24"
+  slug: zelvia
+  name: FC町田ゼルビア
+  fullname: FC町田ゼルビア
+  short_name: 町田
+  company: 株式会社ゼルビア
+  category: J2
+  hometown: 町田市
+  area: 東京都
+  website: https://www.zelvia.co.jp
+  relatedCompanies:
+    - NPO法人アスレチッククラブ町田
+
 - id: "8"
   slug: kawasaki
   name: 川崎フロンターレ
@@ -93,19 +120,6 @@
   annotation:
     - 2021年度以降はアカデミー事業を一般社団法人F・マリノススポーツクラブに移管
 
-- id: "25"
-  slug: yokohamafc
-  name: 横浜FC
-  fullname: 横浜FC
-  short_name: 横浜FC
-  company: 株式会社横浜フリエスポーツクラブ
-  category: J1
-  hometown: 横浜市
-  area: 神奈川県
-  website: https://www.yokohamafc.com
-  relatedCompanies:
-    - 一般社団法人横浜FCスポーツクラブ
-
 - id: "26"
   slug: bellmare
   name: 湘南ベルマーレ
@@ -132,6 +146,19 @@
   website: https://www.albirex.co.jp
   relatedCompanies:
     - 株式会社アルビレックス新潟レディース
+
+- id: "13"
+  slug: jubilo
+  name: ジュビロ磐田
+  fullname: ジュビロ磐田
+  short_name: 磐田
+  company: 株式会社ジュビロ
+  category: J2
+  hometown: 御前崎市、菊川市、掛川市、袋井市、森町、磐田市、浜松市、湖西市
+  area: 静岡県
+  website: https://www.jubilo-iwata.co.jp
+  annotation:
+    - 2022年度は決算期の変更により10ヶ月間
 
 - id: "29"
   slug: nagoya
@@ -226,7 +253,7 @@
   area: 佐賀県
   website: https://www.sagan-tosu.net
 
-# J2 22 clubs
+# J2 20 clubs
 - id: "2"
   slug: vegalta
   name: ベガルタ仙台
@@ -307,8 +334,8 @@
 
 - id: "21"
   slug: thespa
-  name: ザスパクサツ群馬
-  fullname: ザスパクサツ群馬
+  name: ザスパ群馬
+  fullname: ザスパ群馬
   short_name: 群馬
   company: 株式会社ザスパ
   category: J2
@@ -317,17 +344,6 @@
   website: https://www.thespa.co.jp
   relatedCompanies:
     - NPO法人ザスパスポーツクラブ
-
-- id: "5"
-  slug: ardija
-  name: 大宮アルディージャ
-  fullname: 大宮アルディージャ
-  short_name: 大宮
-  company: エヌ・ティ・ティ・スポーツコミュニティ株式会社
-  category: J2
-  hometown: さいたま市
-  area: 埼玉県
-  website: https://www.ardija.co.jp
 
 - id: "22"
   slug: jefunited
@@ -340,31 +356,18 @@
   area: 千葉県
   website: https://jefunited.co.jp
 
-- id: "23"
-  slug: verdy
-  name: 東京ヴェルディ
-  fullname: 東京ヴェルディ1969
-  short_name: 東京V
-  company: 東京ヴェルディ株式会社
-  category: J2
-  hometown: 東京都
-  area: 東京都
-  website: https://www.verdy.co.jp
+- id: "25"
+  slug: yokohamafc
+  name: 横浜FC
+  fullname: 横浜FC
+  short_name: 横浜FC
+  company: 株式会社横浜フリエスポーツクラブ
+  category: J1
+  hometown: 横浜市
+  area: 神奈川県
+  website: https://www.yokohamafc.com
   relatedCompanies:
-    - 一般社団法人ヴェルディクラブ
-
-- id: "24"
-  slug: zelvia
-  name: FC町田ゼルビア
-  fullname: FC町田ゼルビア
-  short_name: 町田
-  company: 株式会社ゼルビア
-  category: J2
-  hometown: 町田市
-  area: 東京都
-  website: https://www.zelvia.co.jp
-  relatedCompanies:
-    - NPO法人アスレチッククラブ町田
+    - 一般社団法人横浜FCスポーツクラブ
 
 - id: "10"
   slug: ventforet
@@ -379,19 +382,6 @@
   relatedCompanies:
     - 一般社団法人ヴァンフォーレスポーツクラブ
 
-- id: "28"
-  slug: zweigen
-  name: ツエーゲン金沢
-  fullname: ツエーゲン金沢
-  short_name: 金沢
-  company: 株式会社石川ツエーゲン
-  category: J2
-  hometown: 金沢市、白山市、野々市市、かほく市、津幡町、内灘町を中心とする全県
-  area: 石川県
-  website: https://www.zweigen-kanazawa.jp
-  relatedCompanies:
-    - 一般社団法人石川ツエーゲンスポーツクラブ
-
 - id: "12"
   slug: shimizu
   name: 清水エスパルス
@@ -402,19 +392,6 @@
   hometown: 静岡市
   area: 静岡県
   website: https://www.s-pulse.co.jp
-
-- id: "13"
-  slug: jubilo
-  name: ジュビロ磐田
-  fullname: ジュビロ磐田
-  short_name: 磐田
-  company: 株式会社ジュビロ
-  category: J2
-  hometown: 御前崎市、菊川市、掛川市、袋井市、森町、磐田市、浜松市、湖西市
-  area: 静岡県
-  website: https://www.jubilo-iwata.co.jp
-  annotation:
-    - 2022年度は決算期の変更により10ヶ月間
 
 - id: "49"
   slug: myfc
@@ -473,6 +450,17 @@
   relatedCompanies:
     - NPO法人徳島スポーツビレッジ
 
+- id: "36"
+  slug: ehimefc
+  name: 愛媛FC
+  fullname: 愛媛FC
+  short_name: 愛媛
+  company: 株式会社愛媛FC
+  category: J3
+  hometown: 松山市を中心とする全県
+  area: 愛媛県
+  website: https://www.ehimefc.com
+
 - id: "38"
   slug: vvaren
   name: V・ファーレン長崎
@@ -511,6 +499,21 @@
   area: 大分県
   website: https://www.oita-trinita.co.jp
 
+- id: "53"
+  slug: kufc
+  name: 鹿児島ユナイテッドFC
+  fullname: 鹿児島ユナイテッドFC
+  short_name: 鹿児島
+  company: 株式会社鹿児島プロスポーツプロジェクト
+  category: J3
+  hometown: 鹿児島市
+  area: 鹿児島県
+  website: https://www.kufc.co.jp
+  settlement: https://www.kufc.co.jp/club/mind/
+  relatedCompanies:
+    - 一般社団法人鹿児島プロスポーツプロジェクト
+    - 株式会社KMP
+
 # J3 20 clubs
 - id: "55"
   slug: vanraure
@@ -548,6 +551,17 @@
   website: https://fufc.jp
   relatedCompanies:
     - NPO法人福島ユナイテッドスポーツクラブ
+
+- id: "5"
+  slug: ardija
+  name: 大宮アルディージャ
+  fullname: 大宮アルディージャ
+  short_name: 大宮
+  company: エヌ・ティ・ティ・スポーツコミュニティ株式会社
+  category: J2
+  hometown: さいたま市
+  area: 埼玉県
+  website: https://www.ardija.co.jp
 
 - id: "45"
   slug: yscc
@@ -614,6 +628,19 @@
   hometown: 富山市を中心とする全県
   area: 富山県
   website: https://www.kataller.co.jp
+
+- id: "28"
+  slug: zweigen
+  name: ツエーゲン金沢
+  fullname: ツエーゲン金沢
+  short_name: 金沢
+  company: 株式会社石川ツエーゲン
+  category: J2
+  hometown: 金沢市、白山市、野々市市、かほく市、津幡町、内灘町を中心とする全県
+  area: 石川県
+  website: https://www.zweigen-kanazawa.jp
+  relatedCompanies:
+    - 一般社団法人石川ツエーゲンスポーツクラブ
 
 - id: "50"
   slug: azulclaro
@@ -685,17 +712,6 @@
   relatedCompanies:
     - NPO法人カマタマーレスポーツクラブ
 
-- id: "36"
-  slug: ehimefc
-  name: 愛媛FC
-  fullname: 愛媛FC
-  short_name: 愛媛
-  company: 株式会社愛媛FC
-  category: J3
-  hometown: 松山市を中心とする全県
-  area: 愛媛県
-  website: https://www.ehimefc.com
-
 - id: "56"
   slug: fcimabari
   name: FC今治
@@ -730,21 +746,6 @@
   hometown: 宮崎市、新富町、西都市
   area: 宮崎県
   website: https://www.tegevajaro.com
-
-- id: "53"
-  slug: kufc
-  name: 鹿児島ユナイテッドFC
-  fullname: 鹿児島ユナイテッドFC
-  short_name: 鹿児島
-  company: 株式会社鹿児島プロスポーツプロジェクト
-  category: J3
-  hometown: 鹿児島市
-  area: 鹿児島県
-  website: https://www.kufc.co.jp
-  settlement: https://www.kufc.co.jp/club/mind/
-  relatedCompanies:
-    - 一般社団法人鹿児島プロスポーツプロジェクト
-    - 株式会社KMP
 
 - id: "54"
   slug: fcryukyu
