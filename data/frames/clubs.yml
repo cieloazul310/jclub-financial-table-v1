@@ -335,7 +335,7 @@
 - id: "21"
   slug: thespa
   name: ザスパ群馬
-  fullname: ザスパ群馬
+  fullname: ザスパクサツ群馬
   short_name: 群馬
   company: 株式会社ザスパ
   category: J2
@@ -750,7 +750,7 @@
 - id: "54"
   slug: fcryukyu
   name: FC琉球
-  fullname: FC琉球
+  fullname: FC琉球OKINAWA
   short_name: 琉球
   company: 琉球フットボールクラブ株式会社
   category: J3
