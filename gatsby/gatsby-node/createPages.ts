@@ -1,6 +1,6 @@
 import * as path from "path";
 import type { Node, CreatePagesArgs } from "gatsby";
-import type { Club, MdxPost, Year, MdxPostByYear } from "../../types";
+import type { Club, MdxPost, Year, MdxPostByYear } from "types";
 
 type GraphQLResult = {
   allClub: {

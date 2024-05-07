@@ -1,6 +1,6 @@
 import type { CreateSchemaCustomizationArgs } from "gatsby";
+import type { Datum } from "types";
 import type { GatsbyGraphQLContext } from "../graphql";
-import type { Datum } from "../../../types";
 
 export default async function createDataSchema({
   actions,

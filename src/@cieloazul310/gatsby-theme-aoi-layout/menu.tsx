@@ -6,7 +6,7 @@ import {
   SeriesIcon,
   DownloadIcon,
   DocsIcon,
-} from "../../icons";
+} from "@/icons";
 
 export type Menu = {
   title: string;

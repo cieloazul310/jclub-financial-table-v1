@@ -5,8 +5,8 @@ import type {
   GraphQLObjectType,
 } from "gatsby/graphql";
 // import { GatsbyIterable,} from 'gatsby/dist/datastore/common/iterable';
+import type { Mdx, MdxPost } from "types";
 import type { GatsbyGraphQLContext } from "../graphql";
-import type { Mdx, MdxPost } from "../../../types";
 
 function mdxResolverPassthrough(
   fieldName: string,

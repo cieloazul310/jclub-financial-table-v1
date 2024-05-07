@@ -2,7 +2,7 @@ import * as fs from "fs";
 import * as path from "path";
 import * as yaml from "yaml";
 import type { CreateResolversArgs } from "gatsby";
-import type { Dict, MdxPost, MdxPostByYear } from "../../types";
+import type { Dict, MdxPost, MdxPostByYear } from "types";
 import type { GatsbyGraphQLContext } from "./graphql";
 
 function mdxPostToYears(posts: MdxPost<"node">[]): MdxPostByYear[] {

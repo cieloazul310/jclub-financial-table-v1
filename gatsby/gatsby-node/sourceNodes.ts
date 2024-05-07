@@ -2,7 +2,7 @@ import * as fs from "fs";
 import * as path from "path";
 import * as yaml from "yaml";
 import type { SourceNodesArgs } from "gatsby";
-import type { Club, Year } from "../../types";
+import type { Club, Year } from "types";
 
 /**
  * sourceNodes で何をするか
