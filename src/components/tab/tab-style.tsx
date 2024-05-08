@@ -2,24 +2,14 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import MuiTab from "@mui/material/Tab";
-import { useAppState, useDispatch } from "@appState/AppStateContext";
+import type { Tab } from "types";
 
-function Tab() {
-  const { tab } = useAppState();
-  const dispatch = useDispatch();
-  const handleTab = (_: React.ChangeEvent<unknown>, newValue: string) => {
-    if (tab === newValue) return;
-    if (
-      newValue !== "pl" &&
-      newValue !== "bs" &&
-      newValue !== "revenue" &&
-      newValue !== "expense" &&
-      newValue !== "attd"
-    )
-      return;
-    dispatch({ type: "SET_TAB", tab: newValue });
-  };
+type TabStyleProps = {
+  tab: Tab;
+  onChange: (event: React.ChangeEvent<unknown>, newValue: string) => void;
+};
 
+function TabStyle({ tab, onChange }: TabStyleProps) {
   return (
     <Box component="nav" bgcolor="background.paper" flexGrow={1}>
       <Tabs
@@ -28,7 +18,7 @@ function Tab() {
         indicatorColor="secondary"
         textColor="secondary"
         scrollButtons="auto"
-        onChange={handleTab}
+        onChange={onChange}
       >
         <MuiTab label="損益計算書" value="pl" wrapped />
         <MuiTab label="貸借対照表" value="bs" wrapped />
@@ -40,4 +30,4 @@ function Tab() {
   );
 }
 
-export default Tab;
+export default TabStyle;

@@ -11,9 +11,9 @@ import Layout from "@/layout";
 import Seo from "@/components/seo";
 import YearsLink from "@/components/links/years-link";
 import { AdInSectionDividerOne } from "@/components/ads";
-import YearSummary from "./summary";
-import Tab from "../components/tab";
-import FigureSection from "../components/figure";
+import Tab from "@/components/tab";
+import FigureSection from "@/components/figure";
+import YearSummary from "@/components/summary/year";
 
 export type YearPageData = {
   year: Pick<Year, "id" | "year" | "href" | "categories" | "stats">;

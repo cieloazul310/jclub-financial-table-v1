@@ -1,8 +1,13 @@
 import * as React from "react";
-import Typograhy from "@mui/material/Typography";
+import Typograhy, { type TypographyProps } from "@mui/material/Typography";
 import useCategoryColor from "@/utils/useCategoryColor";
 
-function CategoryLabel({ category }: { category: string }) {
+type CategoryLabelProps = Omit<
+  TypographyProps,
+  "bgcolor" | "color" | "px" | "fontSize" | "borderRadius" | "fontWeight"
+> & { category: string };
+
+function CategoryLabel({ category, ...props }: CategoryLabelProps) {
   const { color, contrastText } = useCategoryColor(category);
   return (
     <Typograhy
@@ -15,6 +20,7 @@ function CategoryLabel({ category }: { category: string }) {
         borderRadius: 1,
         fontWeight: "bold",
       }}
+      {...props}
     >
       {category}
     </Typograhy>

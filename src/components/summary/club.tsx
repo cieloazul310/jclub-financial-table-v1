@@ -8,7 +8,7 @@ import {
   Li,
 } from "@cieloazul310/gatsby-theme-aoi";
 import { AllDataFieldsFragment, Club } from "types";
-import Chart from "../components/chart";
+import Chart from "../chart";
 
 type ClubSummaryProps = {
   nodes: AllDataFieldsFragment[];

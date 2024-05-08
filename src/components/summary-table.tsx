@@ -8,12 +8,16 @@ import TableBody from "@mui/material/TableBody";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 
-type SummaryTableProps = {
+type SummaryTableProps = React.PropsWithChildren<{
   disableDiff?: boolean;
-  children: React.ReactNode;
-};
+  caption?: React.ReactNode;
+}>;
 
-function SummaryTable({ children, disableDiff = false }: SummaryTableProps) {
+function SummaryTable({
+  children,
+  caption,
+  disableDiff = false,
+}: SummaryTableProps) {
   return (
     <Box my={4}>
       <Paper elevation={0} variant="outlined">
@@ -35,6 +39,7 @@ function SummaryTable({ children, disableDiff = false }: SummaryTableProps) {
               </TableRow>
             </TableHead>
             <TableBody>{children}</TableBody>
+            {caption && <caption>{caption}</caption>}
           </Table>
         </TableContainer>
       </Paper>
@@ -44,6 +49,7 @@ function SummaryTable({ children, disableDiff = false }: SummaryTableProps) {
 
 SummaryTable.defaultProps = {
   disableDiff: false,
+  caption: undefined,
 };
 
 export default SummaryTable;

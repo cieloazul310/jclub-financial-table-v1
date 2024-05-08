@@ -28,9 +28,12 @@ const config: StorybookConfig = {
           __dirname,
           "../src/@cieloazul310/gatsby-theme-aoi-top-layout/utils",
         ),
-        "docs": path.resolve(__dirname, "../content/docs"),
-        "types": path.resolve(__dirname, "../types"),
-        "@reach/router": path.resolve(__dirname, "../node_modules/@gatsbyjs/reach-router"),
+        docs: path.resolve(__dirname, "../content/docs"),
+        types: path.resolve(__dirname, "../types"),
+        "@reach/router": path.resolve(
+          __dirname,
+          "../node_modules/@gatsbyjs/reach-router",
+        ),
       };
     }
     return config;

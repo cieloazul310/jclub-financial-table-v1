@@ -12,9 +12,9 @@ import Seo from "@/components/seo";
 import PostList from "@/components/post-list";
 import { CategoryLink } from "@/components/links/category-link";
 import { AdInSectionDividerOne } from "@/components/ads";
-import Tab from "../components/tab";
-import FigureSection from "../components/figure";
-import ClubSummary from "./summary";
+import Tab from "@/components/tab";
+import FigureSection from "@/components/figure";
+import ClubSummary from "@/components/summary/club";
 
 export type ClubPageData = {
   club: Pick<

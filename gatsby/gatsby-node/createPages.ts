@@ -126,7 +126,7 @@ export default async function createPages({
   const postsPerPage = 20;
 
   // 1. クラブごとの経営情報一覧ページを作成
-  const clubTemplate = path.resolve(`./src/templates/club/index.tsx`);
+  const clubTemplate = path.resolve(`./src/templates/club.tsx`);
   allClub.nodes.forEach((node, index) => {
     const left = index !== 0 ? allClub.nodes[index - 1] : null;
     const right =
@@ -145,7 +145,7 @@ export default async function createPages({
   });
 
   // 2. 年度別の経営情報一覧ページを作成
-  const yearTemplate = path.resolve(`./src/templates/year/index.tsx`);
+  const yearTemplate = path.resolve(`./src/templates/year.tsx`);
   allYear.nodes.forEach((node, index) => {
     const left = index !== 0 ? allYear.nodes[index - 1] : null;
     const right =
@@ -163,7 +163,7 @@ export default async function createPages({
   });
 
   // 3. 記事ごとのページを作成
-  const mdxPostTempalte = path.resolve("./src/templates/post/index.tsx");
+  const mdxPostTempalte = path.resolve("./src/templates/post.tsx");
   allMdxPost.nodes.forEach((node, index, arr) => {
     const newer = index !== 0 ? arr[index - 1] : null;
     const older = index !== arr.length - 1 ? arr[index + 1] : null;
@@ -259,7 +259,7 @@ export default async function createPages({
   });
 
   // 7. 用語解説のページを作成
-  const docsTemplate = path.resolve("./src/templates/docs/index.tsx");
+  const docsTemplate = path.resolve("./src/templates/docs.tsx");
   docs.group.forEach((group) => {
     group.nodes.forEach(({ fields, internal }, index) => {
       const { slug } = fields;

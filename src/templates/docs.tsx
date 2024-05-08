@@ -12,8 +12,8 @@ import {
 } from "@cieloazul310/gatsby-theme-aoi";
 import shortcodes from "@/components/shortcodes";
 import { AdInSectionDividerOne } from "@/components/ads";
+import DocsMenu from "@/components/docs-menu";
 import Layout from "@/layout";
-import DocsMenu from "./docs-menu";
 
 type DocsTemplateData = {
   mdx: {

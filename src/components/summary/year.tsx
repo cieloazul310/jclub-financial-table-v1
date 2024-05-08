@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Section, Article, H2 } from "@cieloazul310/gatsby-theme-aoi";
 import type { Year } from "types";
-import Stats from "./stats";
+import Stats from "../stats";
 
 type YearSummaryProps = {
   year: Pick<Year, "year" | "stats">;

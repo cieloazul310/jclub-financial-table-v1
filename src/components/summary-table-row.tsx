@@ -23,8 +23,13 @@ function SummaryTableRow({
     palette.mode === "light" ? palette.error.dark : palette.error.light;
   const isMinus = React.useMemo(() => {
     if (typeof val === "number") return val < 0;
-    return val.slice(0, 1) === "-";
+    const firstCharacter = val.slice(0, 1);
+    return firstCharacter === "-" || firstCharacter === "▲";
   }, [val]);
+  const displayValue = React.useMemo(() => {
+    if (!isMinus) return val;
+    return `▲${val.toString().slice(1)}`;
+  }, [val, isMinus]);
 
   return (
     <TableRow {...props}>
@@ -40,7 +45,7 @@ function SummaryTableRow({
         align="right"
         sx={{ color: emphasizedIfMinus && isMinus ? minusColor : undefined }}
       >
-        {val}
+        {displayValue}
       </TableCell>
       {diff ? (
         <TableCell align="right">
