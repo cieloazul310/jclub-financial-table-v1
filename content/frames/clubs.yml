@@ -9,6 +9,7 @@
   category: J1
   hometown: 札幌市を中心とする全道
   area: 北海道
+  period: 1
   website: https://www.consadole-sapporo.jp
   settlement: https://www.consadole-sapporo.jp/club/settlement/
   relatedCompanies:
@@ -24,6 +25,7 @@
   category: J1
   hometown: 鹿嶋市、潮来市、神栖市、行方市、鉾田市
   area: 茨城県
+  period: 1
   website: https://www.antlers.co.jp
   relatedCompanies:
     - 一般社団法人アントラーズホームタウンDMO
@@ -37,12 +39,11 @@
   category: J1
   hometown: さいたま市
   area: 埼玉県
+  period: 1
   website: https://www.urawa-reds.co.jp
   settlement: https://www.urawa-reds.co.jp/club/managdata.php
   relatedCompanies:
     - 一般社団法人レッズランド
-  annotation:
-    - 2021年度以前の「チーム人件費」はアカデミー指導者報酬、レディースチーム選手・指導者報酬を含む
 
 - id: "6"
   slug: reysol
@@ -53,7 +54,9 @@
   category: J1
   hometown: 柏市
   area: 千葉県
+  period: 3
   website: https://www.reysol.co.jp
+  settlement: https://www.reysol.co.jp/club/clubinfo/koukoku.php
 
 - id: "7"
   slug: fctokyo
@@ -64,8 +67,8 @@
   category: J1
   hometown: 東京都
   area: 東京都
+  period: 1
   website: https://www.fctokyo.co.jp
-
 
 - id: "23"
   slug: verdy
@@ -76,6 +79,7 @@
   category: J1
   hometown: 東京都
   area: 東京都
+  period: 1
   website: https://www.verdy.co.jp
   relatedCompanies:
     - 一般社団法人ヴェルディクラブ
@@ -89,6 +93,7 @@
   category: J1
   hometown: 町田市
   area: 東京都
+  period: 1
   website: https://www.zelvia.co.jp
   relatedCompanies:
     - NPO法人アスレチッククラブ町田
@@ -101,9 +106,10 @@
   company: 株式会社川崎フロンターレ
   category: J1
   hometown: 川崎市
+  area: 神奈川県
+  period: 1
   website: https://www.frontale.co.jp
   settlement: https://www.frontale.co.jp/about/kk/
-  area: 神奈川県
 
 - id: "9"
   slug: fmarinos
@@ -114,6 +120,7 @@
   category: J1
   hometown: 横浜市、横須賀市、大和市
   area: 神奈川県
+  period: 1
   website: https://www.f-marinos.com
   relatedCompanies:
     - 一般社団法人F・マリノススポーツクラブ
@@ -129,6 +136,7 @@
   category: J1
   hometown: 厚木市、伊勢原市、小田原市、茅ヶ崎市、秦野市、平塚市、藤沢市、大磯町、寒川町、二宮町、鎌倉市、南足柄市、大井町、開成町、中井町、箱根町、松田町、真鶴町、山北町、湯河原町
   area: 神奈川県
+  period: 3
   website: https://www.bellmare.co.jp
   settlement: https://www.bellmare.co.jp/club_business
   relatedCompanies:
@@ -143,6 +151,7 @@
   category: J1
   hometown: 新潟市、聖籠町、長岡市、三条市、柏崎市、新発田市、小千谷市、加茂市、十日町市、見附市、村上市、燕市、糸魚川市、妙高市、五泉市、上越市、阿賀野市、佐渡市、魚沼市、南魚沼市、胎内市、弥彦村、田上町、阿賀町、出雲崎市、湯沢町、津南町、刈羽村、関川村、粟島浦村【新潟県全県】
   area: 新潟県
+  period: 1
   website: https://www.albirex.co.jp
   relatedCompanies:
     - 株式会社アルビレックス新潟レディース
@@ -156,6 +165,7 @@
   category: J1
   hometown: 御前崎市、菊川市、掛川市、袋井市、森町、磐田市、浜松市、湖西市
   area: 静岡県
+  period: 1
   website: https://www.jubilo-iwata.co.jp
   annotation:
     - 2022年度は決算期の変更により10ヶ月間
@@ -169,6 +179,7 @@
   category: J1
   hometown: 名古屋市、豊田市、みよし市を中心とする全県
   area: 愛知県
+  period: 1
   website: https://nagoya-grampus.jp
 
 - id: "31"
@@ -180,6 +191,7 @@
   category: J1
   hometown: 京都市、宇治市、城陽市、向日市、長岡京市、京田辺市、木津川市、亀岡市、南丹市、京丹波町、福知山市、舞鶴市、綾部市、八幡市、宮津市、大山崎町、久御山町、京丹後市、精華町
   area: 京都府
+  period: 12
   website: https://www.sanga-fc.jp
   settlement: https://www.sanga-fc.jp/club/
 
@@ -192,6 +204,7 @@
   category: J1
   hometown: 吹田市、茨木市、高槻市、豊中市、池田市、摂津市、箕面市
   area: 大阪府
+  period: 1
   website: https://www.gamba-osaka.net
 
 - id: "15"
@@ -203,6 +216,7 @@
   category: J1
   hometown: 大阪市、堺市
   area: 大阪府
+  period: 1
   website: https://www.cerezo.co.jp
   relatedCompanies:
     - 一般社団法人セレッソ大阪スポーツクラブ
@@ -216,6 +230,7 @@
   category: J1
   hometown: 神戸市
   area: 兵庫県
+  period: 12
   website: https://www.vissel-kobe.co.jp
   relatedCompanies:
     - 一般社団法人ヴィッセル神戸スポーツクラブ
@@ -229,6 +244,7 @@
   category: J1
   hometown: 広島市
   area: 広島県
+  period: 1
   website: https://www.sanfrecce.co.jp
 
 - id: "37"
@@ -240,6 +256,7 @@
   category: J1
   hometown: 福岡市
   area: 福岡県
+  period: 1
   website: https://www.avispa.co.jp
 
 - id: "18"
@@ -251,6 +268,7 @@
   category: J1
   hometown: 鳥栖市
   area: 佐賀県
+  period: 1
   website: https://www.sagan-tosu.net
 
 # J2 20 clubs
@@ -263,6 +281,7 @@
   category: J2
   hometown: 仙台市を中心とする全県
   area: 宮城県
+  period: 1
   website: https://www.vegalta.co.jp
   settlement: https://www.vegalta.co.jp/club/company.html
   relatedCompanies:
@@ -277,6 +296,7 @@
   category: J2
   hometown: 秋田市、由利本荘市、にかほ市、男鹿市、潟上市を中心とする全県
   area: 秋田県
+  period: 1
   website: https://blaublitz.jp
   relatedCompanies:
     - NPO法人ブラウブリッツ秋田スポーツネットワーク
@@ -290,6 +310,7 @@
   category: J2
   hometown: 山形市、天童市、鶴岡市を中心とする全県
   area: 山形県
+  period: 1
   website: https://www.montedioyamagata.jp
   relatedCompanies:
     - 公益社団法人山形県スポーツ振興21世紀協会
@@ -306,6 +327,7 @@
   category: J2
   hometown: いわき市、広野町、楢葉町、富岡町、川内村、大熊町、双葉町、葛尾村、浪江町
   area: 福島県
+  period: 12
   website: https://iwakifc.com
 
 - id: "20"
@@ -317,6 +339,7 @@
   category: J2
   hometown: 水戸市、日立市、ひたちなか市、笠間市、那珂市、小美玉市、常陸太田市、北茨城市、常陸大宮市、高萩市、茨城町、城里町、大洗町、大子町、東海村
   area: 茨城県
+  period: 1
   website: https://www.mito-hollyhock.net
   relatedCompanies:
     - 一般社団法人ホーリーホックIBARAKIクラブ
@@ -330,6 +353,7 @@
   category: J2
   hometown: 宇都宮市
   area: 栃木県
+  period: 1
   website: https://www.tochigisc.jp
 
 - id: "21"
@@ -341,6 +365,7 @@
   category: J2
   hometown: 草津町、前橋市を中心とする全県
   area: 群馬県
+  period: 1
   website: https://www.thespa.co.jp
   relatedCompanies:
     - NPO法人ザスパスポーツクラブ
@@ -354,6 +379,7 @@
   category: J2
   hometown: 市原市、千葉市
   area: 千葉県
+  period: 1
   website: https://jefunited.co.jp
 
 - id: "25"
@@ -365,6 +391,7 @@
   category: J2
   hometown: 横浜市
   area: 神奈川県
+  period: 1
   website: https://www.yokohamafc.com
   relatedCompanies:
     - 一般社団法人横浜FCスポーツクラブ
@@ -378,6 +405,7 @@
   category: J2
   hometown: 甲府市、韮崎市を中心とする全県
   area: 山梨県
+  period: 1
   website: https://www.ventforet.jp
   relatedCompanies:
     - 一般社団法人ヴァンフォーレスポーツクラブ
@@ -391,6 +419,7 @@
   category: J2
   hometown: 静岡市
   area: 静岡県
+  period: 1
   website: https://www.s-pulse.co.jp
 
 - id: "49"
@@ -402,6 +431,7 @@
   category: J2
   hometown: 藤枝市、島田市、焼津市、牧之原市、吉田町、川根本町
   area: 静岡県
+  period: 1
   website: https://myfc.co.jp
 
 - id: "32"
@@ -413,13 +443,13 @@
   category: J2
   hometown: 岡山市、倉敷市、津山市を中心とする全県
   area: 岡山県
+  period: 1
   website: https://www.fagiano-okayama.com
   relatedCompanies:
     - 一般社団法人ファジアーノ岡山スポーツクラブ
     - NPO法人岡山ヒューマンスポーツクラブ
   annotation:
     - 2022年度以降はアカデミー事業を一般社団法人ファジアーノ岡山スポーツクラブに移管
-    - 2021年度以前の「チーム人件費」はアカデミー指導者報酬を含む
 
 - id: "33"
   slug: renofa
@@ -430,6 +460,7 @@
   category: J2
   hometown: 山口市、下関市、山陽小野田市、宇部市、防府市、周南市、美祢市、萩市、下松市、岩国市、光市、長門市、柳井市、周防大島町、和木町、上関町、田布施町、平生町、阿武町【山口県全県】
   area: 山口県
+  period: 1
   website: https://www.renofa.com
   relatedCompanies:
     - NPO法人レノファ山口スポーツクラブ
@@ -445,6 +476,7 @@
   category: J2
   hometown: 鳴門市、徳島市、吉野川市、美馬市、小松島市、阿南市、板野町、松茂町、藍住町、北島町を中心とする全県
   area: 徳島県
+  period: 1
   website: https://www.vortis.jp
   settlement: https://www.vortis.jp/clubinfo/index.html
   relatedCompanies:
@@ -459,6 +491,7 @@
   category: J2
   hometown: 松山市を中心とする全県
   area: 愛媛県
+  period: 12
   website: https://www.ehimefc.com
 
 - id: "38"
@@ -470,6 +503,7 @@
   category: J2
   hometown: 長崎市、諫早市を中心とする全県
   area: 長崎県
+  period: 12
   website: https://www.v-varen.com
 
 - id: "39"
@@ -481,6 +515,7 @@
   category: J2
   hometown: 熊本市
   area: 熊本県
+  period: 1
   website: https://roasso-k.com
   settlement: https://roasso-k.com/top_team/club_outline
   relatedCompanies:
@@ -497,6 +532,7 @@
   category: J2
   hometown: 大分市、別府市、佐伯市を中心とする全県
   area: 大分県
+  period: 1
   website: https://www.oita-trinita.co.jp
 
 - id: "53"
@@ -508,6 +544,7 @@
   category: J2
   hometown: 鹿児島市
   area: 鹿児島県
+  period: 1
   website: https://www.kufc.co.jp
   settlement: https://www.kufc.co.jp/club/mind/
   relatedCompanies:
@@ -524,6 +561,7 @@
   category: J3
   hometown: 八戸市、十和田市、五戸町、階上町、田子町、南部町、おいらせ町、新郷村、三沢市、七戸町、六戸町、東北町、横浜町、野辺地町、六ケ所村
   area: 青森県
+  period: 1
   website: https://www.vanraure.net
   relatedCompanies:
     - NPO法人クローバーズ・ネット
@@ -537,6 +575,7 @@
   category: J3
   hometown: 盛岡市､宮古市､大船渡市､花巻市､北上市､久慈市､遠野市､一関市､陸前高田市､釜石市､二戸市､八幡平市､奥州市､滝沢市､雫石町､葛巻町､岩手町､紫波町､矢巾町､西和賀町､金ケ崎町､平泉町､住田町､大槌町､山田町､岩泉町､田野畑村､普代村､軽米町､野田村､九戸村､洋野町､一戸町【岩手県全県】
   area: 岩手県
+  period: 1
   website: https://grulla-morioka.jp
 
 - id: "43"
@@ -548,6 +587,7 @@
   category: J3
   hometown: 福島市、会津若松市、伊達市、国見町、桑折町、川俣町を中心とする全県
   area: 福島県
+  period: 1
   website: https://fufc.jp
   relatedCompanies:
     - NPO法人福島ユナイテッドスポーツクラブ
@@ -561,6 +601,7 @@
   category: J3
   hometown: さいたま市
   area: 埼玉県
+  period: 1
   website: https://www.ardija.co.jp
 
 - id: "45"
@@ -572,6 +613,7 @@
   category: J3
   hometown: 横浜市
   area: 神奈川県
+  period: 1
   website: https://www.yscc1986.net
   relatedCompanies:
     - NPO法人横浜スポーツ&カルチャークラブ
@@ -588,6 +630,7 @@
   category: J3
   hometown: 相模原市、海老名市、座間市、綾瀬市、愛川町
   area: 神奈川県
+  period: 1
   website: https://www.scsagamihara.com
   relatedCompanies:
     - NPO法人スポーツクラブ相模原
@@ -601,6 +644,7 @@
   category: J3
   hometown: 松本市、塩尻市、山形村、安曇野市、大町市、池田町、生坂村、箕輪町、朝日村、高森町、麻績村
   area: 長野県
+  period: 1
   website: https://www.yamaga-fc.com
   settlement: https://www.yamaga-fc.com/club-info/company/accounting
   relatedCompanies:
@@ -616,6 +660,7 @@
   category: J3
   hometown: 長野市、須坂市、中野市、飯山市、千曲市、坂城市、小布施町、高山村、山ノ内町、木島平村、野沢温泉村、信濃町、飯綱町、小川村、栄村、佐久市
   area: 長野県
+  period: 12
   website: https://parceiro.co.jp
 
 - id: "48"
@@ -627,6 +672,7 @@
   category: J3
   hometown: 富山市を中心とする全県
   area: 富山県
+  period: 1
   website: https://www.kataller.co.jp
 
 - id: "28"
@@ -638,6 +684,7 @@
   category: J3
   hometown: 金沢市、白山市、野々市市、かほく市、津幡町、内灘町を中心とする全県
   area: 石川県
+  period: 1
   website: https://www.zweigen-kanazawa.jp
   relatedCompanies:
     - 一般社団法人石川ツエーゲンスポーツクラブ
@@ -651,6 +698,7 @@
   category: J3
   hometown: 沼津市
   area: 静岡県
+  period: 1
   website: https://www.azul-claro.jp
   relatedCompanies:
     - 一般社団法人アスルクラロスポーツクラブ
@@ -664,6 +712,7 @@
   category: J3
   hometown: 岐阜市を中心とする全県
   area: 岐阜県
+  period: 1
   website: https://www.fc-gifu.com
 
 #- id: "59"
@@ -675,6 +724,7 @@
   #category: J3
   #hometown: 東大阪市
   #area: 大阪府
+  #period: 1
   #website: https://fc-osaka.com
 
 #- id: "60"
@@ -686,6 +736,7 @@
   #category: J3
   #hometown: 奈良市、三郷町を中心とする全県
   #area: 奈良県
+  #period: 1
   #website: https://naraclub.jp
 
 - id: "51"
@@ -697,6 +748,7 @@
   category: J3
   hometown: 鳥取市、米子市、倉吉市、境港市を中心とする全県
   area: 鳥取県
+  period: 1
   website: https://www.gainare.co.jp
 
 - id: "34"
@@ -708,6 +760,7 @@
   category: J3
   hometown: 高松市、丸亀市を中心とする全県
   area: 香川県
+  period: 1
   website: https://www.kamatamare.jp
   relatedCompanies:
     - NPO法人カマタマーレスポーツクラブ
@@ -721,6 +774,7 @@
   category: J3
   hometown: 今治市
   area: 愛媛県
+  period: 1
   website: https://www.fcimabari.com
   relatedCompanies:
     - 株式会社今治．夢ビレッジ
@@ -734,6 +788,7 @@
   category: J3
   hometown: 北九州市
   area: 福岡県
+  period: 1
   website: https://www.giravanz.jp
 
 - id: "57"
@@ -745,6 +800,7 @@
   category: J3
   hometown: 宮崎市、新富町、西都市
   area: 宮崎県
+  period: 1
   website: https://www.tegevajaro.com
 
 - id: "54"
@@ -756,4 +812,5 @@
   category: J3
   hometown: 沖縄市を中心とする全県
   area: 沖縄県
+  period: 1
   website: https://www.fcryukyu.com

@@ -9,7 +9,7 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 2018,
+    ecmaVersion: 2024,
     // Allows for the parsing of modern ECMAScript features
     sourceType: "module",
     // Allows for the use of imports

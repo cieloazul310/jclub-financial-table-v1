@@ -10,7 +10,7 @@ function mdxPostToYears(posts: MdxPost<"node">[]): MdxPostByYear[] {
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .reduce<MdxPostByYear[]>((accum, { date }) => {
       const year = new Date(date).getFullYear();
-      const yearId = `${year}`;
+      const yearId = year.toString();
       const indexInAccum = accum.map((d) => d.id).indexOf(yearId);
       const basePath = path.join("/posts", year.toString());
       if (indexInAccum < 0) {
@@ -49,7 +49,7 @@ export default async function gatsbyCreateResolvers({
         type: `JSON!`,
         resolve: () => {
           const dict: Dict = yaml.parse(
-            fs.readFileSync(path.resolve("./data/frames/dict.yml"), "utf8"),
+            fs.readFileSync(path.resolve("./content/frames/dict.yml"), "utf8"),
           );
           return dict;
         },

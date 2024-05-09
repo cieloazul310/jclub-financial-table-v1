@@ -19,7 +19,7 @@ export default async function sourceNodes({
 
   // 1. クラブ一覧のデータを読み込み Club ノードを作成
   const clubs: Club<"bare">[] = yaml.parse(
-    fs.readFileSync(path.resolve("./data/frames/clubs.yml"), "utf-8"),
+    fs.readFileSync(path.resolve("./content/frames/clubs.yml"), "utf-8"),
   );
 
   clubs.forEach((data, index) => {
@@ -44,7 +44,7 @@ export default async function sourceNodes({
 
   // 2. 年度一覧のデータを読み込み Year ノードを作成
   const years: Year<"bare">[] = yaml.parse(
-    fs.readFileSync(path.resolve("./data/frames/years.yml"), "utf-8"),
+    fs.readFileSync(path.resolve("./content/frames/years.yml"), "utf-8"),
   );
 
   years.forEach((data) => {

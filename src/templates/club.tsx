@@ -28,6 +28,8 @@ export type ClubPageData = {
     | "href"
     | "company"
     | "hometown"
+    | "website"
+    | "period"
     | "settlement"
     | "relatedCompanies"
     | "annotation"
@@ -140,6 +142,8 @@ export const query = graphql`
       href
       company
       hometown
+      period
+      website
       settlement
       relatedCompanies
       annotation

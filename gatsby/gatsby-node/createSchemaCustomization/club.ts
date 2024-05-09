@@ -20,6 +20,8 @@ export default async function createClubSchema({
       company: String!
       category: String!
       hometown: String!
+      period: Int!
+      website: String
       settlement: String
       relatedCompanies: [String]
       annotation: [String]

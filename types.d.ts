@@ -15,6 +15,8 @@ export type Club<T extends 'bare' | 'node' | 'browser' = 'browser'> = (T extends
   company: string;
   category: Category;
   hometown: string;
+  period: number;
+  website: string | null;
   settlement: string | null;
   relatedCompanies: string[] | null;
   annotation: string[] | null;
