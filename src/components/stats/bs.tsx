@@ -60,12 +60,12 @@ function TableMainBS({ year, prevYear }: TableMainBSProps) {
           statsValues={year.stats.J2.net_worth}
           prev={prevYear?.stats.J2.net_worth}
         />
-        {hasJ3 ? (
+        {hasJ3 && (
           <TableCellCount
             statsValues={year.stats.J1.net_worth}
             prev={prevYear?.stats.J1.net_worth}
           />
-        ) : null}
+        )}
       </TableRow>
     </>
   );

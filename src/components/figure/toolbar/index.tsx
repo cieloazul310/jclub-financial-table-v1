@@ -69,11 +69,11 @@ function FigureToolbar({ mode }: FigureToolbarProps) {
           justifyContent: "flex-end",
         }}
       >
-        {mode === "year" ? (
+        {mode === "year" && (
           <Typography variant="body2" component="span">
             <strong>{field}</strong> {sortType}
           </Typography>
-        ) : null}
+        )}
         <Typography variant="caption">{unitString}</Typography>
       </Box>
     </Box>

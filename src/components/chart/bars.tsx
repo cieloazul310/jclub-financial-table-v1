@@ -128,7 +128,7 @@ function ExpenseBar({
         height={scale(0) - scale(othersExp) - 1}
         fill={palette.grey[palette.mode === "light" ? 200 : 900]}
       />
-      {salary ? (
+      {salary && (
         <rect
           x={(itemWidth * barPadding) / 2}
           y={scale(salary)}
@@ -136,7 +136,7 @@ function ExpenseBar({
           height={scale(0) - scale(salary) - 1}
           fill={fill}
         />
-      ) : null}
+      )}
     </>
   );
 }

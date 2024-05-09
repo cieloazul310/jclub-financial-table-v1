@@ -173,14 +173,14 @@ export function AttdTableHeadRow({ mode }: Pick<TableHeadRowProps, "mode">) {
       <TableHeadCell mode={mode} sortableKey="league_attd">
         リーグ戦入場者数
       </TableHeadCell>
-      {displayFullAttd ? (
+      {displayFullAttd && (
         <>
           <TableHeadCell mode={mode}>リーグカップ入場者数</TableHeadCell>
           <TableHeadCell mode={mode}>ACL入場者数</TableHeadCell>
           <TableHeadCell mode={mode}>PO入場者数</TableHeadCell>
           <TableHeadCell mode={mode}>セカンド入場者数</TableHeadCell>
         </>
-      ) : null}
+      )}
       <TableHeadCell mode={mode}>ホーム試合数</TableHeadCell>
       <TableHeadCell mode={mode} sortableKey="all_attd">
         年間入場者数

@@ -31,11 +31,11 @@ function SummaryTable({
                 <TableCell component="th" align="right" scope="col">
                   数値
                 </TableCell>
-                {!disableDiff ? (
+                {!disableDiff && (
                   <TableCell component="th" align="right" scope="col">
                     前年比
                   </TableCell>
-                ) : null}
+                )}
               </TableRow>
             </TableHead>
             <TableBody>{children}</TableBody>

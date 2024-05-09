@@ -128,7 +128,7 @@ function DownloadPage({ data }: PageProps<DownloadPageData>) {
             >
               <Tab label="フィルタ" value={0} />
               <Tab label="項目" value={1} />
-              {isMobile ? <Tab label="プレビュー" value={2} /> : null}
+              {isMobile && <Tab label="プレビュー" value={2} />}
             </Tabs>
           </Box>
           <Box
@@ -149,22 +149,22 @@ function DownloadPage({ data }: PageProps<DownloadPageData>) {
             <TabPane index={1} currentTab={tab}>
               <FieldFilter fields={fields} setFields={setFields} />
             </TabPane>
-            {isMobile ? (
+            {isMobile && (
               <TabPane index={2} currentTab={tab}>
                 <Container maxWidth="sm">
                   <Preview dataset={dataset} />
                 </Container>
               </TabPane>
-            ) : null}
+            )}
           </Box>
         </Box>
-        {!isMobile ? (
+        {!isMobile && (
           <Box flex={1} maxHeight="calc(100vh - 64px)" overflow="auto">
             <Container maxWidth="sm">
               <Preview dataset={dataset} />
             </Container>
           </Box>
-        ) : null}
+        )}
       </Box>
       <AdInSectionDividerOne />
       <Section>

@@ -47,11 +47,11 @@ function SummaryTableRow({
       >
         {displayValue}
       </TableCell>
-      {diff ? (
+      {diff && (
         <TableCell align="right">
           <Diff>{diff}</Diff>
         </TableCell>
-      ) : null}
+      )}
     </TableRow>
   );
 }

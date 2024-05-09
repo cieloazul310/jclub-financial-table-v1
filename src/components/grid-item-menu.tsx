@@ -22,7 +22,7 @@ function GridItemMenu({
           {title}
         </AppLink>
       </Typography>
-      {description ? <Paragraph>{description}</Paragraph> : null}
+      {description && <Paragraph>{description}</Paragraph>}
       {children}
     </Grid>
   );

@@ -32,7 +32,7 @@ function FigureWrapper({ children, caption }: FigureWrapperProps) {
         }}
       >
         {children}
-        {caption ? (
+        {caption && (
           <Typography
             variant="caption"
             display="flex"
@@ -42,7 +42,7 @@ function FigureWrapper({ children, caption }: FigureWrapperProps) {
           >
             {caption}
           </Typography>
-        ) : null}
+        )}
       </Paper>
     </Box>
   );

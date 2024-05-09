@@ -16,9 +16,9 @@ function TableClubs({ year }: TableClubsProps) {
       </TableCell>
       <TableCell align="right">{stats.J1.revenue.totalCount}</TableCell>
       <TableCell align="right">{stats.J2.revenue.totalCount}</TableCell>
-      {year.year >= 2014 ? (
+      {year.year >= 2014 && (
         <TableCell align="right">{stats.J3?.revenue.totalCount}</TableCell>
-      ) : null}
+      )}
     </TableRow>
   );
 }

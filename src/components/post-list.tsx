@@ -16,11 +16,11 @@ type PostListProps = {
 function PostList({ posts, title, more }: PostListProps) {
   return (
     <>
-      {title ? (
+      {title && (
         <Typography variant="subtitle1" component="h3" gutterBottom>
           {title}
         </Typography>
-      ) : null}
+      )}
       <List>
         {posts.map((node, index) => (
           <ListItemLink
@@ -33,11 +33,11 @@ function PostList({ posts, title, more }: PostListProps) {
           />
         ))}
       </List>
-      {more ? (
+      {more && (
         <PanelLink href={more.href} disableMargin>
           {more.title}
         </PanelLink>
-      ) : null}
+      )}
     </>
   );
 }

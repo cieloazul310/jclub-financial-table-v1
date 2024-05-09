@@ -18,11 +18,11 @@ function TableHeader({ year }: TableHeaderProps) {
         <TableCell component="th" scope="column" align="center">
           J2
         </TableCell>
-        {year >= 2014 ? (
+        {year >= 2014 && (
           <TableCell component="th" scope="column" align="center">
             J3
           </TableCell>
-        ) : null}
+        )}
       </TableRow>
     </TableHead>
   );

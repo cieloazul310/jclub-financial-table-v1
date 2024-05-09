@@ -62,7 +62,9 @@ function CategoryLine({
     return null;
   }, [category]);
 
-  return arr ? (
+  if (!arr) return null;
+
+  return (
     <g>
       <path d={line(arr) ?? undefined} fill="none" stroke={color} />
       <text
@@ -75,7 +77,7 @@ function CategoryLine({
         {category}平均
       </text>
     </g>
-  ) : null;
+  );
 }
 
 type AverageLinesTypes = {
@@ -93,20 +95,22 @@ function AverageLines({ scale, nodes, itemWidth }: AverageLinesTypes) {
   const years = nodes.map((node) => node.year);
   const line = useAverageLine(scale, years, itemWidth);
 
-  return tab !== "bs" ? (
-    <g strokeWidth={2} strokeDasharray="4,2">
-      {categories.map((category) => (
-        <CategoryLine
-          key={category}
-          scale={scale}
-          itemWidth={itemWidth}
-          category={category}
-          line={line}
-          nodesLength={nodes.length}
-        />
-      ))}
-    </g>
-  ) : null;
+  return (
+    tab !== "bs" && (
+      <g strokeWidth={2} strokeDasharray="4,2">
+        {categories.map((category) => (
+          <CategoryLine
+            key={category}
+            scale={scale}
+            itemWidth={itemWidth}
+            category={category}
+            line={line}
+            nodesLength={nodes.length}
+          />
+        ))}
+      </g>
+    )
+  );
 }
 
 export default AverageLines;

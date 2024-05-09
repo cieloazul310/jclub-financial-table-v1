@@ -69,17 +69,12 @@ function ClubTemplate({ data }: PageProps<ClubPageData, ClubPageContext>) {
   return (
     <Layout
       title={`${club.name}の経営情報`}
-      // headerTitle={`${club.name}`}
       appBarPosition="relative"
       left={
-        left
-          ? { href: left.href, title: left.name, secondaryText: "Previous" }
-          : null
+        left && { href: left.href, title: left.name, secondaryText: "Previous" }
       }
       right={
-        right
-          ? { href: right.href, title: right.name, secondaryText: "Next" }
-          : null
+        right && { href: right.href, title: right.name, secondaryText: "Next" }
       }
       tabs={<Tab />}
       tabSticky
@@ -87,7 +82,7 @@ function ClubTemplate({ data }: PageProps<ClubPageData, ClubPageContext>) {
       <FigureSection nodes={allData.nodes} mode="club" />
       {pageNavigation}
       <ClubSummary club={club} nodes={allData.nodes} />
-      {allMdxPost.nodes.length ? (
+      {allMdxPost.nodes.length && (
         <Section component="section">
           <Article maxWidth="md">
             <PostList
@@ -100,7 +95,7 @@ function ClubTemplate({ data }: PageProps<ClubPageData, ClubPageContext>) {
             />
           </Article>
         </Section>
-      ) : null}
+      )}
       <Section component="section">
         <Article maxWidth="md">
           <CategoryLink category={club.category} />

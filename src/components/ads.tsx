@@ -39,7 +39,7 @@ export function AdInArticle() {
       <Typography variant="caption" color="text.secondary">
         [Advertisement]
       </Typography>
-      {typeof window === "object" ? (
+      {typeof window === "object" && (
         <ins
           className="adsbygoogle"
           key={pathname}
@@ -49,7 +49,7 @@ export function AdInArticle() {
           data-ad-client="ca-pub-7323207940463794"
           data-ad-slot="9174058264"
         />
-      ) : null}
+      )}
     </Box>
   );
 }
@@ -66,7 +66,7 @@ function Ad({ slot }: { slot: string }) {
   return (
     <Box overflow="hidden">
       <Typography variant="caption">[Advertisement]</Typography>
-      {typeof window === "object" ? (
+      {typeof window === "object" && (
         <ins
           key={pathname}
           className="adsbygoogle"
@@ -76,7 +76,7 @@ function Ad({ slot }: { slot: string }) {
           data-ad-format="auto"
           data-full-width-responsive="true"
         />
-      ) : null}
+      )}
     </Box>
   );
 }

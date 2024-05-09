@@ -52,7 +52,7 @@ function AllPostsTemplate({
           <PostList posts={allMdxPost.nodes} />
         </Article>
       </Section>
-      {currentPage !== 1 || currentPage !== numPages ? (
+      {(currentPage !== 1 || currentPage !== numPages) && (
         <Section component="nav">
           <PageNavigationContainer>
             <PageNavigationItem
@@ -74,7 +74,7 @@ function AllPostsTemplate({
             </PageNavigationItem>
           </PageNavigationContainer>
         </Section>
-      ) : null}
+      )}
       <AdInSectionDividerOne />
       <Section>
         <Container maxWidth="md" disableGutters>

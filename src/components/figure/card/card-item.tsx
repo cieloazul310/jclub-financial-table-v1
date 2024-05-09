@@ -69,7 +69,7 @@ function CardItem<T extends Mode>({
             {mode === "club" ? name : `${year}年`}
             {` ${category} ${rank}位`}
           </ButtonBase>
-          {elevation ? (
+          {elevation && (
             <Typography
               component="span"
               ml={1}
@@ -77,13 +77,13 @@ function CardItem<T extends Mode>({
             >
               {elevation}
             </Typography>
-          ) : null}
+          )}
         </Typography>
-        {mode === "year" ? (
+        {mode === "year" && (
           <Typography component="span" fontWeight="bold">
             {(index + 1).toString()} / {length}
           </Typography>
-        ) : null}
+        )}
       </>
     ),
     [category, name, year, rank, elevation, index, length, mode, sortKey],

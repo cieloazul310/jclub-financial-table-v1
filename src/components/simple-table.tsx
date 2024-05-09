@@ -117,7 +117,7 @@ function SimpleTable({
                 </TableRow>
               ))}
             </TableBody>
-            {diff ? (
+            {diff && (
               <TableFooter>
                 <TableRow>
                   <TableCell align="right">{diffLabel ?? "差分"}</TableCell>
@@ -134,7 +134,7 @@ function SimpleTable({
                   ))}
                 </TableRow>
               </TableFooter>
-            ) : null}
+            )}
           </Table>
         </TableContainer>
       </Paper>

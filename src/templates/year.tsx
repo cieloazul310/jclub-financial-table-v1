@@ -51,22 +51,18 @@ function YearTemplate({ data }: PageProps<YearPageData, YearPageContext>) {
       title={`${year.year}年Jクラブ経営情報`}
       appBarPosition="relative"
       right={
-        right
-          ? {
-              href: right.href,
-              title: `${right.year}年度`,
-              secondaryText: "Next",
-            }
-          : null
+        right && {
+          href: right.href,
+          title: `${right.year}年度`,
+          secondaryText: "Next",
+        }
       }
       left={
-        left
-          ? {
-              href: left.href,
-              title: `${left.year}年度`,
-              secondaryText: "Previous",
-            }
-          : null
+        left && {
+          href: left.href,
+          title: `${left.year}年度`,
+          secondaryText: "Previous",
+        }
       }
       tabs={<Tab />}
       tabSticky

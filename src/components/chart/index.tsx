@@ -103,17 +103,18 @@ function ChartMain({
             itemWidth={itemWidth}
           />
           <g strokeWidth={1}>
-            {ticks.map((value) =>
-              value !== 0 ? (
-                <line
-                  key={value.toString()}
-                  x1={0}
-                  x2={chartWidth}
-                  y1={scale(value)}
-                  y2={scale(value)}
-                  stroke={palette.divider}
-                />
-              ) : null,
+            {ticks.map(
+              (value) =>
+                value !== 0 && (
+                  <line
+                    key={value.toString()}
+                    x1={0}
+                    x2={chartWidth}
+                    y1={scale(value)}
+                    y2={scale(value)}
+                    stroke={palette.divider}
+                  />
+                ),
             )}
           </g>
           <AverageLines nodes={nodes} itemWidth={itemWidth} scale={scale} />

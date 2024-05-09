@@ -55,7 +55,7 @@ function DocsTemplate({
           </MDXProvider>
         </Article>
       </Section>
-      {data.next ? (
+      {data.next && (
         <Section>
           <Container maxWidth="md" disableGutters>
             <PanelLink disableBorder disableMargin href={data.next.fields.slug}>
@@ -63,7 +63,7 @@ function DocsTemplate({
             </PanelLink>
           </Container>
         </Section>
-      ) : null}
+      )}
       <Section>
         <Container maxWidth="md" disableGutters>
           <DocsMenu />

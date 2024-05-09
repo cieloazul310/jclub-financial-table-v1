@@ -81,7 +81,7 @@ function CardValueStyle({
         component="span"
       >
         {diffIcon(diffval)}
-        {diffval ? val(Math.abs(diffval), separator ?? false) : null}
+        {diffval && val(Math.abs(diffval), separator ?? false)}
       </Typography>
     </Box>
   );

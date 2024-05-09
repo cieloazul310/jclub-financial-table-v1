@@ -12,7 +12,7 @@ function DocContainer({ children, title, lastmod }: DocContainerProps) {
     <>
       <H2>{title}</H2>
       {children}
-      {lastmod ? <SubParagraph>最終更新日: {lastmod}</SubParagraph> : null}
+      {lastmod && <SubParagraph>最終更新日: {lastmod}</SubParagraph>}
     </>
   );
 }

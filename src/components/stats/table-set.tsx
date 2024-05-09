@@ -136,14 +136,14 @@ function TableSet({
           oku={oku}
           unit={unit}
         />
-        {hasJ3 ? (
+        {hasJ3 && (
           <TableCellAverage
             statsValues={J3}
             prev={prevYear?.stats.J3?.[statsKey]}
             oku={oku}
             unit={unit}
           />
-        ) : null}
+        )}
       </TableRow>
       <TableRow>
         <TableCell component="th" scope="row" sx={{ pl: 4 }}>
@@ -151,9 +151,9 @@ function TableSet({
         </TableCell>
         <TableCellValue statsValues={J1} mode="max" oku={oku} unit={unit} />
         <TableCellValue statsValues={J2} mode="max" oku={oku} unit={unit} />
-        {hasJ3 ? (
+        {hasJ3 && (
           <TableCellValue statsValues={J3} mode="max" oku={oku} unit={unit} />
-        ) : null}
+        )}
       </TableRow>
       <TableRow>
         <TableCell component="th" scope="row" sx={{ pl: 4 }}>
@@ -161,9 +161,9 @@ function TableSet({
         </TableCell>
         <TableCellValue statsValues={J1} mode="min" oku={oku} unit={unit} />
         <TableCellValue statsValues={J2} mode="min" oku={oku} unit={unit} />
-        {hasJ3 ? (
+        {hasJ3 && (
           <TableCellValue statsValues={J3} mode="min" oku={oku} unit={unit} />
-        ) : null}
+        )}
       </TableRow>
     </>
   );

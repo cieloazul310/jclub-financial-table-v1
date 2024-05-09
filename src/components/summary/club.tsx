@@ -38,7 +38,7 @@ function ClubSummary({ nodes, club }: ClubSummaryProps) {
     <Section component="section">
       <Article maxWidth="md">
         <H2>{club.name}</H2>
-        {nodes.length > 2 ? <Chart nodes={nodes} /> : null}
+        {nodes.length > 2 && <Chart nodes={nodes} />}
         <Table>
           <TBody>
             <Tr>

@@ -217,14 +217,14 @@ export function AttdTableRow({ node }: TableRowProps<Attd>) {
       <DataTableCell value={node.league_games} />
       <DataTableCell value={node.average_attd} emphasized separator />
       <DataTableCell value={node.league_attd} separator />
-      {displayFullAttd ? (
+      {displayFullAttd && (
         <>
           <DataTableCell value={node.leaguecup_attd} separator />
           <DataTableCell value={node.acl_attd} separator />
           <DataTableCell value={node.po_attd} separator />
           <DataTableCell value={node.second_attd} separator />
         </>
-      ) : null}
+      )}
       <DataTableCell value={node.all_games} />
       <DataTableCell value={node.all_attd} emphasized separator />
       <DataTableCell value={node.unit_price} separator />

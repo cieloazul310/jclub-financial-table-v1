@@ -61,7 +61,7 @@ function PostsByClubTemplate({
           </PanelLink>
         </Container>
       </Section>
-      {currentPage !== 1 || currentPage !== numPages ? (
+      {(currentPage !== 1 || currentPage !== numPages) && (
         <Section component="nav">
           <PageNavigationContainer>
             <PageNavigationItem
@@ -83,7 +83,7 @@ function PostsByClubTemplate({
             </PageNavigationItem>
           </PageNavigationContainer>
         </Section>
-      ) : null}
+      )}
       <AdInSectionDividerTwo />
       <Section>
         <Container maxWidth="md" disableGutters>

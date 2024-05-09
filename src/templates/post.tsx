@@ -74,14 +74,12 @@ function PostTemplate({
       <Section component="main">
         <Article maxWidth="md">
           <NoSsr>
-            {draft ? (
-              <Alert severity="warning">この記事は下書きです。</Alert>
-            ) : null}
-            {daysFromLastmod > 183 ? (
+            {draft && <Alert severity="warning">この記事は下書きです。</Alert>}
+            {daysFromLastmod > 183 && (
               <Alert severity="warning">
                 この記事は最終更新日から6ヶ月以上経過しています。
               </Alert>
-            ) : null}
+            )}
           </NoSsr>
           <MDXProvider components={{ ...mdxComponents, ...shortcodes }}>
             {children}
@@ -96,7 +94,7 @@ function PostTemplate({
           </Typography>
           <Typography>日付: {date}</Typography>
           <Typography>最終更新日: {lastmod}</Typography>
-          {club ? (
+          {club && (
             <Typography>
               クラブ:{" "}
               {club.map(({ name, short_name, href }) => (
@@ -110,10 +108,10 @@ function PostTemplate({
                 </AppLink>
               ))}
             </Typography>
-          ) : null}
+          )}
         </Article>
       </Section>
-      {specifiedClub ? (
+      {specifiedClub && (
         <>
           <Section>
             <Article maxWidth="md">
@@ -135,7 +133,7 @@ function PostTemplate({
             </Container>
           </Section>
         </>
-      ) : null}
+      )}
       <Section>
         <PageNavigationContainer>
           <PageNavigationItem href={newer?.href ?? "#"} disabled={!newer}>
