@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import CardItemStyle from "@/components/figure/card/card-item-style";
 import CategoryLabel from "@/components/category-label";
+import CardValueStyle from "@/components/figure/card/card-value-style";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -24,6 +25,15 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const children = (
+  <>
+    <CardValueStyle label="営業収入" value={600} prevValue={580} emphasized />
+    <CardValueStyle label="スポンサー収入" value={240} prevValue={232} inset />
+    <CardValueStyle label="入場料収入" value={96} prevValue={90} inset />
+    <CardValueStyle label="Jリーグ配分金" value={152} prevValue={154} inset />
+  </>
+);
+
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Primary: Story = {
   render: ({ title, subtitle, ...args }) => (
@@ -32,6 +42,7 @@ export const Primary: Story = {
     </Box>
   ),
   args: {
+    children,
     header: (
       <>
         <CategoryLabel category="J2" />

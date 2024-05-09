@@ -6,13 +6,7 @@ import { useAppState, useDispatch } from "@appState/AppStateContext";
 import type { AllDataFieldsFragment, Mode, General, SeasonResult } from "types";
 import CategoryLabel from "@/components/category-label";
 import CardItemStyle from "./card-item-style";
-import {
-  PLCardValues,
-  BSCardValues,
-  RevenueCardValues,
-  ExpenseCardValues,
-  AttdCardValues,
-} from "./card-values";
+import CardValues from "./card-values";
 
 type CardItemProps<T extends Mode> = {
   node: AllDataFieldsFragment;
@@ -115,21 +109,9 @@ function CardItem<T extends Mode>({
     return "入場者数";
   }, [tab]);
 
-  const cardValues = React.useMemo(() => {
-    if (tab === "pl")
-      return <PLCardValues node={node} previous={previous} mode={mode} />;
-    if (tab === "bs")
-      return <BSCardValues node={node} previous={previous} mode={mode} />;
-    if (tab === "revenue")
-      return <RevenueCardValues node={node} previous={previous} mode={mode} />;
-    if (tab === "expense")
-      return <ExpenseCardValues node={node} previous={previous} mode={mode} />;
-    return <AttdCardValues node={node} previous={previous} mode={mode} />;
-  }, [tab]);
-
   return (
     <CardItemStyle header={header} title={title} subtitle={subtitle}>
-      {cardValues}
+      <CardValues data={node} previous={previous} mode={mode} tab={tab} />
     </CardItemStyle>
   );
 }
