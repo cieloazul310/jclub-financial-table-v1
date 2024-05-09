@@ -57,54 +57,64 @@ function PLFigure() {
               <TableRow>
                 <TableCell>営業費用</TableCell>
                 <AlphaCell>B</AlphaCell>
+                <TableCell>C + D</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell sx={{ pl: 4 }}>売上原価</TableCell>
+                <AlphaCell>C</AlphaCell>
+                <TableCell />
+              </TableRow>
+              <TableRow>
+                <TableCell sx={{ pl: 4 }}>販売費及び一般管理費</TableCell>
+                <AlphaCell>D</AlphaCell>
                 <TableCell />
               </TableRow>
               <TableRow selected>
                 <TableCell>営業利益</TableCell>
-                <AlphaCell>C</AlphaCell>
+                <AlphaCell>E</AlphaCell>
                 <CalcCell>A - B</CalcCell>
               </TableRow>
               <TableRow>
                 <TableCell sx={{ pl: 4 }}>営業外収益</TableCell>
-                <AlphaCell>D</AlphaCell>
+                <AlphaCell>F</AlphaCell>
                 <TableCell />
               </TableRow>
               <TableRow>
                 <TableCell sx={{ pl: 4 }}>営業外費用</TableCell>
-                <AlphaCell>E</AlphaCell>
+                <AlphaCell>G</AlphaCell>
                 <TableCell />
               </TableRow>
               <TableRow selected>
                 <TableCell>経常利益</TableCell>
-                <AlphaCell>F</AlphaCell>
-                <CalcCell>C + (D - E)</CalcCell>
+                <AlphaCell>H</AlphaCell>
+                <CalcCell>C + (F - G)</CalcCell>
               </TableRow>
               <TableRow>
                 <TableCell sx={{ pl: 4 }}>特別利益</TableCell>
-                <AlphaCell>G</AlphaCell>
+                <AlphaCell>I</AlphaCell>
                 <TableCell />
               </TableRow>
               <TableRow>
                 <TableCell sx={{ pl: 4 }}>特別損失</TableCell>
-                <AlphaCell>H</AlphaCell>
+                <AlphaCell>J</AlphaCell>
                 <TableCell />
               </TableRow>
               <TableRow selected>
                 <TableCell>税引前当期利益</TableCell>
-                <AlphaCell>I</AlphaCell>
-                <CalcCell>F + (G - H)</CalcCell>
+                <AlphaCell>K</AlphaCell>
+                <CalcCell>H + (I - J)</CalcCell>
               </TableRow>
               <TableRow>
                 <TableCell sx={{ pl: 4 }}>法人税および住民税等</TableCell>
-                <AlphaCell>J</AlphaCell>
+                <AlphaCell>L</AlphaCell>
                 <TableCell />
               </TableRow>
               <TableRow selected>
                 <TableCell>
                   <strong>当期純利益</strong>
                 </TableCell>
-                <AlphaCell>K</AlphaCell>
-                <CalcCell>I - J</CalcCell>
+                <AlphaCell>M</AlphaCell>
+                <CalcCell>K - L</CalcCell>
               </TableRow>
             </TableBody>
           </Table>
