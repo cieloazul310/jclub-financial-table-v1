@@ -49,7 +49,7 @@ export default async function gatsbyCreateResolvers({
         type: `JSON!`,
         resolve: () => {
           const dict: Dict = yaml.parse(
-            fs.readFileSync(path.resolve("./content/frames/dict.yml"), "utf8"),
+            fs.readFileSync(path.resolve("./data/frames/dict.yml"), "utf8"),
           );
           return dict;
         },
