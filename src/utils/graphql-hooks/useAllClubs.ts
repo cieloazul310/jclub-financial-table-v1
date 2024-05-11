@@ -13,9 +13,12 @@ type AllClubsQueryData = {
       | "fullname"
       | "category"
       | "company"
+      | "period"
       | "hometown"
-      | "realatedCompanies"
+      | "website"
       | "settlement"
+      | "realatedCompanies"
+      | "annotation"
     >[];
   };
 };
@@ -33,9 +36,12 @@ export default function useAllClubs() {
           fullname
           category
           company
+          period
           hometown
-          relatedCompanies
+          website
           settlement
+          relatedCompanies
+          annotation
         }
       }
     }

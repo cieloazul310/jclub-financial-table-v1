@@ -13,8 +13,8 @@ import type {
   Attd,
   AllDataFieldsFragment,
 } from "types";
-import CategoryLabel from "@/components/category-label";
 import val from "@/utils/val";
+import CategoryLabel from "../../category-label";
 import { TableBodyLabel } from "./label";
 
 type DataTableCellProps = {

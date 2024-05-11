@@ -1,6 +1,8 @@
 import * as path from "path";
 import type { StorybookConfig } from "@storybook/react-webpack5";
 
+const toPath = (filePath: string) => path.join(process.cwd(), filePath);
+
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   addons: [
@@ -19,24 +21,22 @@ const config: StorybookConfig = {
   docs: {
     autodocs: "tag",
   },
-  webpackFinal: async (config) => {
-    if (config.resolve) {
-      config.resolve.alias = {
-        ...config.resolve.alias,
-        "@": path.resolve(__dirname, "../src"),
-        "@appState": path.resolve(
-          __dirname,
-          "../src/@cieloazul310/gatsby-theme-aoi-top-layout/utils",
+  webpackFinal: async (baseConfig) => {
+    if (baseConfig.resolve) {
+      baseConfig.resolve.alias = {
+        ...baseConfig.resolve.alias,
+        "@": toPath("src"),
+        "@appState": toPath(
+          "src/@cieloazul310/gatsby-theme-aoi-top-layout/utils",
         ),
-        docs: path.resolve(__dirname, "../content/docs"),
-        types: path.resolve(__dirname, "../types"),
-        "@reach/router": path.resolve(
-          __dirname,
-          "../node_modules/@gatsbyjs/reach-router",
-        ),
+        docs: toPath("content/docs"),
+        types: toPath("types"),
+        "@reach/router": toPath("node_modules/@gatsbyjs/reach-router"),
+        "@emotion/core": toPath("node_modules/@emotion/react"),
+        "emotion-theming": toPath("node_modules/@emotion/react"),
       };
     }
-    return config;
+    return baseConfig;
   },
 };
 export default config;

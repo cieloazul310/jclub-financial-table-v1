@@ -4,7 +4,7 @@ import ButtonBase from "@mui/material/ButtonBase";
 import { AppLink } from "@cieloazul310/gatsby-theme-aoi";
 import { useAppState, useDispatch } from "@appState/AppStateContext";
 import type { AllDataFieldsFragment, Mode, General, SeasonResult } from "types";
-import CategoryLabel from "@/components/category-label";
+import CategoryLabel from "../../category-label";
 import CardItemStyle from "./card-item-style";
 import CardValues from "./card-values";
 

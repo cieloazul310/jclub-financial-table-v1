@@ -1,5 +1,4 @@
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import { action } from "@storybook/addon-actions";
 import { withThemeFromJSXProvider } from "@storybook/addon-themes";
 import type { Preview } from "@storybook/react";
 import theme from "./themes";

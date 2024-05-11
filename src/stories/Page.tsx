@@ -1,4 +1,5 @@
 import React from "react";
+import { AppLink } from "@cieloazul310/gatsby-theme-aoi";
 
 import { Header } from "./Header";
 import "./page.css";

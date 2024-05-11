@@ -3,8 +3,8 @@ import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import { alpha } from "@mui/material/styles";
 import type { Year, YearStats, StatsValues } from "types";
-import Diff from "@/components/diff";
 import valToOku from "@/utils/valToOku";
+import Diff from "../diff";
 import useHasJ3 from "./useHasJ3";
 
 type TableCellAverageProps = {

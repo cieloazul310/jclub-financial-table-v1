@@ -2,7 +2,7 @@ import * as React from "react";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import type { Year, StatsValues } from "types";
-import Diff from "@/components/diff";
+import Diff from "../diff";
 import TableSet from "./table-set";
 import useHasJ3 from "./useHasJ3";
 
