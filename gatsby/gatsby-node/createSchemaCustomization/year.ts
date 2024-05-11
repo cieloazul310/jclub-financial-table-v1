@@ -1,7 +1,7 @@
 import type { CreateSchemaCustomizationArgs } from "gatsby";
 import type { GatsbyIterable } from "gatsby/dist/datastore/common/iterable";
+import type { Year, Datum, Category, SortableKeys } from "types";
 import type { GatsbyGraphQLContext } from "../graphql";
-import type { Year, Datum, Category, SortableKeys } from "../../../types";
 
 function valuesToStats(data: { name: string; value: number }[]) {
   const values = data.sort((a, b) => a.value - b.value);

@@ -10,9 +10,9 @@ import {
   PanelLink,
   ListItemLink,
 } from "@cieloazul310/gatsby-theme-aoi";
-import Layout from "../../layout";
-import Seo from "../../components/Seo";
-import type { MdxPostByYear } from "../../../types";
+import type { MdxPostByYear } from "types";
+import Layout from "@/layout";
+import Seo from "@/components/seo";
 
 type ArchivePageData = {
   allMdxPostByYears: Pick<MdxPostByYear, "basePath" | "year">[];

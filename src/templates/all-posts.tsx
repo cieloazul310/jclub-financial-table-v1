@@ -12,11 +12,11 @@ import {
   PageNavigationContainer,
   PageNavigationItem,
 } from "@cieloazul310/gatsby-theme-aoi-blog-components";
-import Seo from "../components/Seo";
-import PostList from "../components/PostList";
-import { AdInSectionDividerOne } from "../components/Ads";
-import Layout from "../layout";
-import type { MdxPostListFragment } from "../../types";
+import type { MdxPostListFragment } from "types";
+import Seo from "@/components/seo";
+import PostList from "@/components/post-list";
+import { AdInSectionDividerOne } from "@/components/ads";
+import Layout from "@/layout";
 
 type AllPostsTemplateData = {
   allMdxPost: {
@@ -52,7 +52,7 @@ function AllPostsTemplate({
           <PostList posts={allMdxPost.nodes} />
         </Article>
       </Section>
-      {currentPage !== 1 || currentPage !== numPages ? (
+      {(currentPage !== 1 || currentPage !== numPages) && (
         <Section component="nav">
           <PageNavigationContainer>
             <PageNavigationItem
@@ -74,7 +74,7 @@ function AllPostsTemplate({
             </PageNavigationItem>
           </PageNavigationContainer>
         </Section>
-      ) : null}
+      )}
       <AdInSectionDividerOne />
       <Section>
         <Container maxWidth="md" disableGutters>

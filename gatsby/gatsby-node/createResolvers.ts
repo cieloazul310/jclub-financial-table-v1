@@ -2,7 +2,7 @@ import * as fs from "fs";
 import * as path from "path";
 import * as yaml from "yaml";
 import type { CreateResolversArgs } from "gatsby";
-import type { Dict, MdxPost, MdxPostByYear } from "../../types";
+import type { Dict, MdxPost, MdxPostByYear } from "types";
 import type { GatsbyGraphQLContext } from "./graphql";
 
 function mdxPostToYears(posts: MdxPost<"node">[]): MdxPostByYear[] {
@@ -10,7 +10,7 @@ function mdxPostToYears(posts: MdxPost<"node">[]): MdxPostByYear[] {
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .reduce<MdxPostByYear[]>((accum, { date }) => {
       const year = new Date(date).getFullYear();
-      const yearId = `${year}`;
+      const yearId = year.toString();
       const indexInAccum = accum.map((d) => d.id).indexOf(yearId);
       const basePath = path.join("/posts", year.toString());
       if (indexInAccum < 0) {

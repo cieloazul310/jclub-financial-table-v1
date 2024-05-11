@@ -1,7 +1,7 @@
 import * as path from "path";
 import type { CreateNodeArgs, Node } from "gatsby";
 import { createFilePath } from "gatsby-source-filesystem";
-import type { Mdx } from "../../types";
+import type { Mdx } from "types";
 
 function isMdx(node: Node & Record<string, unknown>): node is Mdx<"node"> {
   return node.internal.type === `Mdx`;

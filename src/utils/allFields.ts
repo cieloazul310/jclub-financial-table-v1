@@ -1,4 +1,4 @@
-import type { SortableKeys } from "../../types";
+import type { SortableKeys } from "types";
 
 export const generalFields = [
   "fullname",
@@ -78,6 +78,4 @@ export const allSortableFields = [
   ...expenseFields,
   ...attdFields,
 ];
-const allFields = [...generalFields, ...allSortableFields];
-
-export default allFields;
+export const allFields = [...generalFields, ...allSortableFields];

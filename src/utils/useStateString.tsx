@@ -1,6 +1,6 @@
-import { useAppState } from "../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext";
-import { useDictionary } from "./graphql-hooks";
-import type { SortableKeys } from "../../types";
+import { useAppState } from "@appState/AppStateContext";
+import type { SortableKeys } from "types";
+import useDictionary from "./graphql-hooks/useDictionary";
 
 type SortStateString = {
   field: string | null | undefined;

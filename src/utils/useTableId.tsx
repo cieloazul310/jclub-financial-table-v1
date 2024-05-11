@@ -1,5 +1,5 @@
 import { useLocation } from "@reach/router";
-import { useAppState } from "../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext";
+import { useAppState } from "@appState/AppStateContext";
 
 export default function useTableId() {
   const { tab } = useAppState();

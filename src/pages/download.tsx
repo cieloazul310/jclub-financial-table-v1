@@ -10,22 +10,22 @@ import {
   Article,
   useIsMobile,
 } from "@cieloazul310/gatsby-theme-aoi";
-import Layout from "../layout";
-import Seo from "../components/Seo";
-import ItemFilter from "../components/Download/ItemFilter";
-import FieldFilter from "../components/Download/FieldFilter";
-import Preview from "../components/Download/Preview";
-import AttributionDoc from "../components/Article/Attribution";
-import { AdInSectionDividerOne } from "../components/Ads";
-import allFields from "../utils/allFields";
-import { useDictionary } from "../utils/graphql-hooks";
 import type {
   Club,
   Year,
   Dict,
   DownloadDatum,
   AllDataFieldsFragment,
-} from "../../types";
+} from "types";
+import Layout from "@/layout";
+import Seo from "@/components/seo";
+import ItemFilter from "@/components/download/item-filter";
+import FieldFilter from "@/components/download/field-filter";
+import Preview from "@/components/download/preview";
+import AttributionDoc from "@/components/article/attribution";
+import { AdInSectionDividerOne } from "@/components/ads";
+import { allFields } from "@/utils/allFields";
+import useDictionary from "@/utils/graphql-hooks/useDictionary";
 
 function getCategory(category: string | number | null) {
   return category === "J1" || category === "J2" || category === "J3"
@@ -97,6 +97,7 @@ function DownloadPage({ data }: PageProps<DownloadPageData>) {
         for (let i = 0; i < selectedFields.length; i += 1) {
           const field = selectedFields[i] as keyof Dict;
           const fieldName = dictionary[field];
+          // @ts-expect-error
           obj[fieldName] = node[field] ?? null;
         }
         return obj;
@@ -127,7 +128,7 @@ function DownloadPage({ data }: PageProps<DownloadPageData>) {
             >
               <Tab label="フィルタ" value={0} />
               <Tab label="項目" value={1} />
-              {isMobile ? <Tab label="プレビュー" value={2} /> : null}
+              {isMobile && <Tab label="プレビュー" value={2} />}
             </Tabs>
           </Box>
           <Box
@@ -148,22 +149,22 @@ function DownloadPage({ data }: PageProps<DownloadPageData>) {
             <TabPane index={1} currentTab={tab}>
               <FieldFilter fields={fields} setFields={setFields} />
             </TabPane>
-            {isMobile ? (
+            {isMobile && (
               <TabPane index={2} currentTab={tab}>
                 <Container maxWidth="sm">
                   <Preview dataset={dataset} />
                 </Container>
               </TabPane>
-            ) : null}
+            )}
           </Box>
         </Box>
-        {!isMobile ? (
+        {!isMobile && (
           <Box flex={1} maxHeight="calc(100vh - 64px)" overflow="auto">
             <Container maxWidth="sm">
               <Preview dataset={dataset} />
             </Container>
           </Box>
-        ) : null}
+        )}
       </Box>
       <AdInSectionDividerOne />
       <Section>

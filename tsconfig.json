@@ -9,13 +9,20 @@
     "allowJs": true,
     "checkJs": true,
     "jsx": "react",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "strict": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "noEmit": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@appState/*": ["./src/@cieloazul310/gatsby-theme-aoi-top-layout/utils/*"],
+      "docs/*": ["./content/docs/*"],
+      "types": ["./types.d.ts"]
+    }
   },
   "ts-node": {
     "compilerOptions": {

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Jumbotron } from "@cieloazul310/gatsby-theme-aoi";
-import Layout from "../layout";
+import Layout from "@/layout";
 
 function NotFoundPage() {
   return (

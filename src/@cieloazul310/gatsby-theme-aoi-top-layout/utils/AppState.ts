@@ -1,5 +1,5 @@
 import * as React from "react";
-import type { Category, SortableKeys, Tab } from "../../../../types";
+import type { Category, SortableKeys, Tab } from "types";
 
 export type FilterCategory = Category | "others";
 

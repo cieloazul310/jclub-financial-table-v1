@@ -1,12 +1,7 @@
 import * as React from "react";
-import { useAppState } from "../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppStateContext";
-import { FilterCategory } from "../@cieloazul310/gatsby-theme-aoi-top-layout/utils/AppState";
-import type {
-  SortableKeys,
-  Mode,
-  Datum,
-  AllDataFieldsFragment,
-} from "../../types";
+import { useAppState } from "@appState/AppStateContext";
+import { FilterCategory } from "@appState/AppState";
+import type { SortableKeys, Mode, Datum, AllDataFieldsFragment } from "types";
 
 function getCategory({ category }: Pick<Datum, "category">): FilterCategory {
   return category !== "J1" && category !== "J2" && category !== "J3"
@@ -89,7 +84,7 @@ export function useSortedValue<
   return "-";
 }
 
-export default function useStateData<
+export function useStateEdges<
   T extends AllDataFieldsFragment = AllDataFieldsFragment,
 >(nodes: T[], mode: Mode) {
   const filtered = useFilteredData(nodes, mode);

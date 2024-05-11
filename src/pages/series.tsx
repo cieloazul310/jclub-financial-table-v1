@@ -24,20 +24,15 @@ import FileCopyIcon from "@mui/icons-material/FileCopy";
 import CheckIcon from "@mui/icons-material/Check";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { Section, Article } from "@cieloazul310/gatsby-theme-aoi";
-import Layout from "../layout";
-import Seo from "../components/Seo";
-import AttributionDoc from "../components/Article/Attribution";
-import { AdInSectionDividerOne } from "../components/Ads";
-import { allSortableFields } from "../utils/allFields";
-import {
-  j1color,
-  j2color,
-  j3color,
-  othersColor,
-} from "../utils/categoryColors";
-import useCopy from "../utils/useCopy";
-import { useDictionary } from "../utils/graphql-hooks";
-import type { Datum, Club, Year, SortableKeys } from "../../types";
+import type { Datum, Club, Year, SortableKeys } from "types";
+import Layout from "@/layout";
+import Seo from "@/components/seo";
+import AttributionDoc from "@/components/article/attribution";
+import { AdInSectionDividerOne } from "@/components/ads";
+import { allSortableFields } from "@/utils/allFields";
+import { j1color, j2color, j3color, othersColor } from "@/utils/categoryColors";
+import useCopy from "@/utils/useCopy";
+import useDictionary from "@/utils/graphql-hooks/useDictionary";
 
 function isFields(input: string): input is SortableKeys {
   return allSortableFields.includes(input as SortableKeys);

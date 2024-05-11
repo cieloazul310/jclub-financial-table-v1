@@ -2,8 +2,9 @@ import * as React from "react";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { AppLink } from "@cieloazul310/gatsby-theme-aoi";
-import { useClubsByCategory, useAllYears } from "../../../utils/graphql-hooks";
-import type { Club } from "../../../../types";
+import type { Club } from "types";
+import useClubsByCategory from "@/utils/graphql-hooks/useClubsByCategory";
+import useAllYears from "@/utils/graphql-hooks/useAllYears";
 
 type CategoryLinksProps = {
   title: string;

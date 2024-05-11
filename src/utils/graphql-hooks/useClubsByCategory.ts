@@ -1,5 +1,5 @@
 import { useStaticQuery, graphql } from "gatsby";
-import type { Club } from "../../../types";
+import type { Club } from "types";
 
 type UseClubsByCategoryQueryData = {
   j1: {

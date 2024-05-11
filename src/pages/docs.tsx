@@ -6,8 +6,8 @@ import {
   Article,
   Seo,
 } from "@cieloazul310/gatsby-theme-aoi";
-import Layout from "../layout";
-import GridItemMenu from "../components/GridItemMenu";
+import Layout from "@/layout";
+import GridItemMenu from "@/components/grid-item-menu";
 
 function DocsPage() {
   return (

@@ -9,9 +9,9 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import { ListItemAppLink, withoutPrefix } from "@cieloazul310/gatsby-theme-aoi";
 import { useLocation } from "@reach/router";
-
-import { useClubsByCategory, useAllYears } from "../../../utils/graphql-hooks";
-import type { Club } from "../../../../types";
+import type { Club } from "types";
+import useClubsByCategory from "@/utils/graphql-hooks/useClubsByCategory";
+import useAllYears from "@/utils/graphql-hooks/useAllYears";
 
 type CategoryLinksProps = {
   title: string;

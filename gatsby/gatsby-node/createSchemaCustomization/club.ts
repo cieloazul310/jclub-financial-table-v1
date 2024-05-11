@@ -1,6 +1,6 @@
 import type { CreateSchemaCustomizationArgs } from "gatsby";
+import type { Club, Datum, MdxPost } from "types";
 import type { GatsbyGraphQLContext } from "../graphql";
-import type { Club, Datum, MdxPost } from "../../../types";
 
 export default async function createClubSchema({
   actions,
@@ -20,6 +20,8 @@ export default async function createClubSchema({
       company: String!
       category: String!
       hometown: String!
+      period: Int!
+      website: String
       settlement: String
       relatedCompanies: [String]
       annotation: [String]

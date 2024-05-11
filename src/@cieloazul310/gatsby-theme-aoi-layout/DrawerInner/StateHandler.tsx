@@ -9,10 +9,7 @@ import {
   ListItemToggleDarkMode,
   ListItemToggleUseSystemTheme,
 } from "@cieloazul310/gatsby-theme-aoi";
-import {
-  useAppState,
-  useDispatch,
-} from "../../gatsby-theme-aoi-top-layout/utils/AppStateContext";
+import { useAppState, useDispatch } from "@appState/AppStateContext";
 
 function StateHandler() {
   const { displayFullAttd, listMode } = useAppState();

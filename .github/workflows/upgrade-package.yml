@@ -43,7 +43,7 @@ jobs:
           fi
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: latest
           cache: ${{ steps.detect-package-manager.outputs.manager }}
@@ -56,7 +56,7 @@ jobs:
         run: npx npm-check-updates @cieloazul310/gatsby-theme-aoi @cieloazul310/gatsby-theme-aoi-blog-components --upgrade --install always
       
       - name: Create PR
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v6
         with:
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           token: ${{ secrets.GITHUB_TOKEN }}
