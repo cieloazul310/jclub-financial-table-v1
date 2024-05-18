@@ -82,7 +82,7 @@ function ClubTemplate({ data }: PageProps<ClubPageData, ClubPageContext>) {
       <FigureSection nodes={allData.nodes} mode="club" />
       {pageNavigation}
       <ClubSummary club={club} nodes={allData.nodes} />
-      {allMdxPost.nodes.length && (
+      {allMdxPost.nodes.length ? (
         <Section component="section">
           <Article maxWidth="md">
             <PostList
@@ -95,7 +95,7 @@ function ClubTemplate({ data }: PageProps<ClubPageData, ClubPageContext>) {
             />
           </Article>
         </Section>
-      )}
+      ) : null}
       <Section component="section">
         <Article maxWidth="md">
           <CategoryLink category={club.category} />

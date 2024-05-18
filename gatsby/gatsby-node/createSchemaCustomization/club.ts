@@ -57,9 +57,14 @@ export default async function createClubSchema({
         },
         posts: {
           type: `PostsByClub!`,
+          args: {
+            draft: {
+              type: "Boolean",
+            },
+          },
           resolve: async (
             source: Club<"bare">,
-            args: unknown,
+            args: { draft: boolean | null },
             context: GatsbyGraphQLContext,
           ) =>
             context.nodeModel.findAll<MdxPost<"node">>({
@@ -68,6 +73,9 @@ export default async function createClubSchema({
                 filter: {
                   club: {
                     elemMatch: { short_name: { eq: source.short_name } },
+                  },
+                  draft: {
+                    ne: args.draft,
                   },
                 },
                 sort: { date: "DESC" },

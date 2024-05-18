@@ -58,7 +58,7 @@ export default async function createPages({
           nodes {
             slug
             href
-            posts {
+            posts(draft: $draft) {
               totalCount
             }
           }
