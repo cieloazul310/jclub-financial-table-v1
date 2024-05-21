@@ -715,29 +715,29 @@
   period: 1
   website: https://www.fc-gifu.com
 
-#- id: "59"
-  #slug: fcosaka
-  #name: FC大阪
-  #fullname: FC大阪
-  #short_name: FC大阪
-  #company: 株式会社F.C.大阪
-  #category: J3
-  #hometown: 東大阪市
-  #area: 大阪府
-  #period: 1
-  #website: https://fc-osaka.com
+- id: "59"
+  slug: fcosaka
+  name: FC大阪
+  fullname: FC大阪
+  short_name: FC大阪
+  company: 株式会社F.C.大阪
+  category: J3
+  hometown: 東大阪市
+  area: 大阪府
+  period: 1
+  website: https://fc-osaka.com
 
-#- id: "60"
-  #slug: naraclub
-  #name: 奈良クラブ
-  #fullname: 奈良クラブ
-  #short_name: 奈良
-  #company: 株式会社奈良クラブ
-  #category: J3
-  #hometown: 奈良市、三郷町を中心とする全県
-  #area: 奈良県
-  #period: 1
-  #website: https://naraclub.jp
+- id: "60"
+  slug: naraclub
+  name: 奈良クラブ
+  fullname: 奈良クラブ
+  short_name: 奈良
+  company: 株式会社奈良クラブ
+  category: J3
+  hometown: 奈良市、三郷町を中心とする全県
+  area: 奈良県
+  period: 1
+  website: https://naraclub.jp
 
 - id: "51"
   slug: gainare

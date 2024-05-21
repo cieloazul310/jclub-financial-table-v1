@@ -8,6 +8,7 @@ import {
   Article,
   Paragraph,
   useSiteMetadata,
+  AppLink,
 } from "@cieloazul310/gatsby-theme-aoi";
 import type { MdxPostListFragment } from "types";
 import Layout from "@/layout";
@@ -30,21 +31,21 @@ function IndexPage({ data }: PageProps<IndexPageQueryData>) {
   const { title, description } = useSiteMetadata();
   return (
     <Layout title={title}>
-      <Jumbotron maxWidth="md" component="header">
-        <Typography variant="h5" component="h2" gutterBottom>
-          {title}
-        </Typography>
-        <Paragraph>{description}</Paragraph>
-      </Jumbotron>
-      {/*
-        <Jumbotron maxWidth="md" bgcolor={palette.mode === 'light' ? 'primary.light' : 'primary.dark'} height={40}>
-        <AppLink href="/year/2021/" color="inherit">
-          <Typography variant="h6" component="h3" color="inherit">
-            2021年度決算(完全版)を更新しました
+      <div>
+        <Jumbotron maxWidth="md" component="header">
+          <Typography variant="h5" component="h2" gutterBottom>
+            {title}
           </Typography>
-        </AppLink>
-      </Jumbotron>
-      */}
+          <Paragraph>{description}</Paragraph>
+        </Jumbotron>
+        <Jumbotron maxWidth="md" bgcolor="primary.dark" height={40}>
+          <AppLink href="/year/2023/" color="inherit">
+            <Typography variant="h6" component="h3" color="inherit">
+              2023年度決算(先行発表版)を更新しました
+            </Typography>
+          </AppLink>
+        </Jumbotron>
+      </div>
       <Section>
         <Article maxWidth="md" py={2}>
           <Grid container spacing={2} component="nav">
