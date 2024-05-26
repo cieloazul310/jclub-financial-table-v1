@@ -87,7 +87,7 @@ function PLFigure() {
               <TableRow selected>
                 <TableCell>経常利益</TableCell>
                 <AlphaCell>H</AlphaCell>
-                <CalcCell>C + (F - G)</CalcCell>
+                <CalcCell>E + (F - G)</CalcCell>
               </TableRow>
               <TableRow>
                 <TableCell sx={{ pl: 4 }}>特別利益</TableCell>

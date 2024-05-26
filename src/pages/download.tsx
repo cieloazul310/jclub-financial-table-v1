@@ -86,7 +86,7 @@ function DownloadPage({ data }: PageProps<DownloadPageData>) {
     return allData.nodes
       .filter((node) => yearsFilter.includes(node.year))
       .filter((node) => clubsFilter.includes(node.slug))
-      .filter((node) => categoriesFilter.includes(node.category))
+      .filter((node) => categoriesFilter.includes(getCategory(node.category)))
       .map((node) => {
         const obj: DownloadDatum = {
           クラブ: node.name,
