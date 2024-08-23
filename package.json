@@ -16,6 +16,7 @@
     "url": "https://github.com/cieloazul310/jclub-financial-table/issues"
   },
   "scripts": {
+    "prepare": "husky",
     "start": "npm run develop",
     "build": "gatsby build --prefix-paths",
     "develop": "gatsby develop -o -H 0.0.0.0",
@@ -25,21 +26,23 @@
     "format": "prettier \"{src,gatsby}/**/*.{js,jsx,ts,tsx}\" --parser typescript --write",
     "convert": "ts-node ./converter/index.ts",
     "lint-staged": "lint-staged",
-    "prepare": "husky install",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
+  },
+  "engines": {
+    "node": "20"
   },
   "dependencies": {
     "@cieloazul310/gatsby-theme-aoi": "^3.4.0",
     "@cieloazul310/gatsby-theme-aoi-blog-components": "^3.4.0",
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.5",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
     "@mdx-js/react": "^2.3.0",
-    "@mui/icons-material": "^5.15.16",
-    "@mui/material": "^5.15.16",
+    "@mui/icons-material": "^5.16.7",
+    "@mui/material": "^5.16.7",
     "@types/d3": "^7.4.3",
     "d3": "^7.9.0",
-    "gatsby": "^5.13.4",
+    "gatsby": "^5.13.7",
     "gatsby-plugin-eslint": "^4.0.4",
     "gatsby-plugin-google-gtag": "5.13.1",
     "gatsby-plugin-manifest": "^5.13.1",
@@ -49,12 +52,12 @@
     "gatsby-plugin-twitter": "5.13.1",
     "gatsby-source-filesystem": "^5.13.1",
     "gatsby-transformer-yaml": "^5.13.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-intersection-observer": "^9.10.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-intersection-observer": "^9.13.0",
     "remark-gfm": "^1.0.0",
-    "swiper": "^11.1.1",
-    "yaml": "^2.4.2"
+    "swiper": "^11.1.10",
+    "yaml": "^2.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.24.5",
@@ -101,6 +104,5 @@
       "eslint --fix",
       "prettier --parser typescript --write"
     ]
-  },
-  "packageManager": "pnpm@7.24.3+sha1.48094934266041ab123b3c269b64afc9b67c5f7b"
+  }
 }
