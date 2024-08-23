@@ -89,4 +89,5 @@ jobs:
       - name: Build test
         env:
           PREFIX_PATHS: 'true'
-        run: ${{ steps.detect-package-manager.outputs.manager }} run build
+        run: ${{ steps.detect-package-manager.outputs.manager }} run build -- --verbose
+
