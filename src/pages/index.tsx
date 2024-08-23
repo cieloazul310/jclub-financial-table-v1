@@ -38,6 +38,7 @@ function IndexPage({ data }: PageProps<IndexPageQueryData>) {
           </Typography>
           <Paragraph>{description}</Paragraph>
         </Jumbotron>
+        {/*
         <Jumbotron maxWidth="md" bgcolor="primary.dark" height={40}>
           <AppLink href="/year/2023/" color="inherit">
             <Typography variant="h6" component="h3" color="inherit">
@@ -45,6 +46,7 @@ function IndexPage({ data }: PageProps<IndexPageQueryData>) {
             </Typography>
           </AppLink>
         </Jumbotron>
+        */}
       </div>
       <Section>
         <Article maxWidth="md" py={2}>
