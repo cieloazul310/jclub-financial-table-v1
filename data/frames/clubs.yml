@@ -14,6 +14,7 @@
   settlement: https://www.consadole-sapporo.jp/club/settlement/
   relatedCompanies:
     - 一般社団法人コンサドーレ北海道スポーツクラブ
+    - 株式会社まちのミライ
     - 株式会社エゾデン
 
 - id: "3"
@@ -284,8 +285,6 @@
   period: 1
   website: https://www.vegalta.co.jp
   settlement: https://www.vegalta.co.jp/club/financial-results.html
-  relatedCompanies:
-    - 株式会社ベガルタスポーツクラブ
 
 - id: "42"
   slug: blaublitz
@@ -343,6 +342,7 @@
   website: https://www.mito-hollyhock.net
   relatedCompanies:
     - 一般社団法人ホーリーホックIBARAKIクラブ
+    - 一般社団法人MFA-B&S
 
 - id: "44"
   slug: tochigisc
@@ -447,6 +447,7 @@
   website: https://www.fagiano-okayama.com
   relatedCompanies:
     - 一般社団法人ファジアーノ岡山スポーツクラブ
+    - 株式会社F.Hスポーツクラブ
     - NPO法人岡山ヒューマンスポーツクラブ
   annotation:
     - 2022年度以降はアカデミー事業を一般社団法人ファジアーノ岡山スポーツクラブに移管
@@ -814,3 +815,5 @@
   area: 沖縄県
   period: 1
   website: https://www.fcryukyu.com
+  relatedCompanies:
+    - 琉球ダンスドリーム株式会社
