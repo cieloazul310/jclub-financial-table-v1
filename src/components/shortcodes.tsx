@@ -56,6 +56,23 @@ function Written({ date, written }: { date: string; written: string }) {
   );
 }
 
+function PanelLinkShorthand({
+  title,
+  url,
+  date,
+}: {
+  title: string;
+  url: string;
+  date?: string;
+}) {
+  return (
+    <PanelLink href={url}>
+      {title}
+      {date && ` (${date})`}
+    </PanelLink>
+  );
+}
+
 export default {
   Typography,
   Green,
@@ -70,6 +87,7 @@ export default {
   SubParagraph,
   AppLink,
   PanelLink,
+  PanelLinkShorthand,
   WorkInProgress,
   Written,
   Details,
