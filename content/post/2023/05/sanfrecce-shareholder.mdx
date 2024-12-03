@@ -8,23 +8,23 @@ draft: false
 
 サンフレッチェ広島を運営する株式会社サンフレッチェ広島が2023年度決算で債務超過に陥る可能性があり、債務超過回避のための増資の打診を株主に行っていることが2023年5月26日付の中国新聞で報じられています。
 
-<Blockquote title="サンフレ、債務超過の回避へ増資打診" url="https://www.chugoku-np.co.jp/articles/-/310707">
+<Blockquote {...link1}>
   J1サンフレッチェ広島が2023年度中に債務超過に陥る可能性があり、株主に増資を打診していることが26日、分かった。規模は4億円以上とみられる。
 
   <SubParagraph>引用は[Yahoo!ニュース](https://news.yahoo.co.jp/articles/ec2f5e74497aeed68cf7992e8665258513a78fde)より</SubParagraph>
 </Blockquote>
 
-<PanelLink href="https://www.chugoku-np.co.jp/articles/-/310707">サンフレ、債務超過の回避へ増資打診 (2023年5月26日)</PanelLink>
+<PanelLinkShorthand {...link1} />
 
 <Ad />
 
 サンフレッチェ広島は2022年度決算で5億5900万円の当期純損失を計上し、純資産額は2億1100万円となっていました。
 
-<PanelLink href="https://www.chugoku-np.co.jp/articles/-/291626">サンフレ2期ぶり赤字　選手獲得や勝利給が負担に (2023年4月27日)</PanelLink>
+<PanelLinkShorthand {...link2} />
 
 2023年度は5億円程度の赤字を見込んでいるため、増資を行わない場合は債務超過(純資産額がマイナス)に陥ることになります。報道によると計画している増資の規模は4億円以上、筆頭株主のエディオンや広島県、広島市など既存の株主に打診を行っているそうです。
 
-<Blockquote title="サンフレ、債務超過の回避へ増資打診" url="https://www.chugoku-np.co.jp/articles/-/310707">
+<Blockquote {...link1}>
   広島は22年度決算で、売上高が40億1700万円とクラブ史上初めて40億円を突破。一方で選手・スタッフの人件費増加などで当期純損失が5億5900万円に上り、純資産が2億1100万円に減少。23年度も新サッカースタジアムへの設備投資などで、純資産を上回る5億円程度の赤字が見込まれる。
 
   <SubParagraph>引用は[Yahoo!ニュース](https://news.yahoo.co.jp/articles/ec2f5e74497aeed68cf7992e8665258513a78fde)より</SubParagraph>
@@ -33,7 +33,7 @@ draft: false
 なお記事の初出では、2023年度決算で債務超過に陥ることによってクラブライセンス制度の財務基準に抵触する可能性がある旨が記されていました。  
 しかしながら2023年1月の交付規則改正によって**2023年度決算は新たに債務超過になることが認められる特例措置の対象**となっています。したがって2023年度決算で債務超過に陥ったとしても財務基準に抵触することはありません。記事も訂正されています。
 
-<blockquote class="twitter-tweet">
+<blockquote className="twitter-tweet">
   <p lang="ja" dir="ltr">【訂正】本日の「サンフレ増資打診」の記事で、「２３年度決算で新たに債務超過となった場合、下位リーグへの降格となる」は誤りでした。２３年度は特例措置延長に伴い、債務超過になってもライセンス判定対象ではありませんでした。あすの朝刊にも訂正文を掲載いたします。</p>
   &mdash; 中国新聞サンフレ番記者 (@chugoku_sanfre) <a href="https://twitter.com/chugoku_sanfre/status/1662026245314584576?ref_src=twsrc%5Etfw">May 26, 2023</a>
 </blockquote>
@@ -44,8 +44,26 @@ draft: false
 
 ## リンク
 
-<PanelLink href="https://www.chugoku-np.co.jp/articles/-/310707">サンフレ、債務超過の回避へ増資打診 (2023年5月26日)</PanelLink>
+<PanelLinkShorthand {...link1} />
 
-<PanelLink href="https://www.chugoku-np.co.jp/articles/-/311120">サンフレに100万円ずつ追加出資へ　広島県と広島市 (2023年5月26日)</PanelLink>
+<PanelLinkShorthand {...link2} />
 
-<PanelLink href="https://www.chugoku-np.co.jp/articles/-/291626">サンフレ2期ぶり赤字　選手獲得や勝利給が負担に (2023年4月27日)</PanelLink>
+<PanelLinkShorthand {...link3} />
+
+export const link1 = {
+  title: "サンフレ、債務超過の回避へ増資打診",
+  date: "2023年5月26日",
+  url: "https://www.chugoku-np.co.jp/articles/-/310707",
+}
+
+export const link2 = {
+  title: "サンフレに100万円ずつ追加出資へ　広島県と広島市",
+  date: "2023年5月26日",
+  url: "https://www.chugoku-np.co.jp/articles/-/311120",
+}
+
+export const link3 = {
+  title: "サンフレ2期ぶり赤字　選手獲得や勝利給が負担に",
+  date: "2023年4月27日",
+  url: "https://www.chugoku-np.co.jp/articles/-/291626",
+}
