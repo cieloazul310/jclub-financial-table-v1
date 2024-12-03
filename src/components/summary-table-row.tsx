@@ -15,7 +15,7 @@ function SummaryTableRow({
   label,
   val,
   diff,
-  emphasizedIfMinus,
+  emphasizedIfMinus = false,
   ...props
 }: SummaryTableRowProps) {
   const { palette } = useTheme();
@@ -47,18 +47,15 @@ function SummaryTableRow({
       >
         {displayValue}
       </TableCell>
-      {diff && (
+      {diff ? (
         <TableCell align="right">
           <Diff>{diff}</Diff>
         </TableCell>
+      ) : (
+        <TableCell />
       )}
     </TableRow>
   );
 }
-
-SummaryTableRow.defaultProps = {
-  diff: undefined,
-  emphasizedIfMinus: undefined,
-};
 
 export default SummaryTableRow;

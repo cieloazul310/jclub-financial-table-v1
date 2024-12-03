@@ -37,6 +37,21 @@ export const Primary: Story = {
   ),
 };
 
+export const WithoutPrev: Story = {
+  args: {
+    label: "当期純利益",
+    val: "-4700万円",
+    emphasizedIfMinus: false,
+  },
+  render: (args) => (
+    <SummaryTable>
+      <SummaryTableRow label="営業収入" val="8億4200万円" diff="2400万円" />
+      <SummaryTableRow {...args} />
+      <SummaryTableRow label="純資産額" val="1億3100万円" diff="-4700万円" />
+    </SummaryTable>
+  ),
+};
+
 export const WithCaption: Story = {
   args: {
     label: "純資産額",
