@@ -46,17 +46,20 @@ type DownloadPageData = {
   j3: {
     nodes: Pick<Club, "name" | "slug">[];
   };
+  others: {
+    nodes: Pick<Club, "name" | "slug">[];
+  };
   allYear: {
     nodes: Pick<Year, "year">[];
   };
 };
 
 function DownloadPage({ data }: PageProps<DownloadPageData>) {
-  const { allData, j1, j2, j3, allYear } = data;
+  const { allData, j1, j2, j3, others, allYear } = data;
   const isMobile = useIsMobile();
   const dictionary = useDictionary();
   const allCategories = ["J1", "J2", "J3", "others"];
-  const slugs = [...j1.nodes, ...j2.nodes, ...j3.nodes].map(
+  const slugs = [...j1.nodes, ...j2.nodes, ...j3.nodes, ...others.nodes].map(
     (node) => node.slug,
   );
   const years = allYear.nodes.map((node) => node.year);
@@ -194,19 +197,28 @@ export const query = graphql`
         ...attdFields
       }
     }
-    j1: allClub(filter: { category: { eq: "J1" } }) {
+    j1: allClub(filter: { category: { eq: "J1" } }, sort: { index: ASC }) {
       nodes {
         name
         slug
       }
     }
-    j2: allClub(filter: { category: { eq: "J2" } }) {
+    j2: allClub(filter: { category: { eq: "J2" } }, sort: { index: ASC }) {
       nodes {
         name
         slug
       }
     }
-    j3: allClub(filter: { category: { eq: "J3" } }) {
+    j3: allClub(filter: { category: { eq: "J3" } }, sort: { index: ASC }) {
+      nodes {
+        name
+        slug
+      }
+    }
+    others: allClub(
+      filter: { category: { nin: ["J1", "J2", "J3"] } }
+      sort: { index: ASC }
+    ) {
       nodes {
         name
         slug

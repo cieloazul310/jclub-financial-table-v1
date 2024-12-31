@@ -96,20 +96,22 @@ function SeriesPage({ data }: PageProps<SeriesPageData>) {
 
   const allClubValues = React.useMemo(
     () =>
-      allClub.nodes.map((node) => {
-        if (node.data.length === allYear.nodes.length) return node;
-
-        const firstYear = node.data[0].year;
-        const lastYear = node.data[node.data.length - 1].year;
-        return {
-          ...node,
-          data: [
-            ...Array.from({ length: firstYear - yearsRange[0] }, () => null),
-            ...node.data,
-            ...Array.from({ length: yearsRange[1] - lastYear }, () => null),
-          ],
-        };
-      }),
+      allClub.nodes
+        /* データなしの栃木C、高知に対応 */
+        .filter((node) => node.data.length > 0)
+        .map((node) => {
+          if (node.data.length === allYear.nodes.length) return node;
+          const firstYear = node.data[0].year;
+          const lastYear = node.data[node.data.length - 1].year;
+          return {
+            ...node,
+            data: [
+              ...Array.from({ length: firstYear - yearsRange[0] }, () => null),
+              ...node.data,
+              ...Array.from({ length: yearsRange[1] - lastYear }, () => null),
+            ],
+          };
+        }),
     [allClub],
   );
   const statedClubs = React.useMemo(

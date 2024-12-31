@@ -102,8 +102,8 @@ function ClubListByCategory({
 type ClubListProps = Pick<ItemFilterProps, "clubsFilter" | "setClubsFilter">;
 
 function ClubList({ clubsFilter, setClubsFilter }: ClubListProps) {
-  const { j1, j2, j3 } = useClubsByCategory();
-  const slugs = [...j1.nodes, ...j2.nodes, ...j3.nodes].map(
+  const { j1, j2, j3, others } = useClubsByCategory();
+  const slugs = [...j1.nodes, ...j2.nodes, ...j3.nodes, ...others.nodes].map(
     (node) => node.slug ?? "",
   );
   const setAllClub = () => {
@@ -139,6 +139,12 @@ function ClubList({ clubsFilter, setClubsFilter }: ClubListProps) {
       <ClubListByCategory
         clubs={j3}
         title="J3"
+        clubsFilter={clubsFilter}
+        setClubsFilter={setClubsFilter}
+      />
+      <ClubListByCategory
+        clubs={others}
+        title="JFL・地域"
         clubsFilter={clubsFilter}
         setClubsFilter={setClubsFilter}
       />
