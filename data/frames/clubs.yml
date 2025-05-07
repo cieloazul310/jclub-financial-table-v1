@@ -721,6 +721,8 @@
   area: 奈良県
   period: 1
   website: https://naraclub.jp
+  annotation:
+    - 2019年度から2021年度まではクラブ発表の数値
 
 - id: "51"
   slug: gainare
