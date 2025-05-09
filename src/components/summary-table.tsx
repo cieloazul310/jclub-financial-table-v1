@@ -33,7 +33,7 @@ function SummaryTable({
                 </TableCell>
                 {!disableDiff && (
                   <TableCell component="th" align="right" scope="col">
-                    前年比
+                    前年差
                   </TableCell>
                 )}
               </TableRow>
