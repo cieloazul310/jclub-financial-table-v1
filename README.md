@@ -12,25 +12,8 @@ Jリーグが毎年公開している「Jクラブ個別経営情報開示資料
 
 ### Jクラブ個別経営情報開示資料
 
-- [2005年度(平成17年度)](https://www.jleague.jp/docs/aboutj/club2006_02.pdf "2005年度(平成17年度) Jクラブ個別経営情報開示資料")
-- [2006年度(平成18年度)](https://www.jleague.jp/docs/aboutj/club2007_02.pdf "2006年度(平成18年度) Jクラブ個別経営情報開示資料")
-- [2007年度(平成19年度)](https://www.jleague.jp/docs/aboutj/club2008_02.pdf "2007年度(平成19年度) Jクラブ個別経営情報開示資料")
-- [2008年度(平成20年度)](https://www.jleague.jp/docs/aboutj/club2009_02.pdf "2008年度(平成20年度) Jクラブ個別経営情報開示資料")
-- [2009年度(平成21年度)](https://www.jleague.jp/docs/aboutj/club2010_02.pdf "2009年度(平成21年度) Jクラブ個別経営情報開示資料")
-- [2010年度(平成22年度)](https://www.jleague.jp/docs/aboutj/club2011_02.pdf "2010年度(平成22年度) Jクラブ個別経営情報開示資料")
-- [2011年度(平成23年度)](https://www.jleague.jp/docs/aboutj/club-h23kaiji.pdf "2011年度(平成23年度) Jクラブ個別経営情報開示資料")
-- [2012年度(平成24年度)](https://www.jleague.jp/docs/aboutj/club-h24kaiji.pdf "2012年度(平成24年度) Jクラブ個別経営情報開示資料")
-- [2013年度(平成25年度)](https://www.jleague.jp/docs/aboutj/club-h25kaiji.pdf "2013年度(平成25年度) Jクラブ個別経営情報開示資料")
-- [2014年度(平成26年度)](https://www.jleague.jp/docs/aboutj/club-h26kaiji.pdf "2014年度(平成26年度) Jクラブ個別経営情報開示資料")
-- [2015年度(平成27年度)](https://www.jleague.jp/docs/aboutj/club-h27kaiji.pdf "2015年度(平成27年度) Jクラブ個別経営情報開示資料")
-- [2016年度(平成28年度)](https://www.jleague.jp/docs/aboutj/club-h28kaiji.pdf "2016年度(平成28年度) Jクラブ個別経営情報開示資料")
-- [2017年度(平成29年度)](https://www.jleague.jp/docs/aboutj/club-h29kaiji.pdf "2017年度(平成29年度) Jクラブ個別経営情報開示資料")
-- [2018年度(平成30年度)](https://www.jleague.jp/docs/aboutj/club-h30kaiji_3.pdf "2018年度(平成30年度) Jクラブ個別経営情報開示資料")
-- [2019年度(平成31年度)](https://www.jleague.jp/docs/aboutj/club-h31kaiji-1.pdf "2019年度(平成31年度) Jクラブ個別経営情報開示資料")
-- [2020年度(令和2年度)](https://aboutj.jleague.jp/corporate/assets/pdf/club_info/j_kessan-2020.pdf "2020年度(令和2年度) Jクラブ個別経営情報開示資料")
-- [2021年度(令和3年度)](https://aboutj.jleague.jp/corporate/assets/pdf/club_info/j_kessan-2021.pdf "2021年度(令和3年度) Jクラブ個別経営情報開示資料")
-- [2022年度(令和4年度)](https://aboutj.jleague.jp/corporate/assets/pdf/club_info/j_kessan-2022.pdf "2022年度(令和4年度) Jクラブ個別経営情報開示資料")
-- [2023年度(令和5年度)](https://aboutj.jleague.jp/corporate/assets/pdf/club_info/j_kessan-2023.pdf "2022年度(令和4年度) Jクラブ個別経営情報開示資料")
+クラブ経営情報  
+<https://aboutj.jleague.jp/corporate/about_jclubs/management_jclubs/>
 
 #### データの留意点
 
@@ -56,7 +39,8 @@ Jリーグのコーポレートサイトでは、報道資料である「クラ�
 [ガンバ大阪ACL観客数](http://datadata.zashiki.com/gamba/att/douinacl.htm): ACL観客数  
 [ファジアーノ岡山 2013年度 経営状況についてのご報告](https://www.fagiano-okayama.com/news/p1398334491.html): 岡山の地域リーグ、JFL時代の経営情報  
 [ロアッソ熊本 クラブ概要](https://roasso-k.com/top_team/club_outline): 熊本の地域リーグ、JFL時代の経営情報  
-[サッカーJ+ vol.1](https://ja.wikipedia.org/wiki/%E3%82%B5%E3%83%83%E3%82%AB%E3%83%BCJ%2B): ACL観客数(2005横浜FM)
+[サッカーJ+ vol.1](https://ja.wikipedia.org/wiki/%E3%82%B5%E3%83%83%E3%82%AB%E3%83%BCJ%2B): ACL観客数(2005横浜FM)  
+[奈良クラブ 第７期決算報告について](https://naraclub.jp/archives/62942): 奈良のJFL時代の経営情報
 
 ### 参照
 
@@ -66,9 +50,10 @@ Jリーグのコーポレートサイトでは、報道資料である「クラ�
 [コンサドーレ札幌 決算情報](https://www.consadole-sapporo.jp/club/settlement/)  
 [ファジアーノ岡山 2013年度 経営状況についてのご報告](https://www.fagiano-okayama.com/news/p1398334491.html)  
 [ファジアーノ岡山 2014年度 経営状況についてのご報告](https://www.fagiano-okayama.com/news/p1429706533.html)  
-[Jリーグ クラブ経営ガイド](https://aboutj.jleague.jp/corporate/management/guide/)  
+[Jリーグ クラブ経営ガイド](https://aboutj.jleague.jp/corporate/about_jclubs/management_jclubs/)  
+[Jリーグ 規約・規程](https://aboutj.jleague.jp/corporate/regulation/)  
 [[e-Gov法令検索] 会社法](https://elaws.e-gov.go.jp/document?lawid=417AC0000000086)  
-[[e-Gov法令検索] 財務諸表等の用語、様式及び作成方法に関する規則](https://elaws.e-gov.go.jp/document?lawid=338M50000040059_20210924_503M60000002061)  
+[[e-Gov法令検索] 財務諸表等の用語、様式及び作成方法に関する規則](https://elaws.e-gov.go.jp/document?lawid=338M50000040059_20210924_503M60000002061)
 
 ### 更新情報
 
@@ -90,6 +75,7 @@ Jリーグのコーポレートサイトでは、報道資料である「クラ�
 - 2024-05-21 2023年度のデータを3月決算の柏、湘南、及び関連する法人の営業収益を除いた形で更新
 - 2024-05-26 ダウンロードページでJFL、地域リーグの経営情報が表示されないバグを修正
 - 2024-07-30 2023年度のデータを完全版に更新
+- 2025-05-07 FC大阪、奈良の2022年度のデータを追加、奈良の2019年度から2021年度のデータを追加、熊本の2006年度のデータを修正
 
 ### 制作
 
