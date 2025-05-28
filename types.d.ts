@@ -140,6 +140,12 @@ export type Revenue = {
   women_rev: number | null;
   /** 物販収入 */
   goods_rev: number | null;
+  /** 移籍補償金等収入 */
+  transfer_rev: number | null;
+  /** 国外クラブからの収入 */
+  transfer_int_rev: number | null;
+  /** 国内クラブからの収入 */
+  transfer_dom_rev: number | null;
   /** その他収入 */
   other_revs: number | null;
   /** 関連する法人の営業収入 */
@@ -150,6 +156,12 @@ export type Expense = {
   expense: number;
   /** チーム人件費 */
   salary: number | null;
+  /** 移籍関連費用 */
+  transfer_exp: number | null;
+  /** 国外クラブからの移籍に関する費用 */
+  transfer_int_exp: number | null;
+  /** 国内クラブからの移籍に関する費用 */
+  transfer_dom_exp: number | null;
   /** 事業費 */
   manage_exp: number | null;
   /** 総事業費 */
