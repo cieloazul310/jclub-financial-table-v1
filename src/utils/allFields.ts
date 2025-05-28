@@ -41,10 +41,16 @@ export const revenueFields: SortableKeys[] = [
   "academy_rev",
   "women_rev",
   "goods_rev",
+  "transfer_rev",
+  "transfer_int_rev",
+  "transfer_dom_rev",
   "other_revs",
 ];
 export const expenseFields: SortableKeys[] = [
   "salary",
+  "transfer_exp",
+  "transfer_int_exp",
+  "transfer_dom_exp",
   "game_exp",
   "team_exp",
   "academy_exp",

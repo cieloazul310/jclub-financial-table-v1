@@ -143,12 +143,12 @@ function CardValues({ data, previous, mode, tab }: CardValuesProps) {
           <CardValue label="物販関連費" property="goods_exp" />
           <CardValue label="移籍関連費用" property="transfer_exp" />
           <CardValue
-            label="国外クラブからの移籍に関する費用"
+            label="国外クラブからの移籍"
             property="transfer_int_exp"
             inset
           />
           <CardValue
-            label="国内クラブからの移籍に関する費用"
+            label="国内クラブからの移籍"
             property="transfer_dom_exp"
             inset
           />
