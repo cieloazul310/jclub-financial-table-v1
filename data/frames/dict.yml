@@ -11,9 +11,15 @@ broadcast: Jリーグ配分金
 academy_rev: アカデミー関連収入
 women_rev: 女子チーム関連収入
 goods_rev: 物販収入
+transfer_rev: 移籍補償金等収入
+transfer_int_rev: 国外クラブからの収入
+transfer_dom_rev: 国内クラブからの収入
 other_revs: その他収入
 expense: 営業費用
 salary: チーム人件費
+transfer_exp: 移籍関連費用
+transfer_int_exp: 国外クラブからの移籍に関する費用
+transfer_dom_exp: 国内クラブからの移籍に関する費用
 manage_exp: 事業費
 general_exp: 総事業費
 game_exp: 試合関連経費

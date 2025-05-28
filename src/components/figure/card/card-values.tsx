@@ -105,13 +105,24 @@ function CardValues({ data, previous, mode, tab }: CardValuesProps) {
       return (
         <>
           <CardValue label="営業収入" property="revenue" emphasized />
-          <CardValue label="スポンサー収入" property="sponsor" inset />
-          <CardValue label="入場料収入" property="ticket" inset />
-          <CardValue label="Jリーグ配分金" property="broadcast" inset />
-          <CardValue label="アカデミー関連収入" property="academy_rev" inset />
-          <CardValue label="女子チーム関連収入" property="women_rev" inset />
-          <CardValue label="物販関連収入" property="goods_rev" inset />
-          <CardValue label="その他収入" property="other_revs" inset />
+          <CardValue label="スポンサー収入" property="sponsor" />
+          <CardValue label="入場料収入" property="ticket" />
+          <CardValue label="Jリーグ配分金" property="broadcast" />
+          <CardValue label="アカデミー関連収入" property="academy_rev" />
+          <CardValue label="女子チーム関連収入" property="women_rev" />
+          <CardValue label="物販関連収入" property="goods_rev" />
+          <CardValue label="移籍補償金等収入" property="transfer_rev" />
+          <CardValue
+            label="国外クラブからの収入"
+            property="transfer_int_rev"
+            inset
+          />
+          <CardValue
+            label="国内クラブからの収入"
+            property="transfer_dom_rev"
+            inset
+          />
+          <CardValue label="その他収入" property="other_revs" />
           <CardValue
             label="(関連する法人の営業収入)"
             property="related_revenue"
@@ -123,19 +134,26 @@ function CardValues({ data, previous, mode, tab }: CardValuesProps) {
       return (
         <>
           <CardValue label="営業費用" property="expense" emphasized />
-          <CardValue label="チーム人件費" property="salary" inset />
+          <CardValue label="チーム人件費" property="salary" />
+          <CardValue label="事業費(チーム人件費を除く)" property="manage_exp" />
+          <CardValue label="試合関連経費" property="game_exp" />
+          <CardValue label="トップチーム運営経費" property="team_exp" />
+          <CardValue label="アカデミー関連経費" property="academy_exp" />
+          <CardValue label="女子チーム運営経費" property="women_exp" />
+          <CardValue label="物販関連費" property="goods_exp" />
+          <CardValue label="移籍関連費用" property="transfer_exp" />
           <CardValue
-            label="事業費(チーム人件費を除く)"
-            property="manage_exp"
+            label="国外クラブからの移籍"
+            property="transfer_int_exp"
             inset
           />
-          <CardValue label="試合関連経費" property="game_exp" inset />
-          <CardValue label="トップチーム運営経費" property="team_exp" inset />
-          <CardValue label="アカデミー関連経費" property="academy_exp" inset />
-          <CardValue label="女子チーム運営経費" property="women_exp" inset />
-          <CardValue label="物販関連費" property="goods_exp" inset />
-          <CardValue label="その他売上原価" property="other_cost" inset />
-          <CardValue label="販売費および一般管理費" property="sga" inset />
+          <CardValue
+            label="国内クラブからの移籍"
+            property="transfer_dom_exp"
+            inset
+          />
+          <CardValue label="その他売上原価" property="other_cost" />
+          <CardValue label="販売費および一般管理費" property="sga" />
         </>
       );
     }

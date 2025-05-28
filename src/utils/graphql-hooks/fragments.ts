@@ -61,12 +61,18 @@ export default function useFragments() {
       academy_rev
       women_rev
       goods_rev
+      transfer_rev
+      transfer_int_rev
+      transfer_dom_rev
       other_revs
       related_revenue
     }
     fragment expenseFields on Data {
       expense
       salary
+      transfer_exp
+      transfer_int_exp
+      transfer_dom_exp
       manage_exp
       general_exp
       game_exp

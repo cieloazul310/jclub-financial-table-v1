@@ -8,6 +8,7 @@ import {
   Article,
   Paragraph,
   useSiteMetadata,
+  AppLink,
 } from "@cieloazul310/gatsby-theme-aoi";
 import type { MdxPostListFragment } from "types";
 import Layout from "@/layout";
@@ -42,15 +43,13 @@ function IndexPage({ data }: PageProps<IndexPageQueryData>) {
           </Typography>
           <Paragraph>{description}</Paragraph>
         </Jumbotron>
-        {/*
         <Jumbotron maxWidth="md" bgcolor="primary.dark" height={40}>
-          <AppLink href="/year/2023/" color="inherit">
+          <AppLink href="/year/2024/" color="inherit">
             <Typography variant="h6" component="h3" color="inherit">
-              2023年度決算(本発表版)を更新しました
+              2024年度決算(先行発表版)を更新しました
             </Typography>
           </AppLink>
         </Jumbotron>
-        */}
       </div>
       <Section>
         <Article maxWidth="md" py={2}>

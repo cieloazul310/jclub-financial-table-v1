@@ -116,6 +116,12 @@ export function RevenueTableHeadRow({ mode }: Pick<TableHeadRowProps, "mode">) {
       <TableHeadCell mode={mode} sortableKey="women_rev">
         女子チーム
       </TableHeadCell>
+      <TableHeadCell mode={mode} sortableKey="transfer_int_rev">
+        国際移籍
+      </TableHeadCell>
+      <TableHeadCell mode={mode} sortableKey="transfer_dom_rev">
+        国内移籍
+      </TableHeadCell>
       <TableHeadCell mode={mode} sortableKey="other_revs">
         その他
       </TableHeadCell>
@@ -134,6 +140,12 @@ export function ExpenseTableHeadRow({ mode }: Pick<TableHeadRowProps, "mode">) {
       </TableHeadCell>
       <TableHeadCell mode={mode} sortableKey="salary">
         チーム人件費
+      </TableHeadCell>
+      <TableHeadCell mode={mode} sortableKey="transfer_int_exp">
+        国際移籍
+      </TableHeadCell>
+      <TableHeadCell mode={mode} sortableKey="transfer_dom_exp">
+        国内移籍
       </TableHeadCell>
       <TableHeadCell mode={mode} sortableKey="game_exp">
         試合関連

@@ -50,6 +50,9 @@ export default async function createDataSchema({
       academy_rev: Int
       women_rev: Int
       goods_rev: Int
+      transfer_rev: Int
+      transfer_int_rev: Int
+      transfer_dom_rev: Int
       other_revs: Int
       related_revenue: Int
       expense: Int!
@@ -61,6 +64,9 @@ export default async function createDataSchema({
       academy_exp: Int
       women_exp: Int
       goods_exp: Int
+      transfer_exp: Int
+      transfer_int_exp: Int
+      transfer_dom_exp: Int
       other_cost: Int
       sga: Int
       league_attd: Int!

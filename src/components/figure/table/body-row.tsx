@@ -107,13 +107,13 @@ export function RevenueTableRow({ node }: TableRowProps<Revenue>) {
   const otherRevs = (year: number) => {
     if (year <= 2010)
       return (
-        <DataTableCell value={node.other_revs} align="center" colSpan={4} />
+        <DataTableCell value={node.other_revs} align="center" colSpan={6} />
       );
     if (year <= 2015)
       return (
         <>
           <DataTableCell value={node.academy_rev} align="center" />
-          <DataTableCell value={node.other_revs} align="center" colSpan={3} />
+          <DataTableCell value={node.other_revs} align="center" colSpan={5} />
         </>
       );
     if (year <= 2021)
@@ -121,7 +121,16 @@ export function RevenueTableRow({ node }: TableRowProps<Revenue>) {
         <>
           <DataTableCell value={node.academy_rev} align="center" />
           <DataTableCell value={node.goods_rev} align="center" />
-          <DataTableCell value={node.other_revs} colSpan={2} align="center" />
+          <DataTableCell value={node.other_revs} colSpan={4} align="center" />
+        </>
+      );
+    if (year <= 2023)
+      return (
+        <>
+          <DataTableCell value={node.academy_rev} align="center" />
+          <DataTableCell value={node.goods_rev} align="center" />
+          <DataTableCell value={node.women_rev} align="center" />
+          <DataTableCell value={node.other_revs} colSpan={3} align="center" />
         </>
       );
     return (
@@ -129,6 +138,8 @@ export function RevenueTableRow({ node }: TableRowProps<Revenue>) {
         <DataTableCell value={node.academy_rev} align="center" />
         <DataTableCell value={node.goods_rev} align="center" />
         <DataTableCell value={node.women_rev} align="center" />
+        <DataTableCell value={node.transfer_int_rev} align="center" />
+        <DataTableCell value={node.transfer_dom_rev} align="center" />
         <DataTableCell value={node.other_revs} align="center" />
       </>
     );
@@ -151,14 +162,14 @@ export function ExpenseTableRow({ node }: TableRowProps<Expense>) {
     if (year <= 2005 && !node.salary)
       return (
         <>
-          <DataTableCell value={node.general_exp} align="center" colSpan={8} />
+          <DataTableCell value={node.general_exp} align="center" colSpan={10} />
           <DataTableCell value={node.sga} align="center" />
         </>
       );
     if (year <= 2010)
       return (
         <>
-          <DataTableCell value={node.salary} />
+          <DataTableCell value={node.salary} colSpan={3} align="center" />
           <DataTableCell value={node.manage_exp} align="center" colSpan={7} />
           <DataTableCell value={node.sga} align="center" />
         </>
@@ -166,7 +177,7 @@ export function ExpenseTableRow({ node }: TableRowProps<Expense>) {
     if (year <= 2015)
       return (
         <>
-          <DataTableCell value={node.salary} />
+          <DataTableCell value={node.salary} colSpan={3} align="center" />
           <DataTableCell value={node.game_exp} />
           <DataTableCell value={node.team_exp} />
           <DataTableCell value={node.academy_exp} />
@@ -177,7 +188,7 @@ export function ExpenseTableRow({ node }: TableRowProps<Expense>) {
     if (year <= 2021)
       return (
         <>
-          <DataTableCell value={node.salary} />
+          <DataTableCell value={node.salary} colSpan={3} align="center" />
           <DataTableCell value={node.game_exp} />
           <DataTableCell value={node.team_exp} />
           <DataTableCell value={node.academy_exp} />
@@ -186,10 +197,25 @@ export function ExpenseTableRow({ node }: TableRowProps<Expense>) {
           <DataTableCell value={node.sga} align="center" colSpan={3} />
         </>
       );
+    if (year <= 2023)
+      return (
+        <>
+          <DataTableCell value={node.salary} colSpan={3} align="center" />
+          <DataTableCell value={node.game_exp} />
+          <DataTableCell value={node.team_exp} />
+          <DataTableCell value={node.academy_exp} />
+          <DataTableCell value={node.women_exp} />
+          <DataTableCell value={node.goods_exp} />
+          <DataTableCell value={node.other_cost} />
+          <DataTableCell value={node.sga} align="center" colSpan={2} />
+        </>
+      );
 
     return (
       <>
         <DataTableCell value={node.salary} />
+        <DataTableCell value={node.transfer_int_exp} />
+        <DataTableCell value={node.transfer_dom_exp} />
         <DataTableCell value={node.game_exp} />
         <DataTableCell value={node.team_exp} />
         <DataTableCell value={node.academy_exp} />
