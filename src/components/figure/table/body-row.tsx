@@ -133,6 +133,18 @@ export function RevenueTableRow({ node }: TableRowProps<Revenue>) {
           <DataTableCell value={node.other_revs} colSpan={3} align="center" />
         </>
       );
+    if (node.transfer_int_rev === null && node.transfer_dom_rev === null) {
+      return (
+        <>
+          <DataTableCell value={node.academy_rev} align="center" />
+          <DataTableCell value={node.goods_rev} align="center" />
+          <DataTableCell value={node.women_rev} align="center" />
+          <DataTableCell value={node.transfer_rev} colSpan={2} align="center" />
+          <DataTableCell value={node.other_revs} align="center" />
+        </>
+      );
+    }
+
     return (
       <>
         <DataTableCell value={node.academy_rev} align="center" />
@@ -210,6 +222,22 @@ export function ExpenseTableRow({ node }: TableRowProps<Expense>) {
           <DataTableCell value={node.sga} align="center" colSpan={2} />
         </>
       );
+
+    if (node.transfer_int_exp === null && node.transfer_dom_exp === null) {
+      return (
+        <>
+          <DataTableCell value={node.salary} />
+          <DataTableCell value={node.transfer_exp} align="center" colSpan={2} />
+          <DataTableCell value={node.game_exp} />
+          <DataTableCell value={node.team_exp} />
+          <DataTableCell value={node.academy_exp} />
+          <DataTableCell value={node.women_exp} />
+          <DataTableCell value={node.goods_exp} />
+          <DataTableCell value={node.other_cost} />
+          <DataTableCell value={node.sga} align="center" colSpan={2} />
+        </>
+      );
+    }
 
     return (
       <>
