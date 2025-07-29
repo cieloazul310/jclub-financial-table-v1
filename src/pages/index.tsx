@@ -46,14 +46,14 @@ function IndexPage({ data }: PageProps<IndexPageQueryData>) {
         <Jumbotron maxWidth="md" bgcolor="primary.dark" height={40}>
           <AppLink href="/year/2024/" color="inherit">
             <Typography variant="h6" component="h3" color="inherit">
-              2024年度決算(先行発表版)を更新しました
+              2024年度決算(本発表版)を更新しました
             </Typography>
           </AppLink>
         </Jumbotron>
       </div>
       <Section>
         <Article maxWidth="md" py={2}>
-          <Grid container spacing={2} component="nav">
+          <Grid container columnSpacing={2} rowSpacing={4} component="nav">
             <Grid item xs={12} sm={6} md={3}>
               <Typography variant="h6" component="h3" gutterBottom>
                 J1
