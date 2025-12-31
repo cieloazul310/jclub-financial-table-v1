@@ -1,4 +1,4 @@
-# 2025
+# 2026
 # J1 20 clubs
 - id: "3"
   slug: antlers
@@ -14,6 +14,21 @@
   relatedCompanies:
     - 一般社団法人アントラーズホームタウンDMO
 
+- id: "20"
+  slug: mitohollyhock
+  name: 水戸ホーリーホック
+  fullname: 水戸ホーリーホック
+  short_name: 水戸
+  company: 株式会社フットボールクラブ水戸ホーリーホック
+  category: J1
+  hometown: 水戸市、日立市、ひたちなか市、笠間市、那珂市、小美玉市、常陸太田市、北茨城市、常陸大宮市、高萩市、茨城町、城里町、大洗町、大子町、東海村
+  area: 茨城県
+  period: 1
+  website: https://www.mito-hollyhock.net
+  relatedCompanies:
+    - 一般社団法人ホーリーホックIBARAKIクラブ
+    - 一般社団法人MFA-B&S
+
 - id: "4"
   slug: urawa
   name: 浦和レッズ
@@ -28,6 +43,18 @@
   settlement: https://www.urawa-reds.co.jp/club/managdata.php
   relatedCompanies:
     - 一般社団法人レッズランド
+
+- id: "22"
+  slug: jefunited
+  name: ジェフユナイテッド千葉
+  fullname: ジェフユナイテッド市原・千葉
+  short_name: 千葉
+  company: ジェフユナイテッド株式会社
+  category: J1
+  hometown: 市原市、千葉市
+  area: 千葉県
+  period: 1
+  website: https://jefunited.co.jp
 
 - id: "6"
   slug: reysol
@@ -110,49 +137,6 @@
     - 一般社団法人F・マリノススポーツクラブ
   annotation:
     - 2021年度以降はアカデミー事業を一般社団法人F・マリノススポーツクラブに移管
-
-- id: "25"
-  slug: yokohamafc
-  name: 横浜FC
-  fullname: 横浜FC
-  short_name: 横浜FC
-  company: 株式会社横浜フリエスポーツクラブ
-  category: J1
-  hometown: 横浜市
-  area: 神奈川県
-  period: 1
-  website: https://www.yokohamafc.com
-  relatedCompanies:
-    - 一般社団法人横浜FCスポーツクラブ
-
-- id: "26"
-  slug: bellmare
-  name: 湘南ベルマーレ
-  fullname: 湘南ベルマーレ
-  short_name: 湘南
-  company: 株式会社湘南ベルマーレ
-  category: J1
-  hometown: 厚木市、伊勢原市、小田原市、茅ヶ崎市、秦野市、平塚市、藤沢市、大磯町、寒川町、二宮町、鎌倉市、南足柄市、大井町、開成町、中井町、箱根町、松田町、真鶴町、山北町、湯河原町
-  area: 神奈川県
-  period: 3
-  website: https://www.bellmare.co.jp
-  settlement: https://www.bellmare.co.jp/club_business
-  relatedCompanies:
-    - NPO法人湘南ベルマーレスポーツクラブ
-
-- id: "11"
-  slug: albirex
-  name: アルビレックス新潟
-  fullname: アルビレックス新潟
-  short_name: 新潟
-  company: 株式会社アルビレックス新潟
-  category: J1
-  hometown: 新潟市、聖籠町、長岡市、三条市、柏崎市、新発田市、小千谷市、加茂市、十日町市、見附市、村上市、燕市、糸魚川市、妙高市、五泉市、上越市、阿賀野市、佐渡市、魚沼市、南魚沼市、胎内市、弥彦村、田上町、阿賀町、出雲崎市、湯沢町、津南町、刈羽村、関川村、粟島浦村【新潟県全県】
-  area: 新潟県
-  period: 1
-  website: https://www.albirex.co.jp
-  relatedCompanies:
-    - 株式会社アルビレックス新潟レディース
 
 - id: "12"
   slug: shimizu
@@ -274,6 +258,18 @@
   period: 1
   website: https://www.avispa.co.jp
 
+- id: "38"
+  slug: vvaren
+  name: V・ファーレン長崎
+  fullname: V・ファーレン長崎
+  short_name: 長崎
+  company: 株式会社V・ファーレン長崎
+  category: J1
+  hometown: 長崎市、諫早市を中心とする全県
+  area: 長崎県
+  period: 12
+  website: https://www.v-varen.com
+
 # J2 20 clubs
 - id: "1"
   slug: consadole
@@ -291,6 +287,20 @@
     - 一般社団法人コンサドーレ北海道スポーツクラブ
     - 株式会社まちのミライ
     - 株式会社エゾデン
+
+- id: "55"
+  slug: vanraure
+  name: ヴァンラーレ八戸
+  fullname: ヴァンラーレ八戸フットボールクラブ
+  short_name: 八戸
+  company: 株式会社ヴァンラーレ八戸
+  category: J2
+  hometown: 八戸市、十和田市、五戸町、階上町、田子町、南部町、おいらせ町、新郷村、三沢市、七戸町、六戸町、東北町、横浜町、野辺地町、六ケ所村
+  area: 青森県
+  period: 1
+  website: https://www.vanraure.net
+  relatedCompanies:
+    - NPO法人クローバーズ・ネット
 
 - id: "2"
   slug: vegalta
@@ -348,20 +358,17 @@
   period: 12
   website: https://iwakifc.com
 
-- id: "20"
-  slug: mitohollyhock
-  name: 水戸ホーリーホック
-  fullname: 水戸ホーリーホック
-  short_name: 水戸
-  company: 株式会社フットボールクラブ水戸ホーリーホック
+- id: "61"
+  slug: tochigicity
+  name: 栃木シティ
+  fullname: 栃木シティフットボールクラブ
+  short_name: 栃木C
+  company: 株式会社THE TOCHIGI CITY UNITED
   category: J2
-  hometown: 水戸市、日立市、ひたちなか市、笠間市、那珂市、小美玉市、常陸太田市、北茨城市、常陸大宮市、高萩市、茨城町、城里町、大洗町、大子町、東海村
-  area: 茨城県
+  hometown: 栃木市、壬生町、足利市、佐野市
+  area: 栃木県
   period: 1
-  website: https://www.mito-hollyhock.net
-  relatedCompanies:
-    - 一般社団法人ホーリーホックIBARAKIクラブ
-    - 一般社団法人MFA-B&S
+  website: https://tochigi-city.com/
 
 - id: "5"
   slug: ardija
@@ -375,17 +382,34 @@
   period: 1
   website: https://www.rbomiya.com
 
-- id: "22"
-  slug: jefunited
-  name: ジェフユナイテッド千葉
-  fullname: ジェフユナイテッド市原・千葉
-  short_name: 千葉
-  company: ジェフユナイテッド株式会社
+- id: "25"
+  slug: yokohamafc
+  name: 横浜FC
+  fullname: 横浜FC
+  short_name: 横浜FC
+  company: 株式会社横浜フリエスポーツクラブ
   category: J2
-  hometown: 市原市、千葉市
-  area: 千葉県
+  hometown: 横浜市
+  area: 神奈川県
   period: 1
-  website: https://jefunited.co.jp
+  website: https://www.yokohamafc.com
+  relatedCompanies:
+    - 一般社団法人横浜FCスポーツクラブ
+
+- id: "26"
+  slug: bellmare
+  name: 湘南ベルマーレ
+  fullname: 湘南ベルマーレ
+  short_name: 湘南
+  company: 株式会社湘南ベルマーレ
+  category: J2
+  hometown: 厚木市、伊勢原市、小田原市、茅ヶ崎市、秦野市、平塚市、藤沢市、大磯町、寒川町、二宮町、鎌倉市、南足柄市、大井町、開成町、中井町、箱根町、松田町、真鶴町、山北町、湯河原町
+  area: 神奈川県
+  period: 3
+  website: https://www.bellmare.co.jp
+  settlement: https://www.bellmare.co.jp/club_business
+  relatedCompanies:
+    - NPO法人湘南ベルマーレスポーツクラブ
 
 - id: "10"
   slug: ventforet
@@ -400,6 +424,20 @@
   website: https://www.ventforet.jp
   relatedCompanies:
     - 一般社団法人ヴァンフォーレスポーツクラブ
+
+- id: "11"
+  slug: albirex
+  name: アルビレックス新潟
+  fullname: アルビレックス新潟
+  short_name: 新潟
+  company: 株式会社アルビレックス新潟
+  category: J2
+  hometown: 新潟市、聖籠町、長岡市、三条市、柏崎市、新発田市、小千谷市、加茂市、十日町市、見附市、村上市、燕市、糸魚川市、妙高市、五泉市、上越市、阿賀野市、佐渡市、魚沼市、南魚沼市、胎内市、弥彦村、田上町、阿賀町、出雲崎市、湯沢町、津南町、刈羽村、関川村、粟島浦村【新潟県全県】
+  area: 新潟県
+  period: 1
+  website: https://www.albirex.co.jp
+  relatedCompanies:
+    - 株式会社アルビレックス新潟レディース
 
 - id: "48"
   slug: kataller
@@ -439,22 +477,6 @@
   period: 1
   website: https://myfc.co.jp
 
-- id: "33"
-  slug: renofa
-  name: レノファ山口FC
-  fullname: レノファ山口FC
-  short_name: 山口
-  company: 株式会社レノファ山口
-  category: J2
-  hometown: 山口市、下関市、山陽小野田市、宇部市、防府市、周南市、美祢市、萩市、下松市、岩国市、光市、長門市、柳井市、周防大島町、和木町、上関町、田布施町、平生町、阿武町【山口県全県】
-  area: 山口県
-  period: 1
-  website: https://www.renofa.com
-  relatedCompanies:
-    - NPO法人レノファ山口スポーツクラブ
-  annotation:
-    - 2021年度までは税込経理方式、2022年度以降は税抜経理方式
-
 - id: "35"
   slug: vortis
   name: 徳島ヴォルティス
@@ -469,18 +491,6 @@
   settlement: https://www.vortis.jp/clubinfo/index.html
   relatedCompanies:
     - NPO法人徳島スポーツビレッジ
-  
-- id: "36"
-  slug: ehimefc
-  name: 愛媛FC
-  fullname: 愛媛FC
-  short_name: 愛媛
-  company: 株式会社愛媛FC
-  category: J2
-  hometown: 松山市を中心とする全県
-  area: 愛媛県
-  period: 12
-  website: https://www.ehimefc.com
 
 - id: "56"
   slug: fcimabari
@@ -508,38 +518,6 @@
   period: 1
   website: https://www.sagan-tosu.net
 
-- id: "38"
-  slug: vvaren
-  name: V・ファーレン長崎
-  fullname: V・ファーレン長崎
-  short_name: 長崎
-  company: 株式会社V・ファーレン長崎
-  category: J2
-  hometown: 長崎市、諫早市を中心とする全県
-  area: 長崎県
-  period: 12
-  website: https://www.v-varen.com
-
-- id: "39"
-  slug: roasso
-  name: ロアッソ熊本
-  fullname: ロアッソ熊本
-  short_name: 熊本
-  company: 株式会社アスリートクラブ熊本
-  category: J2
-  hometown: 熊本市
-  area: 熊本県
-  period: 1
-  website: https://roasso-k.com
-  settlement: https://roasso-k.com/top_team/club_outline
-  relatedCompanies:
-    - 一般社団法人ロアッソ熊本スポーツクラブ
-  annotation:
-    - 2006年度、2007年度はクラブ発表の数値
-    - 2006年度は第2期、第3期を合算した15ヶ月間
-    - 2009年度は決算期変更により11ヶ月間
-    - 2020年度4月よりアカデミー事業を一般社団法人ロアッソ熊本スポーツクラブに移管
-
 - id: "40"
   slug: trinita
   name: 大分トリニータ
@@ -552,21 +530,19 @@
   period: 1
   website: https://www.oita-trinita.co.jp
 
-# J3 20 clubs
-- id: "55"
-  slug: vanraure
-  name: ヴァンラーレ八戸
-  fullname: ヴァンラーレ八戸フットボールクラブ
-  short_name: 八戸
-  company: 株式会社ヴァンラーレ八戸
-  category: J3
-  hometown: 八戸市、十和田市、五戸町、階上町、田子町、南部町、おいらせ町、新郷村、三沢市、七戸町、六戸町、東北町、横浜町、野辺地町、六ケ所村
-  area: 青森県
+- id: "57"
+  slug: tegevajaro
+  name: テゲバジャーロ宮崎
+  fullname: テゲバジャーロ宮崎
+  short_name: 宮崎
+  company: 株式会社テゲバジャーロ宮崎
+  category: J2
+  hometown: 宮崎市、新富町、西都市
+  area: 宮崎県
   period: 1
-  website: https://www.vanraure.net
-  relatedCompanies:
-    - NPO法人クローバーズ・ネット
+  website: https://www.tegevajaro.com
 
+# J3 20 clubs
 - id: "43"
   slug: fufc
   name: 福島ユナイテッドFC
@@ -592,18 +568,6 @@
   area: 栃木県
   period: 1
   website: https://www.tochigisc.jp
-
-- id: "61"
-  slug: tochigicity
-  name: 栃木シティ
-  fullname: 栃木シティフットボールクラブ
-  short_name: 栃木C
-  company: 株式会社THE TOCHIGI CITY UNITED
-  category: J3
-  hometown: 栃木市、壬生町、足利市、佐野市
-  area: 栃木県
-  period: 1
-  website: https://tochigi-city.com/
 
 - id: "21"
   slug: thespa
@@ -675,19 +639,17 @@
   relatedCompanies:
     - 一般社団法人石川ツエーゲンスポーツクラブ
 
-- id: "50"
-  slug: azulclaro
-  name: アスルクラロ沼津
-  fullname: アスルクラロ沼津
-  short_name: 沼津
-  company: アスルクラロスルガ株式会社
+- id: "63"
+  slug: reilac
+  name: レイラック滋賀FC
+  fullname: レイラック滋賀
+  short_name: 滋賀
+  company: 株式会社 Mi-Oスポーツ
   category: J3
-  hometown: 沼津市
-  area: 静岡県
+  hometown: 滋賀県 草津市・東近江市・彦根市を中心とする全県
+  area: 滋賀県
   period: 1
-  website: https://www.azul-claro.jp
-  relatedCompanies:
-    - 一般社団法人アスルクラロスポーツクラブ
+  website: https://reilac-shiga.co.jp/
 
 - id: "30"
   slug: fcgifu
@@ -739,6 +701,22 @@
   period: 1
   website: https://www.gainare.co.jp
 
+- id: "33"
+  slug: renofa
+  name: レノファ山口FC
+  fullname: レノファ山口FC
+  short_name: 山口
+  company: 株式会社レノファ山口
+  category: J3
+  hometown: 山口市、下関市、山陽小野田市、宇部市、防府市、周南市、美祢市、萩市、下松市、岩国市、光市、長門市、柳井市、周防大島町、和木町、上関町、田布施町、平生町、阿武町【山口県全県】
+  area: 山口県
+  period: 1
+  website: https://www.renofa.com
+  relatedCompanies:
+    - NPO法人レノファ山口スポーツクラブ
+  annotation:
+    - 2021年度までは税込経理方式、2022年度以降は税抜経理方式
+
 - id: "34"
   slug: kamatamare
   name: カマタマーレ讃岐
@@ -752,6 +730,18 @@
   website: https://www.kamatamare.jp
   relatedCompanies:
     - NPO法人カマタマーレスポーツクラブ
+  
+- id: "36"
+  slug: ehimefc
+  name: 愛媛FC
+  fullname: 愛媛FC
+  short_name: 愛媛
+  company: 株式会社愛媛FC
+  category: J3
+  hometown: 松山市を中心とする全県
+  area: 愛媛県
+  period: 12
+  website: https://www.ehimefc.com
 
 - id: "62"
   slug: kochi
@@ -777,17 +767,25 @@
   period: 1
   website: https://www.giravanz.jp
 
-- id: "57"
-  slug: tegevajaro
-  name: テゲバジャーロ宮崎
-  fullname: テゲバジャーロ宮崎
-  short_name: 宮崎
-  company: 株式会社テゲバジャーロ宮崎
+- id: "39"
+  slug: roasso
+  name: ロアッソ熊本
+  fullname: ロアッソ熊本
+  short_name: 熊本
+  company: 株式会社アスリートクラブ熊本
   category: J3
-  hometown: 宮崎市、新富町、西都市
-  area: 宮崎県
+  hometown: 熊本市
+  area: 熊本県
   period: 1
-  website: https://www.tegevajaro.com
+  website: https://roasso-k.com
+  settlement: https://roasso-k.com/top_team/club_outline
+  relatedCompanies:
+    - 一般社団法人ロアッソ熊本スポーツクラブ
+  annotation:
+    - 2006年度、2007年度はクラブ発表の数値
+    - 2006年度は第2期、第3期を合算した15ヶ月間
+    - 2009年度は決算期変更により11ヶ月間
+    - 2020年度4月よりアカデミー事業を一般社団法人ロアッソ熊本スポーツクラブに移管
 
 - id: "53"
   slug: kufc
@@ -848,3 +846,17 @@
   annotation:
     - 2019年度までは特定非営利活動法人であったため資本の内訳は表示されない
     - 2020年度以降もアカデミー事業はNPO法人横浜スポーツ&カルチャークラブの管轄
+
+- id: "50"
+  slug: azulclaro
+  name: アスルクラロ沼津
+  fullname: アスルクラロ沼津
+  short_name: 沼津
+  company: アスルクラロスルガ株式会社
+  category: JFL
+  hometown: 沼津市
+  area: 静岡県
+  period: 1
+  website: https://www.azul-claro.jp
+  relatedCompanies:
+    - 一般社団法人アスルクラロスポーツクラブ
